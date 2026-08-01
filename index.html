@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>with_love_by — handmade knitwear</title>
+<meta name="description" content="Handmade knitwear made to order. Cashmere, mohair, silk. Each piece made with care.">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#fbf7f5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ TOKENS (pastel pass) ============ */
+  :root{
+    color-scheme: light only;
+    --bg: #fbf7f5;          /* очень светлый тёплый фон, лёгкий розовый подтон */
+    --card: #ffffff;
+    --ink: #2e2a28;         /* тёмный нейтральный — высокий контраст на пастели */
+    --ink-soft: #6b5d5a;
+    --accent: #b98a81;      /* пыльная роза — акцент, но затемнена для читаемости */
+    --accent-tint: #f3e2dd; /* светлая пастельная заливка плейсхолдеров/блоков */
+    --sage: #a3b598;        /* пастельный шалфей — второй акцент */
+    --line: rgba(46,42,40,0.12);
+    --radius: 4px;
+    --maxw: 1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+  .eyebrow{
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  /* ============ TOP BAR ============ */
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,247,245,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 16px; max-width:var(--maxw); margin:0 auto; flex-wrap:nowrap; }
+  .brandmark{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; text-decoration:none; letter-spacing:-0.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .topbar-right{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .lang-toggle{ display:flex; border:1px solid var(--ink); border-radius:999px; overflow:hidden; font-size:11px; font-weight:600; }
+  .lang-toggle button{ border:none; background:transparent; color:var(--ink); padding:7px 10px; cursor:pointer; font-size:11px; font-weight:600; }
+  .lang-toggle button.active{ background:var(--ink); color:var(--bg); }
+  .topbar-cta{ font-size:13px; font-weight:600; text-decoration:none; border:1px solid var(--ink); padding:8px 16px; border-radius:999px; transition:background .2s ease, color .2s ease; white-space:nowrap; }
+  .topbar-cta:hover{ background:var(--ink); color:var(--bg); }
+
+  /* ============ STITCH DIVIDER (signature element) ============ */
+  .stitch{ display:flex; justify-content:center; padding:6px 0; }
+  .stitch svg{ opacity:0.6; }
+
+  /* ============ HERO ============ */
+  .hero{ padding:88px 0 56px; }
+  .hero-eyebrow{ margin-bottom:18px; }
+  .hero h1{ font-size:clamp(40px, 7vw, 76px); line-height:0.98; max-width:14ch; }
+  .hero p.tagline{ margin-top:20px; max-width:46ch; font-size:18px; color:var(--ink-soft); }
+  .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:999px; text-decoration:none; font-weight:600; font-size:14px; border:1px solid var(--ink); transition:transform .18s ease, background .18s ease, color .18s ease; cursor:pointer; }
+  .btn-solid{ background:var(--ink); color:var(--bg); }
+  .btn-solid:hover{ transform:translateY(-2px); }
+  .btn-line:hover{ background:var(--ink); color:var(--bg); transform:translateY(-2px); }
+  .hero-photo{
+    margin-top:56px; aspect-ratio:16/8; border-radius:var(--radius);
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; overflow:hidden; border:1px solid var(--line);
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; }
+  .hero-photo .ph{
+    background: repeating-linear-gradient(45deg, rgba(46,42,40,0.05) 0 2px, transparent 2px 14px), linear-gradient(135deg, var(--accent-tint), var(--card));
+    display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:13px; text-align:center; padding:20px;
+  }
+
+  /* ============ SECTION shell ============ */
+  section{ padding:64px 0; }
+  .section-head{ margin-bottom:40px; max-width:60ch; }
+  .section-head h2{ font-size:clamp(28px, 4vw, 40px); }
+  .section-head p{ margin-top:12px; color:var(--ink-soft); font-size:16px; }
+
+  /* ============ ABOUT ============ */
+  .about{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:center; }
+  .about-photo{
+    aspect-ratio:4/5; border-radius:var(--radius); overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; display:block; }
+  .about-text p{ font-size:16px; color:var(--ink-soft); margin:0 0 16px; }
+  .about-text p:last-child{ margin-bottom:0; }
+  .about-text strong{ color:var(--ink); }
+
+  /* ============ PRODUCT GRID ============ */
+  .product-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .category-tabs{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px; }
+  .category-tabs button{
+    border:1px solid var(--line); background:var(--card); color:var(--ink-soft);
+    padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer;
+    transition:background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .category-tabs button.active{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .product-card{
+    background:var(--card); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:0 1px 4px rgba(46,42,40,0.05);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .product-card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(46,42,40,0.1); }
+  .product-thumb{
+    aspect-ratio:4/5; position:relative;
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  .product-thumb::-webkit-scrollbar{ display:none; }
+  .product-thumb .slide{
+    flex:0 0 100%; scroll-snap-align:start;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .product-thumb .slide img{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; display:block; }
+  .product-thumb .slide .ph{
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    background: repeating-linear-gradient(45deg, rgba(46,42,40,0.05) 0 2px, transparent 2px 12px), linear-gradient(160deg, var(--accent-tint), var(--card));
+    color:var(--ink-soft); font-size:12px; text-align:center; padding:14px;
+  }
+  .product-thumb .swipe-badge{
+    position:absolute; top:8px; right:8px; z-index:2;
+    background:rgba(255,255,255,0.85); border-radius:999px; padding:3px 8px;
+    font-size:10px; font-weight:600; color:var(--ink-soft); pointer-events:none;
+  }
+  .product-body{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .product-name{ font-family:'Fraunces', serif; font-size:19px; font-weight:500; }
+  .product-cat{ font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); font-weight:600; }
+  .product-price{ font-size:14px; color:var(--ink-soft); }
+  .product-more{
+    margin-top:10px; align-self:flex-start;
+    font-size:12px; font-weight:600; text-decoration:none;
+    border-bottom:1px solid var(--ink); padding-bottom:2px; background:none; border-top:none; border-left:none; border-right:none;
+    cursor:pointer; color:var(--ink);
+  }
+
+  /* ============ MATERIALS / INFO STRIP ============ */
+  .info-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:32px; }
+  .info-card{ border-top:1px solid var(--line); padding-top:18px; }
+  .info-card .eyebrow{ display:block; margin-bottom:10px; }
+  .info-card p{ color:var(--ink-soft); font-size:15px; margin:0; }
+
+  /* ============ FAQ ============ */
+  .faq-list{ border-top:1px solid var(--line); }
+  .faq-item{ border-bottom:1px solid var(--line); padding:6px 0; }
+  .faq-item summary{ cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; padding:16px 0; font-weight:600; font-size:16px; }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{ content:'+'; font-family:'Fraunces', serif; font-size:20px; color:var(--accent); margin-left:16px; transition:transform .2s ease; }
+  .faq-item[open] summary::after{ transform:rotate(45deg); }
+  .faq-item p{ margin:0 0 18px; color:var(--ink-soft); font-size:15px; max-width:65ch; }
+
+  /* ============ CONTACT (pastel block, not dark) ============ */
+  .contact{ background:var(--accent-tint); border:1px solid var(--line); border-radius:var(--radius); padding:64px 40px; text-align:center; }
+  .contact h2{ font-size:clamp(28px,4vw,40px); }
+  .contact p{ color:var(--ink-soft); max-width:46ch; margin:14px auto 0; }
+  .contact-ctas{ margin-top:32px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .social-row{ margin-top:20px; display:flex; gap:10px; align-items:center; justify-content:center; }
+  .social-icon{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); background:var(--card);
+    transition:background .18s ease, color .18s ease, transform .18s ease;
+  }
+  .social-icon:hover{ background:var(--ink); color:var(--bg); transform:translateY(-2px); }
+
+  /* ============ FOOTER ============ */
+  footer{ padding:32px 0 48px; text-align:center; font-size:13px; color:var(--ink-soft); }
+  footer a{ text-decoration:underline; }
+
+  /* ============ REVEAL ON SCROLL (visible by default; JS only adds the fade-in) ============ */
+  .reveal{ opacity:1; transform:none; }
+  .reveal.pre-reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.pre-reveal.is-visible{ opacity:1; transform:none; }
+
+  /* ============ PRODUCT MODAL ============ */
+  dialog#productModal{
+    border:none; border-radius:var(--radius); padding:0;
+    width:min(560px, 92vw); max-height:88vh; overflow:auto;
+    background:var(--card); color:var(--ink);
+    scrollbar-width:none; /* Firefox */
+  }
+  dialog#productModal::-webkit-scrollbar{ display:none; } /* Chrome, Edge, Safari */
+  .modal-scroll-hint{
+    position:sticky; bottom:0; left:0; right:0; height:52px;
+    background:linear-gradient(to top, var(--card) 20%, transparent);
+    display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;
+    pointer-events:none; opacity:0; transition:opacity .3s ease;
+  }
+  .modal-scroll-hint.visible{ opacity:1; }
+  .modal-scroll-hint span{
+    display:flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; background:var(--ink); color:var(--bg);
+    font-size:13px; animation:bounceDown 1.6s ease-in-out infinite;
+  }
+  @keyframes bounceDown{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(4px);} }
+  @media (prefers-reduced-motion: reduce){ .modal-scroll-hint span{ animation:none; } }
+  dialog#productModal::backdrop{ background:rgba(46,42,40,0.45); }
+  .modal-close{
+    position:absolute; top:12px; right:12px; z-index:5;
+    background:var(--bg); border:1px solid var(--line); border-radius:999px;
+    width:32px; height:32px; font-size:16px; cursor:pointer;
+  }
+  .modal-imgwrap{ position:relative; aspect-ratio:4/5; background:var(--accent-tint); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .modal-imgwrap img{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; }
+  .modal-imgwrap .ph{ font-size:13px; color:var(--ink-soft); text-align:center; padding:20px; }
+  .modal-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(255,255,255,0.85); border:1px solid var(--line); border-radius:999px;
+    width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:16px;
+  }
+  .modal-nav.prev{ left:12px; } .modal-nav.next{ right:12px; }
+  .modal-dots{ display:flex; gap:6px; justify-content:center; padding:10px 0 0; }
+  .modal-dots span{ width:6px; height:6px; border-radius:50%; background:var(--line); }
+  .modal-dots span.active{ background:var(--accent); }
+  .modal-body{ padding:20px 24px 28px; }
+  .modal-body h3{ font-size:24px; }
+  .modal-price{ font-size:15px; color:var(--ink-soft); margin-top:4px; }
+  .modal-block{ margin-top:16px; }
+  .modal-block .label{ font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); font-weight:600; margin-bottom:4px; }
+  .modal-block p{ margin:0; font-size:14px; color:var(--ink-soft); }
+  .color-swatches{ display:flex; gap:8px; margin-top:2px; }
+  .color-swatches span{ width:22px; height:22px; border-radius:50%; border:1px solid var(--line); display:inline-block; }
+  .modal-order{ margin-top:22px; width:100%; text-align:center; justify-content:center; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px){
+    .product-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width: 760px){
+    .wrap{ padding:0 18px; }
+    section{ padding:44px 0; }
+    .hero{ padding:36px 0 40px; }
+    .hero h1{ max-width:none; }
+    .hero-photo{ margin-top:36px; aspect-ratio:3/4; }
+    .about{ grid-template-columns:1fr; gap:28px; }
+    .about-photo{ order:-1; aspect-ratio:16/10; }
+    .product-grid{ grid-template-columns:repeat(2, 1fr); gap:12px; }
+    .product-body{ padding:12px 14px 14px; }
+    .product-name{ font-size:16px; }
+    .info-grid{ grid-template-columns:1fr; gap:24px; }
+    .contact{ padding:40px 18px; }
+    .contact-ctas{ flex-direction:column; align-items:stretch; }
+    .contact-ctas .btn{ justify-content:center; }
+    .brandmark{ font-size:15px; max-width:44vw; }
+    .lang-toggle button{ padding:6px 8px; font-size:11px; }
+    .topbar-cta{ padding:7px 12px; font-size:12px; }
+    dialog#productModal{ width:94vw; max-height:92vh; }
+    .modal-body{ padding:16px 18px 22px; }
+  }
+  @media (max-width: 420px){
+    .product-grid{ grid-template-columns:1fr 1fr; gap:10px; }
+    .hero h1{ font-size:34px; }
+    .brandmark{ font-size:14px; max-width:38vw; }
+    .lang-toggle button{ padding:5px 6px; font-size:10px; }
+    .topbar-cta{ padding:6px 10px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brandmark">with_love_by_inna</a>
+    <div class="topbar-right">
+      <div class="lang-toggle">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="ru">RU</button>
+        <button type="button" data-lang="lv">LV</button>
+      </div>
+      <a class="topbar-cta" href="#contact" data-key="navCta">Order</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow eyebrow" data-key="heroEyebrow">Machine-knit, made with care · Latvia</div>
+      <h1 data-key="heroTitle">Knitwear,<br>made with care</h1>
+      <p class="tagline" data-key="heroTagline">Cashmere, mohair and silk. Sweaters for cold days, light tops and dresses for warm ones — every piece is made individually, to your size, colour and mood.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#products" data-key="heroBtn1">View the work</a>
+        <a class="btn btn-line" href="#contact" data-key="heroBtn2">How to order</a>
+      </div>
+      <!-- Hero collage: sunset lake / knotted scarves by the water / holding the yarn — same warm-and-blue story.
+           To switch to one single wide photo later, replace this whole div with:
+           <div class="hero-photo reveal"><img src="photos/your-wide-photo.jpeg" alt=""></div> -->
+      <div class="hero-photo reveal">
+        <img src="photos/hero-1.jpeg" alt="">
+        <img src="photos/hero-2.jpeg" alt="">
+        <img src="photos/hero-3.jpeg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch" aria-hidden="true"><svg width="220" height="16" viewBox="0 0 220 16"><path d="M0 8 Q 5.5 0 11 8 T 22 8 T 33 8 T 44 8 T 55 8 T 66 8 T 77 8 T 88 8 T 99 8 T 110 8 T 121 8 T 132 8 T 143 8 T 154 8 T 165 8 T 176 8 T 187 8 T 198 8 T 209 8 T 220 8" fill="none" stroke="#b98a81" stroke-width="1.4"/></svg></div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap about reveal">
+      <div class="about-photo">
+        <img src="photos/about-mama.jpeg" alt="">
+      </div>
+      <div class="about-text">
+        <div class="eyebrow" style="margin-bottom:14px;" data-key="aboutEyebrow">About the maker</div>
+        <h2 style="font-size:32px; margin-bottom:16px;" data-key="aboutTitle">Hi, I'm [Name]</h2>
+        <p data-key="aboutP1">I've been knitting for [X years] — it started as a weekend hobby, and now every piece goes to someone new with a little care knitted into it.</p>
+        <p data-key="aboutP2">I work with natural materials — <strong>cashmere, mohair and silk</strong> — choosing each yarn by hand and paying attention to every detail, from fit to pattern.</p>
+        <p data-key="aboutP3">Every order starts with a conversation: we talk through colour, size and style, so the piece turns out exactly the way you want it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch" aria-hidden="true"><svg width="220" height="16" viewBox="0 0 220 16"><path d="M0 8 Q 5.5 0 11 8 T 22 8 T 33 8 T 44 8 T 55 8 T 66 8 T 77 8 T 88 8 T 99 8 T 110 8 T 121 8 T 132 8 T 143 8 T 154 8 T 165 8 T 176 8 T 187 8 T 198 8 T 209 8 T 220 8" fill="none" stroke="#b98a81" stroke-width="1.4"/></svg></div>
+
+  <!-- ============ PRODUCTS ============ -->
+  <section id="products">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="margin-bottom:10px;" data-key="productsEyebrow">Portfolio</div>
+        <h2 data-key="productsTitle">Recent work</h2>
+        <p data-key="productsDesc">Tap "Learn more" on any piece to see photos, materials, care and price. Colours shown are examples — current shades are confirmed when you order.</p>
+      </div>
+      <div class="category-tabs" id="categoryTabs"></div>
+      <div class="product-grid reveal" id="productGrid"><!-- rendered by JS --></div>
+      <noscript>
+        <p style="margin-top:20px; color:var(--ink-soft); font-size:14px;">
+          Sweater — from €140 · Cardigan — from €170 · Hat — from €45 · Scarf/snood — from €60 · Mohair lace shawl — from €90.
+          Message on WhatsApp or Instagram for photos and details.
+        </p>
+      </noscript>
+    </div>
+  </section>
+
+  <div class="stitch" aria-hidden="true"><svg width="220" height="16" viewBox="0 0 220 16"><path d="M0 8 Q 5.5 0 11 8 T 22 8 T 33 8 T 44 8 T 55 8 T 66 8 T 77 8 T 88 8 T 99 8 T 110 8 T 121 8 T 132 8 T 143 8 T 154 8 T 165 8 T 176 8 T 187 8 T 198 8 T 209 8 T 220 8" fill="none" stroke="#b98a81" stroke-width="1.4"/></svg></div>
+
+  <!-- ============ MATERIALS / INFO ============ -->
+  <section id="info">
+    <div class="wrap">
+      <div class="info-grid reveal">
+        <div class="info-card">
+          <span class="eyebrow" data-key="infoEyebrow1">Yarn</span>
+          <p data-key="infoP1">Natural fibres — cashmere, mohair, merino wool, silk. Yarn is chosen individually for each project.</p>
+        </div>
+        <div class="info-card">
+          <span class="eyebrow" data-key="infoEyebrow2">Turnaround</span>
+          <p data-key="infoP2">Usually [X–Y weeks], depending on the complexity of the piece and current order load.</p>
+        </div>
+        <div class="info-card">
+          <span class="eyebrow" data-key="infoEyebrow3">Sizes &amp; colours</span>
+          <p data-key="infoP3">Every piece is made to order — size and colour are agreed with you individually before starting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch" aria-hidden="true"><svg width="220" height="16" viewBox="0 0 220 16"><path d="M0 8 Q 5.5 0 11 8 T 22 8 T 33 8 T 44 8 T 55 8 T 66 8 T 77 8 T 88 8 T 99 8 T 110 8 T 121 8 T 132 8 T 143 8 T 154 8 T 165 8 T 176 8 T 187 8 T 198 8 T 209 8 T 220 8" fill="none" stroke="#b98a81" stroke-width="1.4"/></svg></div>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="margin-bottom:10px;" data-key="faqEyebrow">Good to know</div>
+        <h2 data-key="faqTitle">Frequently asked questions</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item"><summary data-key="faqQ1">How do I place an order?</summary><p data-key="faqA1">Message me on WhatsApp or Instagram Direct with the piece you like, your size and preferred colour — I'll confirm the details and timeline before starting.</p></details>
+        <details class="faq-item"><summary data-key="faqQ2">Can I customise the size or colour?</summary><p data-key="faqA2">Yes — every piece is made to order, so size, length and colour can usually be adjusted. Just mention it when you message me.</p></details>
+        <details class="faq-item"><summary data-key="faqQ3">How long does an order take?</summary><p data-key="faqA3">On average [X–Y weeks], depending on the piece and current order load. I'll give you an estimate when we discuss your order.</p></details>
+        <details class="faq-item"><summary data-key="faqQ4">How do I pay?</summary><p data-key="faqA4">[Describe accepted payment methods here — bank transfer, card, etc.]</p></details>
+        <details class="faq-item"><summary data-key="faqQ5">Do you ship abroad?</summary><p data-key="faqA5">[Yes/no — add shipping regions and approximate cost here.]</p></details>
+        <details class="faq-item"><summary data-key="faqQ6">How do I care for a hand-knitted piece?</summary><p data-key="faqA6">Hand wash at 30°C and dry flat on a horizontal surface. Detailed care instructions come with every order.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch" aria-hidden="true"><svg width="220" height="16" viewBox="0 0 220 16"><path d="M0 8 Q 5.5 0 11 8 T 22 8 T 33 8 T 44 8 T 55 8 T 66 8 T 77 8 T 88 8 T 99 8 T 110 8 T 121 8 T 132 8 T 143 8 T 154 8 T 165 8 T 176 8 T 187 8 T 198 8 T 209 8 T 220 8" fill="none" stroke="#b98a81" stroke-width="1.4"/></svg></div>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div class="eyebrow" data-key="contactEyebrow">How to order</div>
+        <h2 style="margin-top:14px;" data-key="contactTitle">Message me — let's talk about your piece</h2>
+        <p data-key="contactDesc">Tell me what you'd like knitted: style, colour, size. I usually reply within a day.</p>
+        <div class="contact-ctas">
+          <a class="btn btn-solid" href="https://wa.me/37129134375" target="_blank" rel="noopener" data-key="contactBtn1">Message on WhatsApp</a>
+          <!-- REPLACE username with the real instagram handle -->
+          <a class="btn btn-line" href="https://ig.me/m/with_love_by_inna" target="_blank" rel="noopener" data-key="contactBtn2">Message on Instagram</a>
+        </div>
+        <div class="social-row">
+          <a class="social-icon" href="https://instagram.com/with_love_by_inna" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </a>
+          <a class="social-icon" href="https://www.facebook.com/share/17dhincAWp/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 21v-8h3l.5-4H14V7c0-1.1.4-2 2-2h1.5V1.2C17.1 1.1 16 1 14.8 1 12 1 10 2.7 10 5.7V9H7v4h3v8h4z"/></svg>
+          </a>
+          <a class="social-icon" href="https://www.pinterest.com/andrejeva0218/" target="_blank" rel="noopener" aria-label="Pinterest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 18c.8-2.4 1.6-5.1 2-6.8M12 5.5c3 0 4.8 1.9 4.8 4.3 0 3-1.6 5.4-4 5.4-1 0-1.8-.6-2.1-1.3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span data-key="footerText">Made with care · portfolio site · built with Claude ·</span>
+      <a href="https://instagram.com/with_love_by_inna" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://www.facebook.com/share/17dhincAWp/" target="_blank" rel="noopener">Facebook</a> ·
+      <a href="https://www.pinterest.com/andrejeva0218/" target="_blank" rel="noopener">Pinterest</a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ============ PRODUCT MODAL ============ -->
+<dialog id="productModal">
+  <button class="modal-close" id="modalCloseBtn" aria-label="Close">×</button>
+  <div class="modal-imgwrap" id="modalImgWrap"></div>
+  <div class="modal-dots" id="modalDots"></div>
+  <div class="modal-body">
+    <div id="modalCat" class="product-cat" style="margin-bottom:4px;"></div>
+    <h3 id="modalName"></h3>
+    <div class="modal-price" id="modalPrice"></div>
+    <div class="modal-block"><div class="label" data-key="modalCompositionLabel">Composition</div><p id="modalComposition"></p></div>
+    <div class="modal-block"><div class="label" data-key="modalCareLabel">Care</div><p id="modalCare"></p></div>
+    <div class="modal-block"><div class="label" data-key="modalNoteLabel">Sizes &amp; colours</div><p id="modalNote"></p></div>
+    <div class="modal-block" id="modalColorsBlock" style="display:none;">
+      <div class="label" data-key="modalColorsLabel">Possible shades (illustrative)</div>
+      <div id="modalColors" class="color-swatches"></div>
+    </div>
+    <a class="btn btn-solid modal-order" id="modalOrderBtn" href="#" target="_blank" rel="noopener"></a>
+    <a class="btn btn-line modal-order" id="modalOrderBtnIg" href="#" target="_blank" rel="noopener" style="margin-top:10px;"></a>
+  </div>
+  <div id="modalScrollHint" class="modal-scroll-hint" aria-hidden="true">
+    <span>↓</span>
+  </div>
+</dialog>
+
+<script>
+  /* =========================================================
+     WHATSAPP NUMBER — replace once here, used everywhere
+  ========================================================= */
+  const WHATSAPP_NUMBER = "37129134375";
+
+  /* =========================================================
+     PRODUCTS — edit this array to add/change pieces.
+     images: put placeholder labels for now; later replace a
+     string with a real file path/URL (e.g. "photos/sweater1.jpeg")
+     and it will render as a real photo automatically.
+  ========================================================= */
+  const products = [
+    {
+      id: "tuman",
+      category: "sweaters",
+      name: { en:"Mist", ru:"Туман", lv:"Migla" },
+      price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
+      composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
+      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      note: { en:"Made to your size — mention your measurements when ordering.",
+              ru:"Вяжется по вашему размеру — напишите свои мерки при заказе.",
+              lv:"Adīts pēc jūsu izmēra — norādiet savus mērus, pasūtot." },
+      colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "linear-gradient(135deg, #f3c9d6, #b7d4e8, #f6e6a8, #f4f1ec)", "#2f4a3d"],
+      images: ["photos/tuman-2.jpeg", "photos/tuman-4.jpeg", "photos/tuman-5.jpeg", "photos/tuman-6.jpeg", "photos/tuman-7.jpeg"],
+      orderText: { en:"Hi! I'd like to order the Mist sweater", ru:"Здравствуйте! Хочу заказать свитер «Туман»", lv:"Sveiki! Vēlos pasūtīt džemperi Migla" }
+    },
+    {
+      id: "sweater-crewneck",
+      category: "sweaters",
+      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
+      price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
+      composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
+      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      note: { en:"Round neck, no collar. Made to your size — mention your measurements when ordering.",
+              ru:"Круглый вырез, без горловины-стойки. Вяжется по вашему размеру — напишите свои мерки при заказе.",
+              lv:"Apaļš izgriezums, bez apkakles. Adīts pēc jūsu izmēra — norādiet savus mērus, pasūtot." },
+      colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "#d9c9e8", "#f6e6a8"],
+      images: ["photos/crewneck-1.jpeg", "photos/crewneck-2.jpeg", "photos/crewneck-3.jpeg", "photos/crewneck-4.jpeg", "photos/crewneck-5.jpeg", "photos/crewneck-6.jpeg", "photos/crewneck-7.jpeg", "photos/crewneck-8.jpeg"],
+      orderText: { en:"Hi! I'd like to order this sweater", ru:"Здравствуйте! Хочу заказать этот свитер", lv:"Sveiki! Vēlos pasūtīt šo džemperi" }
+    },
+    {
+      id: "cardigan",
+      category: "cardigans",
+      name: { en:"Cardigan", ru:"Кардиган", lv:"Kardigans" },
+      price: { en:"from €170", ru:"от 170 €", lv:"no €170" },
+      composition: { en:"Alpaca / wool blend", ru:"Альпака / шерсть", lv:"Alpakas / vilnas maisījums" },
+      care: { en:"Hand wash, dry flat on a horizontal surface.", ru:"Ручная стирка, сушить в расправленном виде на горизонтальной поверхности.", lv:"Mazgāt ar rokām, žāvēt horizontāli izklātu." },
+      note: { en:"Lined or unlined, length adjustable. Ask about current yarn colours.", ru:"С подкладкой или без, длина регулируется. Актуальные цвета пряжи уточняйте.", lv:"Ar oderi vai bez, garumu var pielāgot. Jautājiet par pašreizējām dziju krāsām." },
+      images: ["Photo 1 — front", "Photo 2 — detail", "Photo 3 — worn outdoors"],
+      orderText: { en:"Hi! I'd like to order a cardigan", ru:"Здравствуйте! Хочу заказать кардиган", lv:"Sveiki! Vēlos pasūtīt kardiganu" }
+    },
+    {
+      id: "hat",
+      category: "accessories",
+      name: { en:"Hat", ru:"Шапка", lv:"Cepure" },
+      price: { en:"from €45", ru:"от 45 €", lv:"no €45" },
+      composition: { en:"Mohair or wool, one size", ru:"Мохер или шерсть, один размер", lv:"Mohēra vai vilna, viens izmērs" },
+      care: { en:"Hand wash at 30°C, dry flat.", ru:"Ручная стирка при 30°C, сушить в расправленном виде.", lv:"Mazgāt ar rokām 30°C, žāvēt horizontāli." },
+      note: { en:"Standard adult size — mention if you need a smaller/larger fit.", ru:"Стандартный взрослый размер — сообщите, если нужен другой.", lv:"Standarta pieauguša cilvēka izmērs — norādiet, ja nepieciešams cits." },
+      images: ["Photo 1 — front", "Photo 2 — texture close-up"],
+      orderText: { en:"Hi! I'd like to order a hat", ru:"Здравствуйте! Хочу заказать шапку", lv:"Sveiki! Vēlos pasūtīt cepuri" }
+    },
+    {
+      id: "scarf",
+      category: "accessories",
+      name: { en:"Scarf / snood", ru:"Шарф / снуд", lv:"Šalle / kakla sildītājs" },
+      price: { en:"from €60", ru:"от 60 €", lv:"no €60" },
+      composition: { en:"Silk-merino blend, length to choose", ru:"Шёлк-меринос, длина на выбор", lv:"Zīda-merino maisījums, garumu var izvēlēties" },
+      care: { en:"Hand wash, dry flat.", ru:"Ручная стирка, сушить в расправленном виде.", lv:"Mazgāt ar rokām, žāvēt horizontāli." },
+      note: { en:"Length and colour made to your preference.", ru:"Длина и цвет — по вашему желанию.", lv:"Garums un krāsa pēc jūsu vēlmes." },
+      images: ["Photo 1 — full length", "Photo 2 — worn", "Photo 3 — texture"],
+      orderText: { en:"Hi! I'd like to order a scarf", ru:"Здравствуйте! Хочу заказать шарф", lv:"Sveiki! Vēlos pasūtīt šalli" }
+    },
+    {
+      id: "shawl",
+      category: "accessories",
+      name: { en:"Mohair lace shawl", ru:"Ажурная шаль из мохера", lv:"Mežģīņu šalle no mohēras" },
+      price: { en:"from €90", ru:"от 90 €", lv:"no €90" },
+      composition: { en:"Mohair / silk blend, lace pattern", ru:"Мохер / шёлк, ажурный узор", lv:"Mohēra / zīda maisījums, mežģīņu raksts" },
+      care: { en:"Hand wash in cold water, dry flat, do not wring.", ru:"Ручная стирка в холодной воде, сушить в расправленном виде, не выкручивать.", lv:"Mazgāt ar rokām aukstā ūdenī, žāvēt horizontāli, negriezt." },
+      note: { en:"One size, fits most. Colour shown is an example.", ru:"Один размер, подходит большинству. Цвет на фото — пример.", lv:"Viens izmērs, der lielākajai daļai. Attēlotā krāsa ir piemērs." },
+      images: ["Photo 1 — full shawl", "Photo 2 — worn", "Photo 3 — lace detail"],
+      orderText: { en:"Hi! I'd like to order the mohair lace shawl", ru:"Здравствуйте! Хочу заказать ажурную шаль", lv:"Sveiki! Vēlos pasūtīt mežģīņu šalli" }
+    }
+  ];
+
+  let currentLang = "en";
+  let activeCategory = "all";
+  let modalState = { product: null, index: 0 };
+
+  const CATEGORY_ORDER = ["sweaters", "cardigans", "tops", "dresses", "accessories"];
+  const categoryLabels = {
+    all: { en:"All", ru:"Все", lv:"Viss" },
+    sweaters: { en:"Sweaters", ru:"Свитера", lv:"Džemperi" },
+    cardigans: { en:"Cardigans", ru:"Кардиганы", lv:"Kardigani" },
+    tops: { en:"Tops", ru:"Майки", lv:"Topi" },
+    dresses: { en:"Dresses", ru:"Платья", lv:"Kleitas" },
+    accessories: { en:"Accessories", ru:"Аксессуары", lv:"Aksesuāri" }
+  };
+  const categoryLabelsSingular = {
+    sweaters: { en:"Sweater", ru:"Свитер", lv:"Džemperis" },
+    cardigans: { en:"Cardigan", ru:"Кардиган", lv:"Kardigans" },
+    tops: { en:"Top", ru:"Майка", lv:"Tops" },
+    dresses: { en:"Dress", ru:"Платье", lv:"Kleita" },
+    accessories: { en:"Accessory", ru:"Аксессуар", lv:"Aksesuārs" }
+  };
+
+  function isImagePath(str){
+    return /^(https?:\/\/|\.?\/|[\w-]+\/)/.test(str) && /\.(jpg|jpeg|png|webp|gif)$/i.test(str);
+  }
+
+  function renderCategoryTabs(){
+    const present = CATEGORY_ORDER.filter(c => products.some(p => p.category === c));
+    if(present.length < 2){ document.getElementById('categoryTabs').innerHTML = ''; return; }
+    const cats = ['all', ...present];
+    document.getElementById('categoryTabs').innerHTML = cats.map(c => `
+      <button data-cat="${c}" class="${c===activeCategory?'active':''}">${categoryLabels[c][currentLang]}</button>
+    `).join('');
+    document.querySelectorAll('.category-tabs button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ activeCategory = btn.dataset.cat; renderCategoryTabs(); renderProductGrid(); });
+    });
+  }
+
+  function renderProductGrid(){
+    const grid = document.getElementById('productGrid');
+    const list = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
+    grid.innerHTML = list.map(p => `
+      <div class="product-card">
+        <div class="product-thumb">
+          ${ p.images.length > 1 ? `<span class="swipe-badge">⇆ ${p.images.length}</span>` : '' }
+          ${ p.images.map(img => `
+            <div class="slide">${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}">` : `<div class="ph">${img}</div>` }</div>
+          `).join('') }
+        </div>
+        <div class="product-body">
+          <div class="product-cat">${categoryLabelsSingular[p.category] ? categoryLabelsSingular[p.category][currentLang] : ''}</div>
+          <div class="product-name">${p.name[currentLang]}</div>
+          <div class="product-price">${p.price[currentLang]}</div>
+          <button class="product-more" data-key="learnMore" data-id="${p.id}">${learnMoreLabel()}</button>
+        </div>
+      </div>
+    `).join('');
+    grid.querySelectorAll('.product-more').forEach(btn=>{
+      btn.addEventListener('click', ()=> openModal(btn.dataset.id));
+    });
+  }
+
+  function learnMoreLabel(){
+    return { en:"Learn more", ru:"Подробнее", lv:"Uzzināt vairāk" }[currentLang];
+  }
+
+  function openModal(id){
+    const p = products.find(x=>x.id===id);
+    modalState = { product: p, index: 0 };
+    renderModal();
+    const scrollY = window.scrollY;
+    document.getElementById('productModal').showModal();
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{ window.scrollTo(0, scrollY); });
+    });
+    updateScrollHint();
+  }
+
+  function renderModal(){
+    const p = modalState.product;
+    if(!p) return;
+    const img = p.images[modalState.index];
+    document.getElementById('modalImgWrap').innerHTML = `
+      ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
+      ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}">` : `<div class="ph">${img}</div>` }
+      ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
+    `;
+    document.getElementById('modalDots').innerHTML = p.images.map((_, i)=>
+      `<span class="${i===modalState.index?'active':''}"></span>`).join('');
+    document.getElementById('modalCat').textContent = categoryLabelsSingular[p.category] ? categoryLabelsSingular[p.category][currentLang] : '';
+    document.getElementById('modalName').textContent = p.name[currentLang];
+    document.getElementById('modalPrice').textContent = p.price[currentLang];
+    document.getElementById('modalComposition').textContent = p.composition[currentLang];
+    document.getElementById('modalCare').textContent = p.care[currentLang];
+    document.getElementById('modalNote').textContent = p.note[currentLang];
+    const colorsBlock = document.getElementById('modalColorsBlock');
+    if(p.colors && p.colors.length){
+      colorsBlock.style.display = '';
+      document.getElementById('modalColors').innerHTML = p.colors.map(c=>`<span style="background:${c}"></span>`).join('');
+    } else {
+      colorsBlock.style.display = 'none';
+    }
+    const orderBtn = document.getElementById('modalOrderBtn');
+    orderBtn.textContent = { en:"Message on WhatsApp", ru:"Написать в WhatsApp", lv:"Rakstīt WhatsApp" }[currentLang];
+    orderBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(p.orderText[currentLang])}`;
+
+    const orderBtnIg = document.getElementById('modalOrderBtnIg');
+    orderBtnIg.textContent = { en:"Message on Instagram", ru:"Написать в Direct", lv:"Rakstīt Instagram" }[currentLang];
+    orderBtnIg.href = "https://ig.me/m/with_love_by_inna";
+
+    const prevBtn = document.querySelector('.modal-nav.prev');
+    const nextBtn = document.querySelector('.modal-nav.next');
+    if(prevBtn) prevBtn.addEventListener('click', ()=> shiftImage(-1));
+    if(nextBtn) nextBtn.addEventListener('click', ()=> shiftImage(1));
+  }
+
+  function shiftImage(dir){
+    const p = modalState.product;
+    modalState.index = (modalState.index + dir + p.images.length) % p.images.length;
+    renderModal();
+  }
+
+  function updateScrollHint(){
+    const dlg = document.getElementById('productModal');
+    const hint = document.getElementById('modalScrollHint');
+    // small delay so layout has settled after content swap
+    requestAnimationFrame(()=>{
+      const hasMore = dlg.scrollHeight - dlg.scrollTop - dlg.clientHeight > 20;
+      hint.classList.toggle('visible', hasMore);
+    });
+  }
+  document.getElementById('productModal').addEventListener('scroll', updateScrollHint);
+  window.addEventListener('resize', updateScrollHint);
+
+  document.getElementById('modalCloseBtn').addEventListener('click', ()=>{
+    const scrollY = window.scrollY;
+    document.getElementById('productModal').close();
+    window.scrollTo(0, scrollY);
+  });
+  document.getElementById('productModal').addEventListener('click', (e)=>{
+    if(e.target.id === 'productModal') e.target.close();
+  });
+  document.addEventListener('keydown', (e)=>{
+    const dlg = document.getElementById('productModal');
+    if(dlg.open){
+      if(e.key === 'ArrowRight') shiftImage(1);
+      if(e.key === 'ArrowLeft') shiftImage(-1);
+    }
+  });
+
+  // ---------- Reveal on scroll (progressive enhancement) ----------
+  function initReveal(){
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window){
+      revealEls.forEach(el=>el.classList.add('pre-reveal'));
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el=>io.observe(el));
+    }
+    // if IntersectionObserver isn't supported, elements simply stay visible (default CSS state)
+  }
+
+  // ---------- EN / RU / LV toggle ----------
+  const i18n = {
+    navCta: { en:"Order", ru:"Заказать", lv:"Pasūtīt" },
+    heroEyebrow: { en:"Machine-knit, made with care · Latvia", ru:"Вязание на машине · Латвия", lv:"Mašīnadīti izstrādājumi · Latvija" },
+    heroTitle: { en:"Knitwear,<br>made with care", ru:"Вещи,<br>связанные с любовью", lv:"Trikotāža,<br>darināta ar rūpību" },
+    heroTagline: { en:"Cashmere, mohair and silk. Sweaters for cold days, light tops and dresses for warm ones — every piece is made individually, to your size, colour and mood.",
+                   ru:"Кашемир, мохер и шёлк. Свитера для холодных дней, лёгкие майки и платья для тёплых — каждая вещь создаётся индивидуально, под размер, цвет и настроение.",
+                   lv:"Kašmirs, mohēra un zīds. Džemperi aukstām dienām, viegli topi un kleitas siltām — katrs izstrādājums top individuāli, pēc jūsu izmēra, krāsas un noskaņojuma." },
+    heroBtn1: { en:"View the work", ru:"Смотреть работы", lv:"Skatīt darbus" },
+    heroBtn2: { en:"How to order", ru:"Как заказать", lv:"Kā pasūtīt" },
+    heroPhotoPh: { en:"Main photo goes here — best finished piece, horizontal, ~1600×800px",
+                   ru:"Место для главного фото — лучшая готовая работа, горизонтальное, ~1600×800px",
+                   lv:"Šeit ievieto galveno foto — labākais gatavais izstrādājums, horizontāls, ~1600×800px" },
+    aboutPhotoPh: { en:"Portrait photo of mum at work (vertical, ~800×1000px)",
+                    ru:"Портретное фото мамы за работой (вертикальное, ~800×1000px)",
+                    lv:"Portreta foto — mamma darba procesā (vertikāls, ~800×1000px)" },
+    aboutEyebrow: { en:"About the maker", ru:"О мастере", lv:"Par autori" },
+    aboutTitle: { en:"Hi, I'm [Name]", ru:"Привет, я [Имя]", lv:"Sveiki, es esmu [Vārds]" },
+    aboutP1: { en:"I've been knitting for [X years] — it started as a weekend hobby, and now every piece goes to someone new with a little care knitted into it.",
+               ru:"Вяжу уже [сколько лет] — начиналось как увлечение по выходным, а теперь каждая вещь уходит к новому человеку с частичкой заботы, вложенной в неё.",
+               lv:"Adu jau [X gadus] — sākās kā nedēļas nogales vaļasprieks, un tagad katrs izstrādājums nonāk pie jauna cilvēka ar ieadītu rūpību." },
+    aboutP2: { en:"I work with natural materials — <strong>cashmere, mohair and silk</strong> — choosing each yarn by hand and paying attention to every detail, from fit to pattern.",
+               ru:"Работаю с натуральными материалами — <strong>кашемиром, мохером и шёлком</strong>, выбираю пряжу вручную и слежу за каждой деталью, от посадки до узора.",
+               lv:"Strādāju ar dabīgiem materiāliem — <strong>kašmiru, mohēru un zīdu</strong> — katru dziju izvēloties ar rokām un pievēršot uzmanību katrai detaļai." },
+    aboutP3: { en:"Every order starts with a conversation: we talk through colour, size and style, so the piece turns out exactly the way you want it.",
+               ru:"Каждый заказ начинается с разговора: обсуждаем цвет, размер и фасон, чтобы вещь получилась именно такой, как вы хотите.",
+               lv:"Katrs pasūtījums sākas ar sarunu: pārrunājam krāsu, izmēru un stilu, lai izstrādājums iznāktu tieši tāds, kādu vēlaties." },
+    productsEyebrow: { en:"Portfolio", ru:"Портфолио", lv:"Portfolio" },
+    productsTitle: { en:"Recent work", ru:"Последние работы", lv:"Jaunākie darbi" },
+    productsDesc: { en:"Tap \"Learn more\" on any piece to see photos, materials, care and price. Colours shown are examples — current shades are confirmed when you order.",
+                    ru:"Нажмите «Подробнее» на любой вещи — увидите фото, материалы, уход и цену. Цвета на фото — примеры, актуальные оттенки уточняются при заказе.",
+                    lv:"Nospiediet \"Uzzināt vairāk\" pie jebkura izstrādājuma — redzēsiet fotoattēlus, materiālus, kopšanu un cenu. Krāsas ir piemēri." },
+    infoEyebrow1: { en:"Yarn", ru:"Пряжа", lv:"Dzija" },
+    infoP1: { en:"Natural fibres — cashmere, mohair, merino wool, silk. Yarn is chosen individually for each project.",
+              ru:"Натуральные волокна — кашемир, мохер, мериносовая шерсть, шёлк. Пряжа выбирается под каждый проект отдельно.",
+              lv:"Dabīgas šķiedras — kašmirs, mohēra, merino vilna, zīds. Dzija tiek izvēlēta katram projektam atsevišķi." },
+    infoEyebrow2: { en:"Turnaround", ru:"Сроки", lv:"Izgatavošanas laiks" },
+    infoP2: { en:"Usually [X–Y weeks], depending on the complexity of the piece and current order load.",
+              ru:"Обычно [X–Y недель], в зависимости от сложности модели и текущей загрузки заказов.",
+              lv:"Parasti [X–Y nedēļas], atkarībā no izstrādājuma sarežģītības un pašreizējā pasūtījumu apjoma." },
+    infoEyebrow3: { en:"Sizes & colours", ru:"Размеры и цвета", lv:"Izmēri un krāsas" },
+    infoP3: { en:"Every piece is made to order — size and colour are agreed with you individually before starting.",
+              ru:"Каждая вещь вяжется на заказ — размер и цвет согласовываются с вами индивидуально перед началом работы.",
+              lv:"Katrs izstrādājums top pēc pasūtījuma — izmērs un krāsa tiek saskaņoti individuāli pirms darba sākuma." },
+    faqEyebrow: { en:"Good to know", ru:"Полезно знать", lv:"Noderīgi zināt" },
+    faqTitle: { en:"Frequently asked questions", ru:"Часто задаваемые вопросы", lv:"Biežāk uzdotie jautājumi" },
+    faqQ1: { en:"How do I place an order?", ru:"Как сделать заказ?", lv:"Kā veikt pasūtījumu?" },
+    faqA1: { en:"Message me on WhatsApp or Instagram Direct with the piece you like, your size and preferred colour — I'll confirm the details and timeline before starting.",
+             ru:"Напишите мне в WhatsApp или Direct — какая вещь понравилась, ваш размер и желаемый цвет. Согласуем детали и сроки перед началом работы.",
+             lv:"Uzrakstiet man WhatsApp vai Instagram Direct — kurš izstrādājums patika, jūsu izmērs un vēlamā krāsa. Saskaņosim detaļas un termiņus." },
+    faqQ2: { en:"Can I customise the size or colour?", ru:"Можно ли изменить размер или цвет?", lv:"Vai varu mainīt izmēru vai krāsu?" },
+    faqA2: { en:"Yes — every piece is made to order, so size, length and colour can usually be adjusted. Just mention it when you message me.",
+             ru:"Да — каждая вещь вяжется на заказ, поэтому размер, длину и цвет обычно можно изменить. Просто укажите это при заказе.",
+             lv:"Jā — katrs izstrādājums top pēc pasūtījuma, tāpēc izmēru, garumu un krāsu parasti var mainīt." },
+    faqQ3: { en:"How long does an order take?", ru:"Сколько времени занимает изготовление?", lv:"Cik ilgs ir izgatavošanas laiks?" },
+    faqA3: { en:"On average [X–Y weeks], depending on the piece and current order load. I'll give you an estimate when we discuss your order.",
+             ru:"В среднем [X–Y недель], в зависимости от модели и текущей загрузки. Точный срок скажу при обсуждении заказа.",
+             lv:"Vidēji [X–Y nedēļas], atkarībā no izstrādājuma un pašreizējās noslodzes." },
+    faqQ4: { en:"How do I pay?", ru:"Как происходит оплата?", lv:"Kā notiek apmaksa?" },
+    faqA4: { en:"[Describe accepted payment methods here — bank transfer, card, etc.]",
+             ru:"[Опишите способы оплаты — перевод, карта и т.д.]",
+             lv:"[Aprakstiet pieejamos maksājumu veidus — pārskaitījums, karte utt.]" },
+    faqQ5: { en:"Do you ship abroad?", ru:"Отправляете ли вы за границу?", lv:"Vai sūtāt uz ārzemēm?" },
+    faqA5: { en:"[Yes/no — add shipping regions and approximate cost here.]",
+             ru:"[Да/нет — укажите регионы доставки и примерную стоимость.]",
+             lv:"[Jā/nē — norādiet piegādes reģionus un aptuveno cenu.]" },
+    faqQ6: { en:"How do I care for a hand-knitted piece?", ru:"Как ухаживать за вязаными изделиями?", lv:"Kā kopt roku darbā adītu izstrādājumu?" },
+    faqA6: { en:"Hand wash at 30°C and dry flat on a horizontal surface. Detailed care instructions come with every order.",
+             ru:"Ручная стирка при 30°C, сушить в расправленном виде на горизонтальной поверхности. Подробная инструкция — с каждым заказом.",
+             lv:"Mazgāt ar rokām 30°C temperatūrā, žāvēt horizontāli. Detalizēta kopšanas instrukcija tiek pievienota katram pasūtījumam." },
+    contactEyebrow: { en:"How to order", ru:"Как заказать", lv:"Kā pasūtīt" },
+    contactTitle: { en:"Message me — let's talk about your piece", ru:"Напишите — обсудим вашу вещь", lv:"Uzrakstiet man — pārrunāsim jūsu izstrādājumu" },
+    contactDesc: { en:"Tell me what you'd like knitted: style, colour, size. I usually reply within a day.",
+                   ru:"Расскажите, что вы хотите связать: модель, цвет, размер. Отвечаю в течение дня.",
+                   lv:"Pastāstiet, ko vēlaties adīt: modeli, krāsu, izmēru. Parasti atbildu dienas laikā." },
+    contactBtn1: { en:"Message on WhatsApp", ru:"Написать в WhatsApp", lv:"Rakstīt WhatsApp" },
+    contactBtn2: { en:"Message on Instagram", ru:"Написать в Direct", lv:"Rakstīt Instagram" },
+    alsoFindMe: { en:"Also find me on:", ru:"Также меня можно найти:", lv:"Mani var atrast arī šeit:" },
+    pinterestLink: { en:"Pinterest", ru:"Pinterest", lv:"Pinterest" },
+    footerText: { en:"Made with care · portfolio site · built with Claude ·",
+                  ru:"Сделано с любовью · сайт-портфолио · создан при помощи Claude ·",
+                  lv:"Radīts ar rūpību · portfolio vietne · izveidota ar Claude ·" },
+    learnMore: { en:"Learn more", ru:"Подробнее", lv:"Uzzināt vairāk" },
+    modalCompositionLabel: { en:"Composition", ru:"Состав", lv:"Sastāvs" },
+    modalCareLabel: { en:"Care", ru:"Уход", lv:"Kopšana" },
+    modalNoteLabel: { en:"Sizes & colours", ru:"Размеры и цвета", lv:"Izmēri un krāsas" },
+    modalColorsLabel: { en:"Possible shades (illustrative)", ru:"Возможные оттенки (для примера)", lv:"Iespējamās nokrāsas (piemēram)" }
+  };
+
+  function setLang(lang){
+    currentLang = lang;
+    document.querySelectorAll('[data-key]').forEach(el=>{
+      const entry = i18n[el.dataset.key];
+      if(entry && entry[lang]) el.innerHTML = entry[lang];
+    });
+    document.getElementById('htmlRoot').setAttribute('lang', lang);
+    document.querySelectorAll('.lang-toggle button').forEach(btn=>{
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    renderCategoryTabs();
+    renderProductGrid();
+    if(document.getElementById('productModal').open) renderModal();
+  }
+
+  document.querySelectorAll('.lang-toggle button').forEach(btn=>{
+    btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
+  });
+
+  renderCategoryTabs();
+  renderProductGrid();
+  initReveal();
+</script>
+
+</body>
+</html>
