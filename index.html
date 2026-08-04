@@ -124,29 +124,27 @@
     margin-top:28px; aspect-ratio:4/5; border-radius:var(--radius);
     position:relative; overflow:hidden; border:1px solid var(--line);
   }
-  .hero-photo-bg{
-    position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; image-orientation:from-image;
-    filter:blur(26px) brightness(0.7); transform:scale(1.15);
-  }
-  .hero-photo-fg{
-    position:relative; width:100%; height:100%;
-    object-fit:contain; image-orientation:from-image;
-  }
   .hero-photo video{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; }
+  .hero-photo-collage img{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; }
   .hero-photo .ph{
     width:100%; height:100%;
     background: repeating-linear-gradient(45deg, rgba(46,42,40,0.05) 0 2px, transparent 2px 14px), linear-gradient(135deg, var(--accent-tint), var(--card));
     display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:12px; text-align:center; padding:14px;
   }
+  /* Phone: show the video, hide the collage */
+  .hero-photo-video{ display:block; }
+  .hero-photo-collage{ display:none; }
   @media (min-width:700px){
     .hero{ padding:88px 0 56px; }
     .hero-eyebrow{ margin-bottom:18px; }
     .hero h1{ max-width:14ch; }
     .hero p.tagline{ margin-top:20px; font-size:18px; }
     .hero-ctas{ margin-top:32px; gap:14px; }
-    .hero-photo{ margin-top:56px; aspect-ratio:16/9; }
+    .hero-photo{ margin-top:56px; }
     .hero-photo .ph{ font-size:13px; padding:20px; }
+    /* Desktop: show the 3-photo collage, hide the video */
+    .hero-photo-video{ display:none; }
+    .hero-photo-collage{ display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; aspect-ratio:16/8; }
   }
 
   /* ============ SECTION shell ============ */
@@ -402,10 +400,16 @@
       <!-- Hero video: short, muted, looping, no sound needed.
            To go back to a photo, replace this <video> block with:
            <img src="photos/hero-3.jpeg" alt=""> -->
-      <div class="hero-photo reveal">
-        <video autoplay muted loop playsinline>
+      <!-- Phone: video. Desktop (700px+): 3-photo collage. Toggled by CSS only, see .hero-photo-video / .hero-photo-collage rules. -->
+      <div class="hero-photo hero-photo-video reveal">
+        <video autoplay muted loop playsinline poster="photos/hero-3.jpeg">
           <source src="photos/hero.mp4" type="video/mp4">
         </video>
+      </div>
+      <div class="hero-photo hero-photo-collage reveal">
+        <img src="photos/hero-1.jpeg" alt="">
+        <img src="photos/hero-2.jpeg" alt="">
+        <img src="photos/hero-3.jpeg" alt="">
       </div>
     </div>
   </section>
