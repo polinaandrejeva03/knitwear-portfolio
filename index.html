@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>with_love_by — handmade knitwear</title>
-<meta name="description" content="Handmade knitwear made to order. Cashmere, mohair, silk. Each piece made with care.">
+<title>with_love_by_inna — machine-knit clothing, cashmere & mohair, Latvia</title>
+<meta name="description" content="Machine-knit clothing made to order in Latvia — sweaters, cardigans, tops, dresses and more, for every season. Cashmere, merino, mohair and silk. By Inna Andrejeva, with_love_by_inna.">
 <meta name="color-scheme" content="light only">
 <meta name="theme-color" content="#fbf7f5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -121,11 +121,21 @@
   .btn-solid:hover{ transform:translateY(-2px); }
   .btn-line:hover{ background:var(--ink); color:var(--bg); transform:translateY(-2px); }
   .hero-photo{
-    margin-top:28px; aspect-ratio:3/4; border-radius:var(--radius);
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:5px; overflow:hidden; border:1px solid var(--line);
+    margin-top:28px; aspect-ratio:4/5; border-radius:var(--radius);
+    position:relative; overflow:hidden; border:1px solid var(--line);
   }
-  .hero-photo img{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; }
+  .hero-photo-bg{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; image-orientation:from-image;
+    filter:blur(26px) brightness(0.7); transform:scale(1.15);
+  }
+  .hero-photo-fg{
+    position:relative; width:100%; height:100%;
+    object-fit:contain; image-orientation:from-image;
+  }
+  .hero-photo video{ width:100%; height:100%; object-fit:cover; image-orientation:from-image; }
   .hero-photo .ph{
+    width:100%; height:100%;
     background: repeating-linear-gradient(45deg, rgba(46,42,40,0.05) 0 2px, transparent 2px 14px), linear-gradient(135deg, var(--accent-tint), var(--card));
     display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:12px; text-align:center; padding:14px;
   }
@@ -135,7 +145,7 @@
     .hero h1{ max-width:14ch; }
     .hero p.tagline{ margin-top:20px; font-size:18px; }
     .hero-ctas{ margin-top:32px; gap:14px; }
-    .hero-photo{ margin-top:56px; aspect-ratio:16/8; gap:6px; }
+    .hero-photo{ margin-top:56px; aspect-ratio:16/9; }
     .hero-photo .ph{ font-size:13px; padding:20px; }
   }
 
@@ -382,20 +392,20 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-eyebrow eyebrow" data-key="heroEyebrow">Machine-knit, made with care · Latvia</div>
-      <h1 data-key="heroTitle">Knitwear,<br>made with care</h1>
-      <p class="tagline" data-key="heroTagline">Cashmere, mohair and silk. Sweaters for cold days, light tops and dresses for warm ones — every piece is made individually, to your size, colour and mood.</p>
+      <div class="hero-eyebrow eyebrow" data-key="heroEyebrow">Machine-knit knitwear · Latvia</div>
+      <h1 data-key="heroTitle">Machine-knit clothing, made to order</h1>
+      <p class="tagline" data-key="heroTagline">Cashmere, merino, mohair and silk. Sweaters, cardigans, tops, dresses and more — for every season, made to order in your size and colour.</p>
       <div class="hero-ctas">
         <a class="btn btn-solid" href="#products" data-key="heroBtn1">View the work</a>
         <a class="btn btn-line" href="#contact" data-key="heroBtn2">How to order</a>
       </div>
-      <!-- Hero collage: sunset lake / knotted scarves by the water / holding the yarn — same warm-and-blue story.
-           To switch to one single wide photo later, replace this whole div with:
-           <div class="hero-photo reveal"><img src="photos/your-wide-photo.jpeg" alt=""></div> -->
+      <!-- Hero video: short, muted, looping, no sound needed.
+           To go back to a photo, replace this <video> block with:
+           <img src="photos/hero-3.jpeg" alt=""> -->
       <div class="hero-photo reveal">
-        <img src="photos/hero-1.jpeg" alt="">
-        <img src="photos/hero-2.jpeg" alt="">
-        <img src="photos/hero-3.jpeg" alt="">
+        <video autoplay muted loop playsinline>
+          <source src="photos/hero.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
@@ -410,10 +420,12 @@
       </div>
       <div class="about-text">
         <div class="eyebrow" style="margin-bottom:14px;" data-key="aboutEyebrow">About the maker</div>
-        <h2 style="font-size:32px; margin-bottom:16px;" data-key="aboutTitle">Hi, I'm [Name]</h2>
-        <p data-key="aboutP1">I've been knitting for [X years] — it started as a weekend hobby, and now every piece goes to someone new with a little care knitted into it.</p>
-        <p data-key="aboutP2">I work with natural materials — <strong>cashmere, mohair and silk</strong> — choosing each yarn by hand and paying attention to every detail, from fit to pattern.</p>
-        <p data-key="aboutP3">Every order starts with a conversation: we talk through colour, size and style, so the piece turns out exactly the way you want it.</p>
+        <h2 style="font-size:32px; margin-bottom:4px;" data-key="aboutTitle">Inna Andrejeva</h2>
+        <p style="margin-bottom:16px; font-weight:600; color:var(--accent);" data-key="aboutSubtitle">Founder of with_love_by_inna</p>
+        <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort — pieces that bring a sense of calm confidence and gentle strength.</p>
+        <p data-key="aboutP2">At the heart of it are natural Italian yarns — <strong>cashmere, merino, kid mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
+        <p data-key="aboutP3">It is timeless — not tied to trends or seasons, with a value that lasts for years.</p>
+        <p data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
       </div>
     </div>
   </section>
@@ -451,7 +463,7 @@
         </div>
         <div class="info-card">
           <span class="eyebrow" data-key="infoEyebrow2">Turnaround</span>
-          <p data-key="infoP2">Usually [X–Y weeks], depending on the complexity of the piece and current order load.</p>
+          <p data-key="infoP2">Usually 2–3 weeks, depending on the complexity of the piece and current order load.</p>
         </div>
         <div class="info-card">
           <span class="eyebrow" data-key="infoEyebrow3">Sizes &amp; colours</span>
@@ -473,7 +485,7 @@
       <div class="faq-list reveal">
         <details class="faq-item"><summary data-key="faqQ1">How do I place an order?</summary><p data-key="faqA1">Message me on WhatsApp or Instagram Direct with the piece you like, your size and preferred colour — I'll confirm the details and timeline before starting.</p></details>
         <details class="faq-item"><summary data-key="faqQ2">Can I customise the size or colour?</summary><p data-key="faqA2">Yes — every piece is made to order, so size, length and colour can usually be adjusted. Just mention it when you message me.</p></details>
-        <details class="faq-item"><summary data-key="faqQ3">How long does an order take?</summary><p data-key="faqA3">On average [X–Y weeks], depending on the piece and current order load. I'll give you an estimate when we discuss your order.</p></details>
+        <details class="faq-item"><summary data-key="faqQ3">How long does an order take?</summary><p data-key="faqA3">On average 2–3 weeks, depending on the piece and current order load.</p></details>
         <details class="faq-item"><summary data-key="faqQ4">How do I pay?</summary><p data-key="faqA4">[Describe accepted payment methods here — bank transfer, card, etc.]</p></details>
         <details class="faq-item"><summary data-key="faqQ5">Do you ship abroad?</summary><p data-key="faqA5">[Yes/no — add shipping regions and approximate cost here.]</p></details>
         <details class="faq-item"><summary data-key="faqQ6">How do I care for a hand-knitted piece?</summary><p data-key="faqA6">Hand wash at 30°C and dry flat on a horizontal surface. Detailed care instructions come with every order.</p></details>
@@ -585,50 +597,6 @@
       colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "#d9c9e8", "#f6e6a8"],
       images: ["photos/crewneck-1.jpeg", "photos/crewneck-2.jpeg", "photos/crewneck-3.jpeg", "photos/crewneck-4.jpeg", "photos/crewneck-5.jpeg", "photos/crewneck-6.jpeg", "photos/crewneck-7.jpeg", "photos/crewneck-8.jpeg"],
       orderText: { en:"Hi! I'd like to order this sweater", ru:"Здравствуйте! Хочу заказать этот свитер", lv:"Sveiki! Vēlos pasūtīt šo džemperi" }
-    },
-    {
-      id: "cardigan",
-      category: "cardigans",
-      name: { en:"Cardigan", ru:"Кардиган", lv:"Kardigans" },
-      price: { en:"from €170", ru:"от 170 €", lv:"no €170" },
-      composition: { en:"Alpaca / wool blend", ru:"Альпака / шерсть", lv:"Alpakas / vilnas maisījums" },
-      care: { en:"Hand wash, dry flat on a horizontal surface.", ru:"Ручная стирка, сушить в расправленном виде на горизонтальной поверхности.", lv:"Mazgāt ar rokām, žāvēt horizontāli izklātu." },
-      note: { en:"Lined or unlined, length adjustable. Ask about current yarn colours.", ru:"С подкладкой или без, длина регулируется. Актуальные цвета пряжи уточняйте.", lv:"Ar oderi vai bez, garumu var pielāgot. Jautājiet par pašreizējām dziju krāsām." },
-      images: ["Photo 1 — front", "Photo 2 — detail", "Photo 3 — worn outdoors"],
-      orderText: { en:"Hi! I'd like to order a cardigan", ru:"Здравствуйте! Хочу заказать кардиган", lv:"Sveiki! Vēlos pasūtīt kardiganu" }
-    },
-    {
-      id: "hat",
-      category: "accessories",
-      name: { en:"Hat", ru:"Шапка", lv:"Cepure" },
-      price: { en:"from €45", ru:"от 45 €", lv:"no €45" },
-      composition: { en:"Mohair or wool, one size", ru:"Мохер или шерсть, один размер", lv:"Mohēra vai vilna, viens izmērs" },
-      care: { en:"Hand wash at 30°C, dry flat.", ru:"Ручная стирка при 30°C, сушить в расправленном виде.", lv:"Mazgāt ar rokām 30°C, žāvēt horizontāli." },
-      note: { en:"Standard adult size — mention if you need a smaller/larger fit.", ru:"Стандартный взрослый размер — сообщите, если нужен другой.", lv:"Standarta pieauguša cilvēka izmērs — norādiet, ja nepieciešams cits." },
-      images: ["Photo 1 — front", "Photo 2 — texture close-up"],
-      orderText: { en:"Hi! I'd like to order a hat", ru:"Здравствуйте! Хочу заказать шапку", lv:"Sveiki! Vēlos pasūtīt cepuri" }
-    },
-    {
-      id: "scarf",
-      category: "accessories",
-      name: { en:"Scarf / snood", ru:"Шарф / снуд", lv:"Šalle / kakla sildītājs" },
-      price: { en:"from €60", ru:"от 60 €", lv:"no €60" },
-      composition: { en:"Silk-merino blend, length to choose", ru:"Шёлк-меринос, длина на выбор", lv:"Zīda-merino maisījums, garumu var izvēlēties" },
-      care: { en:"Hand wash, dry flat.", ru:"Ручная стирка, сушить в расправленном виде.", lv:"Mazgāt ar rokām, žāvēt horizontāli." },
-      note: { en:"Length and colour made to your preference.", ru:"Длина и цвет — по вашему желанию.", lv:"Garums un krāsa pēc jūsu vēlmes." },
-      images: ["Photo 1 — full length", "Photo 2 — worn", "Photo 3 — texture"],
-      orderText: { en:"Hi! I'd like to order a scarf", ru:"Здравствуйте! Хочу заказать шарф", lv:"Sveiki! Vēlos pasūtīt šalli" }
-    },
-    {
-      id: "shawl",
-      category: "accessories",
-      name: { en:"Mohair lace shawl", ru:"Ажурная шаль из мохера", lv:"Mežģīņu šalle no mohēras" },
-      price: { en:"from €90", ru:"от 90 €", lv:"no €90" },
-      composition: { en:"Mohair / silk blend, lace pattern", ru:"Мохер / шёлк, ажурный узор", lv:"Mohēra / zīda maisījums, mežģīņu raksts" },
-      care: { en:"Hand wash in cold water, dry flat, do not wring.", ru:"Ручная стирка в холодной воде, сушить в расправленном виде, не выкручивать.", lv:"Mazgāt ar rokām aukstā ūdenī, žāvēt horizontāli, negriezt." },
-      note: { en:"One size, fits most. Colour shown is an example.", ru:"Один размер, подходит большинству. Цвет на фото — пример.", lv:"Viens izmērs, der lielākajai daļai. Attēlotā krāsa ir piemērs." },
-      images: ["Photo 1 — full shawl", "Photo 2 — worn", "Photo 3 — lace detail"],
-      orderText: { en:"Hi! I'd like to order the mohair lace shawl", ru:"Здравствуйте! Хочу заказать ажурную шаль", lv:"Sveiki! Vēlos pasūtīt mežģīņu šalli" }
     }
   ];
 
@@ -659,7 +627,6 @@
 
   function renderCategoryTabs(){
     const present = CATEGORY_ORDER.filter(c => products.some(p => p.category === c));
-    if(present.length < 2){ document.getElementById('categoryTabs').innerHTML = ''; return; }
     const cats = ['all', ...present];
     document.getElementById('categoryTabs').innerHTML = cats.map(c => `
       <button data-cat="${c}" class="${c===activeCategory?'active':''}">${categoryLabels[c][currentLang]}</button>
@@ -797,11 +764,11 @@
   // ---------- EN / RU / LV toggle ----------
   const i18n = {
     navCta: { en:"Order", ru:"Заказать", lv:"Pasūtīt" },
-    heroEyebrow: { en:"Machine-knit, made with care · Latvia", ru:"Вязание на машине · Латвия", lv:"Mašīnadīti izstrādājumi · Latvija" },
-    heroTitle: { en:"Knitwear,<br>made with care", ru:"Вещи,<br>связанные с любовью", lv:"Trikotāža,<br>darināta ar rūpību" },
-    heroTagline: { en:"Cashmere, mohair and silk. Sweaters for cold days, light tops and dresses for warm ones — every piece is made individually, to your size, colour and mood.",
-                   ru:"Кашемир, мохер и шёлк. Свитера для холодных дней, лёгкие майки и платья для тёплых — каждая вещь создаётся индивидуально, под размер, цвет и настроение.",
-                   lv:"Kašmirs, mohēra un zīds. Džemperi aukstām dienām, viegli topi un kleitas siltām — katrs izstrādājums top individuāli, pēc jūsu izmēra, krāsas un noskaņojuma." },
+    heroEyebrow: { en:"Machine-knit knitwear · Latvia", ru:"Вязание на машине · Латвия", lv:"Mašīnadīta trikotāža · Latvija" },
+    heroTitle: { en:"Machine-knit clothing, made to order", ru:"Одежда на заказ, связанная на машине", lv:"Mašīnadīti apģērbi pēc pasūtījuma" },
+    heroTagline: { en:"Cashmere, merino, mohair and silk. Sweaters, cardigans, tops, dresses and more — for every season, made to order in your size and colour.",
+                   ru:"Кашемир, меринос, мохер и шёлк. Свитера, кардиганы, майки, платья и не только — для любого сезона, на заказ, под ваш размер и цвет.",
+                   lv:"Kašmirs, merino, mohēra un zīds. Džemperi, kardigani, topi, kleitas un vēl vairāk — jebkurai sezonai, pēc pasūtījuma, jūsu izmērā un krāsā." },
     heroBtn1: { en:"View the work", ru:"Смотреть работы", lv:"Skatīt darbus" },
     heroBtn2: { en:"How to order", ru:"Как заказать", lv:"Kā pasūtīt" },
     heroPhotoPh: { en:"Main photo goes here — best finished piece, horizontal, ~1600×800px",
@@ -811,16 +778,20 @@
                     ru:"Портретное фото мамы за работой (вертикальное, ~800×1000px)",
                     lv:"Portreta foto — mamma darba procesā (vertikāls, ~800×1000px)" },
     aboutEyebrow: { en:"About the maker", ru:"О мастере", lv:"Par autori" },
-    aboutTitle: { en:"Hi, I'm [Name]", ru:"Привет, я [Имя]", lv:"Sveiki, es esmu [Vārds]" },
-    aboutP1: { en:"I've been knitting for [X years] — it started as a weekend hobby, and now every piece goes to someone new with a little care knitted into it.",
-               ru:"Вяжу уже [сколько лет] — начиналось как увлечение по выходным, а теперь каждая вещь уходит к новому человеку с частичкой заботы, вложенной в неё.",
-               lv:"Adu jau [X gadus] — sākās kā nedēļas nogales vaļasprieks, un tagad katrs izstrādājums nonāk pie jauna cilvēka ar ieadītu rūpību." },
-    aboutP2: { en:"I work with natural materials — <strong>cashmere, mohair and silk</strong> — choosing each yarn by hand and paying attention to every detail, from fit to pattern.",
-               ru:"Работаю с натуральными материалами — <strong>кашемиром, мохером и шёлком</strong>, выбираю пряжу вручную и слежу за каждой деталью, от посадки до узора.",
-               lv:"Strādāju ar dabīgiem materiāliem — <strong>kašmiru, mohēru un zīdu</strong> — katru dziju izvēloties ar rokām un pievēršot uzmanību katrai detaļai." },
-    aboutP3: { en:"Every order starts with a conversation: we talk through colour, size and style, so the piece turns out exactly the way you want it.",
-               ru:"Каждый заказ начинается с разговора: обсуждаем цвет, размер и фасон, чтобы вещь получилась именно такой, как вы хотите.",
-               lv:"Katrs pasūtījums sākas ar sarunu: pārrunājam krāsu, izmēru un stilu, lai izstrādājums iznāktu tieši tāds, kādu vēlaties." },
+    aboutTitle: { en:"Inna Andrejeva", ru:"Инна Андреева", lv:"Inna Andrejeva" },
+    aboutSubtitle: { en:"Founder of with_love_by_inna", ru:"Основатель бренда with love by Inna", lv:"Zīmola with love by Inna dibinātāja" },
+    aboutP1: { en:"I create knitwear where aesthetics meet quiet and inner comfort — pieces that bring a sense of calm confidence and gentle strength.",
+               ru:"Я создаю вязаные изделия, в которых эстетика соединяется с тишиной и внутренним комфортом. Это вещи, дающие ощущение спокойной уверенности и мягкой силы.",
+               lv:"Es radu adījumus, kuros estētika sastopas ar klusumu un iekšēju komfortu — lietas, kas dod mierīgas pārliecības un maigā spēka sajūtu." },
+    aboutP2: { en:"At the heart of it are natural Italian yarns — <strong>cashmere, merino, kid mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.",
+               ru:"В основе — натуральные итальянские пряжи: <strong>кашемир, меринос, кидмохер с шёлком, лён</strong> и их тонкие сочетания. Каждое изделие вручную выверено в деталях — от силуэта до тактильного ощущения.",
+               lv:"Pamatā ir dabīgi itāļu dziju veidi — <strong>kašmirs, merino, kid mohēra ar zīdu, lins</strong> — un to smalkas kombinācijas. Katrs izstrādājums rūpīgi izstrādāts katrā detaļā — no silueta līdz taustes sajūtai." },
+    aboutP3: { en:"It is timeless — not tied to trends or seasons, with a value that lasts for years.",
+               ru:"Это вне времени. Без привязки к трендам и сезонам, с ценностью, которая остаётся на годы.",
+               lv:"Tas ir ārpus laika — nav saistīts ar trendiem vai sezonām, ar vērtību, kas paliek gadiem." },
+    aboutP4: { en:"For women who choose quality, awareness, and quiet luxury.",
+               ru:"Для женщин, выбирающих качество, осознанность и тихую роскошь.",
+               lv:"Sievietēm, kuras izvēlas kvalitāti, apzinātību un klusu greznību." },
     productsEyebrow: { en:"Portfolio", ru:"Портфолио", lv:"Portfolio" },
     productsTitle: { en:"Recent work", ru:"Последние работы", lv:"Jaunākie darbi" },
     productsDesc: { en:"Tap \"Learn more\" on any piece to see photos, materials, care and price. Colours shown are examples — current shades are confirmed when you order.",
@@ -831,9 +802,9 @@
               ru:"Натуральные волокна — кашемир, мохер, мериносовая шерсть, шёлк. Пряжа выбирается под каждый проект отдельно.",
               lv:"Dabīgas šķiedras — kašmirs, mohēra, merino vilna, zīds. Dzija tiek izvēlēta katram projektam atsevišķi." },
     infoEyebrow2: { en:"Turnaround", ru:"Сроки", lv:"Izgatavošanas laiks" },
-    infoP2: { en:"Usually [X–Y weeks], depending on the complexity of the piece and current order load.",
-              ru:"Обычно [X–Y недель], в зависимости от сложности модели и текущей загрузки заказов.",
-              lv:"Parasti [X–Y nedēļas], atkarībā no izstrādājuma sarežģītības un pašreizējā pasūtījumu apjoma." },
+    infoP2: { en:"Usually 2–3 weeks, depending on the complexity of the piece and current order load.",
+              ru:"Обычно 2–3 недели, в зависимости от сложности модели и текущей загрузки заказов.",
+              lv:"Parasti 2–3 nedēļas, atkarībā no izstrādājuma sarežģītības un pašreizējā pasūtījumu apjoma." },
     infoEyebrow3: { en:"Sizes & colours", ru:"Размеры и цвета", lv:"Izmēri un krāsas" },
     infoP3: { en:"Every piece is made to order — size and colour are agreed with you individually before starting.",
               ru:"Каждая вещь вяжется на заказ — размер и цвет согласовываются с вами индивидуально перед началом работы.",
@@ -849,9 +820,9 @@
              ru:"Да — каждая вещь вяжется на заказ, поэтому размер, длину и цвет обычно можно изменить. Просто укажите это при заказе.",
              lv:"Jā — katrs izstrādājums top pēc pasūtījuma, tāpēc izmēru, garumu un krāsu parasti var mainīt." },
     faqQ3: { en:"How long does an order take?", ru:"Сколько времени занимает изготовление?", lv:"Cik ilgs ir izgatavošanas laiks?" },
-    faqA3: { en:"On average [X–Y weeks], depending on the piece and current order load. I'll give you an estimate when we discuss your order.",
-             ru:"В среднем [X–Y недель], в зависимости от модели и текущей загрузки. Точный срок скажу при обсуждении заказа.",
-             lv:"Vidēji [X–Y nedēļas], atkarībā no izstrādājuma un pašreizējās noslodzes." },
+    faqA3: { en:"On average 2–3 weeks, depending on the piece and current order load.",
+             ru:"В среднем 2–3 недели, в зависимости от модели и текущей загрузки.",
+             lv:"Vidēji 2–3 nedēļas, atkarībā no izstrādājuma un pašreizējās noslodzes." },
     faqQ4: { en:"How do I pay?", ru:"Как происходит оплата?", lv:"Kā notiek apmaksa?" },
     faqA4: { en:"[Describe accepted payment methods here — bank transfer, card, etc.]",
              ru:"[Опишите способы оплаты — перевод, карта и т.д.]",
