@@ -550,6 +550,7 @@
     <div id="modalCat" class="product-cat" style="margin-bottom:4px;"></div>
     <h3 id="modalName"></h3>
     <div class="modal-price" id="modalPrice"></div>
+    <div class="modal-block" id="modalDescriptionBlock" style="display:none;"><div class="label" data-key="modalDescriptionLabel">About the piece</div><p id="modalDescription"></p></div>
     <div class="modal-block"><div class="label" data-key="modalCompositionLabel">Composition</div><p id="modalComposition"></p></div>
     <div class="modal-block"><div class="label" data-key="modalCareLabel">Care</div><p id="modalCare"></p></div>
     <div class="modal-block"><div class="label" data-key="modalNoteLabel">Sizes &amp; colours</div><p id="modalNote"></p></div>
@@ -577,6 +578,18 @@
      string with a real file path/URL (e.g. "photos/sweater1.jpeg")
      and it will render as a real photo automatically.
   ========================================================= */
+  const sizesColoursNote = {
+    en:"Made to order. Size and fit are agreed individually — when ordering, send your usual size or basic measurements. Colours shown in the photos and swatches are examples; other shades may also be available. Tell me which colour you would like, and I’ll confirm the available options.",
+    ru:"Вяжется на заказ. Размер и посадка подбираются индивидуально — при заказе напишите свой размер или основные мерки. Цвета на фото и в палитре — примеры; возможны и другие оттенки. Напишите, какой цвет вам нравится, и я уточню доступные варианты.",
+    lv:"Adīts pēc pasūtījuma. Izmērs un piegulums tiek saskaņoti individuāli — pasūtot, norādiet savu ierasto izmēru vai galvenos mērus. Fotoattēlos un krāsu paletē redzamās krāsas ir piemēri; iespējami arī citi toņi. Uzrakstiet, kādu krāsu vēlaties, un es precizēšu pieejamos variantus."
+  };
+
+  const oneSizeColoursNote = {
+    en:"One size (approximately S–L). Colours shown in the photos and swatches are examples; other shades may also be available. Tell me which colour you would like, and I’ll confirm the available options.",
+    ru:"Один размер (примерно S–L). Цвета на фото и в палитре — примеры; возможны и другие оттенки. Напишите, какой цвет вам нравится, и я уточню доступные варианты.",
+    lv:"Viens izmērs (aptuveni S–L). Fotoattēlos un krāsu paletē redzamās krāsas ir piemēri; iespējami arī citi toņi. Uzrakstiet, kādu krāsu vēlaties, un es precizēšu pieejamos variantus."
+  };
+
   const products = [
     {
       id: "tuman",
@@ -585,9 +598,7 @@
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"70% kid mohair, 30% silk", ru:"70% кидмохер, 30% шёлк", lv:"70% kidmohēra, 30% zīda" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Made to your size — mention your measurements when ordering.",
-              ru:"Вяжется по вашему размеру — напишите свои мерки при заказе.",
-              lv:"Adīts pēc jūsu izmēra — norādiet savus mērus, pasūtot." },
+      note: sizesColoursNote,
       colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "linear-gradient(135deg, #f3c9d6, #b7d4e8, #f6e6a8, #f4f1ec)", "#2f4a3d"],
       images: ["photos/tuman-2.jpeg", "photos/tuman-4.jpeg", "photos/tuman-5.jpeg", "photos/tuman-6.jpeg", "photos/tuman-7.jpeg"],
       orderText: { en:"Hi! I'd like to order the Mist sweater", ru:"Здравствуйте! Хочу заказать свитер «Туман»", lv:"Sveiki! Vēlos pasūtīt džemperi Migla" }
@@ -599,9 +610,8 @@
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Round neck, no collar. Made to your size — mention your measurements when ordering.",
-              ru:"Круглый вырез, без горловины-стойки. Вяжется по вашему размеру — напишите свои мерки при заказе.",
-              lv:"Apaļš izgriezums, bez apkakles. Adīts pēc jūsu izmēra — norādiet savus mērus, pasūtot." },
+      description: { en:"Round neckline without a stand collar.", ru:"Круглый вырез без горловины-стойки.", lv:"Apaļš kakla izgriezums bez stāvapkakles." },
+      note: sizesColoursNote,
       colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "#d9c9e8", "#f6e6a8"],
       images: ["photos/crewneck-1.jpeg", "photos/crewneck-2.jpeg", "photos/crewneck-3.jpeg", "photos/crewneck-4.jpeg", "photos/crewneck-5.jpeg", "photos/crewneck-6.jpeg", "photos/crewneck-7.jpeg", "photos/crewneck-8.jpeg"],
       orderText: { en:"Hi! I'd like to order this sweater", ru:"Здравствуйте! Хочу заказать этот свитер", lv:"Sveiki! Vēlos pasūtīt šo džemperi" }
@@ -612,12 +622,8 @@
       name: { en:"Pearl", ru:"Жемчуг", lv:"Pērle" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
       composition: { en:"70% kid mohair, 30% silk (Sessia, Italy)", ru:"70% кидмохер, 30% шёлк (Sessia, Италия)", lv:"70% kid mohēra, 30% zīds (Sessia, Itālija)" },
-      care: { en:"Gentle care: hand wash at up to 30°C. Dry flat in shape. Gentle steaming and professional delicate dry cleaning are suitable.",
-              ru:"Бережный уход: ручная стирка при температуре до 30°C. Сушить в расправленном виде на горизонтальной поверхности. Допускается бережное отпаривание и деликатная химчистка.",
-              lv:"Saudzīga kopšana: mazgāt ar rokām temperatūrā līdz 30°C. Žāvēt izklātā veidā uz horizontālas virsmas. Piemērota saudzīga tvaicēšana un delikāta profesionālā ķīmiskā tīrīšana." },
-      note: { en:"One size (fits approximately S–L). Shown in pearl-beige — this piece can be knitted in other shades too, just ask what's currently available.",
-              ru:"Один размер (примерно S–L). На фото — жемчужно-бежевый оттенок, эту модель можно связать и в других цветах — уточняйте, что сейчас доступно.",
-              lv:"Viens izmērs (aptuveni S–L). Attēlots pērļu bēšā tonī — šo modeli var adīt arī citās krāsās, jautājiet, kas pašlaik pieejams." },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
+      note: oneSizeColoursNote,
       colors: ["#c4c2bd", "#d9b7b8", "#f4f1e8", "#9ba48b", "#6e5663"],
       images: ["photos/pearl-1.jpeg", "photos/pearl-2.jpeg"],
       orderText: { en:"Hi! I'd like to order the Pearl top", ru:"Здравствуйте! Хочу заказать топ «Жемчуг»", lv:"Sveiki! Vēlos pasūtīt topu Pērle" }
@@ -629,9 +635,7 @@
       price: { en:"€200", ru:"200 €", lv:"€200" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Made to your size. Shown in black — this piece can be knitted in other shades too, just ask what's currently available.",
-              ru:"Вяжется по вашему размеру. На фото — чёрный цвет, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
-              lv:"Adīts pēc jūsu izmēra. Attēlots melnā krāsā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
+      note: sizesColoursNote,
       colors: ["#2b2a28"],
       images: ["photos/dress-1-1.jpeg", "photos/dress-1-2.jpeg", "photos/dress-1-3.jpeg"],
       orderText: { en:"Hi! I'd like to order this dress", ru:"Здравствуйте! Хочу заказать это платье", lv:"Sveiki! Vēlos pasūtīt šo kleitu" }
@@ -643,9 +647,7 @@
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Made to your size. Shown in olive-grey melange — this piece can be knitted in other shades too, just ask what's currently available.",
-              ru:"Вяжется по вашему размеру. На фото — оливково-серый меланж, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
-              lv:"Adīts pēc jūsu izmēra. Attēlots olīvzaļi pelēkā melanžā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
+      note: sizesColoursNote,
       colors: ["#8a8570"],
       images: ["photos/dress-2-1.jpeg", "photos/dress-2-2.jpeg", "photos/dress-2-3.jpeg"],
       orderText: { en:"Hi! I'd like to order this dress", ru:"Здравствуйте! Хочу заказать это платье", lv:"Sveiki! Vēlos pasūtīt šo kleitu" }
@@ -658,9 +660,8 @@
       price: { en:"€100", ru:"100 €", lv:"€100" },
       composition: { en:"Natural premium yarns", ru:"Натуральная пряжа премиального качества", lv:"Dabīga premium kvalitātes dzija" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Oversized wrap, worn draped over the shoulders or around the neck. Shown in beige-taupe — this piece can be knitted in other shades too, just ask what's currently available.",
-              ru:"Объёмная накидка, носится наброшенной на плечи или обмотанной вокруг шеи. На фото — бежево-таупе, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
-              lv:"Liels lakats, ko valkā uzmestu uz pleciem vai apvītu ap kaklu. Attēlots bēšā-taupē krāsā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
+      description: { en:"An oversized wrap that can be worn over the shoulders, as a poncho-style layer or wrapped around the neck.", ru:"Объёмная накидка-трансформер: её можно носить на плечах, как пончо или оборачивать вокруг шеи.", lv:"Apjomīgs lakats-transformeris: to var valkāt uz pleciem, pončo veidā vai aptīt ap kaklu." },
+      note: sizesColoursNote,
       colors: ["#5a2745", "#b66f4f", "#d5ad39", "#596044", "#c88f9b"],
       images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg", "photos/wrap-1-4.jpeg"],
       orderText: { en:"Hi! I'd like to order this wrap", ru:"Здравствуйте! Хочу заказать эту накидку", lv:"Sveiki! Vēlos pasūtīt šo lakatu" }
@@ -672,7 +673,7 @@
       price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Made to your size. Shown in light blue — other shades can be discussed when ordering.", ru:"Вяжется по вашему размеру. На фото — светло-голубой цвет, другие оттенки можно обсудить при заказе.", lv:"Adīts pēc jūsu izmēra. Attēlots gaiši zilā krāsā — citas nokrāsas var saskaņot, pasūtot." },
+      note: sizesColoursNote,
       colors: ["#c9d9e6"],
       images: ["photos/top-blue-1.jpeg", "photos/top-blue-2.jpeg"],
       orderText: { en:"Hi! I'd like to order this top", ru:"Здравствуйте! Хочу заказать эту майку", lv:"Sveiki! Vēlos pasūtīt šo topu" }
@@ -684,10 +685,25 @@
       price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Button-front white cardigan with decorative openwork details. Made to your size.", ru:"Белый кардиган на пуговицах с ажурными декоративными деталями. Вяжется по вашему размеру.", lv:"Balts kardigans ar pogām un dekoratīvām ažūra detaļām. Adīts pēc jūsu izmēra." },
+      description: { en:"Button-front cardigan with delicate openwork details.", ru:"Кардиган на пуговицах с деликатными ажурными деталями.", lv:"Kardigans ar pogām un smalkām ažūra detaļām." },
+      note: sizesColoursNote,
       colors: ["#f4f2ed"],
       images: ["photos/cardigan-white-1.jpeg", "photos/cardigan-white-2.jpeg", "photos/cardigan-white-3.jpeg"],
       orderText: { en:"Hi! I'd like to order this white cardigan", ru:"Здравствуйте! Хочу заказать этот белый кардиган", lv:"Sveiki! Vēlos pasūtīt šo balto kardiganu" }
+    },
+    {
+      id: "tunic-red",
+      category: "dresses",
+      typeLabel: { en:"Tunic", ru:"Туника", lv:"Tunika" },
+      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
+      price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
+      composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
+      description: { en:"Openwork knitted tunic with a relaxed silhouette.", ru:"Ажурная вязаная туника свободного силуэта.", lv:"Ažūra adīta tunika ar brīvu siluetu." },
+      note: sizesColoursNote,
+      colors: ["#d7192d"],
+      images: ["photos/tunic-red-1.jpeg", "photos/tunic-red-2.jpeg", "photos/tunic-red-3.jpeg", "photos/tunic-red-4.jpeg"],
+      orderText: { en:"Hi! I'd like to order this tunic", ru:"Здравствуйте! Хочу заказать эту тунику", lv:"Sveiki! Vēlos pasūtīt šo tuniku" }
     },
     {
       id: "cardigan-1",
@@ -696,9 +712,8 @@
       price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
       care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
-      note: { en:"Button-front cardigan with a collar. Made to your size. Shown in pink — this piece can be knitted in other shades too, just ask what's currently available.",
-              ru:"Кардиган на пуговицах, с воротником. Вяжется по вашему размеру. На фото — розовый, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
-              lv:"Kardigans ar pogām un apkakli. Adīts pēc jūsu izmēra. Attēlots rozā krāsā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
+      description: { en:"Button-front cardigan with a collar.", ru:"Кардиган на пуговицах с воротником.", lv:"Kardigans ar pogām un apkakli." },
+      note: sizesColoursNote,
       colors: ["#e8c3d0"],
       images: ["photos/cardigan-1-1.jpeg", "photos/cardigan-1-2.jpeg"],
       orderText: { en:"Hi! I'd like to order this cardigan", ru:"Здравствуйте! Хочу заказать этот кардиган", lv:"Sveiki! Vēlos pasūtīt šo kardiganu" }
@@ -795,6 +810,14 @@
     document.getElementById('modalCat').textContent = p.typeLabel ? p.typeLabel[currentLang] : (categoryLabelsSingular[p.category] ? categoryLabelsSingular[p.category][currentLang] : '');
     document.getElementById('modalName').textContent = p.name[currentLang];
     document.getElementById('modalPrice').textContent = p.price[currentLang];
+    const descriptionBlock = document.getElementById('modalDescriptionBlock');
+    if(p.description && p.description[currentLang]){
+      descriptionBlock.style.display = '';
+      document.getElementById('modalDescription').textContent = p.description[currentLang];
+    } else {
+      descriptionBlock.style.display = 'none';
+      document.getElementById('modalDescription').textContent = '';
+    }
     document.getElementById('modalComposition').textContent = p.composition[currentLang];
     document.getElementById('modalCare').innerHTML = p.care[currentLang];
     document.getElementById('modalNote').textContent = p.note[currentLang];
@@ -911,9 +934,9 @@
               ru:"Обычно 2–3 недели, в зависимости от сложности модели и текущей загрузки заказов.",
               lv:"Parasti 2–3 nedēļas, atkarībā no izstrādājuma sarežģītības un pašreizējā pasūtījumu apjoma." },
     infoEyebrow3: { en:"Sizes & colours", ru:"Размеры и цвета", lv:"Izmēri un krāsas" },
-    infoP3: { en:"Every piece is made to order — size and colour are agreed with you individually before starting.",
-              ru:"Каждая вещь вяжется на заказ — размер и цвет согласовываются с вами индивидуально перед началом работы.",
-              lv:"Katrs izstrādājums top pēc pasūtījuma — izmērs un krāsa tiek saskaņoti individuāli pirms darba sākuma." },
+    infoP3: { en:"Most pieces are made to order. Size and fit are agreed individually, and the colours shown on the site are examples — other shades may be available on request.",
+              ru:"Большинство вещей вяжется на заказ. Размер и посадка согласовываются индивидуально, а цвета на сайте показаны как примеры — по запросу возможны и другие оттенки.",
+              lv:"Lielākā daļa izstrādājumu top pēc pasūtījuma. Izmērs un piegulums tiek saskaņoti individuāli, bet vietnē redzamās krāsas ir piemēri — pēc pieprasījuma iespējami arī citi toņi." },
     faqEyebrow: { en:"Good to know", ru:"Полезно знать", lv:"Noderīgi zināt" },
     faqTitle: { en:"Frequently asked questions", ru:"Часто задаваемые вопросы", lv:"Biežāk uzdotie jautājumi" },
     faqQ1: { en:"How do I place an order?", ru:"Как сделать заказ?", lv:"Kā veikt pasūtījumu?" },
@@ -937,9 +960,9 @@
              ru:"[Да/нет — укажите регионы доставки и примерную стоимость.]",
              lv:"[Jā/nē — norādiet piegādes reģionus un aptuveno cenu.]" },
     faqQ6: { en:"How do I care for a knitted piece?", ru:"Как ухаживать за вязаными изделиями?", lv:"Kā kopt adītu izstrādājumu?" },
-    faqA6: { en:`<strong>Wash:</strong> hand wash up to 30°C.<br><strong>Dry:</strong> dry flat.<br><strong>Steam:</strong> gentle steaming.<br><strong>Dry clean:</strong> delicate dry cleaning.`,
-             ru:`<strong>Стирка:</strong> вручную в прохладной воде до 30°C со средством для шерсти или деликатных тканей.<br><strong>Сушка:</strong> не выкручивать; сушить горизонтально в расправленном виде, не использовать сушильную машину.<br><strong>Отпаривание:</strong> бережно, с небольшого расстояния, не прижимая утюг к полотну.<br><strong>Химчистка:</strong> при необходимости допустима профессиональная деликатная химчистка.`,
-             lv:`<strong>Mazgāšana:</strong> mazgāt ar rokām vēsā ūdenī līdz 30°C ar līdzekli vilnai vai smalkiem audumiem.<br><strong>Žāvēšana:</strong> neizgriezt; žāvēt horizontāli, izklātā veidā, un neizmantot veļas žāvētāju.<br><strong>Tvaicēšana:</strong> saudzīgi tvaicēt no neliela attāluma, nepiespiežot gludekli pie adījuma.<br><strong>Ķīmiskā tīrīšana:</strong> vajadzības gadījumā pieļaujama profesionāla saudzīga ķīmiskā tīrīšana.` },
+    faqA6: { en:`<strong>Wash:</strong> hand wash up to 30°C.<br><strong>Dry:</strong> dry flat and reshape gently.<br><strong>Steam:</strong> steam gently from a short distance.<br><strong>Dry clean:</strong> delicate dry cleaning if needed.`,
+             ru:`<strong>Стирка:</strong> вручную при температуре до 30°C.<br><strong>Сушка:</strong> горизонтально, аккуратно расправив изделие.<br><strong>Отпаривание:</strong> бережно, с небольшого расстояния.<br><strong>Химчистка:</strong> деликатная, при необходимости.`,
+             lv:`<strong>Mazgāšana:</strong> ar rokām līdz 30°C.<br><strong>Žāvēšana:</strong> horizontāli, saudzīgi iztaisnojot izstrādājumu.<br><strong>Tvaicēšana:</strong> saudzīgi no neliela attāluma.<br><strong>Ķīmiskā tīrīšana:</strong> saudzīga, ja nepieciešams.` },
     contactEyebrow: { en:"How to order", ru:"Как заказать", lv:"Kā pasūtīt" },
     contactTitle: { en:"Message me — let's talk about your piece", ru:"Напишите — обсудим вашу вещь", lv:"Uzrakstiet man — pārrunāsim jūsu izstrādājumu" },
     contactDesc: { en:"Tell me what you'd like knitted: style, colour, size. I usually reply within a day.",
@@ -953,6 +976,7 @@
                   ru:"Сделано с любовью · сайт-портфолио · создан при помощи Claude ·",
                   lv:"Radīts ar rūpību · portfolio vietne · izveidota ar Claude ·" },
     learnMore: { en:"Learn more", ru:"Подробнее", lv:"Uzzināt vairāk" },
+    modalDescriptionLabel: { en:"About the piece", ru:"О модели", lv:"Par modeli" },
     modalCompositionLabel: { en:"Composition", ru:"Состав", lv:"Sastāvs" },
     modalCareLabel: { en:"Care", ru:"Уход", lv:"Kopšana" },
     modalNoteLabel: { en:"Sizes & colours", ru:"Размеры и цвета", lv:"Izmēri un krāsas" },
