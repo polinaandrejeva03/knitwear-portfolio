@@ -629,7 +629,7 @@
     },
     {
       id: "dress-1",
-      category: "dresses",
+      category: "beachwear",
       name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
       price: { en:"€200", ru:"200 €", lv:"€200" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
@@ -690,8 +690,7 @@
     },
     {
       id: "tunic-red",
-      category: "dresses",
-      typeLabel: { en:"Tunic", ru:"Туника", lv:"Tunika" },
+      category: "beachwear",
       name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
       price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
@@ -699,7 +698,7 @@
       note: sizesColoursNote,
       colors: ["#d7192d"],
       images: ["photos/tunic-red-1.jpeg", "photos/tunic-red-2.jpeg", "photos/tunic-red-3.jpeg", "photos/tunic-red-4.jpeg"],
-      orderText: { en:"Hi! I'd like to order this tunic", ru:"Здравствуйте! Хочу заказать эту тунику", lv:"Sveiki! Vēlos pasūtīt šo tuniku" }
+      orderText: { en:"Hi! I'd like to order this piece", ru:"Здравствуйте! Хочу заказать эту модель", lv:"Sveiki! Vēlos pasūtīt šo modeli" }
     },
     {
       id: "cardigan-1",
@@ -719,13 +718,14 @@
   let activeCategory = "all";
   let modalState = { product: null, index: 0 };
 
-  const CATEGORY_ORDER = ["sweaters", "cardigans", "tops", "dresses", "accessories"];
+  const CATEGORY_ORDER = ["sweaters", "cardigans", "tops", "dresses", "beachwear", "accessories"];
   const categoryLabels = {
     all: { en:"All", ru:"Все", lv:"Viss" },
     sweaters: { en:"Sweaters", ru:"Свитера", lv:"Džemperi" },
     cardigans: { en:"Cardigans", ru:"Кардиганы", lv:"Kardigani" },
     tops: { en:"Tops", ru:"Майки", lv:"Topi" },
     dresses: { en:"Dresses", ru:"Платья", lv:"Kleitas" },
+    beachwear: { en:"Beachwear", ru:"Пляжная одежда", lv:"Pludmales apģērbs" },
     accessories: { en:"Accessories", ru:"Аксессуары", lv:"Aksesuāri" }
   };
   const categoryLabelsSingular = {
@@ -733,6 +733,7 @@
     cardigans: { en:"Cardigan", ru:"Кардиган", lv:"Kardigans" },
     tops: { en:"Top", ru:"Майка", lv:"Tops" },
     dresses: { en:"Dress", ru:"Платье", lv:"Kleita" },
+    beachwear: { en:"Beachwear", ru:"Пляжная одежда", lv:"Pludmales apģērbs" },
     accessories: { en:"Accessory", ru:"Аксессуар", lv:"Aksesuārs" }
   };
 
