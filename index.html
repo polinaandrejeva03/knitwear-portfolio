@@ -343,6 +343,10 @@
   .modal-block{ margin-top:14px; }
   .modal-block .label{ font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); font-weight:600; margin-bottom:4px; }
   .modal-block p{ margin:0; font-size:14px; color:var(--ink-soft); }
+  .care-list{ margin:0; padding:0; list-style:none; display:grid; gap:7px; color:var(--ink-soft); font-size:14px; }
+  .care-list li{ position:relative; padding-left:15px; }
+  .care-list li::before{ content:'•'; position:absolute; left:0; color:var(--accent); }
+  .care-list strong{ color:var(--ink); font-weight:600; }
   .color-swatches{ display:flex; gap:8px; margin-top:2px; }
   .color-swatches span{ width:22px; height:22px; border-radius:50%; border:1px solid var(--line); display:inline-block; }
   .modal-order{ margin-top:20px; width:100%; text-align:center; justify-content:center; }
@@ -492,7 +496,7 @@
         <details class="faq-item"><summary data-key="faqQ3">How long does an order take?</summary><p data-key="faqA3">On average 2–3 weeks, depending on the piece and current order load.</p></details>
         <details class="faq-item"><summary data-key="faqQ4">How do I pay?</summary><p data-key="faqA4">[Describe accepted payment methods here — bank transfer, card, etc.]</p></details>
         <details class="faq-item"><summary data-key="faqQ5">Do you ship abroad?</summary><p data-key="faqA5">[Yes/no — add shipping regions and approximate cost here.]</p></details>
-        <details class="faq-item"><summary data-key="faqQ6">How do I care for a hand-knitted piece?</summary><p data-key="faqA6">Hand wash at 30°C and dry flat on a horizontal surface. Detailed care instructions come with every order.</p></details>
+        <details class="faq-item"><summary data-key="faqQ6">How do I care for a knitted piece?</summary><p data-key="faqA6"><strong>Wash:</strong> hand wash up to 30°C.<br><strong>Dry:</strong> dry flat.<br><strong>Steam:</strong> gentle steaming.<br><strong>Dry clean:</strong> delicate dry cleaning.</p></details>
       </div>
     </div>
   </section>
@@ -579,8 +583,8 @@
       category: "sweaters",
       name: { en:"Mist", ru:"Туман", lv:"Migla" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
-      composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
-      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      composition: { en:"70% kid mohair, 30% silk", ru:"70% кидмохер, 30% шёлк", lv:"70% kidmohēra, 30% zīda" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
       note: { en:"Made to your size — mention your measurements when ordering.",
               ru:"Вяжется по вашему размеру — напишите свои мерки при заказе.",
               lv:"Adīts pēc jūsu izmēra — norādiet savus mērus, pasūtot." },
@@ -594,7 +598,7 @@
       name: { en:"Marta", ru:"Марта", lv:"Marta" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
-      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
       note: { en:"Round neck, no collar. Made to your size — mention your measurements when ordering.",
               ru:"Круглый вырез, без горловины-стойки. Вяжется по вашему размеру — напишите свои мерки при заказе.",
               lv:"Apaļš izgriezums, bez apkakles. Adīts pēc jūsu izmēra — norādiet savus mērus, pasūtot." },
@@ -608,7 +612,7 @@
       name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
       price: { en:"€200", ru:"200 €", lv:"€200" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
-      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
       note: { en:"Made to your size. Shown in black — this piece can be knitted in other shades too, just ask what's currently available.",
               ru:"Вяжется по вашему размеру. На фото — чёрный цвет, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
               lv:"Adīts pēc jūsu izmēra. Attēlots melnā krāsā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
@@ -619,10 +623,10 @@
     {
       id: "dress-2",
       category: "dresses",
-      name: { en:"Wild", ru:"Wild", lv:"Wild" },
+      name: { en:"Wild", ru:"Дикая", lv:"Mežonīgā" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
-      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
       note: { en:"Made to your size. Shown in olive-grey melange — this piece can be knitted in other shades too, just ask what's currently available.",
               ru:"Вяжется по вашему размеру. На фото — оливково-серый меланж, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
               lv:"Adīts pēc jūsu izmēra. Attēlots olīvzaļi pelēkā melanžā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
@@ -634,15 +638,15 @@
       id: "wrap-1",
       category: "accessories",
       typeLabel: { en:"Wrap", ru:"Палантин", lv:"Lakats" },
-      name: { en:"Cocoon", ru:"Cocoon", lv:"Cocoon" },
+      name: { en:"Cocoon", ru:"Кокон", lv:"Kokons" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
-      composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
-      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      composition: { en:"Natural premium yarns", ru:"Натуральная пряжа премиального качества", lv:"Dabīga premium kvalitātes dzija" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
       note: { en:"Oversized wrap, worn draped over the shoulders or around the neck. Shown in beige-taupe — this piece can be knitted in other shades too, just ask what's currently available.",
               ru:"Объёмная накидка, носится наброшенной на плечи или обмотанной вокруг шеи. На фото — бежево-таупе, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
               lv:"Liels lakats, ko valkā uzmestu uz pleciem vai apvītu ap kaklu. Attēlots bēšā-taupē krāsā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
-      colors: ["#a9977f"],
-      images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg"],
+      colors: ["#5a2745", "#b66f4f", "#d5ad39", "#596044", "#c88f9b"],
+      images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg", "photos/wrap-1-4.jpeg"],
       orderText: { en:"Hi! I'd like to order this wrap", ru:"Здравствуйте! Хочу заказать эту накидку", lv:"Sveiki! Vēlos pasūtīt šo lakatu" }
     },
     {
@@ -651,7 +655,7 @@
       name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
       price: { en:"[price]", ru:"[цена]", lv:"[cena]" },
       composition: { en:"[composition to be confirmed]", ru:"[состав уточняется]", lv:"[sastāvs tiks precizēts]" },
-      care: { en:"[care instructions to be confirmed]", ru:"[уход уточняется]", lv:"[kopšanas norādījumi tiks precizēti]" },
+      care: { en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> dry flat.</li><li><strong>Steam:</strong> gentle steaming.</li><li><strong>Dry clean:</strong> delicate dry cleaning.</li></ul>`, ru:`<ul class="care-list"><li><strong>Стирка:</strong> ручная, до 30°C.</li><li><strong>Сушка:</strong> горизонтально.</li><li><strong>Отпаривание:</strong> бережное.</li><li><strong>Химчистка:</strong> деликатная.</li></ul>`, lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām līdz 30°C.</li><li><strong>Žāvēšana:</strong> horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīga.</li><li><strong>Ķīmiskā tīrīšana:</strong> saudzīga.</li></ul>` },
       note: { en:"Button-front cardigan with a collar. Made to your size. Shown in pink — this piece can be knitted in other shades too, just ask what's currently available.",
               ru:"Кардиган на пуговицах, с воротником. Вяжется по вашему размеру. На фото — розовый, эту модель можно связать и в других оттенках — уточняйте, что сейчас доступно.",
               lv:"Kardigans ar pogām un apkakli. Adīts pēc jūsu izmēra. Attēlots rozā krāsā — šo modeli var adīt arī citās nokrāsās, jautājiet, kas pašlaik pieejams." },
@@ -752,7 +756,7 @@
     document.getElementById('modalName').textContent = p.name[currentLang];
     document.getElementById('modalPrice').textContent = p.price[currentLang];
     document.getElementById('modalComposition').textContent = p.composition[currentLang];
-    document.getElementById('modalCare').textContent = p.care[currentLang];
+    document.getElementById('modalCare').innerHTML = p.care[currentLang];
     document.getElementById('modalNote').textContent = p.note[currentLang];
     const colorsBlock = document.getElementById('modalColorsBlock');
     if(p.colors && p.colors.length){
@@ -892,10 +896,10 @@
     faqA5: { en:"[Yes/no — add shipping regions and approximate cost here.]",
              ru:"[Да/нет — укажите регионы доставки и примерную стоимость.]",
              lv:"[Jā/nē — norādiet piegādes reģionus un aptuveno cenu.]" },
-    faqQ6: { en:"How do I care for a hand-knitted piece?", ru:"Как ухаживать за вязаными изделиями?", lv:"Kā kopt roku darbā adītu izstrādājumu?" },
-    faqA6: { en:"Hand wash at 30°C and dry flat on a horizontal surface. Detailed care instructions come with every order.",
-             ru:"Ручная стирка при 30°C, сушить в расправленном виде на горизонтальной поверхности. Подробная инструкция — с каждым заказом.",
-             lv:"Mazgāt ar rokām 30°C temperatūrā, žāvēt horizontāli. Detalizēta kopšanas instrukcija tiek pievienota katram pasūtījumam." },
+    faqQ6: { en:"How do I care for a knitted piece?", ru:"Как ухаживать за вязаными изделиями?", lv:"Kā kopt adītu izstrādājumu?" },
+    faqA6: { en:`<strong>Wash:</strong> hand wash up to 30°C.<br><strong>Dry:</strong> dry flat.<br><strong>Steam:</strong> gentle steaming.<br><strong>Dry clean:</strong> delicate dry cleaning.`,
+             ru:`<strong>Стирка:</strong> вручную в прохладной воде до 30°C со средством для шерсти или деликатных тканей.<br><strong>Сушка:</strong> не выкручивать; сушить горизонтально в расправленном виде, не использовать сушильную машину.<br><strong>Отпаривание:</strong> бережно, с небольшого расстояния, не прижимая утюг к полотну.<br><strong>Химчистка:</strong> при необходимости допустима профессиональная деликатная химчистка.`,
+             lv:`<strong>Mazgāšana:</strong> mazgāt ar rokām vēsā ūdenī līdz 30°C ar līdzekli vilnai vai smalkiem audumiem.<br><strong>Žāvēšana:</strong> neizgriezt; žāvēt horizontāli, izklātā veidā, un neizmantot veļas žāvētāju.<br><strong>Tvaicēšana:</strong> saudzīgi tvaicēt no neliela attāluma, nepiespiežot gludekli pie adījuma.<br><strong>Ķīmiskā tīrīšana:</strong> vajadzības gadījumā pieļaujama profesionāla saudzīga ķīmiskā tīrīšana.` },
     contactEyebrow: { en:"How to order", ru:"Как заказать", lv:"Kā pasūtīt" },
     contactTitle: { en:"Message me — let's talk about your piece", ru:"Напишите — обсудим вашу вещь", lv:"Uzrakstiet man — pārrunāsim jūsu izstrādājumu" },
     contactDesc: { en:"Tell me what you'd like knitted: style, colour, size. I usually reply within a day.",
