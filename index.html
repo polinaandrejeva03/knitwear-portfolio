@@ -373,23 +373,6 @@
     .info-dialog-note{ font-size:14px; }
   }
 
-  /* ============ MOBILE QUICK CONTACT ============ */
-  .mobile-contact-bar{
-    position:fixed; left:12px; right:12px; bottom:12px; z-index:45;
-    display:flex; gap:8px; padding:7px;
-    background:rgba(251,247,245,0.94); backdrop-filter:blur(10px);
-    border:1px solid var(--line); border-radius:999px;
-    box-shadow:0 8px 30px rgba(46,42,40,0.14);
-  }
-  .mobile-contact-bar a{
-    flex:1; min-width:0; display:flex; justify-content:center; align-items:center;
-    text-decoration:none; font-size:12px; font-weight:600; padding:9px 10px; border-radius:999px;
-  }
-  .mobile-contact-bar .primary{ background:var(--ink); color:var(--bg); }
-  .mobile-contact-bar .secondary{ border:1px solid var(--line); background:var(--card); }
-  @media (min-width:700px){ .mobile-contact-bar{ display:none; } body{ padding-bottom:0; } }
-  @media (max-width:699px){ body{ padding-bottom:76px; } }
-
 
   /* ============ LATVIAN TYPOGRAPHY ============ */
   html[lang="lv"] body{
@@ -594,7 +577,7 @@
         <h2 style="font-size:32px; margin-bottom:4px;" data-key="aboutTitle">Inna Andrejeva</h2>
         <p style="margin-bottom:16px; font-weight:600; color:var(--accent);" data-key="aboutSubtitle">Founder of with_love_by_inna</p>
         <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort — pieces that bring a sense of calm confidence and gentle strength.</p>
-        <p data-key="aboutP2">At the heart of it are natural Italian yarns — <strong>cashmere, merino, kid mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
+        <p data-key="aboutP2">At the heart of it are natural Italian yarns — <strong>cashmere, merino, mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
         <p data-key="aboutP3">It is timeless — not tied to trends or seasons, with a value that lasts for years.</p>
         <p data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
       </div>
@@ -822,6 +805,7 @@
           <p data-key="shippingP1"></p>
           <p data-key="shippingP2"></p>
           <p data-key="shippingP3"></p>
+          <p data-key="shippingPacking"></p>
           <p data-key="shippingP4"></p>
           <p data-key="shippingP5"></p>
         </div>
@@ -842,11 +826,6 @@
   </div>
 </dialog>
 
-<!-- ============ MOBILE QUICK CONTACT ============ -->
-<div class="mobile-contact-bar" aria-label="Quick contact">
-  <a class="primary" href="https://wa.me/37129134375" target="_blank" rel="noopener" data-key="mobileWhatsApp">WhatsApp</a>
-  <a class="secondary" href="https://ig.me/m/with_love_by_inna" target="_blank" rel="noopener" data-key="mobileInstagram">Instagram</a>
-</div>
 
 <script>
   /* =========================================================
@@ -884,7 +863,7 @@
       category: "sweaters",
       name: { en:"Mist", ru:"Туман", lv:"Migla" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
-      composition: { en:"70% kid mohair, 30% silk", ru:"70% кидмохер, 30% шёлк", lv:"70% kidmohēra, 30% zīda" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
       care: { 
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
         ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости — профессиональная деликатная.</li></ul>`,
@@ -900,7 +879,7 @@
       category: "sweaters",
       name: { en:"Marta", ru:"Марта", lv:"Marta" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
-      composition: { en:"70% kid mohair, 30% silk", ru:"70% кидмохер, 30% шёлк", lv:"70% kidmohēra, 30% zīda" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
       care: { 
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
         ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости — профессиональная деликатная.</li></ul>`,
@@ -916,7 +895,7 @@
       category: "tops",
       name: { en:"Pearl", ru:"Жемчуг", lv:"Pērle" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
-      composition: { en:"70% kid mohair, 30% silk (Sessia, Italy)", ru:"70% кидмохер, 30% шёлк (Sessia, Италия)", lv:"70% kid mohēra, 30% zīds (Sessia, Itālija)" },
+      composition: { en:"70% mohair, 30% silk (Sessia, Italy)", ru:"70% мохер, 30% шёлк (Sessia, Италия)", lv:"70% kid mohēra, 30% zīds (Sessia, Itālija)" },
       care: { 
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
         ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости — профессиональная деликатная.</li></ul>`,
@@ -1243,8 +1222,8 @@
     aboutP1: { en:"I create knitwear where aesthetics meet quiet and inner comfort — pieces that bring a sense of calm confidence and gentle strength.",
                ru:"Я создаю вязаные изделия, в которых эстетика соединяется с тишиной и внутренним комфортом. Это вещи, дающие ощущение спокойной уверенности и мягкой силы.",
                lv:"Es radu adījumus, kuros estētika sastopas ar klusumu un iekšēju komfortu — lietas, kas dod mierīgas pārliecības un maigā spēka sajūtu." },
-    aboutP2: { en:"At the heart of it are natural Italian yarns — <strong>cashmere, merino, kid mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.",
-               ru:"В основе — натуральные итальянские пряжи: <strong>кашемир, меринос, кидмохер с шёлком, лён</strong> и их тонкие сочетания. Каждое изделие вручную выверено в деталях — от силуэта до тактильного ощущения.",
+    aboutP2: { en:"At the heart of it are natural Italian yarns — <strong>cashmere, merino, mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.",
+               ru:"В основе — натуральные итальянские пряжи: <strong>кашемир, меринос, мохер с шёлком, лён</strong> и их тонкие сочетания. Каждое изделие вручную выверено в деталях — от силуэта до тактильного ощущения.",
                lv:"Pamatā ir dabīgi itāļu dziju veidi — <strong>kašmirs, merino, kid mohēra ar zīdu, lins</strong> — un to smalkas kombinācijas. Katrs izstrādājums rūpīgi izstrādāts katrā detaļā — no silueta līdz taustes sajūtai." },
     aboutP3: { en:"It is timeless — not tied to trends or seasons, with a value that lasts for years.",
                ru:"Это вне времени. Без привязки к трендам и сезонам, с ценностью, которая остаётся на годы.",
@@ -1304,44 +1283,44 @@
     mobileInstagram: { en:"Instagram", ru:"Instagram", lv:"Instagram" },
     careGuideEyebrow: { en:"Care", ru:"Уход", lv:"Kopšana" },
     careGuideTitle: { en:"Care guide", ru:"Уход за изделиями", lv:"Kopšanas ceļvedis" },
-    careGuideIntro: { en:"Natural fibres are delicate and unique. Use the guide below as a general reference and always follow the care instructions for the individual piece.",
-                      ru:"Натуральные волокна деликатны и уникальны. Используйте рекомендации ниже как общий ориентир и всегда учитывайте уход, указанный для конкретного изделия.",
-                      lv:"Dabīgās šķiedras ir maigas un unikālas. Izmantojiet zemāk sniegtos ieteikumus kā vispārīgu ceļvedi un vienmēr ievērojiet konkrētā izstrādājuma kopšanas norādes." },
+    careGuideIntro: { en:"To preserve the softness, shape and appearance of your knitwear, gentle care is recommended. Natural fibres respond best to delicate handling.",
+                      ru:"Чтобы сохранить мягкость, форму и красивый внешний вид изделия, рекомендуем бережный уход. Натуральные волокна любят деликатное обращение.",
+                      lv:"Lai saglabātu adījuma maigumu, formu un skaistu izskatu, ieteicama saudzīga kopšana. Dabīgām šķiedrām vislabāk piemērota delikāta apiešanās." },
 
     careCashmereTitle: { en:"Cashmere", ru:"Кашемир", lv:"Kašmirs" },
-    careCashmereText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Do not rub or wring.</li><li>Press out excess water gently with a towel.</li><li>Dry flat and store folded.</li><li>Air between washes when possible.</li>",
-                        ru:"<li>Стирать вручную в прохладной воде, до 30°C.</li><li>Не тереть и не выкручивать.</li><li>Осторожно удалить лишнюю воду полотенцем.</li><li>Сушить горизонтально и хранить сложенным.</li><li>Между стирками по возможности проветривать.</li>",
-                        lv:"<li>Mazgāt ar rokām vēsā ūdenī līdz 30°C.</li><li>Neberzt un neizgriezt.</li><li>Lieko ūdeni uzmanīgi nosusināt ar dvieli.</li><li>Žāvēt horizontāli un glabāt salocītu.</li><li>Starp mazgāšanas reizēm, ja iespējams, izvēdināt.</li>" },
+    careCashmereText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Use a mild detergent for wool and cashmere.</li><li>Do not rub or wring.</li><li>Gently press out excess water with a towel.</li><li>Dry flat, reshaping the piece.</li><li>Do not dry on a radiator or use a tumble dryer.</li><li>Store folded rather than on a hanger.</li><li>Between washes, airing is usually enough to refresh the piece.</li>",
+                        ru:"<li>Стирать вручную в прохладной воде, до 30°C.</li><li>Использовать мягкое средство для шерсти и кашемира.</li><li>Не тереть и не выкручивать.</li><li>Осторожно удалить лишнюю воду полотенцем.</li><li>Сушить горизонтально, расправив изделие по форме.</li><li>Не сушить на батарее и не использовать сушильную машину.</li><li>Хранить сложенным, а не на плечиках.</li><li>Для освежения между стирками достаточно проветривания.</li>",
+                        lv:"<li>Mazgāt ar rokām vēsā ūdenī līdz 30°C.</li><li>Izmantot saudzīgu līdzekli vilnai un kašmiram.</li><li>Neberzt un neizgriezt.</li><li>Lieko ūdeni uzmanīgi nosusināt ar dvieli.</li><li>Žāvēt horizontāli, iztaisnojot izstrādājumu pēc formas.</li><li>Nežāvēt uz radiatora un neizmantot veļas žāvētāju.</li><li>Glabāt salocītu, nevis uz pakaramā.</li><li>Starp mazgāšanas reizēm atsvaidzināšanai parasti pietiek ar izvēdināšanu.</li>" },
 
     careMohairTitle: { en:"Mohair", ru:"Мохер", lv:"Mohēra" },
-    careMohairText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Do not rub or wring.</li><li>Remove excess water gently with a towel.</li><li>Dry flat and store folded.</li><li>A slight change in the volume of the fibres after washing is natural.</li>",
-                      ru:"<li>Стирать вручную в прохладной воде, до 30°C.</li><li>Не тереть и не выкручивать.</li><li>Осторожно удалить лишнюю воду полотенцем.</li><li>Сушить горизонтально и хранить сложенным.</li><li>Небольшое изменение объёма ворса после стирки естественно.</li>",
-                      lv:"<li>Mazgāt ar rokām vēsā ūdenī līdz 30°C.</li><li>Neberzt un neizgriezt.</li><li>Lieko ūdeni uzmanīgi nosusināt ar dvieli.</li><li>Žāvēt horizontāli un glabāt salocītu.</li><li>Nelielas šķiedru apjoma izmaiņas pēc mazgāšanas ir dabiskas.</li>" },
+    careMohairText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Use a detergent suitable for delicate wool garments.</li><li>Do not rub or wring — this can damage the delicate fibres.</li><li>Gently remove excess water with a towel.</li><li>Dry flat, reshaping the piece.</li><li>Do not use a tumble dryer or dry on a radiator.</li><li>A slight change in the volume of the fibres after washing is natural.</li><li>Store folded.</li>",
+                        ru:"<li>Стирать вручную в прохладной воде, до 30°C.</li><li>Использовать средство для деликатных шерстяных изделий.</li><li>Не тереть и не выкручивать — это может повредить нежные волокна.</li><li>Осторожно удалить лишнюю воду полотенцем.</li><li>Сушить горизонтально, расправив изделие.</li><li>Не использовать сушильную машину и не сушить на батарее.</li><li>Небольшое изменение объёма ворса после стирки является естественным.</li><li>Хранить сложенным.</li>",
+                        lv:"<li>Mazgāt ar rokām vēsā ūdenī līdz 30°C.</li><li>Izmantot līdzekli, kas paredzēts saudzīgai vilnas izstrādājumu kopšanai.</li><li>Neberzt un neizgriezt — tas var bojāt smalkās šķiedras.</li><li>Lieko ūdeni uzmanīgi nosusināt ar dvieli.</li><li>Žāvēt horizontāli, iztaisnojot izstrādājumu.</li><li>Neizmantot veļas žāvētāju un nežāvēt uz radiatora.</li><li>Nelielas šķiedru apjoma izmaiņas pēc mazgāšanas ir dabiskas.</li><li>Glabāt salocītu.</li>" },
 
     careMerinoTitle: { en:"Merino", ru:"Меринос", lv:"Merino" },
-    careMerinoText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Avoid sudden temperature changes.</li><li>Do not rub or wring.</li><li>Press with a towel and dry flat.</li><li>Store folded.</li>",
-                      ru:"<li>Рекомендуется ручная стирка в прохладной воде, до 30°C.</li><li>Избегать резких перепадов температуры.</li><li>Не тереть и не выкручивать.</li><li>Отжать через полотенце и сушить горизонтально.</li><li>Хранить сложенным.</li>",
-                      lv:"<li>Ieteicama mazgāšana ar rokām vēsā ūdenī līdz 30°C.</li><li>Izvairīties no krasām temperatūras maiņām.</li><li>Neberzt un neizgriezt.</li><li>Nosusināt ar dvieli un žāvēt horizontāli.</li><li>Glabāt salocītu.</li>" },
+    careMerinoText: { en:"<li>Hand washing in cool water, up to 30°C, is recommended.</li><li>Use a detergent suitable for wool.</li><li>Avoid sudden temperature changes, as they can cause shrinkage or deformation.</li><li>Do not rub or wring.</li><li>Press out excess water with a towel and dry flat.</li><li>Do not dry on a radiator or use a tumble dryer.</li><li>Store folded.</li>",
+                        ru:"<li>Рекомендуется ручная стирка в прохладной воде, до 30°C.</li><li>Использовать средство для шерсти.</li><li>Избегать резких перепадов температуры — они могут привести к усадке и деформации.</li><li>Не тереть и не выкручивать.</li><li>Отжать через полотенце и сушить горизонтально.</li><li>Не сушить на батарее и не использовать сушильную машину.</li><li>Хранить сложенным.</li>",
+                        lv:"<li>Ieteicama mazgāšana ar rokām vēsā ūdenī līdz 30°C.</li><li>Izmantot līdzekli vilnai.</li><li>Izvairīties no krasām temperatūras maiņām, jo tās var izraisīt saraušanos vai deformāciju.</li><li>Neberzt un neizgriezt.</li><li>Lieko ūdeni nosusināt ar dvieli un žāvēt horizontāli.</li><li>Nežāvēt uz radiatora un neizmantot veļas žāvētāju.</li><li>Glabāt salocītu.</li>" },
 
     careSilkTitle: { en:"Silk", ru:"Шёлк", lv:"Zīds" },
-    careSilkText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Do not soak for long, rub or wring.</li><li>Avoid direct sunlight while drying.</li><li>Dry flat when appropriate for the construction.</li><li>Steam or iron only at a low temperature.</li>",
-                    ru:"<li>Стирать вручную в прохладной воде, до 30°C.</li><li>Не замачивать надолго, не тереть и не выкручивать.</li><li>Избегать прямых солнечных лучей при сушке.</li><li>Сушить горизонтально, если это подходит конструкции изделия.</li><li>Отпаривать или гладить только при низкой температуре.</li>",
-                    lv:"<li>Mazgāt ar rokām vēsā ūdenī līdz 30°C.</li><li>Ilgstoši nemērcēt, neberzt un neizgriezt.</li><li>Žāvējot izvairīties no tiešiem saules stariem.</li><li>Ja konstrukcija to pieļauj, žāvēt horizontāli.</li><li>Tvaicēt vai gludināt tikai zemā temperatūrā.</li>" },
+    careSilkText: { en:"<li>Hand wash in cool water, up to 30°C.</li><li>Use a mild detergent for silk or delicate fabrics.</li><li>Do not soak for long.</li><li>Do not rub or wring.</li><li>Avoid direct sunlight while drying.</li><li>Dry flat or on a flat surface, depending on the construction of the piece.</li><li>Iron or steam only at a low temperature and according to the recommendations for the individual garment.</li>",
+                        ru:"<li>Стирать вручную в прохладной воде, до 30°C.</li><li>Использовать мягкое средство для шёлка или деликатных тканей.</li><li>Не замачивать надолго.</li><li>Не тереть и не выкручивать.</li><li>Избегать прямых солнечных лучей при сушке.</li><li>Сушить горизонтально или на плоской поверхности, в зависимости от конструкции изделия.</li><li>Гладить или отпаривать только при низкой температуре, соблюдая рекомендации для конкретного изделия.</li>",
+                        lv:"<li>Mazgāt ar rokām vēsā ūdenī līdz 30°C.</li><li>Izmantot saudzīgu līdzekli zīdam vai smalkiem audumiem.</li><li>Ilgstoši nemērcēt.</li><li>Neberzt un neizgriezt.</li><li>Žāvējot izvairīties no tiešiem saules stariem.</li><li>Žāvēt horizontāli vai uz līdzenas virsmas atkarībā no izstrādājuma konstrukcijas.</li><li>Gludināt vai tvaicēt tikai zemā temperatūrā, ievērojot konkrētā izstrādājuma kopšanas norādes.</li>" },
 
     careLinenTitle: { en:"Linen", ru:"Лён", lv:"Lins" },
-    careLinenText: { en:"<li>Hand wash or use a delicate cycle up to 30°C.</li><li>Do not wring.</li><li>Dry naturally, reshaping the piece.</li><li>Linen may soften and change texture slightly over time.</li><li>Steam gently if needed.</li>",
-                     ru:"<li>Стирать вручную или в деликатном режиме до 30°C.</li><li>Не выкручивать.</li><li>Сушить естественным способом, расправив изделие.</li><li>Лён со временем может немного смягчаться и менять фактуру — это естественно.</li><li>При необходимости аккуратно отпарить.</li>",
-                     lv:"<li>Mazgāt ar rokām vai saudzīgā režīmā līdz 30°C.</li><li>Neizgriezt.</li><li>Žāvēt dabiski, iztaisnojot izstrādājumu.</li><li>Lins laika gaitā var kļūt mīkstāks un nedaudz mainīt tekstūru.</li><li>Ja nepieciešams, saudzīgi tvaicēt.</li>" },
+    careLinenText: { en:"<li>Hand wash or use a delicate cycle up to 30°C.</li><li>Use a mild detergent.</li><li>Do not use harsh bleach.</li><li>Do not wring.</li><li>Dry naturally, reshaping the piece.</li><li>Linen may soften and change texture slightly after washing — this is a natural characteristic of the fibre.</li><li>Steam gently if needed.</li>",
+                        ru:"<li>Стирать вручную или в деликатном режиме при температуре до 30°C.</li><li>Использовать мягкое средство.</li><li>Не использовать агрессивные отбеливатели.</li><li>Не выкручивать.</li><li>Сушить естественным способом, расправив изделие.</li><li>Лён может немного смягчаться и менять фактуру после стирки — это естественное свойство волокна.</li><li>При необходимости можно аккуратно отпарить изделие.</li>",
+                        lv:"<li>Mazgāt ar rokām vai saudzīgā režīmā līdz 30°C.</li><li>Izmantot saudzīgu mazgāšanas līdzekli.</li><li>Neizmantot agresīvus balinātājus.</li><li>Neizgriezt.</li><li>Žāvēt dabiski, iztaisnojot izstrādājumu.</li><li>Lins pēc mazgāšanas var kļūt mīkstāks un nedaudz mainīt tekstūru — tā ir dabiska šķiedras īpašība.</li><li>Ja nepieciešams, saudzīgi tvaicēt.</li>" },
 
     careCottonTitle: { en:"Cotton", ru:"Хлопок", lv:"Kokvilna" },
-    careCottonText: { en:"<li>Hand wash or use a delicate cycle up to 30°C unless the garment label says otherwise.</li><li>Do not wring.</li><li>Dry in shape to help preserve the fit.</li><li>Avoid hot drying, which can cause shrinkage.</li><li>Steam or iron at an appropriate temperature if needed.</li>",
-                      ru:"<li>Стирать вручную или в деликатном режиме до 30°C, если на этикетке не указано иное.</li><li>Не выкручивать.</li><li>Сушить в расправленном виде, чтобы сохранить форму.</li><li>Избегать горячей сушки — хлопок может дать усадку.</li><li>При необходимости отпаривать или гладить при подходящей температуре.</li>",
-                      lv:"<li>Mazgāt ar rokām vai saudzīgā režīmā līdz 30°C, ja uz etiķetes nav norādīts citādi.</li><li>Neizgriezt.</li><li>Žāvēt iztaisnotā veidā, lai saglabātu formu.</li><li>Izvairīties no karstas žāvēšanas, jo kokvilna var sarauties.</li><li>Ja nepieciešams, tvaicēt vai gludināt piemērotā temperatūrā.</li>" },
+    careCottonText: { en:"<li>Hand wash or use a delicate cycle up to 30°C, unless the garment label says otherwise.</li><li>Use a mild detergent.</li><li>Do not use bleach.</li><li>Do not wring.</li><li>Dry in shape to help preserve the fit.</li><li>Avoid hot drying, as cotton may shrink.</li><li>Steam or iron at an appropriate temperature if needed.</li>",
+                        ru:"<li>Стирать вручную или в деликатном режиме при температуре до 30°C, если иное не указано на этикетке.</li><li>Использовать мягкое средство.</li><li>Не использовать отбеливатели.</li><li>Не выкручивать.</li><li>Сушить в расправленном виде, чтобы сохранить форму.</li><li>Избегать горячей сушки — хлопок может дать усадку.</li><li>При необходимости использовать отпаривание или утюг на подходящей температуре.</li>",
+                        lv:"<li>Mazgāt ar rokām vai saudzīgā režīmā līdz 30°C, ja uz etiķetes nav norādīts citādi.</li><li>Izmantot saudzīgu mazgāšanas līdzekli.</li><li>Neizmantot balinātājus.</li><li>Neizgriezt.</li><li>Žāvēt iztaisnotā veidā, lai saglabātu formu.</li><li>Izvairīties no karstas žāvēšanas, jo kokvilna var sarauties.</li><li>Ja nepieciešams, tvaicēt vai gludināt piemērotā temperatūrā.</li>" },
 
     careImportantTitle: { en:"Important:", ru:"Важно:", lv:"Svarīgi:" },
-    careImportantText: { en:" Always follow the care instructions for the individual garment. Natural fibres may change slightly in texture, shape or softness over time — this is a natural part of wearing and caring for knitwear.",
-                         ru:" Всегда следуйте рекомендациям по уходу для конкретного изделия. Натуральные волокна со временем могут немного менять фактуру, форму или мягкость — это естественная часть носки и ухода за трикотажем.",
-                         lv:" Vienmēr ievērojiet konkrētā izstrādājuma kopšanas norādes. Dabīgās šķiedras laika gaitā var nedaudz mainīt tekstūru, formu vai maigumu — tā ir dabiska adījumu valkāšanas un kopšanas daļa." },
+    careImportantText: { en:" Always follow the care instructions on the individual garment label. Natural fibres are delicate and unique. Slight changes in texture, shape or softness over time are a natural part of wearing and caring for knitwear.",
+                         ru:" Всегда следуйте рекомендациям по уходу, указанным на этикетке конкретного изделия. Натуральные волокна деликатны и уникальны. Небольшие изменения фактуры, формы или мягкости со временем — естественная часть носки и ухода за трикотажем.",
+                         lv:" Vienmēr ievērojiet konkrētā izstrādājuma etiķetē norādītos kopšanas ieteikumus. Dabīgās šķiedras ir maigas un unikālas. Nelielas tekstūras, formas vai maiguma izmaiņas laika gaitā ir dabiska adījumu valkāšanas un kopšanas daļa." },
     careSignature: { en:"With love by Inna — made to be worn, loved and cared for.",
                      ru:"With love by Inna — создано, чтобы носить, любить и бережно хранить.",
                      lv:"With love by Inna — radīts, lai valkātu, mīlētu un saudzīgi koptu." },
@@ -1363,6 +1342,7 @@
     shippingP1: { en:"Orders are shipped worldwide from Latvia.", ru:"Заказы отправляются по всему миру из Латвии.", lv:"Pasūtījumi tiek nosūtīti no Latvijas uz visu pasauli." },
     shippingP2: { en:"Shipping costs are paid by the customer and are calculated according to the destination and parcel size.", ru:"Стоимость доставки оплачивается покупателем и рассчитывается в зависимости от направления и размера посылки.", lv:"Piegādes izmaksas sedz klients, un tās tiek aprēķinātas atkarībā no galamērķa un sūtījuma izmēra." },
     shippingP3: { en:"Free worldwide shipping on orders over €500.", ru:"Бесплатная доставка по всему миру для заказов свыше 500 €.", lv:"Bezmaksas piegāde visā pasaulē pasūtījumiem virs 500 €." },
+    shippingPacking: { en:"Each order is carefully packed and prepared for shipping with attention to detail.", ru:"Каждый заказ бережно упаковывается и тщательно подготавливается к отправке.", lv:"Katrs pasūtījums tiek rūpīgi iepakots un sagatavots nosūtīšanai, pievēršot uzmanību detaļām." },
     shippingP4: { en:"Tracking information is provided once the order has been dispatched.", ru:"После отправки заказа предоставляется информация для отслеживания.", lv:"Pēc pasūtījuma nosūtīšanas tiek sniegta izsekošanas informācija." },
     shippingP5: { en:"Customs duties, import taxes or other charges applied by the destination country are the responsibility of the customer.", ru:"Таможенные пошлины, импортные налоги и другие сборы страны назначения оплачиваются покупателем.", lv:"Muitas nodevas, importa nodokļus un citus galamērķa valsts piemērotos maksājumus sedz klients." },
 
@@ -1371,8 +1351,8 @@
     returnsP2: { en:"As personalised and made-to-order pieces are created especially for you, returns or exchanges due to a change of mind are not available where permitted by applicable law.", ru:"Поскольку персонализированные изделия и изделия, выполненные на заказ, создаются специально для вас, возврат или обмен из-за изменения решения покупателя не предусмотрены в случаях, когда это допускается применимым законодательством.", lv:"Tā kā personalizēti un pēc pasūtījuma izgatavoti izstrādājumi tiek radīti īpaši jums, atgriešana vai maiņa pārdomu dēļ nav pieejama gadījumos, kad to pieļauj piemērojamie tiesību akti." },
     returnsP3: { en:"Natural fibres are delicate and unique. Slight variations in texture and appearance are a natural characteristic of these materials and are not considered defects.", ru:"Натуральные волокна деликатны и уникальны. Небольшие различия в фактуре и внешнем виде являются естественной особенностью этих материалов и не считаются дефектами.", lv:"Dabīgās šķiedras ir maigas un unikālas. Nelielas tekstūras un izskata atšķirības ir šo materiālu dabiska īpašība un netiek uzskatītas par defektu." },
     returnsP4: { en:"Please follow the care instructions provided for your piece to preserve its shape, softness and appearance.", ru:"Пожалуйста, следуйте рекомендациям по уходу для конкретного изделия, чтобы сохранить его форму, мягкость и внешний вид.", lv:"Lūdzu, ievērojiet konkrētā izstrādājuma kopšanas norādes, lai saglabātu tā formu, maigumu un izskatu." },
-    returnsP5: { en:"If your item arrives damaged, defective or does not correspond to your confirmed order, please contact us as soon as possible. We will review the issue and provide an appropriate solution in accordance with applicable consumer protection laws.", ru:"Если изделие пришло повреждённым, имеет дефект или не соответствует подтверждённому заказу, пожалуйста, свяжитесь с нами как можно скорее. Мы рассмотрим ситуацию и предложим подходящее решение в соответствии с применимым законодательством о защите прав потребителей.", lv:"Ja izstrādājums saņemts bojāts, ar defektu vai neatbilst apstiprinātajam pasūtījumam, lūdzu, sazinieties ar mums pēc iespējas ātrāk. Mēs izskatīsim situāciju un piedāvāsim atbilstošu risinājumu saskaņā ar piemērojamajiem patērētāju tiesību aizsardzības noteikumiem." },
-    returnsP6: { en:"Your satisfaction and the quality of your piece are important to us.", ru:"Ваше удовлетворение и качество изделия важны для нас.", lv:"Jūsu apmierinātība un izstrādājuma kvalitāte mums ir svarīga." },
+    returnsP5: { en:"If your item arrives damaged, defective or does not correspond to your confirmed order, please contact me as soon as possible. I will review the issue and provide an appropriate solution in accordance with applicable consumer protection laws.", ru:"Если изделие пришло повреждённым, имеет дефект или не соответствует подтверждённому заказу, пожалуйста, свяжитесь со мной как можно скорее. Я рассмотрю ситуацию и предложу подходящее решение в соответствии с применимым законодательством о защите прав потребителей.", lv:"Ja izstrādājums saņemts bojāts, ar defektu vai neatbilst apstiprinātajam pasūtījumam, lūdzu, sazinieties ar mani pēc iespējas ātrāk. Es izskatīšu situāciju un piedāvāšu atbilstošu risinājumu saskaņā ar piemērojamajiem patērētāju tiesību aizsardzības noteikumiem." },
+    returnsP6: { en:"Your satisfaction and the quality of your piece are important to me.", ru:"Ваше удовлетворение и качество изделия важны для меня.", lv:"Jūsu apmierinātība un izstrādājuma kvalitāte man ir svarīga." },
 
     footerCareLink: { en:"Care guide", ru:"Уход", lv:"Kopšana" },
     footerPoliciesLink: { en:"Orders & policies", ru:"Заказы и условия", lv:"Pasūtījumi un noteikumi" },
