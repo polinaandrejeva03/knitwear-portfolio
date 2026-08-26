@@ -895,7 +895,7 @@
       category: "tops",
       name: { en:"Pearl", ru:"Жемчуг", lv:"Pērle" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
-      composition: { en:"70% mohair, 30% silk (Sessia, Italy)", ru:"70% мохер, 30% шёлк (Sessia, Италия)", lv:"70% kid mohēra, 30% zīds (Sessia, Itālija)" },
+      composition: { en:"70% mohair, 30% silk (Sessia, Italy)", ru:"70% мохер, 30% шёлк (Sessia, Италия)", lv:"70% mohēras, 30% zīda (Sessia, Itālija)" },
       care: { 
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
         ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости — профессиональная деликатная.</li></ul>`,
@@ -1011,7 +1011,72 @@
         ru:"Здравствуйте! Хочу заказать этот топ",
         lv:"Sveiki! Vēlos pasūtīt šo topu"
       }
+    },
+
+    {
+      id: "vest-brown",
+      category: "vests",
+      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
+      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
+      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
+      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      note: singleColourNote,
+      colors: ["#3a241e"],
+      images: [
+        "photos/vest-brown-1.jpeg",
+        "photos/vest-brown-2.jpeg"
+      ],
+      orderText: {
+        en:"Hi! I'd like to order this vest",
+        ru:"Здравствуйте! Хочу заказать этот жилет",
+        lv:"Sveiki! Vēlos pasūtīt šo vesti"
+      }
+    },
+
+    {
+      id: "cardigan-cream-wrap",
+      category: "cardigans",
+      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
+      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
+      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
+      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      note: singleColourNote,
+      colors: ["#eadfce"],
+      images: [
+        "photos/cardigan-cream-wrap-1.jpeg",
+        "photos/cardigan-cream-wrap-2.jpeg",
+        "photos/cardigan-cream-wrap-3.jpeg",
+        "photos/cardigan-cream-wrap-4.jpeg"
+      ],
+      orderText: {
+        en:"Hi! I'd like to order this cardigan",
+        ru:"Здравствуйте! Хочу заказать этот кардиган",
+        lv:"Sveiki! Vēlos pasūtīt šo kardiganu"
+      }
+    },
+
+    {
+      id: "top-white-knit",
+      category: "tops",
+      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
+      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
+      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
+      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      note: singleColourNote,
+      colors: ["#f3f0e8"],
+      images: [
+        "photos/top-white-knit-1.jpeg",
+        "photos/top-white-knit-2.jpeg"
+      ],
+      orderText: {
+        en:"Hi! I'd like to order this top",
+        ru:"Здравствуйте! Хочу заказать этот топ",
+        lv:"Sveiki! Vēlos pasūtīt šo topu"
+      }
     }
+
+
+
 
   ];
 
@@ -1019,12 +1084,13 @@
   let activeCategory = "all";
   let modalState = { product: null, index: 0 };
 
-  const CATEGORY_ORDER = ["sweaters", "cardigans", "tops", "dresses", "beachwear", "accessories"];
+  const CATEGORY_ORDER = ["sweaters", "cardigans", "tops", "vests", "dresses", "beachwear", "accessories"];
   const categoryLabels = {
     all: { en:"All", ru:"Все", lv:"Viss" },
     sweaters: { en:"Sweaters", ru:"Свитера", lv:"Džemperi" },
     cardigans: { en:"Cardigans", ru:"Кардиганы", lv:"Kardigani" },
     tops: { en:"Tops", ru:"Топы", lv:"Topi" },
+      vests: { en:"Vests", ru:"Жилеты", lv:"Vestes" },
     dresses: { en:"Dresses", ru:"Платья", lv:"Kleitas" },
     beachwear: { en:"Beachwear", ru:"Пляжная одежда", lv:"Pludmales apģērbs" },
     accessories: { en:"Accessories", ru:"Аксессуары", lv:"Aksesuāri" }
@@ -1033,6 +1099,7 @@
     sweaters: { en:"Sweater", ru:"Свитер", lv:"Džemperis" },
     cardigans: { en:"Cardigan", ru:"Кардиган", lv:"Kardigans" },
     tops: { en:"Top", ru:"Топ", lv:"Tops" },
+    vests: { en:"Vest", ru:"Жилет", lv:"Veste" },
     dresses: { en:"Dress", ru:"Платье", lv:"Kleita" },
     beachwear: { en:"Beachwear", ru:"Пляжная одежда", lv:"Pludmales apģērbs" },
     accessories: { en:"Accessory", ru:"Аксессуар", lv:"Aksesuārs" }
@@ -1246,7 +1313,7 @@
                lv:"Es radu adījumus, kuros estētika sastopas ar klusumu un iekšēju komfortu — lietas, kas dod mierīgas pārliecības un maigā spēka sajūtu." },
     aboutP2: { en:"At the heart of it are natural Italian yarns — <strong>cashmere, merino, mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.",
                ru:"В основе — натуральные итальянские пряжи: <strong>кашемир, меринос, мохер с шёлком, лён</strong> и их тонкие сочетания. Каждое изделие вручную выверено в деталях — от силуэта до тактильного ощущения.",
-               lv:"Pamatā ir dabīgi itāļu dziju veidi — <strong>kašmirs, merino, kid mohēra ar zīdu, lins</strong> — un to smalkas kombinācijas. Katrs izstrādājums rūpīgi izstrādāts katrā detaļā — no silueta līdz taustes sajūtai." },
+               lv:"Pamatā ir dabīgi itāļu dziju veidi — <strong>kašmirs, merino, mohēra ar zīdu, lins</strong> — un to smalkas kombinācijas. Katrs izstrādājums rūpīgi izstrādāts katrā detaļā — no silueta līdz taustes sajūtai." },
     aboutP3: { en:"It is timeless — not tied to trends or seasons, with a value that lasts for years.",
                ru:"Это вне времени. Без привязки к трендам и сезонам, с ценностью, которая остаётся на годы.",
                lv:"Tas ir ārpus laika — nav saistīts ar trendiem vai sezonām, ar vērtību, kas paliek gadiem." },
