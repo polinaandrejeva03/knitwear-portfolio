@@ -374,6 +374,30 @@
   }
 
 
+
+  /* Final open-details layout: no extra click inside View details. */
+  .luxury-info-block{
+    padding:0;
+    border:0;
+  }
+  .luxury-info-block + .luxury-info-block{
+    margin-top:19px;
+  }
+  .open-care{
+    color:var(--ink-soft);
+    font-size:14px;
+    line-height:1.55;
+  }
+  .open-care .care-list{
+    margin-top:0;
+  }
+  .detail-extra{
+    margin-top:7px;
+    color:var(--ink-soft);
+    font-size:13px;
+    line-height:1.5;
+  }
+
   /* ============ LATVIAN TYPOGRAPHY ============ */
   html[lang="lv"] body{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -432,6 +456,15 @@
   .reveal{ opacity:1; transform:none; }
   .reveal.pre-reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.pre-reveal.is-visible{ opacity:1; transform:none; }
+
+
+  #productGrid,
+  #productGrid.reveal,
+  #productGrid.pre-reveal,
+  #productGrid.is-visible{
+    opacity:1 !important;
+    transform:none !important;
+  }
 
   /* ============ PRODUCT MODAL ============
      Mobile default: bottom sheet, pinned to the bottom edge, full width,
@@ -498,6 +531,47 @@
     .modal-block{ margin-top:16px; }
     .modal-order{ margin-top:22px; }
   }
+
+  /* ============ LUXURY PRODUCT DETAILS ============ */
+  .luxury-info-block{ margin-top:18px; }
+  .luxury-info-block .label{ margin-bottom:7px; }
+
+  .size-info{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    font-size:14px;
+    line-height:1.5;
+  }
+  .size-info strong{ color:var(--ink); font-weight:600; }
+  .size-info span{ color:var(--ink-soft); }
+  .size-adjust{
+    margin-top:7px !important;
+    font-size:12.5px !important;
+    line-height:1.5 !important;
+    color:var(--ink-soft) !important;
+  }
+
+  .colour-row{
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .colour-row .color-swatches{ margin:0; }
+  .colour-shown-note{ font-size:12px; color:var(--ink-soft); }
+  .colour-copy{ max-width:46ch; line-height:1.55 !important; }
+
+  .detail-extra{ margin-top:9px; }
+
+  @media (min-width:700px){
+    dialog#productModal{ width:min(620px, 92vw); }
+    .modal-body{ padding:24px 28px 32px; }
+    .luxury-info-block{ margin-top:20px; }
+    .size-info, .luxury-detail-body{ font-size:14.5px; }
+    .size-adjust{ font-size:13px !important; }
+  }
+
   .modal-scroll-hint{
     position:sticky; bottom:0; left:0; right:0; height:52px;
     background:linear-gradient(to top, var(--card) 20%, transparent);
@@ -733,13 +807,29 @@
     <div id="modalCat" class="product-cat" style="margin-bottom:4px;"></div>
     <h3 id="modalName"></h3>
     <div class="modal-price" id="modalPrice"></div>
-    <div class="modal-block" id="modalDescriptionBlock" style="display:none;"><div class="label" data-key="modalDescriptionLabel">About the piece</div><p id="modalDescription"></p></div>
-    <div class="modal-block"><div class="label" data-key="modalCompositionLabel">Composition</div><p id="modalComposition"></p></div>
-    <div class="modal-block"><div class="label" data-key="modalCareLabel">Care</div><p id="modalCare"></p></div>
-    <div class="modal-block"><div class="label" data-key="modalNoteLabel">Sizes &amp; colours</div><p id="modalNote"></p></div>
-    <div class="modal-block" id="modalColorsBlock" style="display:none;">
-      <div class="label" data-key="modalColorsLabel">Possible shades (illustrative)</div>
-      <div id="modalColors" class="color-swatches"></div>
+    <div class="modal-block luxury-info-block">
+      <div class="label" data-key="modalSizeLabel">Size &amp; fit</div>
+      <div id="modalSizeInfo" class="size-info"></div>
+      <p id="modalSizeAdjust" class="size-adjust" style="display:none;"></p>
+    </div>
+
+    <div class="modal-block luxury-info-block">
+      <div class="label" data-key="modalColourLabel">Colour</div>
+      <div id="modalColorsBlock" class="colour-row" style="display:none;">
+        <div id="modalColors" class="color-swatches"></div>
+      </div>
+      <p id="modalColourText" class="colour-copy"></p>
+    </div>
+
+    <div class="modal-block luxury-info-block">
+      <div class="label" data-key="modalCompositionLabel">Composition</div>
+      <p id="modalComposition"></p>
+      <div id="modalExtraDetails" class="detail-extra" style="display:none;"></div>
+    </div>
+
+    <div class="modal-block luxury-info-block">
+      <div class="label" data-key="modalCareLabel">Care</div>
+      <div id="modalCare" class="open-care"></div>
     </div>
     <a class="btn btn-solid modal-order" id="modalOrderBtn" href="#" target="_blank" rel="noopener"></a>
     <a class="btn btn-line modal-order" id="modalOrderBtnIg" href="#" target="_blank" rel="noopener" style="margin-top:10px;"></a>
@@ -857,11 +947,58 @@
     lv:"Viens izmērs (aptuveni S–L). Fotoattēlos redzamā krāsa ir piemērs; iespējami arī citi toņi. Uzrakstiet man, lai precizētu pieejamās krāsas."
   };
 
+
+  const PRODUCT_SIZES = {
+    "tuman": {
+      en:`<strong>One size · S–L</strong><span>Width 66 cm · Length 60 cm</span>`,
+      ru:`<strong>One size · S–L</strong><span>Ширина 66 см · Длина 60 см</span>`,
+      lv:`<strong>One size · S–L</strong><span>Platums 66 cm · Garums 60 cm</span>`
+    },
+    "sweater-crewneck": {
+      en:`<strong>One size · S–L</strong><span>Width 60 cm · Length 70 cm</span>`,
+      ru:`<strong>One size · S–L</strong><span>Ширина 60 см · Длина 70 см</span>`,
+      lv:`<strong>One size · S–L</strong><span>Platums 60 cm · Garums 70 cm</span>`
+    },
+    "top-pearl": {
+      en:`<strong>One size · S–L</strong><span>Width 50 cm · Length 50 cm</span>`,
+      ru:`<strong>One size · S–L</strong><span>Ширина 50 см · Длина 50 см</span>`,
+      lv:`<strong>One size · S–L</strong><span>Platums 50 cm · Garums 50 cm</span>`
+    }
+  };
+
+  const PRODUCT_EXTRA_DETAILS = {
+    "top-pearl": {
+      en:"Boat neckline · Decorative shoulder seam",
+      ru:"Вырез лодочка · Декоративный шов на плече",
+      lv:"Laiviņveida kakla izgriezums · Dekoratīva pleca vīle"
+    }
+  };
+
+  const SIZE_ADJUSTMENT = {
+    en:"Size adjustments can be discussed. Message me to discuss the fit.",
+    ru:"Корректировки размера можно обсудить. Напишите мне, чтобы обсудить посадку.",
+    lv:"Izmēra korekcijas var pārrunāt. Uzrakstiet man, lai pārrunātu piegulšanu."
+  };
+
+  const UNKNOWN_SIZE = { en:"[Size]", ru:"[Размер]", lv:"[Izmērs]" };
+
+  const COLOUR_COPY_SINGLE = {
+    en:"The colour shown in the photos is an example. Other shades may be available. Message me to confirm the available colours.",
+    ru:"Цвет на фото указан как пример. Возможны и другие оттенки. Напишите мне, чтобы уточнить доступные цвета.",
+    lv:"Fotoattēlos redzamā krāsa ir piemērs. Iespējami arī citi toņi. Uzrakstiet man, lai precizētu pieejamās krāsas."
+  };
+
+  const COLOUR_COPY_MULTIPLE = {
+    en:"The colours shown in the photos are examples. Other shades may be available. Message me to confirm the available colours.",
+    ru:"Цвета на фото указаны как примеры. Возможны и другие оттенки. Напишите мне, чтобы уточнить доступные цвета.",
+    lv:"Fotoattēlos redzamās krāsas ir piemēri. Iespējami arī citi toņi. Uzrakstiet man, lai precizētu pieejamās krāsas."
+  };
+
   const products = [
     {
       id: "tuman",
       category: "sweaters",
-      name: { en:"Mist", ru:"Туман", lv:"Migla" },
+      name: { en:"Mist", ru:"Mist", lv:"Mist" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
       care: { 
@@ -872,7 +1009,7 @@
       note: singleColourNote,
       colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "linear-gradient(135deg, #f3c9d6, #b7d4e8, #f6e6a8, #f4f1ec)", "#2f4a3d"],
       images: ["photos/tuman-2.jpeg", "photos/tuman-4.jpeg", "photos/tuman-5.jpeg", "photos/tuman-6.jpeg", "photos/tuman-7.jpeg"],
-      orderText: { en:"Hi! I'd like to order the Mist sweater", ru:"Здравствуйте! Хочу заказать свитер «Туман»", lv:"Sveiki! Vēlos pasūtīt džemperi Migla" }
+      orderText: { en:"Hi! I\'d like to order the Mist sweater", ru:"Здравствуйте! Хочу заказать свитер Mist", lv:"Sveiki! Vēlos pasūtīt džemperi Mist" }
     },
     {
       id: "sweater-crewneck",
@@ -888,12 +1025,12 @@
       note: multipleColoursNote,
       colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "#d9c9e8", "#f6e6a8"],
       images: ["photos/crewneck-1.jpeg", "photos/crewneck-2.jpeg", "photos/crewneck-3.jpeg", "photos/crewneck-4.jpeg", "photos/crewneck-5.jpeg", "photos/crewneck-6.jpeg", "photos/crewneck-7.jpeg", "photos/crewneck-8.jpeg"],
-      orderText: { en:"Hi! I'd like to order this sweater", ru:"Здравствуйте! Хочу заказать этот свитер", lv:"Sveiki! Vēlos pasūtīt šo džemperi" }
+      orderText: { en:"Hi! I\'d like to order the Flow sweater", ru:"Здравствуйте! Хочу заказать свитер Flow", lv:"Sveiki! Vēlos pasūtīt džemperi Flow" }
     },
     {
       id: "top-pearl",
       category: "tops",
-      name: { en:"Pearl", ru:"Жемчуг", lv:"Pērle" },
+      name: { en:"Pearl", ru:"Pearl", lv:"Pearl" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
       composition: { en:"70% mohair, 30% silk (Sessia, Italy)", ru:"70% мохер, 30% шёлк (Sessia, Италия)", lv:"70% mohēras, 30% zīda (Sessia, Itālija)" },
       care: { 
@@ -904,7 +1041,7 @@
       note: oneSizeSingleColourNote,
       colors: ["#c4c2bd"],
       images: ["photos/pearl-1.jpeg", "photos/pearl-2.jpeg"],
-      orderText: { en:"Hi! I'd like to order the Pearl top", ru:"Здравствуйте! Хочу заказать топ «Жемчуг»", lv:"Sveiki! Vēlos pasūtīt topu Pērle" }
+      orderText: { en:"Hi! I\'d like to order the Pearl top", ru:"Здравствуйте! Хочу заказать топ Pearl", lv:"Sveiki! Vēlos pasūtīt topu Pearl" }
     },
     {
       id: "dress-1",
@@ -921,27 +1058,27 @@
     {
       id: "dress-2",
       category: "dresses",
-      name: { en:"Wild", ru:"Дикая", lv:"Mežonīgā" },
+      name: { en:"Wild", ru:"Wild", lv:"Wild" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
       composition: { en:"Composition to be confirmed", ru:"Состав уточняется", lv:"Sastāvs tiks precizēts" },
       care: { en:"Care recommendations will be confirmed according to the final yarn composition.", ru:"Рекомендации по уходу уточняются в зависимости от состава выбранной пряжи.", lv:"Kopšanas ieteikumi tiks precizēti atbilstoši izvēlētās dzijas sastāvam." },
       note: singleColourNote,
       colors: ["#8a8570"],
       images: ["photos/dress-2-1.jpeg", "photos/dress-2-2.jpeg", "photos/dress-2-3.jpeg"],
-      orderText: { en:"Hi! I'd like to order this dress", ru:"Здравствуйте! Хочу заказать это платье", lv:"Sveiki! Vēlos pasūtīt šo kleitu" }
+      orderText: { en:"Hi! I\'d like to order the Wild dress", ru:"Здравствуйте! Хочу заказать платье Wild", lv:"Sveiki! Vēlos pasūtīt kleitu Wild" }
     },
     {
       id: "wrap-1",
       category: "accessories",
       typeLabel: { en:"Wrap", ru:"Палантин", lv:"Lakats" },
-      name: { en:"Cocoon", ru:"Кокон", lv:"Kokons" },
+      name: { en:"Cocoon", ru:"Cocoon", lv:"Cocoon" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
       composition: { en:"Composition to be confirmed", ru:"Состав уточняется", lv:"Sastāvs tiks precizēts" },
       care: { en:"Care recommendations will be confirmed according to the final yarn composition.", ru:"Рекомендации по уходу уточняются в зависимости от состава выбранной пряжи.", lv:"Kopšanas ieteikumi tiks precizēti atbilstoši izvēlētās dzijas sastāvam." },
       note: singleColourNote,
       colors: ["#c88f9b"],
       images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg", "photos/wrap-1-4.jpeg"],
-      orderText: { en:"Hi! I'd like to order this wrap", ru:"Здравствуйте! Хочу заказать эту накидку", lv:"Sveiki! Vēlos pasūtīt šo lakatu" }
+      orderText: { en:"Hi! I\'d like to order Cocoon", ru:"Здравствуйте! Хочу заказать Cocoon", lv:"Sveiki! Vēlos pasūtīt Cocoon" }
     },
     {
       id: "top-blue",
@@ -983,9 +1120,13 @@
       id: "cardigan-1",
       category: "cardigans",
       name: { en:"Cloud", ru:"Cloud", lv:"Cloud" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      price: { en:"€180", ru:"180 €", lv:"€180" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости — профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams — profesionāla un saudzīga.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#e8c3d0"],
       images: ["photos/cardigan-1-1.jpeg", "photos/cardigan-1-2.jpeg"],
@@ -1174,24 +1315,43 @@
     document.getElementById('modalCat').textContent = p.typeLabel ? p.typeLabel[currentLang] : (categoryLabelsSingular[p.category] ? categoryLabelsSingular[p.category][currentLang] : '');
     document.getElementById('modalName').textContent = p.name[currentLang];
     document.getElementById('modalPrice').textContent = p.price[currentLang];
-    const modalColorsHeading = document.getElementById('modalColorsHeading');
-    if(modalColorsHeading){
-      const key = p.colors.length > 1 ? "modalColorsLabelPlural" : "modalColorsLabel";
-      modalColorsHeading.textContent = i18n[key][currentLang];
+    const sizeInfoEl = document.getElementById('modalSizeInfo');
+    const sizeAdjustEl = document.getElementById('modalSizeAdjust');
+    if(PRODUCT_SIZES[p.id]){
+      sizeInfoEl.innerHTML = PRODUCT_SIZES[p.id][currentLang];
+      sizeAdjustEl.textContent = SIZE_ADJUSTMENT[currentLang];
+      sizeAdjustEl.style.display = '';
+    } else {
+      sizeInfoEl.textContent = UNKNOWN_SIZE[currentLang];
+      sizeAdjustEl.textContent = '';
+      sizeAdjustEl.style.display = 'none';
     }
+
+    const colorsBlock = document.getElementById('modalColorsBlock');
+    const colourTextEl = document.getElementById('modalColourText');
+    if(p.colors && p.colors.length){
+      colorsBlock.style.display = 'flex';
+      document.getElementById('modalColors').innerHTML = p.colors.map(c=>`<span style="background:${c}"></span>`).join('');
+      colourTextEl.textContent = (p.colors.length > 1 ? COLOUR_COPY_MULTIPLE : COLOUR_COPY_SINGLE)[currentLang];
+    } else {
+      colorsBlock.style.display = 'none';
+      colourTextEl.textContent = '';
+    }
+
     const compositionEl = document.getElementById('modalComposition');
     const careEl = document.getElementById('modalCare');
     compositionEl.textContent = p.composition[currentLang];
     careEl.innerHTML = p.care[currentLang];
-    compositionEl.classList.toggle('pending-info', /to be confirmed|уточняется|tiks precizēts/i.test(p.composition[currentLang]));
-    careEl.classList.toggle('pending-info', /will be confirmed|уточняются|tiks precizēti/i.test(p.care[currentLang]));
-    document.getElementById('modalNote').textContent = p.note[currentLang];
-    const colorsBlock = document.getElementById('modalColorsBlock');
-    if(p.colors && p.colors.length){
-      colorsBlock.style.display = '';
-      document.getElementById('modalColors').innerHTML = p.colors.map(c=>`<span style="background:${c}"></span>`).join('');
+    compositionEl.classList.toggle('pending-info', /to be confirmed|уточняется|tiks precizēts|\[Composition\]|\[Состав\]|\[Sastāvs\]/i.test(p.composition[currentLang]));
+    careEl.classList.toggle('pending-info', /will be confirmed|уточняются|tiks precizēti|\[Care\]|\[Уход\]|\[Kopšana\]/i.test(p.care[currentLang]));
+
+    const extraDetailsEl = document.getElementById('modalExtraDetails');
+    if(PRODUCT_EXTRA_DETAILS[p.id]){
+      extraDetailsEl.textContent = PRODUCT_EXTRA_DETAILS[p.id][currentLang];
+      extraDetailsEl.style.display = '';
     } else {
-      colorsBlock.style.display = 'none';
+      extraDetailsEl.textContent = '';
+      extraDetailsEl.style.display = 'none';
     }
     const orderBtn = document.getElementById('modalOrderBtn');
     orderBtn.textContent = { en:"Message on WhatsApp", ru:"Написать в WhatsApp", lv:"Rakstīt WhatsApp" }[currentLang];
@@ -1243,7 +1403,7 @@
 
   // ---------- Reveal on scroll (progressive enhancement) ----------
   function initReveal(){
-    const revealEls = document.querySelectorAll('.reveal');
+    const revealEls = document.querySelectorAll('.reveal:not(#productGrid)');
     if ('IntersectionObserver' in window){
       revealEls.forEach(el=>el.classList.add('pre-reveal'));
       const io = new IntersectionObserver((entries)=>{
@@ -1459,10 +1619,12 @@
                   ru:"With love by Inna · Вязаные изделия на заказ · Латвия ·",
                   lv:"With love by Inna · Adījumi pēc pasūtījuma · Latvija ·" },
     learnMore: { en:"View details", ru:"Подробнее", lv:"Skatīt detaļas" },
+    modalSizeLabel: { en:"Size & fit", ru:"Размер и посадка", lv:"Izmērs un piegulšana" },
+    modalColourLabel: { en:"Colour", ru:"Цвет", lv:"Krāsa" },
+    modalShownInPhotos: { en:"Shown in photos", ru:"Показано на фото", lv:"Redzams fotoattēlos" },
+    modalProductDetailsLabel: { en:"Product details", ru:"Детали изделия", lv:"Informācija par izstrādājumu" },
     modalCompositionLabel: { en:"Composition", ru:"Состав", lv:"Sastāvs" },
-    modalCareLabel: { en:"Care", ru:"Уход", lv:"Kopšana" },
-    modalNoteLabel: { en:"Sizes & colours", ru:"Размеры и цвета", lv:"Izmēri un krāsas" },
-    modalColorsLabel: { en:"Colour shown", ru:"Цвет на фото", lv:"Fotoattēlā redzamā krāsa" }
+    modalCareLabel: { en:"Care", ru:"Уход", lv:"Kopšana" }
   };
 
   function setLang(lang){
@@ -1491,3 +1653,4 @@
 
 </body>
 </html>
+
