@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#fbf7f5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
   /* ============================================================
@@ -5909,6 +5910,765 @@ button:focus-visible{
   }
   .category-tabs button{
     font-size:9.4px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL MOBILE POLISH — spacing, hero contrast, category rhythm
+   ============================================================ */
+
+@media (max-width:699px){
+
+  /* ---------- HERO: local contrast where the copy sits ---------- */
+  .hero-media-mobile video{
+    object-position:57% center !important;
+    filter:saturate(.72) brightness(.82) contrast(.96) blur(.75px) !important;
+    transform:scale(1.012) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(248,243,239,.78) 0%,
+        rgba(248,243,239,.60) 38%,
+        rgba(248,243,239,.30) 68%,
+        rgba(248,243,239,.10) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248,243,239,.10) 0%,
+        rgba(248,243,239,.16) 36%,
+        rgba(248,243,239,.44) 70%,
+        rgba(248,243,239,.68) 100%
+      ) !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    color:#744b44 !important;
+    font-weight:700 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#1f1a18 !important;
+    text-shadow:0 1px 5px rgba(255,255,255,.30) !important;
+  }
+
+  .hero-fullbleed .tagline{
+    color:#352f2b !important;
+    font-weight:500 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed .hero-ctas{
+    margin-top:19px !important;
+    gap:14px !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    color:#1f1a18 !important;
+    border-bottom-color:#1f1a18 !important;
+    font-weight:700 !important;
+    letter-spacing:.075em !important;
+  }
+
+  /* ---------- ABOUT → PORTFOLIO spacing ---------- */
+  #about{
+    padding-bottom:26px !important;
+  }
+
+  #products{
+    padding-top:20px !important;
+  }
+
+  /* ---------- Selected work → category controls ---------- */
+  #products .section-head{
+    margin-bottom:15px !important;
+  }
+
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:8px !important;
+    row-gap:7px !important;
+    width:100% !important;
+    margin:0 0 24px !important;
+    padding:0 0 10px !important;
+    align-items:center !important;
+    border-bottom:1px solid rgba(42,37,34,.14) !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    width:100% !important;
+    min-height:38px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    margin:0 !important;
+    padding:6px 1px !important;
+    border:0 !important;
+    background:transparent !important;
+    color:#463d39 !important;
+    white-space:nowrap !important;
+    font-size:10.4px !important;
+    line-height:1 !important;
+    font-weight:600 !important;
+    letter-spacing:0 !important;
+    transform:none !important;
+    box-shadow:none !important;
+  }
+
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    color:#9c6a61 !important;
+    background:transparent !important;
+  }
+
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    color:#211d1b !important;
+    font-weight:700 !important;
+  }
+
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    bottom:1px !important;
+    width:0 !important;
+    height:1.5px !important;
+    background:#a46e64 !important;
+    transform:translateX(-50%) !important;
+    transition:width .2s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    width:28px !important;
+  }
+
+  /* Keep category grid aligned with the same content edges as the section */
+  #products .wrap,
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin-inline:auto !important;
+  }
+}
+
+@media (max-width:390px){
+  .category-tabs{
+    column-gap:5px !important;
+    row-gap:6px !important;
+  }
+
+  .category-tabs button{
+    font-size:9.3px !important;
+    min-height:36px !important;
+  }
+
+  .category-tabs button.active::after{
+    width:25px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL HEADER UNIFICATION — DESKTOP + MOBILE
+   Languages borderless everywhere, active underline,
+   slightly larger mobile logo.
+   ============================================================ */
+
+/* ---------- ALL SCREEN SIZES ---------- */
+.lang-toggle{
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+
+.lang-toggle button{
+  position:relative !important;
+  min-width:auto !important;
+  min-height:auto !important;
+  padding:4px 0 6px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:#4f4641 !important;
+  box-shadow:none !important;
+  font-weight:600 !important;
+  transition:color .18s ease !important;
+}
+
+.lang-toggle button:hover,
+.lang-toggle button:focus{
+  background:transparent !important;
+  color:#9a6b62 !important;
+}
+
+.lang-toggle button.active,
+.lang-toggle button.active:hover,
+.lang-toggle button.active:focus{
+  background:transparent !important;
+  color:#2b2623 !important;
+}
+
+.lang-toggle button.active::after{
+  content:"";
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  height:1px !important;
+  background:#9f7067 !important;
+}
+
+/* ORDER remains the single outlined CTA */
+.topbar-cta{
+  background:transparent !important;
+  color:#2b2623 !important;
+  border:1px solid rgba(43,38,35,.45) !important;
+  border-radius:3px !important;
+}
+
+.topbar-cta:hover,
+.topbar-cta:focus-visible,
+.topbar-cta:active{
+  background:#2b2623 !important;
+  color:#fff !important;
+  border-color:#2b2623 !important;
+}
+
+/* ---------- DESKTOP ---------- */
+@media (min-width:700px){
+  .lang-toggle{
+    gap:15px !important;
+  }
+
+  .lang-toggle button{
+    font-size:11px !important;
+    letter-spacing:.04em !important;
+  }
+
+  .topbar-cta{
+    min-height:34px !important;
+    padding:0 14px !important;
+    font-size:11px !important;
+    letter-spacing:.07em !important;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:699px){
+  .brandmark-logo img{
+    width:118px !important;
+    max-height:39px !important;
+    object-fit:contain !important;
+  }
+
+  .lang-toggle{
+    gap:12px !important;
+  }
+
+  .lang-toggle button{
+    font-size:11px !important;
+    letter-spacing:.03em !important;
+    padding:4px 0 5px !important;
+  }
+
+  .topbar-cta{
+    min-height:32px !important;
+    padding:0 11px !important;
+    font-size:11px !important;
+    letter-spacing:.055em !important;
+  }
+}
+
+@media (max-width:390px){
+  .brandmark-logo img{
+    width:110px !important;
+  }
+
+  .lang-toggle{
+    gap:10px !important;
+  }
+
+  .lang-toggle button{
+    font-size:10px !important;
+  }
+
+  .topbar-cta{
+    font-size:10px !important;
+    padding:0 9px !important;
+  }
+}
+
+
+/* ============================================================
+   LATVIAN DIACRITICS FIX — ā ē ī ū ģ ķ ļ ņ č š ž
+   Uses fonts with full Latvian glyph coverage and disables
+   synthetic/fallback shaping that can distort macrons.
+   ============================================================ */
+
+html[lang="lv"],
+html[lang="lv"] body{
+  font-family:"Noto Sans","Arial","Helvetica",sans-serif !important;
+  font-synthesis:none !important;
+  font-kerning:normal !important;
+  text-rendering:optimizeLegibility !important;
+}
+
+html[lang="lv"] body,
+html[lang="lv"] p,
+html[lang="lv"] li,
+html[lang="lv"] a,
+html[lang="lv"] button,
+html[lang="lv"] .eyebrow,
+html[lang="lv"] .desktop-nav,
+html[lang="lv"] .lang-toggle,
+html[lang="lv"] .topbar-cta,
+html[lang="lv"] .product-cat,
+html[lang="lv"] .product-price,
+html[lang="lv"] .product-more,
+html[lang="lv"] .modal-body,
+html[lang="lv"] .faq-item,
+html[lang="lv"] .resource-card{
+  font-family:"Noto Sans","Arial","Helvetica",sans-serif !important;
+  font-synthesis:none !important;
+  font-kerning:normal !important;
+}
+
+/* All Latvian serif/editorial text uses one safe serif font. */
+html[lang="lv"] h1,
+html[lang="lv"] h2,
+html[lang="lv"] h3,
+html[lang="lv"] .hero h1,
+html[lang="lv"] .hero-fullbleed h1,
+html[lang="lv"] .section-head h2,
+html[lang="lv"] .about-text h2,
+html[lang="lv"] .contact h2,
+html[lang="lv"] .product-name,
+html[lang="lv"] .modal-title,
+html[lang="lv"] .resource-copy strong,
+html[lang="lv"] .info-dialog-head h2,
+html[lang="lv"] .info-accordion summary,
+html[lang="lv"] .about-text > p[style*="font-weight:600"]{
+  font-family:"Noto Serif","Georgia","Times New Roman",serif !important;
+  font-synthesis:none !important;
+  font-kerning:normal !important;
+  font-variant-ligatures:common-ligatures !important;
+}
+
+/* Macrons need a little vertical breathing room at large sizes. */
+html[lang="lv"] h1,
+html[lang="lv"] h2,
+html[lang="lv"] h3,
+html[lang="lv"] .about-text h2{
+  line-height:1.05 !important;
+  letter-spacing:-.012em !important;
+}
+
+/* Founder/subtitle line: no optical-font tricks or negative tracking. */
+html[lang="lv"] .about-text > p[style*="font-weight:600"]{
+  letter-spacing:0 !important;
+  line-height:1.5 !important;
+  font-weight:500 !important;
+}
+
+/* Keep ordinary Latvian text neutral so every diacritic remains clear. */
+html[lang="lv"] p,
+html[lang="lv"] li,
+html[lang="lv"] a,
+html[lang="lv"] button{
+  letter-spacing:0 !important;
+}
+
+
+/* ============================================================
+   FINAL RESPONSIVE TYPOGRAPHY SYSTEM — EN / RU / LV
+   Keeps the editorial character, improves hierarchy/readability.
+   ============================================================ */
+
+:root{
+  --text-body: clamp(1rem, .96rem + .12vw, 1.08rem);
+  --text-small: clamp(.875rem, .84rem + .08vw, .95rem);
+  --text-eyebrow: clamp(.72rem, .70rem + .05vw, .78rem);
+  --text-nav: clamp(.86rem, .83rem + .08vw, .94rem);
+  --text-category: clamp(.88rem, .84rem + .10vw, .96rem);
+
+  --h1-display: clamp(4rem, 5.3vw, 4.7rem);
+  --h2-section: clamp(2.9rem, 3.8vw, 3.35rem);
+  --h2-long: clamp(2.6rem, 3.35vw, 3.05rem);
+  --h2-name: clamp(3rem, 3.7vw, 3.4rem);
+}
+
+/* ---------- BODY / SUPPORTING TEXT ---------- */
+body,
+p,
+li,
+button,
+a,
+input,
+textarea,
+select{
+  font-size:var(--text-body);
+}
+
+.tagline,
+.section-head p,
+.about-text p,
+.info-card p,
+.faq-item p,
+.resource-copy p,
+.modal-body,
+.size-adjust,
+.colour-copy{
+  font-size:var(--text-body) !important;
+  line-height:1.62 !important;
+}
+
+.eyebrow,
+.product-cat{
+  font-size:var(--text-eyebrow) !important;
+  line-height:1.25 !important;
+  letter-spacing:.12em !important;
+}
+
+.desktop-nav a,
+.topbar-cta,
+.lang-toggle button{
+  font-size:var(--text-nav) !important;
+}
+
+.category-tabs button{
+  font-size:var(--text-category) !important;
+}
+
+/* ---------- DISPLAY / SECTION HEADINGS ---------- */
+.hero-fullbleed h1{
+  font-size:var(--h1-display) !important;
+  line-height:.96 !important;
+}
+
+.section-head h2{
+  font-size:var(--h2-section) !important;
+  line-height:1.02 !important;
+}
+
+.about-text h2{
+  font-size:var(--h2-name) !important;
+  line-height:.98 !important;
+}
+
+#faq .section-head h2,
+#more-info .section-head h2,
+.contact h2{
+  font-size:var(--h2-long) !important;
+  line-height:1.04 !important;
+}
+
+/* ---------- PRODUCT TYPOGRAPHY ---------- */
+.product-name{
+  font-size:clamp(1.1rem, 1.03rem + .15vw, 1.22rem) !important;
+  line-height:1.2 !important;
+}
+
+.product-price{
+  font-size:clamp(.95rem, .92rem + .08vw, 1rem) !important;
+}
+
+.product-more{
+  font-size:clamp(.76rem, .74rem + .05vw, .82rem) !important;
+}
+
+/* ---------- FAQ / RESOURCE TITLES ---------- */
+.faq-item summary{
+  font-size:clamp(1rem, .96rem + .10vw, 1.08rem) !important;
+  line-height:1.45 !important;
+}
+
+.resource-copy strong,
+.info-accordion summary{
+  font-size:clamp(1rem, .96rem + .10vw, 1.08rem) !important;
+}
+
+/* ---------- CONTACT CTA ---------- */
+.contact p{
+  font-size:var(--text-body) !important;
+  line-height:1.6 !important;
+}
+
+.contact-ctas .btn{
+  font-size:clamp(.82rem, .79rem + .08vw, .9rem) !important;
+}
+
+/* ---------- LATVIAN SAFETY + CONSISTENCY ---------- */
+html[lang="lv"] .hero-fullbleed h1,
+html[lang="lv"] .section-head h2,
+html[lang="lv"] .about-text h2,
+html[lang="lv"] .contact h2,
+html[lang="lv"] .product-name,
+html[lang="lv"] .modal-title{
+  font-family:"Noto Serif","Georgia","Times New Roman",serif !important;
+  font-synthesis:none !important;
+  letter-spacing:-.01em !important;
+}
+
+html[lang="lv"] body,
+html[lang="lv"] p,
+html[lang="lv"] li,
+html[lang="lv"] a,
+html[lang="lv"] button,
+html[lang="lv"] .desktop-nav,
+html[lang="lv"] .category-tabs{
+  font-family:"Noto Sans","Arial","Helvetica",sans-serif !important;
+  font-synthesis:none !important;
+}
+
+/* ---------- MOBILE TYPOGRAPHY ---------- */
+@media (max-width:699px){
+  :root{
+    --text-body: 1rem;
+    --text-small: .92rem;
+    --text-eyebrow: .74rem;
+    --text-nav: .94rem;
+    --text-category: .95rem;
+
+    --h1-display: clamp(3rem, 12vw, 3.35rem);
+    --h2-section: clamp(2.45rem, 10.2vw, 2.8rem);
+    --h2-long: clamp(2.15rem, 9.2vw, 2.55rem);
+    --h2-name: clamp(2.55rem, 10.8vw, 2.9rem);
+  }
+
+  .hero-fullbleed h1{
+    line-height:.97 !important;
+  }
+
+  .section-head h2,
+  .about-text h2,
+  #faq .section-head h2,
+  #more-info .section-head h2,
+  .contact h2{
+    line-height:1.01 !important;
+  }
+
+  .tagline,
+  .section-head p,
+  .about-text p,
+  .contact p,
+  .faq-item p{
+    font-size:1rem !important;
+    line-height:1.58 !important;
+  }
+
+  .category-tabs button{
+    font-size:.95rem !important;
+  }
+
+  .product-name{
+    font-size:1.08rem !important;
+  }
+
+  .product-price{
+    font-size:.98rem !important;
+  }
+
+  .product-more{
+    font-size:.78rem !important;
+  }
+}
+
+/* ---------- VERY SMALL MOBILE ---------- */
+@media (max-width:390px){
+  :root{
+    --h1-display: 2.95rem;
+    --h2-section: 2.35rem;
+    --h2-long: 2.05rem;
+    --h2-name: 2.45rem;
+  }
+
+  .category-tabs button{
+    font-size:.88rem !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL ALL-DEVICES POLISH
+   Footer navigation + responsive safety across desktop/tablet/mobile
+   ============================================================ */
+
+/* ---------- FOOTER: cleaner editorial hierarchy ---------- */
+.footer-note{
+  letter-spacing:.03em !important;
+  font-weight:500 !important;
+}
+
+.footer-links,
+.footer-socials{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+}
+
+.footer-links{
+  gap:22px !important;
+  margin-top:14px !important;
+}
+
+.footer-socials{
+  gap:10px !important;
+  margin-top:14px !important;
+}
+
+.footer-links a{
+  position:relative !important;
+  text-decoration:none !important;
+  border:0 !important;
+  padding:3px 0 !important;
+  font-size:clamp(.86rem,.83rem + .08vw,.94rem) !important;
+  font-weight:600 !important;
+  letter-spacing:.025em !important;
+  color:#3b3430 !important;
+}
+
+.footer-socials a{
+  position:relative !important;
+  text-decoration:none !important;
+  border:0 !important;
+  padding:2px 0 !important;
+  font-size:clamp(.8rem,.78rem + .06vw,.88rem) !important;
+  font-weight:500 !important;
+  letter-spacing:.03em !important;
+  color:#5d524d !important;
+}
+
+/* Underline only as an interaction state, not permanently. */
+.footer-links a::after,
+.footer-socials a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:-2px;
+  height:1px;
+  background:#8f6259;
+  transition:right .18s ease;
+}
+
+@media (hover:hover){
+  .footer-links a:hover,
+  .footer-socials a:hover{
+    color:#8f6259 !important;
+  }
+
+  .footer-links a:hover::after,
+  .footer-socials a:hover::after{
+    right:0;
+  }
+}
+
+.footer-links a:focus-visible,
+.footer-socials a:focus-visible{
+  outline:2px solid #8f6259 !important;
+  outline-offset:4px !important;
+}
+
+/* ---------- TABLET SAFETY ---------- */
+@media (min-width:700px) and (max-width:1024px){
+  .topbar-inner{
+    padding-left:20px !important;
+    padding-right:20px !important;
+    gap:14px !important;
+  }
+
+  .desktop-nav{
+    gap:16px !important;
+  }
+
+  .desktop-nav a,
+  .lang-toggle button,
+  .topbar-cta{
+    font-size:.86rem !important;
+  }
+
+  .hero-fullbleed h1{
+    font-size:clamp(3.5rem,6.4vw,4.2rem) !important;
+  }
+
+  .section-head h2,
+  .about-text h2{
+    font-size:clamp(2.6rem,4.8vw,3.1rem) !important;
+  }
+
+  .product-grid{
+    gap:34px 18px !important;
+  }
+
+  .footer-links{
+    gap:18px !important;
+  }
+}
+
+/* ---------- MOBILE FOOTER ---------- */
+@media (max-width:699px){
+  footer{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  .footer-note{
+    max-width:34ch !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    text-align:center !important;
+    font-size:.84rem !important;
+    line-height:1.5 !important;
+  }
+
+  .footer-links{
+    gap:12px 20px !important;
+    margin-top:16px !important;
+  }
+
+  .footer-links a{
+    font-size:.9rem !important;
+  }
+
+  .footer-socials{
+    gap:8px 14px !important;
+    margin-top:16px !important;
+  }
+
+  .footer-socials a{
+    font-size:.84rem !important;
+  }
+}
+
+/* ---------- VERY SMALL MOBILE ---------- */
+@media (max-width:390px){
+  footer{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  .footer-links{
+    gap:10px 14px !important;
+  }
+
+  .footer-links a{
+    font-size:.84rem !important;
+  }
+
+  .footer-socials a{
+    font-size:.8rem !important;
   }
 }
 
