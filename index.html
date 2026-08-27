@@ -5577,6 +5577,341 @@ button:focus-visible{
   }
 }
 
+
+/* ============================================================
+   FINAL MOBILE REFINEMENT — stronger hierarchy + alignment
+   ============================================================ */
+
+@media (max-width:699px){
+
+  /* HEADER — slightly larger language controls, still compact */
+  .lang-toggle{
+    gap:13px !important;
+  }
+
+  .lang-toggle button{
+    font-size:11px !important;
+    font-weight:600 !important;
+    letter-spacing:.03em !important;
+    padding:4px 0 5px !important;
+  }
+
+  .topbar-cta{
+    min-height:32px !important;
+    padding:0 11px !important;
+    font-size:11px !important;
+    letter-spacing:.055em !important;
+  }
+
+  /* HERO — stronger separation between moving video and copy */
+  .hero-media-mobile video{
+    object-position:57% center !important;
+    filter:saturate(.68) brightness(.78) contrast(.95) blur(1.25px) !important;
+    transform:scale(1.02) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(248,243,239,.72) 0%,
+        rgba(248,243,239,.52) 48%,
+        rgba(248,243,239,.20) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248,243,239,.16) 0%,
+        rgba(248,243,239,.24) 34%,
+        rgba(248,243,239,.56) 70%,
+        rgba(248,243,239,.76) 100%
+      ) !important;
+  }
+
+  .hero-content{
+    transform:translateY(0) !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    color:#7e5149 !important;
+    font-weight:700 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#1f1b19 !important;
+    text-shadow:0 1px 4px rgba(255,255,255,.28) !important;
+  }
+
+  .hero-fullbleed .tagline{
+    color:#332d2a !important;
+    font-weight:500 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    color:#1f1b19 !important;
+    border-bottom-color:#1f1b19 !important;
+    font-weight:700 !important;
+  }
+
+  /* ABOUT — one strict left edge and tighter vertical rhythm */
+  #about{
+    padding-top:30px !important;
+    padding-bottom:34px !important;
+  }
+
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin:0 auto !important;
+  }
+
+  .about-text > .eyebrow{
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 12px !important;
+  }
+
+  .about-photo{
+    width:100% !important;
+    margin:0 0 22px !important;
+  }
+
+  .about-text > h2{
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 8px !important;
+    font-size:clamp(38px,10vw,49px) !important;
+    line-height:.98 !important;
+  }
+
+  .about-text > p[style*="font-weight:600"]{
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 16px !important;
+    font-size:14.5px !important;
+    line-height:1.45 !important;
+  }
+
+  .about-text p:not([style*="font-weight:600"]){
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 13px !important;
+    font-size:14px !important;
+    line-height:1.6 !important;
+  }
+
+  /* PORTFOLIO — remove the large dead gap above */
+  #products{
+    padding-top:28px !important;
+  }
+
+  #products .section-head{
+    margin-bottom:20px !important;
+  }
+
+  /* Categories — larger and visually aligned to the section width */
+  .category-tabs{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:10px !important;
+    row-gap:12px !important;
+    padding:0 0 10px !important;
+    margin:0 0 26px !important;
+  }
+
+  .category-tabs button{
+    justify-self:start !important;
+    font-size:10.5px !important;
+    line-height:1.1 !important;
+    font-weight:600 !important;
+    letter-spacing:.01em !important;
+    padding:3px 0 5px !important;
+  }
+
+  .category-tabs button.active{
+    font-weight:700 !important;
+    color:#1f1b19 !important;
+  }
+
+  /* Bring underline closer to the label */
+  .category-tabs button::after{
+    bottom:-4px !important;
+    height:1.5px !important;
+  }
+
+  /* Make the filter row feel aligned with surrounding copy */
+  .category-tabs button:nth-child(1),
+  .category-tabs button:nth-child(5){
+    justify-self:start !important;
+  }
+
+  .category-tabs button:nth-child(4),
+  .category-tabs button:nth-child(8){
+    justify-self:end !important;
+  }
+
+  /* Keep cards readable */
+  .product-cat{
+    font-size:10px !important;
+    font-weight:700 !important;
+  }
+
+  .product-name{
+    font-size:16.5px !important;
+  }
+
+  .product-price{
+    font-size:13.5px !important;
+  }
+
+  .product-more{
+    font-size:9.5px !important;
+    font-weight:700 !important;
+  }
+
+  /* FINAL CTA remains centered, but not oversized */
+  .contact h2{
+    max-width:11ch !important;
+  }
+
+  .contact p{
+    max-width:31ch !important;
+  }
+}
+
+@media (max-width:390px){
+  .lang-toggle button{
+    font-size:10px !important;
+  }
+
+  .topbar-cta{
+    font-size:10px !important;
+    padding:0 9px !important;
+  }
+
+  .category-tabs button{
+    font-size:9.4px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL ABOUT + MOBILE CATEGORY POLISH
+   ============================================================ */
+@media (max-width:699px){
+
+  /* ABOUT THE MAKER:
+     one editorial left alignment: label -> photo -> name -> founder -> copy */
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin-inline:auto !important;
+  }
+
+  #about .about-text{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    text-align:left !important;
+  }
+
+  #about .about-text > .eyebrow{
+    order:1 !important;
+    text-align:left !important;
+    margin:0 0 13px !important;
+  }
+
+  #about .about-photo{
+    order:2 !important;
+    width:100% !important;
+    margin:0 0 23px !important;
+  }
+
+  #about .about-text > h2{
+    order:3 !important;
+    text-align:left !important;
+    margin:0 0 8px !important;
+  }
+
+  #about .about-text > p{
+    text-align:left !important;
+  }
+
+  #about .about-text > p[style*="font-weight:600"]{
+    order:4 !important;
+    margin:0 0 17px !important;
+  }
+
+  #about .about-text > p:not([style*="font-weight:600"]){
+    order:5 !important;
+  }
+
+  /* Categories: visible 4 x 2 grid, equal columns, generous touch targets */
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    width:100% !important;
+    gap:6px 10px !important;
+    align-items:center !important;
+    margin:0 0 26px !important;
+    padding:0 0 11px !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    justify-self:stretch !important;
+    width:100% !important;
+    min-height:42px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:8px 1px !important;
+    margin:0 !important;
+    font-size:10.5px !important;
+    line-height:1.05 !important;
+    font-weight:600 !important;
+    letter-spacing:0 !important;
+    white-space:nowrap !important;
+    color:#4b423e !important;
+    background:transparent !important;
+    border:0 !important;
+  }
+
+  .category-tabs button.active{
+    color:#211d1b !important;
+    font-weight:700 !important;
+  }
+
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    bottom:3px !important;
+    width:0 !important;
+    height:1.5px !important;
+    background:#a46e64 !important;
+    transform:translateX(-50%) !important;
+    transition:width .2s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    width:30px !important;
+  }
+}
+
+@media (hover:hover){
+  .category-tabs button:hover{
+    color:#9b6a61 !important;
+  }
+}
+
+@media (max-width:390px){
+  .category-tabs{
+    column-gap:5px !important;
+  }
+  .category-tabs button{
+    font-size:9.4px !important;
+  }
+}
+
 </style>
 </head>
 <body>
