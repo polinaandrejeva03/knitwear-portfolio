@@ -3965,6 +3965,582 @@ button:focus-visible{
   }
 }
 
+
+/* ============================================================
+   MOBILE POLISH PASS — readable hero, compact header,
+   balanced maker section, all categories visible.
+   Desktop behavior remains unchanged.
+   ============================================================ */
+
+@media (max-width:699px){
+
+  /* ---------- MOBILE HEADER ---------- */
+  .topbar-inner{
+    min-height:58px !important;
+    padding:8px 12px !important;
+    gap:8px !important;
+  }
+
+  .brandmark-logo img{
+    width:112px !important;
+    max-height:38px !important;
+    object-fit:contain !important;
+  }
+
+  .topbar-right{
+    gap:6px !important;
+    align-items:center !important;
+  }
+
+  .lang-toggle{
+    min-height:31px !important;
+    border-radius:3px !important;
+  }
+
+  .lang-toggle button{
+    min-width:33px !important;
+    min-height:30px !important;
+    padding:0 7px !important;
+    font-size:11px !important;
+    letter-spacing:.03em !important;
+  }
+
+  .topbar-cta{
+    min-height:31px !important;
+    padding:0 11px !important;
+    font-size:11px !important;
+    letter-spacing:.06em !important;
+    border-radius:3px !important;
+  }
+
+  /* ---------- MOBILE HERO ---------- */
+  .hero-fullbleed{
+    min-height:calc(100svh - 58px) !important;
+    background:#f6f0ec !important;
+  }
+
+  .hero-media-mobile{
+    display:block !important;
+  }
+
+  .hero-media-mobile img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:58% center !important;
+    filter:saturate(.82) brightness(1.03) !important;
+  }
+
+  /* Stronger warm veil so text remains readable over the photo. */
+  .hero-shade{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(249,244,240,.32) 0%,
+        rgba(249,244,240,.30) 28%,
+        rgba(249,244,240,.48) 58%,
+        rgba(249,244,240,.78) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(249,244,240,.62) 0%,
+        rgba(249,244,240,.34) 58%,
+        rgba(249,244,240,.18) 100%
+      ) !important;
+  }
+
+  .hero-content-shell{
+    min-height:calc(100svh - 58px) !important;
+    padding:30px 22px 34px !important;
+    align-items:flex-end !important;
+  }
+
+  .hero-content{
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    margin-bottom:10px !important;
+    font-size:9px !important;
+    line-height:1.4 !important;
+    letter-spacing:.15em !important;
+    color:#8f6259 !important;
+  }
+
+  html[lang="en"] .hero-fullbleed h1{
+    font-size:clamp(45px,12.2vw,59px) !important;
+    line-height:.96 !important;
+    max-width:8.8ch !important;
+  }
+
+  html[lang="lv"] .hero-fullbleed h1{
+    font-size:clamp(41px,10.8vw,54px) !important;
+    line-height:.99 !important;
+    max-width:10ch !important;
+  }
+
+  html[lang="ru"] .hero-fullbleed h1{
+    font-size:clamp(37px,9.8vw,49px) !important;
+    line-height:1 !important;
+    max-width:11.5ch !important;
+  }
+
+  .hero-fullbleed .tagline{
+    max-width:31ch !important;
+    margin-top:16px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+    color:#4e4541 !important;
+  }
+
+  .hero-fullbleed .hero-ctas{
+    margin-top:22px !important;
+    gap:16px !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    font-size:9px !important;
+    letter-spacing:.08em !important;
+    padding-right:20px !important;
+    padding-bottom:6px !important;
+  }
+
+  /* ---------- ABOUT THE MAKER ---------- */
+  #about{
+    padding-top:36px !important;
+  }
+
+  #about .wrap.about{
+    gap:22px !important;
+  }
+
+  .about-photo{
+    width:92% !important;
+    max-width:520px !important;
+    margin:0 auto !important;
+    aspect-ratio:4 / 4.7 !important;
+    border-radius:5px !important;
+  }
+
+  .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 28% !important;
+  }
+
+  .about-text h2{
+    font-size:clamp(42px,12vw,58px) !important;
+    line-height:.96 !important;
+    max-width:8.6ch !important;
+  }
+
+  .about-text p{
+    font-size:14px !important;
+    line-height:1.64 !important;
+  }
+
+  /* ---------- PRODUCT CATEGORIES ----------
+     Make every category visible immediately: 4 x 2 grid.
+     Active category still uses only the underline. */
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+    gap:8px 10px !important;
+    overflow:visible !important;
+    width:100% !important;
+    padding:0 0 11px !important;
+    margin-bottom:26px !important;
+    border-bottom:1px solid var(--line) !important;
+  }
+
+  .category-tabs button{
+    width:100% !important;
+    min-width:0 !important;
+    padding:5px 1px 7px !important;
+    margin:0 !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    font-size:9px !important;
+    line-height:1.2 !important;
+    letter-spacing:.045em !important;
+    overflow:visible !important;
+  }
+
+  .category-tabs button::after{
+    bottom:-12px !important;
+  }
+
+  /* ---------- PORTFOLIO ---------- */
+  #products{
+    padding-top:42px !important;
+  }
+
+  .section-head{
+    margin-bottom:24px !important;
+  }
+
+  .section-head h2{
+    font-size:clamp(38px,10.6vw,50px) !important;
+  }
+
+  .section-head p{
+    font-size:14px !important;
+    line-height:1.62 !important;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:26px 12px !important;
+  }
+
+  .product-name{
+    font-size:16px !important;
+  }
+
+  .product-price{
+    font-size:13px !important;
+  }
+
+  .product-more{
+    font-size:9px !important;
+  }
+}
+
+/* Very narrow phones: reduce category typography slightly, still 4 x 2. */
+@media (max-width:390px){
+  .category-tabs{
+    gap:8px 6px !important;
+  }
+
+  .category-tabs button{
+    font-size:8.4px !important;
+    letter-spacing:.02em !important;
+  }
+
+  .brandmark-logo img{
+    width:104px !important;
+  }
+
+  .lang-toggle button{
+    min-width:30px !important;
+    padding:0 5px !important;
+  }
+
+  .topbar-cta{
+    padding:0 9px !important;
+  }
+}
+
+
+/* ============================================================
+   WITH LOVE BY INNA — FINAL MOBILE ADAPTATION 2026
+   ============================================================ */
+
+@media (max-width:699px){
+
+  /* ---------- COMPACT MOBILE HEADER ---------- */
+  .topbar-inner{
+    min-height:56px !important;
+    padding:7px 12px !important;
+    gap:7px !important;
+  }
+
+  .brandmark-logo img{
+    width:108px !important;
+    max-height:36px !important;
+    object-fit:contain !important;
+  }
+
+  .topbar-right{
+    gap:5px !important;
+  }
+
+  .lang-toggle{
+    min-height:30px !important;
+    border-radius:3px !important;
+  }
+
+  .lang-toggle button{
+    min-width:31px !important;
+    min-height:29px !important;
+    padding:0 6px !important;
+    font-size:10px !important;
+    letter-spacing:.02em !important;
+  }
+
+  .topbar-cta{
+    min-height:30px !important;
+    padding:0 10px !important;
+    font-size:10px !important;
+    letter-spacing:.055em !important;
+    border-radius:3px !important;
+  }
+
+  /* ---------- MOBILE VIDEO HERO ---------- */
+  .hero-fullbleed{
+    min-height:calc(100svh - 56px) !important;
+    background:#f8f3f0 !important;
+  }
+
+  .hero-media-mobile{
+    display:block !important;
+    overflow:hidden !important;
+  }
+
+  .hero-media-mobile video{
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
+    object-fit:cover !important;
+    object-position:58% center !important;
+
+    /* soft fashion-film treatment, not a heavy blur */
+    filter:saturate(.72) brightness(1.06) contrast(.92) blur(.7px) !important;
+    transform:scale(1.015) !important;
+  }
+
+  /* Warm translucent veil: this carries most of the readability work. */
+  .hero-shade{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(250,246,243,.27) 0%,
+        rgba(250,246,243,.32) 31%,
+        rgba(250,246,243,.48) 60%,
+        rgba(250,246,243,.82) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(250,246,243,.60) 0%,
+        rgba(250,246,243,.32) 56%,
+        rgba(250,246,243,.12) 100%
+      ) !important;
+  }
+
+  .hero-content-shell{
+    min-height:calc(100svh - 56px) !important;
+    padding:28px 22px 32px !important;
+    align-items:flex-end !important;
+  }
+
+  .hero-content{
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    margin-bottom:10px !important;
+    font-size:8.8px !important;
+    line-height:1.35 !important;
+    letter-spacing:.145em !important;
+    color:#8c6159 !important;
+  }
+
+  html[lang="en"] .hero-fullbleed h1{
+    font-size:clamp(44px,11.8vw,58px) !important;
+    line-height:.97 !important;
+    max-width:8.8ch !important;
+  }
+
+  html[lang="lv"] .hero-fullbleed h1{
+    font-size:clamp(40px,10.5vw,53px) !important;
+    line-height:.99 !important;
+    max-width:10.2ch !important;
+  }
+
+  html[lang="ru"] .hero-fullbleed h1{
+    font-size:clamp(36px,9.5vw,48px) !important;
+    line-height:1 !important;
+    max-width:11.7ch !important;
+  }
+
+  .hero-fullbleed .tagline{
+    max-width:31ch !important;
+    margin-top:15px !important;
+    font-size:13px !important;
+    line-height:1.52 !important;
+    color:#4c433f !important;
+  }
+
+  .hero-fullbleed .hero-ctas{
+    margin-top:21px !important;
+    gap:15px !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    font-size:8.8px !important;
+    letter-spacing:.075em !important;
+    padding-right:19px !important;
+    padding-bottom:6px !important;
+  }
+
+  /* ---------- ABOUT THE MAKER ----------
+     Editorial mobile order:
+     label + name + founder -> portrait -> body copy.
+     We achieve it with CSS order, no duplicate content. */
+  #about{
+    padding-top:38px !important;
+    padding-bottom:46px !important;
+  }
+
+  #about .wrap.about{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+  }
+
+  .about-text{
+    display:contents !important;
+  }
+
+  .about-text .eyebrow{
+    order:1 !important;
+    margin-bottom:11px !important;
+  }
+
+  .about-text h2{
+    order:2 !important;
+    margin:0 0 9px !important;
+    font-size:clamp(42px,11.5vw,56px) !important;
+    line-height:.97 !important;
+    max-width:8.8ch !important;
+  }
+
+  /* The first emphasized intro line / founder line comes before portrait */
+  .about-text p[style*="font-weight:600"]{
+    order:3 !important;
+    margin:0 0 22px !important;
+    font-size:16px !important;
+    line-height:1.45 !important;
+    color:#5b4f4a !important;
+  }
+
+  .about-photo{
+    order:4 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 0 24px !important;
+    aspect-ratio:4 / 4.75 !important;
+    border-radius:4px !important;
+    overflow:hidden !important;
+  }
+
+  .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
+    object-fit:cover !important;
+    object-position:center 27% !important;
+  }
+
+  /* All regular about paragraphs follow the portrait */
+  .about-text p:not([style*="font-weight:600"]){
+    order:5 !important;
+    margin-top:0 !important;
+    margin-bottom:14px !important;
+    font-size:14px !important;
+    line-height:1.64 !important;
+    color:#5d524d !important;
+  }
+
+  /* ---------- MOBILE CATEGORIES ----------
+     All visible at once, fixed positions, no horizontal scrolling. */
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    width:100% !important;
+    gap:8px 8px !important;
+    overflow:visible !important;
+    padding:0 0 11px !important;
+    margin-bottom:26px !important;
+    border-bottom:1px solid var(--line) !important;
+  }
+
+  .category-tabs button{
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:5px 0 7px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    font-size:8.8px !important;
+    line-height:1.15 !important;
+    letter-spacing:.035em !important;
+    transform:none !important;
+    box-shadow:none !important;
+    transition:color .18s ease !important;
+  }
+
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    background:transparent !important;
+    color:#a4746b !important;
+    transform:none !important;
+  }
+
+  .category-tabs button.active,
+  .category-tabs button.active:hover{
+    background:transparent !important;
+    color:var(--ink) !important;
+  }
+
+  .category-tabs button::after{
+    bottom:-12px !important;
+  }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .product-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:26px 12px !important;
+  }
+
+  .product-body{
+    padding-top:10px !important;
+  }
+
+  .product-name{
+    font-size:16px !important;
+  }
+
+  .product-price{
+    font-size:13px !important;
+  }
+
+  .product-more{
+    font-size:9px !important;
+  }
+}
+
+/* Extra-tight phones */
+@media (max-width:390px){
+  .brandmark-logo img{
+    width:100px !important;
+  }
+
+  .lang-toggle button{
+    min-width:28px !important;
+    padding:0 4px !important;
+  }
+
+  .topbar-cta{
+    padding:0 8px !important;
+  }
+
+  .category-tabs{
+    gap:7px 5px !important;
+  }
+
+  .category-tabs button{
+    font-size:8.1px !important;
+    letter-spacing:.015em !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3996,7 +4572,9 @@ button:focus-visible{
   <section class="hero hero-fullbleed">
     <!-- MOBILE: original video -->
     <div class="hero-media hero-media-mobile" aria-hidden="true">
-      <img src="photos/hero-3.jpeg" alt="">
+      <video autoplay muted loop playsinline preload="metadata" poster="photos/hero-3.jpeg">
+        <source src="photos/hero.mp4" type="video/mp4">
+      </video>
     </div>
 
     <!-- DESKTOP: original 3-photo collage -->
