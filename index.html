@@ -8710,6 +8710,711 @@ html[lang="lv"] #productModal .modal-body h3{
 }
 </style>
 
+
+<style id="about-restored-pro-2026">
+/* ============================================================
+   ABOUT RESTORED — CLEAN DESKTOP SPLIT + FULL-BLEED MOBILE PHOTO
+   ============================================================ */
+
+/* Neutralise older About experiments that created large gaps / odd quotes. */
+#about .about-layout,
+#about .about-intro,
+#about .about-photo,
+#about .about-copy{
+  box-sizing:border-box !important;
+}
+#about .about-copy::before,
+#about .about-copy::after,
+#about .about-photo::before{
+  content:none !important;
+  display:none !important;
+}
+
+#about{
+  overflow:hidden !important;
+  background:var(--bg) !important;
+}
+
+#about .about-intro .eyebrow{
+  color:#9a6a61 !important;
+  font-weight:600 !important;
+  letter-spacing:.12em !important;
+}
+#about .about-intro h2{
+  font-weight:500 !important;
+  letter-spacing:-.018em !important;
+}
+#about .about-subtitle{
+  color:#826c65 !important;
+  font-weight:500 !important;
+  letter-spacing:0 !important;
+}
+#about .about-copy{
+  border:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  quotes:none !important;
+}
+#about .about-copy p{
+  color:#504743 !important;
+}
+#about .about-copy strong{
+  color:#302a27 !important;
+  font-weight:600 !important;
+}
+
+/* DESKTOP: image truly occupies the left half; copy starts at the same top line. */
+@media (min-width:900px){
+  #about{
+    padding:34px 0 46px !important;
+  }
+  #about .about-layout{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:grid !important;
+    grid-template-columns:50% 50% !important;
+    grid-template-areas:
+      "photo intro"
+      "photo copy" !important;
+    grid-template-rows:auto 1fr !important;
+    column-gap:0 !important;
+    row-gap:0 !important;
+    align-items:start !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    height:clamp(560px,66vh,760px) !important;
+    margin:0 !important;
+    padding:0 !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border-radius:0 !important;
+    background:#f3efeb !important;
+    align-self:stretch !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
+    object-fit:contain !important;
+    object-position:center bottom !important;
+    border-radius:0 !important;
+    filter:none !important;
+  }
+  /* soft haze, not a hard rectangular cut */
+  #about .about-photo::after{
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg,
+        rgba(249,246,242,.12) 0%,
+        rgba(249,246,242,0) 12%,
+        rgba(249,246,242,0) 72%,
+        rgba(249,246,242,.18) 88%,
+        rgba(249,246,242,.78) 100%),
+      linear-gradient(180deg,
+        rgba(249,246,242,.12) 0%,
+        rgba(249,246,242,0) 9%,
+        rgba(249,246,242,0) 82%,
+        rgba(249,246,242,.42) 94%,
+        rgba(249,246,242,.72) 100%) !important;
+  }
+  #about .about-intro{
+    grid-area:intro !important;
+    width:min(100%,650px) !important;
+    padding:clamp(38px,4.5vw,72px) clamp(54px,6vw,96px) 18px clamp(48px,5vw,82px) !important;
+    margin:0 !important;
+    align-self:start !important;
+  }
+  #about .about-intro h2{
+    font-size:clamp(2.45rem,3.15vw,3.2rem) !important;
+    line-height:1.00 !important;
+    margin:8px 0 7px !important;
+  }
+  #about .about-subtitle{
+    font-size:.96rem !important;
+    line-height:1.4 !important;
+    margin:0 !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    width:min(100%,650px) !important;
+    padding:0 clamp(54px,6vw,96px) clamp(24px,3vw,46px) clamp(48px,5vw,82px) !important;
+    align-self:start !important;
+  }
+  #about .about-copy p{
+    font-size:1rem !important;
+    line-height:1.58 !important;
+    margin:0 0 14px !important;
+  }
+  #about .about-copy p:last-child{
+    margin-bottom:0 !important;
+  }
+}
+
+/* TABLET: same structure, slightly tighter. */
+@media (min-width:700px) and (max-width:899px){
+  #about{
+    padding:28px 0 38px !important;
+  }
+  #about .about-layout{
+    display:grid !important;
+    grid-template-columns:48% 52% !important;
+    grid-template-areas:"photo intro" "photo copy" !important;
+    align-items:start !important;
+    gap:0 !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    min-height:560px !important;
+    position:relative !important;
+    overflow:hidden !important;
+    background:#f3efeb !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    object-position:center bottom !important;
+  }
+  #about .about-photo::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    background:linear-gradient(90deg,transparent 72%,rgba(249,246,242,.64) 100%),linear-gradient(180deg,transparent 84%,rgba(249,246,242,.48) 100%) !important;
+    pointer-events:none !important;
+  }
+  #about .about-intro{grid-area:intro !important;padding:38px 34px 16px !important;}
+  #about .about-copy{grid-area:copy !important;padding:0 34px 28px !important;}
+  #about .about-copy p{font-size:.98rem !important;line-height:1.56 !important;margin:0 0 13px !important;}
+}
+
+/* MOBILE: intro -> true edge-to-edge photo -> copy. */
+@media (max-width:699px){
+  #about{
+    padding:28px 0 34px !important;
+    overflow:hidden !important;
+  }
+  #about .about-layout{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    grid-template-areas:"intro" "photo" "copy" !important;
+    gap:0 !important;
+  }
+  #about .about-intro{
+    grid-area:intro !important;
+    width:100% !important;
+    padding:0 20px 18px !important;
+    margin:0 !important;
+  }
+  #about .about-intro h2{
+    font-size:clamp(2.25rem,11vw,3rem) !important;
+    line-height:.98 !important;
+    margin:9px 0 8px !important;
+  }
+  #about .about-subtitle{
+    font-size:1rem !important;
+    line-height:1.42 !important;
+    margin:0 !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100vw !important;
+    max-width:none !important;
+    margin:0 !important;
+    height:min(128vw,760px) !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border-radius:0 !important;
+    background:#f3efeb !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 28% !important;
+    display:block !important;
+    border-radius:0 !important;
+  }
+  #about .about-photo::after{
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg,rgba(249,246,242,.12) 0%,rgba(249,246,242,0) 12%,rgba(249,246,242,0) 88%,rgba(249,246,242,.12) 100%),
+      linear-gradient(180deg,rgba(249,246,242,.06) 0%,rgba(249,246,242,0) 66%,rgba(249,246,242,.18) 82%,rgba(249,246,242,.72) 100%) !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    width:100% !important;
+    padding:24px 20px 0 !important;
+    margin:0 !important;
+  }
+  #about .about-copy p{
+    font-size:1rem !important;
+    line-height:1.58 !important;
+    margin:0 0 15px !important;
+  }
+}
+
+/* Keep Portfolio close enough to About; remove the accidental giant void. */
+#products{
+  scroll-margin-top:80px;
+}
+@media (min-width:900px){
+  #products{padding-top:44px !important;}
+}
+@media (max-width:699px){
+  #products{padding-top:30px !important;}
+}
+</style>
+
+
+<style id="final-clean-responsive-system-2026">
+/* ============================================================
+   FINAL CLEAN RESPONSIVE SYSTEM
+   Mobile: stronger hero readability, full-bleed About image,
+   compact 4x2 category controls without decorative lines.
+   Desktop: photo-left / copy-right About split, aligned from top.
+   Typography: consistent readable scale across the site.
+   ============================================================ */
+
+/* ---------- GLOBAL READABILITY ---------- */
+body{ color:#332d2a !important; }
+p, li{ color:#514844 !important; }
+.section-head p,
+.info-card p,
+.faq-item p,
+.contact p,
+.modal-block p,
+.modal-block li,
+.size-info,
+.size-adjust,
+.colour-copy,
+.detail-extra{
+  font-size:15px !important;
+  line-height:1.58 !important;
+  color:#514844 !important;
+}
+.eyebrow{
+  font-size:11px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+  letter-spacing:.11em !important;
+  color:#98685f !important;
+}
+
+/* ---------- HEADER ---------- */
+@media (min-width:900px){
+  .desktop-nav a{
+    font-size:12.5px !important;
+    font-weight:500 !important;
+    letter-spacing:.05em !important;
+    color:#403936 !important;
+  }
+  .lang-toggle button{
+    font-size:12px !important;
+    font-weight:500 !important;
+    color:#554b47 !important;
+  }
+  .lang-toggle button.active{font-weight:600 !important;color:#2e2926 !important;}
+  .topbar-cta{
+    font-size:12px !important;
+    font-weight:600 !important;
+    border-width:1px !important;
+    letter-spacing:.05em !important;
+  }
+}
+
+/* ---------- HERO MOBILE: restore stronger pale mist behind copy ---------- */
+@media (max-width:699px){
+  .hero-fullbleed .hero-shade,
+  .hero .hero-shade{
+    background:
+      linear-gradient(90deg,
+        rgba(249,246,242,.92) 0%,
+        rgba(249,246,242,.80) 37%,
+        rgba(249,246,242,.47) 66%,
+        rgba(249,246,242,.18) 100%),
+      linear-gradient(180deg,
+        rgba(249,246,242,.10) 0%,
+        rgba(249,246,242,.16) 58%,
+        rgba(249,246,242,.62) 100%) !important;
+    backdrop-filter:blur(1.2px) !important;
+    -webkit-backdrop-filter:blur(1.2px) !important;
+  }
+  .hero-content{ text-shadow:none !important; }
+  .hero-content .tagline{ color:#39322f !important; }
+  .hero-content h1{ color:#211d1b !important; }
+}
+
+/* ---------- ABOUT: remove every quote experiment ---------- */
+#about .about-copy,
+#about .about-copy p,
+#about blockquote{
+  quotes:none !important;
+}
+#about .about-copy::before,
+#about .about-copy::after,
+#about .about-copy p::before,
+#about .about-copy p::after,
+#about blockquote::before,
+#about blockquote::after,
+#about .about-personal-note::before,
+#about .about-personal-note::after{
+  content:none !important;
+  display:none !important;
+}
+#about .about-subtitle{
+  color:#806d67 !important;
+  font-weight:500 !important;
+}
+
+/* Desktop About: true half-page image on the left, copy starts at top. */
+@media (min-width:900px){
+  #about{ padding:34px 0 40px !important; overflow:hidden !important; }
+  #about .about-layout{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:grid !important;
+    grid-template-columns:50% 50% !important;
+    grid-template-areas:"photo intro" "photo copy" !important;
+    grid-template-rows:auto 1fr !important;
+    gap:0 !important;
+    align-items:start !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    height:auto !important;
+    min-height:0 !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:#f5f1ed !important;
+    align-self:start !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+    object-fit:contain !important;
+    object-position:left top !important;
+    display:block !important;
+    margin:0 !important;
+    filter:none !important;
+  }
+  #about .about-photo::after{
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg,
+        rgba(249,246,242,.08) 0%,
+        rgba(249,246,242,0) 8%,
+        rgba(249,246,242,0) 76%,
+        rgba(249,246,242,.22) 90%,
+        rgba(249,246,242,.76) 100%),
+      linear-gradient(180deg,
+        rgba(249,246,242,.10) 0%,
+        rgba(249,246,242,0) 8%,
+        rgba(249,246,242,0) 82%,
+        rgba(249,246,242,.54) 100%) !important;
+  }
+  #about .about-intro{
+    grid-area:intro !important;
+    padding:44px clamp(52px,5vw,84px) 14px clamp(48px,5vw,80px) !important;
+    margin:0 !important;
+    width:min(100%,680px) !important;
+    align-self:start !important;
+  }
+  #about .about-intro h2{
+    font-size:clamp(40px,3vw,49px) !important;
+    line-height:1.01 !important;
+    margin:8px 0 7px !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    padding:0 clamp(52px,5vw,84px) 30px clamp(48px,5vw,80px) !important;
+    margin:0 !important;
+    width:min(100%,680px) !important;
+    align-self:start !important;
+  }
+  #about .about-copy p{
+    font-size:15.5px !important;
+    line-height:1.58 !important;
+    margin:0 0 14px !important;
+    color:#514844 !important;
+  }
+}
+
+/* Mobile About: intro sits directly above image, image is truly edge-to-edge. */
+@media (max-width:699px){
+  #about{ padding:24px 0 28px !important; overflow:hidden !important; }
+  #about .about-layout{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    grid-template-areas:"intro" "photo" "copy" !important;
+    gap:0 !important;
+  }
+  #about .about-intro{
+    grid-area:intro !important;
+    width:100% !important;
+    padding:0 20px 12px !important;
+    margin:0 !important;
+  }
+  #about .about-intro h2{
+    font-size:clamp(38px,10.5vw,46px) !important;
+    line-height:.98 !important;
+    margin:8px 0 7px !important;
+  }
+  #about .about-subtitle{
+    font-size:15px !important;
+    line-height:1.42 !important;
+    margin:0 !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100vw !important;
+    max-width:none !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:#f4f0ec !important;
+  }
+  #about .about-photo img{
+    width:100vw !important;
+    height:auto !important;
+    max-height:none !important;
+    object-fit:contain !important;
+    object-position:center top !important;
+    display:block !important;
+    margin:0 !important;
+  }
+  #about .about-photo::after{
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg,rgba(249,246,242,.08) 0%,rgba(249,246,242,0) 7%,rgba(249,246,242,0) 93%,rgba(249,246,242,.08) 100%),
+      linear-gradient(180deg,rgba(249,246,242,.05) 0%,rgba(249,246,242,0) 68%,rgba(249,246,242,.14) 82%,rgba(249,246,242,.74) 100%) !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:18px 20px 0 !important;
+  }
+  #about .about-copy p{
+    font-size:16px !important;
+    line-height:1.58 !important;
+    margin:0 0 15px !important;
+    color:#514844 !important;
+  }
+  #about .about-closing{
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:18px !important;
+    line-height:1.45 !important;
+    color:#3b3431 !important;
+  }
+}
+
+/* ---------- PORTFOLIO / CATEGORIES ---------- */
+#products .section-head{ max-width:760px !important; }
+.category-helper{
+  border:0 !important;
+  padding:0 !important;
+}
+.category-tabs button::before,
+.category-tabs button::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Desktop keeps elegant one-line text navigation. */
+@media (min-width:900px){
+  #products{ padding-top:38px !important; }
+  .category-helper{ display:none !important; }
+  .category-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    gap:clamp(17px,1.6vw,27px) !important;
+    margin:0 0 26px !important;
+    padding:0 0 10px !important;
+    border-bottom:1px solid rgba(65,55,50,.14) !important;
+  }
+  .category-tabs button{
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:#514844 !important;
+    padding:7px 0 !important;
+    min-height:34px !important;
+    font-size:12.5px !important;
+    font-weight:500 !important;
+    letter-spacing:.035em !important;
+    box-shadow:none !important;
+    position:relative !important;
+  }
+  .category-tabs button.active{ color:#2e2926 !important; font-weight:600 !important; }
+  .category-tabs button.active::after{
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:-11px !important;
+    height:1.5px !important;
+    background:#a36f65 !important;
+  }
+}
+
+/* Mobile: compact 4 x 2 controls. No separator stripes. */
+@media (max-width:699px){
+  #products{ padding-top:24px !important; }
+  #products .wrap{ width:calc(100% - 40px) !important; margin-inline:auto !important; }
+  #products .section-head{ margin-bottom:20px !important; }
+  #products .section-head h2{ margin-bottom:12px !important; }
+  #products .section-head p{ font-size:16px !important; line-height:1.55 !important; }
+  .category-helper{
+    display:block !important;
+    margin:0 0 9px !important;
+    font-size:10.5px !important;
+    line-height:1.2 !important;
+    font-weight:600 !important;
+    letter-spacing:.10em !important;
+    text-transform:uppercase !important;
+    color:#98685f !important;
+  }
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:8px !important;
+    width:100% !important;
+    margin:0 0 26px !important;
+    padding:0 !important;
+    border:0 !important;
+    overflow:visible !important;
+  }
+  .category-tabs button,
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    min-width:0 !important;
+    width:100% !important;
+    min-height:42px !important;
+    padding:7px 3px !important;
+    border:1px solid rgba(104,87,80,.23) !important;
+    border-radius:3px !important;
+    background:rgba(255,255,255,.32) !important;
+    box-shadow:none !important;
+    color:#453d39 !important;
+    font-size:10.5px !important;
+    line-height:1.05 !important;
+    font-weight:600 !important;
+    letter-spacing:.015em !important;
+    text-align:center !important;
+    white-space:normal !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+  }
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    background:#eee0db !important;
+    border-color:#cda89f !important;
+    color:#2d2724 !important;
+    font-weight:700 !important;
+  }
+}
+@media (max-width:374px){
+  .category-tabs{ grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .category-tabs button{ font-size:12px !important; min-height:42px !important; }
+}
+
+/* ---------- PRODUCT CARDS ---------- */
+.product-card .product-more{ margin-top:14px !important; }
+@media (max-width:699px){
+  .product-card .product-more{
+    margin-top:13px !important;
+    font-size:11.5px !important;
+  }
+  .product-cat{ font-size:10.5px !important; }
+  .product-name{ font-size:18px !important; }
+  .product-price{ font-size:14px !important; }
+}
+
+/* ---------- VIEW DETAILS TYPOGRAPHY ---------- */
+#productModal .modal-category,
+#productModal .modal-block .label{
+  font-size:10.5px !important;
+  line-height:1.2 !important;
+  letter-spacing:.10em !important;
+  font-weight:600 !important;
+}
+#productModal .modal-block p,
+#productModal .modal-block li,
+#productModal .size-info,
+#productModal .size-adjust,
+#productModal .colour-copy,
+#productModal .detail-extra,
+#productModal .care-list,
+#productModal .care-list li{
+  font-size:14px !important;
+  line-height:1.52 !important;
+  color:#4e4642 !important;
+}
+#productModal .care-list strong,
+#productModal .size-info strong{ font-size:inherit !important; font-weight:600 !important; }
+
+/* Tablet inherits desktop clarity with compact controls. */
+@media (min-width:700px) and (max-width:899px){
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:9px !important;
+    border:0 !important;
+  }
+  .category-tabs button{
+    min-height:42px !important;
+    border:1px solid rgba(104,87,80,.23) !important;
+    border-radius:3px !important;
+    background:rgba(255,255,255,.30) !important;
+    font-size:11.5px !important;
+  }
+  .category-tabs button.active{ background:#eee0db !important;border-color:#cda89f !important; }
+}
+</style>
+
 </head>
 <body>
 
@@ -8775,22 +9480,20 @@ html[lang="lv"] #productModal .modal-body h3{
 
 <!-- ============ ABOUT ============ -->
   <section id="about">
-    <div class="wrap about reveal">
-      <div class="about-text">
-        <div class="about-intro">
-          <div class="eyebrow" data-key="aboutEyebrow">About the maker</div>
-          <h2 data-key="aboutTitle">Inna Andrejeva</h2>
-          <p class="about-subtitle" data-key="aboutSubtitle">Founder of with love by Inna</p>
-        </div>
-        <blockquote class="about-copy about-personal-note">
-          <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort. Pieces that bring a sense of calm confidence and gentle strength.</p>
-          <p data-key="aboutP2">At the heart of it are natural Italian yarns – <strong>cashmere, merino, mohair with silk, linen</strong> – and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
-          <p data-key="aboutP3">It is timeless, not tied to trends or seasons, with a value that lasts for years.</p>
-          <p class="about-closing" data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
-        </blockquote>
+    <div class="about-layout reveal">
+      <div class="about-intro">
+        <div class="eyebrow" data-key="aboutEyebrow">About the maker</div>
+        <h2 data-key="aboutTitle">Inna Andrejeva</h2>
+        <p class="about-subtitle" data-key="aboutSubtitle">Founder of with love by Inna</p>
       </div>
       <div class="about-photo">
         <img src="photos/about-mama.jpeg" alt="">
+      </div>
+      <div class="about-copy">
+        <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort. Pieces that bring a sense of calm confidence and gentle strength.</p>
+        <p data-key="aboutP2">At the heart of it are natural Italian yarns: <strong>cashmere, merino, mohair with silk and linen</strong>, together with their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
+        <p data-key="aboutP3">It is timeless, not tied to trends or seasons, with a value that lasts for years.</p>
+        <p class="about-closing" data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
       </div>
     </div>
   </section>
