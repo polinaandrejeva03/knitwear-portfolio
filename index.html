@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#fbf7f5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
   /* ============================================================
@@ -4541,59 +4542,2277 @@ button:focus-visible{
   }
 }
 
-/* FINAL MOBILE REFINEMENT 2026 */
+
+/* ============================================================
+   FINAL MOBILE CLEANUP — HERO / ABOUT / CATEGORIES
+   ============================================================ */
+
+.about-mobile-intro{ display:none; }
+
 @media (max-width:699px){
-.topbar-inner{min-height:58px!important;padding:8px 18px!important;gap:12px!important}.brandmark-logo img{width:112px!important;max-height:36px!important;object-fit:contain!important}.topbar-right{margin-left:auto!important;display:flex!important;align-items:center!important;gap:12px!important}
-.lang-toggle{display:flex!important;align-items:center!important;gap:13px!important;min-height:auto!important;border:0!important;border-radius:0!important;background:transparent!important}.lang-toggle button{position:relative!important;min-width:auto!important;min-height:auto!important;padding:5px 0 7px!important;border:0!important;border-radius:0!important;background:transparent!important;color:#4c433f!important;font-size:10px!important;font-weight:700!important;line-height:1!important;letter-spacing:.055em!important;box-shadow:none!important}.lang-toggle button:hover,.lang-toggle button:focus{background:transparent!important;color:#9a6b62!important}.lang-toggle button::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:#2e2a28;transition:right .18s ease}.lang-toggle button.active,.lang-toggle button.active:hover,.lang-toggle button.active:focus{background:transparent!important;color:#2e2a28!important}.lang-toggle button.active::after{right:0}
-.topbar-cta{min-height:31px!important;padding:0 11px!important;border:1px solid rgba(46,42,40,.65)!important;border-radius:2px!important;background:transparent!important;color:#2e2a28!important;font-size:10px!important;font-weight:700!important;letter-spacing:.06em!important}.topbar-cta:hover,.topbar-cta:focus-visible{background:#2e2a28!important;color:#fbf7f5!important;border-color:#2e2a28!important}
-.hero-fullbleed{min-height:82svh!important;max-height:none!important;background:#f8f3f0!important}.hero-media-mobile{overflow:hidden!important}.hero-media-mobile video{width:100%!important;height:100%!important;object-fit:cover!important;object-position:55% center!important;filter:saturate(.72) brightness(1.04) contrast(.90) blur(.6px)!important;transform:scale(1.012)!important}.hero-shade{background:linear-gradient(180deg,rgba(250,246,243,.20) 0%,rgba(250,246,243,.26) 24%,rgba(250,246,243,.47) 50%,rgba(250,246,243,.76) 78%,rgba(250,246,243,.88) 100%),linear-gradient(90deg,rgba(250,246,243,.62) 0%,rgba(250,246,243,.39) 58%,rgba(250,246,243,.18) 100%)!important}.hero-content-shell{min-height:82svh!important;display:flex!important;align-items:center!important;padding:76px 24px 42px!important}.hero-content{width:100%!important;max-width:360px!important;margin-top:12vh!important}.hero-fullbleed .hero-eyebrow{margin-bottom:10px!important;color:#8f5f57!important;opacity:1!important;font-size:9px!important;font-weight:800!important;line-height:1.3!important;letter-spacing:.145em!important;text-shadow:0 1px 0 rgba(255,255,255,.35)}html[lang="en"] .hero-fullbleed h1{max-width:8.8ch!important;font-size:clamp(44px,11.7vw,57px)!important;line-height:.96!important}html[lang="lv"] .hero-fullbleed h1{max-width:10ch!important;font-size:clamp(40px,10.5vw,52px)!important;line-height:.99!important}html[lang="ru"] .hero-fullbleed h1{max-width:11.5ch!important;font-size:clamp(36px,9.5vw,47px)!important;line-height:1!important}.hero-fullbleed h1{color:#2e2a28!important;opacity:1!important;text-shadow:0 1px 0 rgba(255,255,255,.20)}.hero-fullbleed .tagline{max-width:30ch!important;margin-top:14px!important;color:#4f4641!important;opacity:1!important;font-size:13px!important;line-height:1.55!important;font-weight:500!important}.hero-fullbleed .hero-ctas{margin-top:20px!important;display:flex!important;flex-wrap:wrap!important;gap:16px!important}.hero-fullbleed .hero-ctas .btn{font-size:8.8px!important;font-weight:800!important;letter-spacing:.075em!important;padding-right:19px!important;padding-bottom:5px!important}
-#about{padding-top:34px!important;padding-bottom:30px!important}#about .wrap.about{display:flex!important;flex-direction:column!important;gap:0!important;width:calc(100% - 48px)!important;margin-left:auto!important;margin-right:auto!important}.about-text{display:contents!important}.about-text .eyebrow{order:1!important;width:100%!important;margin:0 0 16px!important;text-align:left!important;color:#9b6b62!important;font-size:10px!important;font-weight:800!important;letter-spacing:.14em!important}.about-photo{order:2!important;width:100%!important;max-width:none!important;margin:0 0 22px!important;aspect-ratio:4/5!important;border-radius:3px!important;overflow:hidden!important}.about-photo img{width:100%!important;height:100%!important;display:block!important;object-fit:cover!important;object-position:center 27%!important}.about-text h2{order:3!important;width:100%!important;max-width:100%!important;margin:0 0 7px!important;text-align:left!important;font-size:clamp(42px,11.2vw,54px)!important;line-height:.98!important;color:#2e2a28!important}.about-text p[style*="font-weight:600"]{order:4!important;width:100%!important;margin:0 0 20px!important;text-align:left!important;color:#655852!important;font-size:15px!important;line-height:1.45!important;font-weight:600!important}.about-text p:not([style*="font-weight:600"]){order:5!important;width:100%!important;margin:0 0 13px!important;text-align:left!important;color:#5b504b!important;font-size:14px!important;line-height:1.64!important}.about-text p:last-child{margin-bottom:0!important}
-#products{padding-top:30px!important;padding-bottom:42px!important}#products>.wrap{width:calc(100% - 48px)!important;margin-left:auto!important;margin-right:auto!important}#products .section-head{width:100%!important;margin:0 0 24px!important;text-align:left!important}#products .section-head .eyebrow{margin:0 0 10px!important;text-align:left!important;font-size:10px!important;font-weight:800!important;letter-spacing:.14em!important}#products .section-head h2{margin:0 0 13px!important;text-align:left!important;font-size:clamp(40px,10.6vw,50px)!important;line-height:1!important}#products .section-head p{width:100%!important;max-width:none!important;margin:0!important;text-align:left!important;color:#5b504b!important;font-size:14px!important;line-height:1.58!important}
-.category-tabs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important;gap:10px 8px!important;margin:0 0 26px!important;padding:0!important;overflow:visible!important;border:0!important}.category-tabs button{position:relative!important;width:100%!important;min-width:0!important;margin:0!important;padding:6px 1px 8px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;color:#403834!important;text-align:center!important;white-space:nowrap!important;font-size:8.7px!important;font-weight:800!important;line-height:1.15!important;letter-spacing:.025em!important;transition:color .18s ease!important}.category-tabs button:hover,.category-tabs button:focus{background:transparent!important;color:#9b6b62!important;transform:none!important;box-shadow:none!important}.category-tabs button.active,.category-tabs button.active:hover,.category-tabs button.active:focus{background:transparent!important;color:#2e2a28!important}.category-tabs button::after{content:"";position:absolute!important;left:5%!important;right:95%!important;bottom:0!important;height:1px!important;background:#9b6b62!important;transition:right .18s ease!important}.category-tabs button.active::after{right:5%!important}.product-grid{grid-template-columns:1fr 1fr!important;gap:28px 12px!important}.product-body{padding-top:10px!important}.product-name{font-size:16px!important}.product-price{font-size:13px!important}.product-more{font-size:9px!important}
+
+  .hero-fullbleed{
+    min-height:calc(100svh - 56px) !important;
+    background:#eee8e3 !important;
+  }
+
+  .hero-media-mobile video{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:57% center !important;
+    filter:saturate(.78) brightness(.92) contrast(.94) blur(.35px) !important;
+    transform:scale(1.01) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(250,246,243,.08) 0%,
+        rgba(250,246,243,.12) 24%,
+        rgba(250,246,243,.36) 55%,
+        rgba(250,246,243,.70) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(250,246,243,.36) 0%,
+        rgba(250,246,243,.15) 68%,
+        rgba(250,246,243,.04) 100%
+      ) !important;
+  }
+
+  .hero-content-shell{
+    min-height:calc(100svh - 56px) !important;
+    align-items:center !important;
+    padding:36px 22px 34px !important;
+  }
+
+  .hero-content{
+    width:100% !important;
+    max-width:100% !important;
+    transform:translateY(5vh) !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    margin-bottom:9px !important;
+    font-size:8.6px !important;
+    line-height:1.35 !important;
+    letter-spacing:.145em !important;
+    color:#875d55 !important;
+    text-shadow:0 1px 12px rgba(250,246,243,.65);
+  }
+
+  html[lang="en"] .hero-fullbleed h1{
+    font-size:clamp(43px,11.3vw,56px) !important;
+    line-height:.97 !important;
+    max-width:8.8ch !important;
+  }
+  html[lang="lv"] .hero-fullbleed h1{
+    font-size:clamp(39px,10.2vw,51px) !important;
+    line-height:.99 !important;
+    max-width:10.2ch !important;
+  }
+  html[lang="ru"] .hero-fullbleed h1{
+    font-size:clamp(35px,9.2vw,47px) !important;
+    line-height:1 !important;
+    max-width:11.8ch !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#2b2623 !important;
+    text-shadow:0 1px 14px rgba(250,246,243,.58);
+  }
+
+  .hero-fullbleed .tagline{
+    max-width:30ch !important;
+    margin-top:14px !important;
+    font-size:12.8px !important;
+    line-height:1.55 !important;
+    color:#443c38 !important;
+    text-shadow:0 1px 10px rgba(250,246,243,.68);
+  }
+
+  .hero-fullbleed .hero-ctas{
+    margin-top:20px !important;
+    gap:16px !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    color:#2b2623 !important;
+    border-bottom-color:#2b2623 !important;
+    font-size:8.8px !important;
+  }
+
+  #about{
+    padding-top:42px !important;
+    padding-bottom:48px !important;
+  }
+
+  #about .wrap.about{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+  }
+
+  .about-mobile-intro{
+    display:block !important;
+    order:1 !important;
+    width:100% !important;
+    margin:0 0 22px !important;
+    text-align:left !important;
+  }
+
+  .about-mobile-intro .eyebrow{
+    margin:0 0 10px !important;
+    font-size:9px !important;
+    letter-spacing:.16em !important;
+    color:#95675e !important;
+  }
+
+  .about-mobile-intro h2{
+    margin:0 0 8px !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:clamp(40px,11vw,54px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.018em !important;
+    color:#2b2623 !important;
+  }
+
+  .about-mobile-intro p{
+    margin:0 !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:15px !important;
+    line-height:1.45 !important;
+    color:#62544f !important;
+  }
+
+  .about-photo{
+    order:2 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 0 24px !important;
+    aspect-ratio:4 / 4.65 !important;
+    border-radius:4px !important;
+    overflow:hidden !important;
+  }
+
+  .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 28% !important;
+  }
+
+  .about-text{
+    display:block !important;
+    order:3 !important;
+    width:100% !important;
+    text-align:left !important;
+  }
+
+  .about-text > .eyebrow,
+  .about-text > h2,
+  .about-text > p[style*="font-weight:600"]{
+    display:none !important;
+  }
+
+  .about-text p:not([style*="font-weight:600"]){
+    display:block !important;
+    margin:0 0 14px !important;
+    font-size:14px !important;
+    line-height:1.65 !important;
+    color:#554b46 !important;
+    text-align:left !important;
+  }
+
+  .about-text p:last-child{
+    margin-bottom:0 !important;
+  }
+
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:8px !important;
+    row-gap:12px !important;
+    width:100% !important;
+    overflow:visible !important;
+    padding:0 0 13px !important;
+    margin:0 0 28px !important;
+    border-bottom:1px solid rgba(46,42,40,.14) !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    justify-self:center !important;
+    width:auto !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    padding:3px 0 6px !important;
+    margin:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:#3f3834 !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    font-size:8.7px !important;
+    line-height:1.15 !important;
+    letter-spacing:.025em !important;
+    transform:none !important;
+    box-shadow:none !important;
+    transition:color .18s ease !important;
+  }
+
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    color:#a4746b !important;
+    background:transparent !important;
+    transform:none !important;
+  }
+
+  .category-tabs button.active,
+  .category-tabs button.active:hover{
+    color:#2b2623 !important;
+    background:transparent !important;
+  }
+
+  .category-tabs button::after{
+    content:"";
+    position:absolute !important;
+    left:0 !important;
+    right:100% !important;
+    bottom:-8px !important;
+    height:1px !important;
+    background:#9e6b62 !important;
+    transition:right .18s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    right:0 !important;
+  }
 }
-@media (max-width:390px){.topbar-inner{padding-left:14px!important;padding-right:14px!important}.brandmark-logo img{width:101px!important}.topbar-right{gap:9px!important}.lang-toggle{gap:10px!important}.lang-toggle button{font-size:9.5px!important}.topbar-cta{padding-left:9px!important;padding-right:9px!important;font-size:9.5px!important}#about .wrap.about,#products>.wrap{width:calc(100% - 40px)!important}.category-tabs{gap:9px 5px!important}.category-tabs button{font-size:8px!important;letter-spacing:.01em!important}}
+
+@media (max-width:390px){
+  .category-tabs{
+    column-gap:5px !important;
+    row-gap:11px !important;
+  }
+  .category-tabs button{
+    font-size:8px !important;
+    letter-spacing:.005em !important;
+  }
+}
 
 
 /* ============================================================
-   FINAL MOBILE EDITORIAL PASS — 2026
+   FINAL RESPONSIVE CHECKED PASS — 2026
+   Mobile + desktop alignment / About / categories / contact
+   ============================================================ */
+
+/* No duplicate mobile intro anywhere. */
+.about-mobile-intro{ display:none !important; }
+
+/* ---------- DESKTOP SAFETY / CONSISTENCY ---------- */
+@media (min-width:700px){
+  .topbar-inner,
+  .wrap,
+  #about .wrap.about{
+    box-sizing:border-box !important;
+  }
+
+  .desktop-nav,
+  .topbar-right{
+    flex-shrink:0 !important;
+  }
+
+  .product-grid{
+    align-items:start !important;
+  }
+
+  .product-card,
+  .product-thumb,
+  .product-body{
+    min-width:0 !important;
+  }
+
+  .category-tabs{
+    align-items:end !important;
+  }
+}
+
+/* ---------- MOBILE FINAL ---------- */
+@media (max-width:699px){
+
+  html, body{
+    overflow-x:hidden !important;
+  }
+
+  *, *::before, *::after{
+    box-sizing:border-box !important;
+  }
+
+  /* HEADER: compact and guaranteed to fit */
+  .topbar-inner{
+    width:100% !important;
+    min-height:56px !important;
+    padding:7px 12px !important;
+    gap:6px !important;
+    overflow:hidden !important;
+  }
+
+  .brandmark-logo{
+    flex:0 1 auto !important;
+    min-width:0 !important;
+    margin-right:auto !important;
+  }
+
+  .brandmark-logo img{
+    width:104px !important;
+    max-width:100% !important;
+    max-height:35px !important;
+    object-fit:contain !important;
+  }
+
+  .topbar-right{
+    flex:0 0 auto !important;
+    gap:5px !important;
+    min-width:0 !important;
+  }
+
+  .lang-toggle{
+    min-height:30px !important;
+    flex:0 0 auto !important;
+  }
+
+  .lang-toggle button{
+    min-width:29px !important;
+    min-height:29px !important;
+    padding:0 5px !important;
+    font-size:10px !important;
+  }
+
+  .topbar-cta{
+    min-height:30px !important;
+    padding:0 9px !important;
+    font-size:10px !important;
+    white-space:nowrap !important;
+  }
+
+  /* HERO: keep video readable, but not washed out */
+  .hero-fullbleed{
+    min-height:calc(100svh - 56px) !important;
+  }
+
+  .hero-media-mobile video{
+    object-position:57% center !important;
+    filter:saturate(.80) brightness(.91) contrast(.96) blur(.25px) !important;
+    transform:scale(1.008) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(250,246,243,.06) 0%,
+        rgba(250,246,243,.10) 26%,
+        rgba(250,246,243,.31) 57%,
+        rgba(250,246,243,.66) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(250,246,243,.33) 0%,
+        rgba(250,246,243,.13) 68%,
+        rgba(250,246,243,.03) 100%
+      ) !important;
+  }
+
+  .hero-content-shell{
+    min-height:calc(100svh - 56px) !important;
+    align-items:center !important;
+    padding:34px 20px 32px !important;
+  }
+
+  .hero-content{
+    width:100% !important;
+    max-width:100% !important;
+    transform:translateY(3vh) !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#282321 !important;
+    text-shadow:0 1px 12px rgba(250,246,243,.55) !important;
+  }
+
+  .hero-fullbleed .tagline{
+    color:#443b37 !important;
+    text-shadow:0 1px 9px rgba(250,246,243,.60) !important;
+  }
+
+  /* ABOUT:
+     photo first, then all text as one continuous left-aligned block */
+  #about{
+    padding-top:38px !important;
+    padding-bottom:48px !important;
+  }
+
+  #about .wrap.about{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+    width:calc(100% - 28px) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .about-photo{
+    order:1 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 0 24px !important;
+    aspect-ratio:4 / 4.7 !important;
+    border-radius:4px !important;
+    overflow:hidden !important;
+  }
+
+  .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 28% !important;
+  }
+
+  .about-text{
+    order:2 !important;
+    display:block !important;
+    width:100% !important;
+    text-align:left !important;
+  }
+
+  .about-text > .eyebrow{
+    display:block !important;
+    margin:0 0 10px !important;
+    text-align:left !important;
+    font-size:9px !important;
+    letter-spacing:.16em !important;
+    color:#95675e !important;
+  }
+
+  .about-text > h2{
+    display:block !important;
+    margin:0 0 8px !important;
+    text-align:left !important;
+    font-size:clamp(40px,10.8vw,53px) !important;
+    line-height:.98 !important;
+    max-width:9ch !important;
+  }
+
+  .about-text > p[style*="font-weight:600"]{
+    display:block !important;
+    margin:0 0 18px !important;
+    text-align:left !important;
+    font-size:15px !important;
+    line-height:1.45 !important;
+    color:#62544f !important;
+  }
+
+  .about-text p:not([style*="font-weight:600"]){
+    display:block !important;
+    margin:0 0 14px !important;
+    text-align:left !important;
+    font-size:14px !important;
+    line-height:1.65 !important;
+    color:#554b46 !important;
+  }
+
+  .about-text p:last-child{
+    margin-bottom:0 !important;
+  }
+
+  /* CATEGORIES:
+     4 × 2, all visible, no shifting, clear active state */
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:6px !important;
+    row-gap:12px !important;
+    width:100% !important;
+    overflow:visible !important;
+    padding:0 0 13px !important;
+    margin:0 0 28px !important;
+    border-bottom:1px solid rgba(46,42,40,.14) !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    justify-self:center !important;
+    width:auto !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:3px 0 6px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:#49403c !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    font-size:8.6px !important;
+    line-height:1.15 !important;
+    letter-spacing:.02em !important;
+    transform:none !important;
+    box-shadow:none !important;
+    transition:color .18s ease !important;
+  }
+
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    color:#a4746b !important;
+    background:transparent !important;
+    transform:none !important;
+  }
+
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    color:#241f1d !important;
+    background:transparent !important;
+    text-shadow:.35px 0 0 currentColor !important;
+  }
+
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:0 !important;
+    right:100% !important;
+    bottom:-8px !important;
+    height:1.5px !important;
+    background:#9e6b62 !important;
+    transition:right .18s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    right:0 !important;
+  }
+
+  /* Product grid must never overflow */
+  .product-grid{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    gap:26px 12px !important;
+    width:100% !important;
+  }
+
+  .product-card,
+  .product-thumb,
+  .product-body{
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+
+  .product-name,
+  .product-price,
+  .product-more{
+    overflow-wrap:anywhere !important;
+  }
+
+  /* FINAL CONTACT CTA:
+     centered is intentional here because it is a closing action block */
+  .contact{
+    text-align:center !important;
+    padding:36px 18px !important;
+  }
+
+  .contact .eyebrow,
+  .contact h2,
+  .contact p{
+    text-align:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .contact h2{
+    max-width:12ch !important;
+  }
+
+  .contact p{
+    max-width:32ch !important;
+    font-size:14px !important;
+    line-height:1.6 !important;
+  }
+
+  .contact-ctas{
+    justify-content:center !important;
+    flex-wrap:wrap !important;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width:390px){
+  .brandmark-logo img{
+    width:96px !important;
+  }
+
+  .lang-toggle button{
+    min-width:27px !important;
+    padding:0 4px !important;
+  }
+
+  .topbar-cta{
+    padding:0 7px !important;
+  }
+
+  .category-tabs{
+    column-gap:4px !important;
+  }
+
+  .category-tabs button{
+    font-size:7.8px !important;
+    letter-spacing:0 !important;
+  }
+}
+
+
+/* ============================================================
+   WITH LOVE BY INNA — FINAL BEST MOBILE / DESKTOP PASS
+   Editorial luxury, consistent grid, readable controls
+   ============================================================ */
+
+:root{
+  --mobile-gutter:20px;
+  --mobile-ink:#2a2522;
+  --mobile-soft:#564b46;
+  --mobile-accent:#9b6b62;
+  --mobile-line:rgba(42,37,34,.16);
+}
+
+/* ---------- HEADER: lighter, more fashion-like ---------- */
+@media (max-width:699px){
+
+  .topbar-inner{
+    width:100% !important;
+    min-height:56px !important;
+    padding:7px var(--mobile-gutter) !important;
+    gap:8px !important;
+    overflow:hidden !important;
+  }
+
+  .brandmark-logo{
+    min-width:0 !important;
+    margin-right:auto !important;
+    flex:0 1 auto !important;
+  }
+
+  .brandmark-logo img{
+    width:106px !important;
+    max-height:36px !important;
+    object-fit:contain !important;
+  }
+
+  .topbar-right{
+    flex:0 0 auto !important;
+    gap:9px !important;
+    align-items:center !important;
+  }
+
+  /* Languages: no outer box. Active language = underline only. */
+  .lang-toggle{
+    display:flex !important;
+    gap:12px !important;
+    min-height:auto !important;
+    border:0 !important;
+    background:transparent !important;
+    overflow:visible !important;
+  }
+
+  .lang-toggle button{
+    position:relative !important;
+    min-width:auto !important;
+    min-height:auto !important;
+    padding:4px 0 6px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:var(--mobile-soft) !important;
+    font-size:10px !important;
+    font-weight:600 !important;
+    letter-spacing:.04em !important;
+    box-shadow:none !important;
+  }
+
+  .lang-toggle button:hover,
+  .lang-toggle button:focus{
+    background:transparent !important;
+    color:var(--mobile-accent) !important;
+  }
+
+  .lang-toggle button.active,
+  .lang-toggle button.active:hover,
+  .lang-toggle button.active:focus{
+    background:transparent !important;
+    color:var(--mobile-ink) !important;
+  }
+
+  .lang-toggle button.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:1px;
+    background:var(--mobile-accent);
+  }
+
+  /* Order remains the single real header CTA, but lighter. */
+  .topbar-cta{
+    min-height:30px !important;
+    padding:0 10px !important;
+    border:1px solid rgba(42,37,34,.45) !important;
+    border-radius:3px !important;
+    background:transparent !important;
+    color:var(--mobile-ink) !important;
+    font-size:10px !important;
+    letter-spacing:.06em !important;
+    white-space:nowrap !important;
+  }
+
+  .topbar-cta:hover,
+  .topbar-cta:focus-visible,
+  .topbar-cta:active{
+    background:var(--mobile-ink) !important;
+    border-color:var(--mobile-ink) !important;
+    color:#fff !important;
+  }
+
+  /* ---------- HERO: readable video, copy in a deliberate zone ---------- */
+  .hero-fullbleed{
+    min-height:calc(100svh - 56px) !important;
+  }
+
+  .hero-media-mobile video{
+    object-position:57% center !important;
+    filter:saturate(.77) brightness(.88) contrast(.98) blur(.2px) !important;
+    transform:scale(1.006) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(249,245,241,.52) 0%,
+        rgba(249,245,241,.30) 48%,
+        rgba(249,245,241,.10) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(249,245,241,.06) 0%,
+        rgba(249,245,241,.12) 38%,
+        rgba(249,245,241,.48) 76%,
+        rgba(249,245,241,.64) 100%
+      ) !important;
+  }
+
+  .hero-content-shell{
+    min-height:calc(100svh - 56px) !important;
+    align-items:center !important;
+    padding:30px var(--mobile-gutter) 32px !important;
+  }
+
+  .hero-content{
+    width:100% !important;
+    max-width:100% !important;
+    transform:translateY(1vh) !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    color:#825b53 !important;
+    text-shadow:0 1px 10px rgba(249,245,241,.72) !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#241f1d !important;
+    text-shadow:0 1px 12px rgba(249,245,241,.66) !important;
+  }
+
+  .hero-fullbleed .tagline{
+    color:#3f3733 !important;
+    text-shadow:0 1px 10px rgba(249,245,241,.72) !important;
+  }
+
+  /* ---------- GLOBAL MOBILE CONTENT GRID ---------- */
+  #about .wrap.about,
+  #products .wrap,
+  #faq .wrap,
+  #more-info .wrap,
+  #contact .wrap{
+    width:calc(100% - (var(--mobile-gutter) * 2)) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  /* ---------- ABOUT: eyebrow -> portrait -> full text block ---------- */
+  #about{
+    padding-top:40px !important;
+    padding-bottom:50px !important;
+  }
+
+  #about .wrap.about{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+  }
+
+  .about-photo{
+    order:2 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:14px 0 24px !important;
+    aspect-ratio:4 / 4.68 !important;
+    border-radius:4px !important;
+    overflow:hidden !important;
+  }
+
+  .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 28% !important;
+  }
+
+  .about-text{
+    order:1 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    width:100% !important;
+    text-align:left !important;
+  }
+
+  /* Eyebrow sits before portrait */
+  .about-text > .eyebrow{
+    order:1 !important;
+    display:block !important;
+    margin:0 !important;
+    text-align:left !important;
+    font-size:9px !important;
+    letter-spacing:.16em !important;
+    color:#95675e !important;
+  }
+
+  /* Name and text visually follow the portrait through normal document flow.
+     We keep them hidden here, then re-place via CSS order around photo using contents. */
+  .about-text > h2{
+    order:3 !important;
+    display:block !important;
+    margin:0 0 8px !important;
+    text-align:left !important;
+    font-size:clamp(40px,10.7vw,52px) !important;
+    line-height:.98 !important;
+    max-width:9ch !important;
+  }
+
+  .about-text > p[style*="font-weight:600"]{
+    order:4 !important;
+    display:block !important;
+    margin:0 0 17px !important;
+    text-align:left !important;
+    font-size:15px !important;
+    line-height:1.45 !important;
+    color:#62544f !important;
+  }
+
+  .about-text p:not([style*="font-weight:600"]){
+    order:5 !important;
+    display:block !important;
+    margin:0 0 14px !important;
+    text-align:left !important;
+    font-size:14px !important;
+    line-height:1.65 !important;
+    color:#554b46 !important;
+  }
+
+  /* Use display:contents so photo can visually sit after eyebrow but before name/text */
+  #about .wrap.about{
+    position:relative !important;
+  }
+
+  .about-text{
+    display:contents !important;
+  }
+
+  .about-text > .eyebrow{ order:1 !important; }
+  .about-photo{ order:2 !important; }
+  .about-text > h2{ order:3 !important; }
+  .about-text > p[style*="font-weight:600"]{ order:4 !important; }
+  .about-text p:not([style*="font-weight:600"]){ order:5 !important; }
+
+  /* ---------- PORTFOLIO / CATEGORIES ---------- */
+  #products{
+    padding-top:42px !important;
+  }
+
+  .section-head{
+    margin-bottom:24px !important;
+  }
+
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:10px !important;
+    row-gap:13px !important;
+    width:100% !important;
+    overflow:visible !important;
+    padding:0 0 14px !important;
+    margin:0 0 30px !important;
+    border-bottom:1px solid var(--mobile-line) !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    justify-self:start !important;
+    width:auto !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:3px 0 7px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:#403835 !important;
+    text-align:left !important;
+    white-space:nowrap !important;
+    font-size:10px !important;
+    line-height:1.15 !important;
+    letter-spacing:.015em !important;
+    font-weight:600 !important;
+    transform:none !important;
+    box-shadow:none !important;
+    transition:color .18s ease !important;
+  }
+
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    color:var(--mobile-accent) !important;
+    background:transparent !important;
+  }
+
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    color:#211d1b !important;
+    font-weight:700 !important;
+    background:transparent !important;
+  }
+
+  .category-tabs button::after{
+    content:"";
+    position:absolute !important;
+    left:0 !important;
+    right:100% !important;
+    bottom:-8px !important;
+    height:1.5px !important;
+    background:var(--mobile-accent) !important;
+    transition:right .18s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    right:0 !important;
+  }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .product-grid{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    gap:28px 12px !important;
+  }
+
+  .product-card,
+  .product-thumb,
+  .product-body{
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .contact{
+    text-align:center !important;
+  }
+
+  .contact .eyebrow,
+  .contact h2,
+  .contact p{
+    text-align:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
+
+/* Very narrow mobile */
+@media (max-width:390px){
+  :root{ --mobile-gutter:16px; }
+
+  .brandmark-logo img{
+    width:96px !important;
+  }
+
+  .topbar-right{
+    gap:7px !important;
+  }
+
+  .lang-toggle{
+    gap:9px !important;
+  }
+
+  .lang-toggle button{
+    font-size:9px !important;
+  }
+
+  .topbar-cta{
+    padding:0 8px !important;
+    font-size:9px !important;
+  }
+
+  .category-tabs{
+    column-gap:7px !important;
+  }
+
+  .category-tabs button{
+    font-size:9px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL MOBILE REFINEMENT — stronger hierarchy + alignment
+   ============================================================ */
+
+@media (max-width:699px){
+
+  /* HEADER — slightly larger language controls, still compact */
+  .lang-toggle{
+    gap:13px !important;
+  }
+
+  .lang-toggle button{
+    font-size:11px !important;
+    font-weight:600 !important;
+    letter-spacing:.03em !important;
+    padding:4px 0 5px !important;
+  }
+
+  .topbar-cta{
+    min-height:32px !important;
+    padding:0 11px !important;
+    font-size:11px !important;
+    letter-spacing:.055em !important;
+  }
+
+  /* HERO — stronger separation between moving video and copy */
+  .hero-media-mobile video{
+    object-position:57% center !important;
+    filter:saturate(.68) brightness(.78) contrast(.95) blur(1.25px) !important;
+    transform:scale(1.02) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(248,243,239,.72) 0%,
+        rgba(248,243,239,.52) 48%,
+        rgba(248,243,239,.20) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248,243,239,.16) 0%,
+        rgba(248,243,239,.24) 34%,
+        rgba(248,243,239,.56) 70%,
+        rgba(248,243,239,.76) 100%
+      ) !important;
+  }
+
+  .hero-content{
+    transform:translateY(0) !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    color:#7e5149 !important;
+    font-weight:700 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#1f1b19 !important;
+    text-shadow:0 1px 4px rgba(255,255,255,.28) !important;
+  }
+
+  .hero-fullbleed .tagline{
+    color:#332d2a !important;
+    font-weight:500 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    color:#1f1b19 !important;
+    border-bottom-color:#1f1b19 !important;
+    font-weight:700 !important;
+  }
+
+  /* ABOUT — one strict left edge and tighter vertical rhythm */
+  #about{
+    padding-top:30px !important;
+    padding-bottom:34px !important;
+  }
+
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin:0 auto !important;
+  }
+
+  .about-text > .eyebrow{
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 12px !important;
+  }
+
+  .about-photo{
+    width:100% !important;
+    margin:0 0 22px !important;
+  }
+
+  .about-text > h2{
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 8px !important;
+    font-size:clamp(38px,10vw,49px) !important;
+    line-height:.98 !important;
+  }
+
+  .about-text > p[style*="font-weight:600"]{
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 16px !important;
+    font-size:14.5px !important;
+    line-height:1.45 !important;
+  }
+
+  .about-text p:not([style*="font-weight:600"]){
+    width:100% !important;
+    text-align:left !important;
+    margin:0 0 13px !important;
+    font-size:14px !important;
+    line-height:1.6 !important;
+  }
+
+  /* PORTFOLIO — remove the large dead gap above */
+  #products{
+    padding-top:28px !important;
+  }
+
+  #products .section-head{
+    margin-bottom:20px !important;
+  }
+
+  /* Categories — larger and visually aligned to the section width */
+  .category-tabs{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:10px !important;
+    row-gap:12px !important;
+    padding:0 0 10px !important;
+    margin:0 0 26px !important;
+  }
+
+  .category-tabs button{
+    justify-self:start !important;
+    font-size:10.5px !important;
+    line-height:1.1 !important;
+    font-weight:600 !important;
+    letter-spacing:.01em !important;
+    padding:3px 0 5px !important;
+  }
+
+  .category-tabs button.active{
+    font-weight:700 !important;
+    color:#1f1b19 !important;
+  }
+
+  /* Bring underline closer to the label */
+  .category-tabs button::after{
+    bottom:-4px !important;
+    height:1.5px !important;
+  }
+
+  /* Make the filter row feel aligned with surrounding copy */
+  .category-tabs button:nth-child(1),
+  .category-tabs button:nth-child(5){
+    justify-self:start !important;
+  }
+
+  .category-tabs button:nth-child(4),
+  .category-tabs button:nth-child(8){
+    justify-self:end !important;
+  }
+
+  /* Keep cards readable */
+  .product-cat{
+    font-size:10px !important;
+    font-weight:700 !important;
+  }
+
+  .product-name{
+    font-size:16.5px !important;
+  }
+
+  .product-price{
+    font-size:13.5px !important;
+  }
+
+  .product-more{
+    font-size:9.5px !important;
+    font-weight:700 !important;
+  }
+
+  /* FINAL CTA remains centered, but not oversized */
+  .contact h2{
+    max-width:11ch !important;
+  }
+
+  .contact p{
+    max-width:31ch !important;
+  }
+}
+
+@media (max-width:390px){
+  .lang-toggle button{
+    font-size:10px !important;
+  }
+
+  .topbar-cta{
+    font-size:10px !important;
+    padding:0 9px !important;
+  }
+
+  .category-tabs button{
+    font-size:9.4px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL ABOUT + MOBILE CATEGORY POLISH
    ============================================================ */
 @media (max-width:699px){
-  .hero-fullbleed,.hero{border-bottom:0!important;box-shadow:none!important}
-  .hero-fullbleed{min-height:76svh!important}
-  .hero-content-shell{min-height:76svh!important;align-items:center!important;padding:58px 24px 34px!important}
-  .hero-content{margin-top:7vh!important;max-width:350px!important}
-  .hero-media-mobile video{filter:saturate(.78) brightness(1.02) contrast(.94) blur(.35px)!important}
-  .hero-shade{background:radial-gradient(ellipse at 34% 66%,rgba(250,246,243,.84) 0%,rgba(250,246,243,.72) 30%,rgba(250,246,243,.38) 58%,rgba(250,246,243,.10) 82%),linear-gradient(180deg,rgba(250,246,243,.12) 0%,rgba(250,246,243,.18) 28%,rgba(250,246,243,.42) 58%,rgba(250,246,243,.70) 100%)!important}
-  .hero-fullbleed .hero-eyebrow{color:#87574f!important;font-weight:800!important;opacity:1!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
-  .hero-fullbleed h1{color:#2f2a27!important;text-shadow:0 1px 0 rgba(255,255,255,.20)!important}
-  .hero-fullbleed .tagline{color:#514743!important;font-weight:500!important}
-  .about-text .eyebrow,#products .section-head .eyebrow{font-weight:600!important;letter-spacing:.15em!important;color:#9a6d64!important}
-  #about{padding-top:30px!important;padding-bottom:20px!important}
-  .about-text .eyebrow{margin-bottom:15px!important}
-  .about-photo{margin-bottom:20px!important}
-  .about-text h2{margin-bottom:7px!important}
-  .about-text p[style*="font-weight:600"]{margin-bottom:18px!important}
-  #products{padding-top:20px!important}
-  #products .section-head{margin-bottom:21px!important}
-  #products .section-head .eyebrow{margin-bottom:9px!important}
-  #products .section-head h2{margin-bottom:12px!important}
-  #products .section-head p{max-width:32ch!important}
-  .category-tabs{position:relative!important;display:flex!important;grid-template-columns:none!important;align-items:flex-end!important;gap:24px!important;width:100%!important;margin:0 0 28px!important;padding:0 24px 13px 0!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;scroll-snap-type:x proximity!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:none!important;border-bottom:1px solid rgba(46,42,40,.13)!important}
-  .category-tabs::-webkit-scrollbar{display:none!important}
-  .category-tabs button{flex:0 0 auto!important;width:auto!important;min-width:auto!important;scroll-snap-align:start!important;position:relative!important;margin:0!important;padding:5px 0 8px!important;border:0!important;background:transparent!important;color:#4a403c!important;text-align:left!important;font-size:9.2px!important;line-height:1!important;font-weight:600!important;letter-spacing:.055em!important;white-space:nowrap!important;transform:none!important;box-shadow:none!important;transition:color .18s ease!important}
-  .category-tabs button:hover,.category-tabs button:focus{color:#a1746b!important;background:transparent!important}
-  .category-tabs button.active,.category-tabs button.active:hover,.category-tabs button.active:focus{color:#2e2a28!important;background:transparent!important}
-  .category-tabs button::after{content:""!important;position:absolute!important;left:0!important;right:100%!important;bottom:0!important;height:1px!important;background:#8f625a!important;transition:right .18s ease!important}
-  .category-tabs button.active::after{right:0!important}
-  #products>.wrap{position:relative!important}
-  #products>.wrap::after{content:"";position:absolute;right:0;width:22px;height:32px;pointer-events:none;background:linear-gradient(90deg,rgba(251,247,245,0),rgba(251,247,245,.92));transform:translateY(-60px)}
-  .product-grid{margin-top:0!important}
+
+  /* ABOUT THE MAKER:
+     one editorial left alignment: label -> photo -> name -> founder -> copy */
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin-inline:auto !important;
+  }
+
+  #about .about-text{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    text-align:left !important;
+  }
+
+  #about .about-text > .eyebrow{
+    order:1 !important;
+    text-align:left !important;
+    margin:0 0 13px !important;
+  }
+
+  #about .about-photo{
+    order:2 !important;
+    width:100% !important;
+    margin:0 0 23px !important;
+  }
+
+  #about .about-text > h2{
+    order:3 !important;
+    text-align:left !important;
+    margin:0 0 8px !important;
+  }
+
+  #about .about-text > p{
+    text-align:left !important;
+  }
+
+  #about .about-text > p[style*="font-weight:600"]{
+    order:4 !important;
+    margin:0 0 17px !important;
+  }
+
+  #about .about-text > p:not([style*="font-weight:600"]){
+    order:5 !important;
+  }
+
+  /* Categories: visible 4 x 2 grid, equal columns, generous touch targets */
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    width:100% !important;
+    gap:6px 10px !important;
+    align-items:center !important;
+    margin:0 0 26px !important;
+    padding:0 0 11px !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    justify-self:stretch !important;
+    width:100% !important;
+    min-height:42px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:8px 1px !important;
+    margin:0 !important;
+    font-size:10.5px !important;
+    line-height:1.05 !important;
+    font-weight:600 !important;
+    letter-spacing:0 !important;
+    white-space:nowrap !important;
+    color:#4b423e !important;
+    background:transparent !important;
+    border:0 !important;
+  }
+
+  .category-tabs button.active{
+    color:#211d1b !important;
+    font-weight:700 !important;
+  }
+
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    bottom:3px !important;
+    width:0 !important;
+    height:1.5px !important;
+    background:#a46e64 !important;
+    transform:translateX(-50%) !important;
+    transition:width .2s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    width:30px !important;
+  }
 }
+
+@media (hover:hover){
+  .category-tabs button:hover{
+    color:#9b6a61 !important;
+  }
+}
+
 @media (max-width:390px){
-  .hero-fullbleed,.hero-content-shell{min-height:74svh!important}
-  .hero-content{margin-top:5vh!important}
-  .category-tabs{gap:20px!important}
-  .category-tabs button{font-size:8.8px!important}
+  .category-tabs{
+    column-gap:5px !important;
+  }
+  .category-tabs button{
+    font-size:9.4px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL MOBILE POLISH — spacing, hero contrast, category rhythm
+   ============================================================ */
+
+@media (max-width:699px){
+
+  /* ---------- HERO: local contrast where the copy sits ---------- */
+  .hero-media-mobile video{
+    object-position:57% center !important;
+    filter:saturate(.72) brightness(.82) contrast(.96) blur(.75px) !important;
+    transform:scale(1.012) !important;
+  }
+
+  .hero-shade{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(248,243,239,.78) 0%,
+        rgba(248,243,239,.60) 38%,
+        rgba(248,243,239,.30) 68%,
+        rgba(248,243,239,.10) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248,243,239,.10) 0%,
+        rgba(248,243,239,.16) 36%,
+        rgba(248,243,239,.44) 70%,
+        rgba(248,243,239,.68) 100%
+      ) !important;
+  }
+
+  .hero-fullbleed .hero-eyebrow{
+    color:#744b44 !important;
+    font-weight:700 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed h1{
+    color:#1f1a18 !important;
+    text-shadow:0 1px 5px rgba(255,255,255,.30) !important;
+  }
+
+  .hero-fullbleed .tagline{
+    color:#352f2b !important;
+    font-weight:500 !important;
+    text-shadow:none !important;
+  }
+
+  .hero-fullbleed .hero-ctas{
+    margin-top:19px !important;
+    gap:14px !important;
+  }
+
+  .hero-fullbleed .hero-ctas .btn{
+    color:#1f1a18 !important;
+    border-bottom-color:#1f1a18 !important;
+    font-weight:700 !important;
+    letter-spacing:.075em !important;
+  }
+
+  /* ---------- ABOUT → PORTFOLIO spacing ---------- */
+  #about{
+    padding-bottom:26px !important;
+  }
+
+  #products{
+    padding-top:20px !important;
+  }
+
+  /* ---------- Selected work → category controls ---------- */
+  #products .section-head{
+    margin-bottom:15px !important;
+  }
+
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    column-gap:8px !important;
+    row-gap:7px !important;
+    width:100% !important;
+    margin:0 0 24px !important;
+    padding:0 0 10px !important;
+    align-items:center !important;
+    border-bottom:1px solid rgba(42,37,34,.14) !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    width:100% !important;
+    min-height:38px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    margin:0 !important;
+    padding:6px 1px !important;
+    border:0 !important;
+    background:transparent !important;
+    color:#463d39 !important;
+    white-space:nowrap !important;
+    font-size:10.4px !important;
+    line-height:1 !important;
+    font-weight:600 !important;
+    letter-spacing:0 !important;
+    transform:none !important;
+    box-shadow:none !important;
+  }
+
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    color:#9c6a61 !important;
+    background:transparent !important;
+  }
+
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    color:#211d1b !important;
+    font-weight:700 !important;
+  }
+
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    bottom:1px !important;
+    width:0 !important;
+    height:1.5px !important;
+    background:#a46e64 !important;
+    transform:translateX(-50%) !important;
+    transition:width .2s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    width:28px !important;
+  }
+
+  /* Keep category grid aligned with the same content edges as the section */
+  #products .wrap,
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin-inline:auto !important;
+  }
+}
+
+@media (max-width:390px){
+  .category-tabs{
+    column-gap:5px !important;
+    row-gap:6px !important;
+  }
+
+  .category-tabs button{
+    font-size:9.3px !important;
+    min-height:36px !important;
+  }
+
+  .category-tabs button.active::after{
+    width:25px !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL HEADER UNIFICATION — DESKTOP + MOBILE
+   Languages borderless everywhere, active underline,
+   slightly larger mobile logo.
+   ============================================================ */
+
+/* ---------- ALL SCREEN SIZES ---------- */
+.lang-toggle{
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+
+.lang-toggle button{
+  position:relative !important;
+  min-width:auto !important;
+  min-height:auto !important;
+  padding:4px 0 6px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:#4f4641 !important;
+  box-shadow:none !important;
+  font-weight:600 !important;
+  transition:color .18s ease !important;
+}
+
+.lang-toggle button:hover,
+.lang-toggle button:focus{
+  background:transparent !important;
+  color:#9a6b62 !important;
+}
+
+.lang-toggle button.active,
+.lang-toggle button.active:hover,
+.lang-toggle button.active:focus{
+  background:transparent !important;
+  color:#2b2623 !important;
+}
+
+.lang-toggle button.active::after{
+  content:"";
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  height:1px !important;
+  background:#9f7067 !important;
+}
+
+/* ORDER remains the single outlined CTA */
+.topbar-cta{
+  background:transparent !important;
+  color:#2b2623 !important;
+  border:1px solid rgba(43,38,35,.45) !important;
+  border-radius:3px !important;
+}
+
+.topbar-cta:hover,
+.topbar-cta:focus-visible,
+.topbar-cta:active{
+  background:#2b2623 !important;
+  color:#fff !important;
+  border-color:#2b2623 !important;
+}
+
+/* ---------- DESKTOP ---------- */
+@media (min-width:700px){
+  .lang-toggle{
+    gap:15px !important;
+  }
+
+  .lang-toggle button{
+    font-size:11px !important;
+    letter-spacing:.04em !important;
+  }
+
+  .topbar-cta{
+    min-height:34px !important;
+    padding:0 14px !important;
+    font-size:11px !important;
+    letter-spacing:.07em !important;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:699px){
+  .brandmark-logo img{
+    width:118px !important;
+    max-height:39px !important;
+    object-fit:contain !important;
+  }
+
+  .lang-toggle{
+    gap:12px !important;
+  }
+
+  .lang-toggle button{
+    font-size:11px !important;
+    letter-spacing:.03em !important;
+    padding:4px 0 5px !important;
+  }
+
+  .topbar-cta{
+    min-height:32px !important;
+    padding:0 11px !important;
+    font-size:11px !important;
+    letter-spacing:.055em !important;
+  }
+}
+
+@media (max-width:390px){
+  .brandmark-logo img{
+    width:110px !important;
+  }
+
+  .lang-toggle{
+    gap:10px !important;
+  }
+
+  .lang-toggle button{
+    font-size:10px !important;
+  }
+
+  .topbar-cta{
+    font-size:10px !important;
+    padding:0 9px !important;
+  }
+}
+
+
+/* ============================================================
+   LATVIAN DIACRITICS FIX — ā ē ī ū ģ ķ ļ ņ č š ž
+   Uses fonts with full Latvian glyph coverage and disables
+   synthetic/fallback shaping that can distort macrons.
+   ============================================================ */
+
+html[lang="lv"],
+html[lang="lv"] body{
+  font-family:"Noto Sans","Arial","Helvetica",sans-serif !important;
+  font-synthesis:none !important;
+  font-kerning:normal !important;
+  text-rendering:optimizeLegibility !important;
+}
+
+html[lang="lv"] body,
+html[lang="lv"] p,
+html[lang="lv"] li,
+html[lang="lv"] a,
+html[lang="lv"] button,
+html[lang="lv"] .eyebrow,
+html[lang="lv"] .desktop-nav,
+html[lang="lv"] .lang-toggle,
+html[lang="lv"] .topbar-cta,
+html[lang="lv"] .product-cat,
+html[lang="lv"] .product-price,
+html[lang="lv"] .product-more,
+html[lang="lv"] .modal-body,
+html[lang="lv"] .faq-item,
+html[lang="lv"] .resource-card{
+  font-family:"Noto Sans","Arial","Helvetica",sans-serif !important;
+  font-synthesis:none !important;
+  font-kerning:normal !important;
+}
+
+/* All Latvian serif/editorial text uses one safe serif font. */
+html[lang="lv"] h1,
+html[lang="lv"] h2,
+html[lang="lv"] h3,
+html[lang="lv"] .hero h1,
+html[lang="lv"] .hero-fullbleed h1,
+html[lang="lv"] .section-head h2,
+html[lang="lv"] .about-text h2,
+html[lang="lv"] .contact h2,
+html[lang="lv"] .product-name,
+html[lang="lv"] .modal-title,
+html[lang="lv"] .resource-copy strong,
+html[lang="lv"] .info-dialog-head h2,
+html[lang="lv"] .info-accordion summary,
+html[lang="lv"] .about-text > p[style*="font-weight:600"]{
+  font-family:"Noto Serif","Georgia","Times New Roman",serif !important;
+  font-synthesis:none !important;
+  font-kerning:normal !important;
+  font-variant-ligatures:common-ligatures !important;
+}
+
+/* Macrons need a little vertical breathing room at large sizes. */
+html[lang="lv"] h1,
+html[lang="lv"] h2,
+html[lang="lv"] h3,
+html[lang="lv"] .about-text h2{
+  line-height:1.05 !important;
+  letter-spacing:-.012em !important;
+}
+
+/* Founder/subtitle line: no optical-font tricks or negative tracking. */
+html[lang="lv"] .about-text > p[style*="font-weight:600"]{
+  letter-spacing:0 !important;
+  line-height:1.5 !important;
+  font-weight:500 !important;
+}
+
+/* Keep ordinary Latvian text neutral so every diacritic remains clear. */
+html[lang="lv"] p,
+html[lang="lv"] li,
+html[lang="lv"] a,
+html[lang="lv"] button{
+  letter-spacing:0 !important;
+}
+
+
+/* ============================================================
+   FINAL RESPONSIVE TYPOGRAPHY SYSTEM — EN / RU / LV
+   Keeps the editorial character, improves hierarchy/readability.
+   ============================================================ */
+
+:root{
+  --text-body: clamp(1rem, .96rem + .12vw, 1.08rem);
+  --text-small: clamp(.875rem, .84rem + .08vw, .95rem);
+  --text-eyebrow: clamp(.72rem, .70rem + .05vw, .78rem);
+  --text-nav: clamp(.86rem, .83rem + .08vw, .94rem);
+  --text-category: clamp(.88rem, .84rem + .10vw, .96rem);
+
+  --h1-display: clamp(4rem, 5.3vw, 4.7rem);
+  --h2-section: clamp(2.9rem, 3.8vw, 3.35rem);
+  --h2-long: clamp(2.6rem, 3.35vw, 3.05rem);
+  --h2-name: clamp(3rem, 3.7vw, 3.4rem);
+}
+
+/* ---------- BODY / SUPPORTING TEXT ---------- */
+body,
+p,
+li,
+button,
+a,
+input,
+textarea,
+select{
+  font-size:var(--text-body);
+}
+
+.tagline,
+.section-head p,
+.about-text p,
+.info-card p,
+.faq-item p,
+.resource-copy p,
+.modal-body,
+.size-adjust,
+.colour-copy{
+  font-size:var(--text-body) !important;
+  line-height:1.62 !important;
+}
+
+.eyebrow,
+.product-cat{
+  font-size:var(--text-eyebrow) !important;
+  line-height:1.25 !important;
+  letter-spacing:.12em !important;
+}
+
+.desktop-nav a,
+.topbar-cta,
+.lang-toggle button{
+  font-size:var(--text-nav) !important;
+}
+
+.category-tabs button{
+  font-size:var(--text-category) !important;
+}
+
+/* ---------- DISPLAY / SECTION HEADINGS ---------- */
+.hero-fullbleed h1{
+  font-size:var(--h1-display) !important;
+  line-height:.96 !important;
+}
+
+.section-head h2{
+  font-size:var(--h2-section) !important;
+  line-height:1.02 !important;
+}
+
+.about-text h2{
+  font-size:var(--h2-name) !important;
+  line-height:.98 !important;
+}
+
+#faq .section-head h2,
+#more-info .section-head h2,
+.contact h2{
+  font-size:var(--h2-long) !important;
+  line-height:1.04 !important;
+}
+
+/* ---------- PRODUCT TYPOGRAPHY ---------- */
+.product-name{
+  font-size:clamp(1.1rem, 1.03rem + .15vw, 1.22rem) !important;
+  line-height:1.2 !important;
+}
+
+.product-price{
+  font-size:clamp(.95rem, .92rem + .08vw, 1rem) !important;
+}
+
+.product-more{
+  font-size:clamp(.76rem, .74rem + .05vw, .82rem) !important;
+}
+
+/* ---------- FAQ / RESOURCE TITLES ---------- */
+.faq-item summary{
+  font-size:clamp(1rem, .96rem + .10vw, 1.08rem) !important;
+  line-height:1.45 !important;
+}
+
+.resource-copy strong,
+.info-accordion summary{
+  font-size:clamp(1rem, .96rem + .10vw, 1.08rem) !important;
+}
+
+/* ---------- CONTACT CTA ---------- */
+.contact p{
+  font-size:var(--text-body) !important;
+  line-height:1.6 !important;
+}
+
+.contact-ctas .btn{
+  font-size:clamp(.82rem, .79rem + .08vw, .9rem) !important;
+}
+
+/* ---------- LATVIAN SAFETY + CONSISTENCY ---------- */
+html[lang="lv"] .hero-fullbleed h1,
+html[lang="lv"] .section-head h2,
+html[lang="lv"] .about-text h2,
+html[lang="lv"] .contact h2,
+html[lang="lv"] .product-name,
+html[lang="lv"] .modal-title{
+  font-family:"Noto Serif","Georgia","Times New Roman",serif !important;
+  font-synthesis:none !important;
+  letter-spacing:-.01em !important;
+}
+
+html[lang="lv"] body,
+html[lang="lv"] p,
+html[lang="lv"] li,
+html[lang="lv"] a,
+html[lang="lv"] button,
+html[lang="lv"] .desktop-nav,
+html[lang="lv"] .category-tabs{
+  font-family:"Noto Sans","Arial","Helvetica",sans-serif !important;
+  font-synthesis:none !important;
+}
+
+/* ---------- MOBILE TYPOGRAPHY ---------- */
+@media (max-width:699px){
+  :root{
+    --text-body: 1rem;
+    --text-small: .92rem;
+    --text-eyebrow: .74rem;
+    --text-nav: .94rem;
+    --text-category: .95rem;
+
+    --h1-display: clamp(3rem, 12vw, 3.35rem);
+    --h2-section: clamp(2.45rem, 10.2vw, 2.8rem);
+    --h2-long: clamp(2.15rem, 9.2vw, 2.55rem);
+    --h2-name: clamp(2.55rem, 10.8vw, 2.9rem);
+  }
+
+  .hero-fullbleed h1{
+    line-height:.97 !important;
+  }
+
+  .section-head h2,
+  .about-text h2,
+  #faq .section-head h2,
+  #more-info .section-head h2,
+  .contact h2{
+    line-height:1.01 !important;
+  }
+
+  .tagline,
+  .section-head p,
+  .about-text p,
+  .contact p,
+  .faq-item p{
+    font-size:1rem !important;
+    line-height:1.58 !important;
+  }
+
+  .category-tabs button{
+    font-size:.95rem !important;
+  }
+
+  .product-name{
+    font-size:1.08rem !important;
+  }
+
+  .product-price{
+    font-size:.98rem !important;
+  }
+
+  .product-more{
+    font-size:.78rem !important;
+  }
+}
+
+/* ---------- VERY SMALL MOBILE ---------- */
+@media (max-width:390px){
+  :root{
+    --h1-display: 2.95rem;
+    --h2-section: 2.35rem;
+    --h2-long: 2.05rem;
+    --h2-name: 2.45rem;
+  }
+
+  .category-tabs button{
+    font-size:.88rem !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL ALL-DEVICES POLISH
+   Footer navigation + responsive safety across desktop/tablet/mobile
+   ============================================================ */
+
+/* ---------- FOOTER: cleaner editorial hierarchy ---------- */
+.footer-note{
+  letter-spacing:.03em !important;
+  font-weight:500 !important;
+}
+
+.footer-links,
+.footer-socials{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+}
+
+.footer-links{
+  gap:22px !important;
+  margin-top:14px !important;
+}
+
+.footer-socials{
+  gap:10px !important;
+  margin-top:14px !important;
+}
+
+.footer-links a{
+  position:relative !important;
+  text-decoration:none !important;
+  border:0 !important;
+  padding:3px 0 !important;
+  font-size:clamp(.86rem,.83rem + .08vw,.94rem) !important;
+  font-weight:600 !important;
+  letter-spacing:.025em !important;
+  color:#3b3430 !important;
+}
+
+.footer-socials a{
+  position:relative !important;
+  text-decoration:none !important;
+  border:0 !important;
+  padding:2px 0 !important;
+  font-size:clamp(.8rem,.78rem + .06vw,.88rem) !important;
+  font-weight:500 !important;
+  letter-spacing:.03em !important;
+  color:#5d524d !important;
+}
+
+/* Underline only as an interaction state, not permanently. */
+.footer-links a::after,
+.footer-socials a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:-2px;
+  height:1px;
+  background:#8f6259;
+  transition:right .18s ease;
+}
+
+@media (hover:hover){
+  .footer-links a:hover,
+  .footer-socials a:hover{
+    color:#8f6259 !important;
+  }
+
+  .footer-links a:hover::after,
+  .footer-socials a:hover::after{
+    right:0;
+  }
+}
+
+.footer-links a:focus-visible,
+.footer-socials a:focus-visible{
+  outline:2px solid #8f6259 !important;
+  outline-offset:4px !important;
+}
+
+/* ---------- TABLET SAFETY ---------- */
+@media (min-width:700px) and (max-width:1024px){
+  .topbar-inner{
+    padding-left:20px !important;
+    padding-right:20px !important;
+    gap:14px !important;
+  }
+
+  .desktop-nav{
+    gap:16px !important;
+  }
+
+  .desktop-nav a,
+  .lang-toggle button,
+  .topbar-cta{
+    font-size:.86rem !important;
+  }
+
+  .hero-fullbleed h1{
+    font-size:clamp(3.5rem,6.4vw,4.2rem) !important;
+  }
+
+  .section-head h2,
+  .about-text h2{
+    font-size:clamp(2.6rem,4.8vw,3.1rem) !important;
+  }
+
+  .product-grid{
+    gap:34px 18px !important;
+  }
+
+  .footer-links{
+    gap:18px !important;
+  }
+}
+
+/* ---------- MOBILE FOOTER ---------- */
+@media (max-width:699px){
+  footer{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  .footer-note{
+    max-width:34ch !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    text-align:center !important;
+    font-size:.84rem !important;
+    line-height:1.5 !important;
+  }
+
+  .footer-links{
+    gap:12px 20px !important;
+    margin-top:16px !important;
+  }
+
+  .footer-links a{
+    font-size:.9rem !important;
+  }
+
+  .footer-socials{
+    gap:8px 14px !important;
+    margin-top:16px !important;
+  }
+
+  .footer-socials a{
+    font-size:.84rem !important;
+  }
+}
+
+/* ---------- VERY SMALL MOBILE ---------- */
+@media (max-width:390px){
+  footer{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  .footer-links{
+    gap:10px 14px !important;
+  }
+
+  .footer-links a{
+    font-size:.84rem !important;
+  }
+
+  .footer-socials a{
+    font-size:.8rem !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL MOBILE ABOUT POLISH — compact, editorial, responsive
+   ============================================================ */
+
+@media (max-width:699px){
+
+  #about{
+    padding-top:32px !important;
+    padding-bottom:28px !important;
+  }
+
+  #about .wrap.about{
+    width:calc(100% - 40px) !important;
+    margin-inline:auto !important;
+  }
+
+  #about .about-text > .eyebrow{
+    margin:0 0 12px !important;
+    text-align:left !important;
+  }
+
+  #about .about-photo{
+    margin:0 0 20px !important;
+  }
+
+  #about .about-text > h2{
+    font-size:clamp(2.15rem, 8.8vw, 2.6rem) !important;
+    line-height:1 !important;
+    letter-spacing:-.018em !important;
+    margin:0 0 8px !important;
+    max-width:none !important;
+    width:100% !important;
+    text-align:left !important;
+  }
+
+  #about .about-text > p[style*="font-weight:600"]{
+    margin:0 0 16px !important;
+    font-size:1rem !important;
+    line-height:1.45 !important;
+    text-align:left !important;
+  }
+
+  #about .about-text p:not([style*="font-weight:600"]){
+    font-size:1rem !important;
+    line-height:1.6 !important;
+    margin-bottom:13px !important;
+    text-align:left !important;
+  }
+
+  #products{
+    padding-top:18px !important;
+  }
+}
+
+@media (min-width:380px) and (max-width:699px){
+  #about .about-text > h2{
+    white-space:nowrap !important;
+    font-size:clamp(2.05rem, 8.1vw, 2.45rem) !important;
+  }
+}
+
+@media (max-width:379px){
+  #about .about-text > h2{
+    white-space:normal !important;
+    font-size:2.2rem !important;
+    max-width:9ch !important;
+  }
+}
+
+
+/* ============================================================
+   FINAL ABOUT THE MAKER REFINEMENT
+   Calmer, more minimal name treatment on desktop + mobile.
+   ============================================================ */
+
+/* Base / desktop */
+#about .about-text > h2{
+  font-weight:500 !important;
+  font-size:clamp(2.65rem, 3.15vw, 3rem) !important;
+  line-height:1.02 !important;
+  letter-spacing:-.018em !important;
+  margin:0 0 8px !important;
+  max-width:none !important;
+}
+
+#about .about-text > p[style*="font-weight:600"]{
+  font-weight:500 !important;
+  font-size:clamp(.98rem, .95rem + .08vw, 1.05rem) !important;
+  line-height:1.5 !important;
+  margin:0 0 18px !important;
+  color:#655953 !important;
+}
+
+/* Keep the eyebrow understated and clearly secondary */
+#about .about-text > .eyebrow{
+  font-size:clamp(.72rem, .70rem + .04vw, .78rem) !important;
+  font-weight:600 !important;
+  letter-spacing:.14em !important;
+  color:#95675e !important;
+}
+
+/* Tablet */
+@media (min-width:700px) and (max-width:1024px){
+  #about .about-text > h2{
+    font-size:clamp(2.45rem, 4.2vw, 2.85rem) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width:699px){
+  #about .about-text > h2{
+    font-size:clamp(1.95rem, 7.4vw, 2.2rem) !important;
+    line-height:1.04 !important;
+    font-weight:500 !important;
+    letter-spacing:-.014em !important;
+    margin:0 0 7px !important;
+    max-width:none !important;
+    white-space:normal !important;
+  }
+
+  #about .about-text > p[style*="font-weight:600"]{
+    font-size:.98rem !important;
+    line-height:1.45 !important;
+    margin-bottom:16px !important;
+  }
+}
+
+/* On most modern phones, keep the full name on one line if it fits naturally */
+@media (min-width:390px) and (max-width:699px){
+  #about .about-text > h2{
+    white-space:nowrap !important;
+  }
+}
+
+/* Narrow phones: allow a clean wrap instead of squeezing */
+@media (max-width:389px){
+  #about .about-text > h2{
+    white-space:normal !important;
+    max-width:10ch !important;
+  }
 }
 
 </style>
