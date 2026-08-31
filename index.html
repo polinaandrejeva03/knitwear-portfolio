@@ -10867,6 +10867,243 @@ p, li{ color:#514844 !important; }
 }
 </style>
 
+
+<style id="grid-portrait-mobile-nav-fix-2026">
+/* ============================================================
+   2026 FINAL GEOMETRY FIX
+   1) Desktop: About, Portfolio, Info, FAQ, Useful Info and Contact
+      share the SAME content edges.
+   2) About photo returns to a true portrait proportion (4:5).
+   3) Mobile categories: no pink box, equal spacing, underline only.
+   ============================================================ */
+
+/* ---------- DESKTOP / TABLET CONTENT EDGES ---------- */
+@media (min-width:700px){
+  /* use the same page width logic for every principal section */
+  #about .wrap.about,
+  #about .about-layout,
+  #products > .wrap,
+  #products .wrap,
+  #info > .wrap,
+  #faq > .wrap,
+  #more-info > .wrap,
+  #contact > .wrap,
+  footer > .wrap{
+    width:min(var(--max), calc(100% - 56px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+}
+
+@media (min-width:1100px){
+  #about .wrap.about,
+  #about .about-layout,
+  #products > .wrap,
+  #products .wrap,
+  #info > .wrap,
+  #faq > .wrap,
+  #more-info > .wrap,
+  #contact > .wrap,
+  footer > .wrap{
+    width:min(var(--max), calc(100% - 96px)) !important;
+  }
+}
+
+/* ---------- ABOUT: DESKTOP PORTRAIT ---------- */
+@media (min-width:900px){
+  #about{
+    padding-top:52px !important;
+    padding-bottom:52px !important;
+    overflow:hidden !important;
+  }
+
+  #about .about-layout{
+    display:grid !important;
+    grid-template-columns:minmax(300px,.94fr) minmax(0,1.06fr) !important;
+    grid-template-areas:
+      "photo intro"
+      "photo copy" !important;
+    grid-template-rows:auto auto !important;
+    gap:18px clamp(56px,5vw,88px) !important;
+    align-items:center !important;
+  }
+
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    aspect-ratio:4/5 !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    margin:0 !important;
+    overflow:hidden !important;
+    position:relative !important;
+    border:0 !important;
+    border-radius:4px !important;
+    background:#f7f2ee !important;
+  }
+
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 42% !important;
+    display:block !important;
+    -webkit-mask-image:none !important;
+    mask-image:none !important;
+  }
+
+  /* restrained haze only: preserve the photo, soften the hard rectangle */
+  #about .about-photo::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg,
+        rgba(248,244,240,.14) 0%,
+        rgba(248,244,240,0) 8%,
+        rgba(248,244,240,0) 92%,
+        rgba(248,244,240,.14) 100%),
+      linear-gradient(180deg,
+        rgba(248,244,240,.10) 0%,
+        rgba(248,244,240,0) 8%,
+        rgba(248,244,240,0) 92%,
+        rgba(248,244,240,.18) 100%) !important;
+  }
+
+  #about .about-intro{
+    grid-area:intro !important;
+    align-self:end !important;
+    margin:0 !important;
+    padding:0 !important;
+    max-width:620px !important;
+  }
+
+  #about .about-copy{
+    grid-area:copy !important;
+    align-self:start !important;
+    margin:0 !important;
+    padding:0 !important;
+    max-width:620px !important;
+  }
+
+  #about .about-copy p{
+    margin:0 0 12px !important;
+  }
+  #about .about-copy p:last-child{
+    margin-bottom:0 !important;
+  }
+
+  /* Products should not be wider than the informational sections */
+  #products{
+    padding-top:42px !important;
+  }
+}
+
+/* ---------- MOBILE CATEGORY NAV ---------- */
+@media (max-width:699px){
+  #products .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    grid-auto-rows:38px !important;
+    column-gap:0 !important;
+    row-gap:8px !important;
+    width:100% !important;
+    margin:0 0 24px !important;
+    padding:0 0 10px !important;
+    border:0 !important;
+    border-bottom:1px solid rgba(75,66,62,.14) !important;
+    background:transparent !important;
+    overflow:visible !important;
+  }
+
+  /* first row = five categories */
+  #products .category-tabs button:nth-child(-n+5){
+    grid-column:auto !important;
+  }
+
+  /* second row = three categories, distributed across the same 5-col rhythm */
+  #products .category-tabs button:nth-child(6){
+    grid-column:1 !important;
+  }
+  #products .category-tabs button:nth-child(7){
+    grid-column:3 !important;
+  }
+  #products .category-tabs button:nth-child(8){
+    grid-column:5 !important;
+  }
+
+  #products .category-tabs button{
+    min-width:0 !important;
+    min-height:38px !important;
+    padding:6px 0 8px !important;
+    margin:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#4b423e !important;
+    font-size:10.6px !important;
+    line-height:1.1 !important;
+    font-weight:500 !important;
+    letter-spacing:0 !important;
+    text-align:left !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-decoration:none !important;
+  }
+
+  /* active category: NO box / NO fill / NO size jump */
+  #products .category-tabs button.active{
+    background:transparent !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    color:#2b2623 !important;
+    font-size:10.6px !important;
+    font-weight:700 !important;
+    text-decoration-line:underline !important;
+    text-decoration-color:#7f665f !important;
+    text-decoration-thickness:1px !important;
+    text-underline-offset:7px !important;
+  }
+
+  #products .category-tabs button::before,
+  #products .category-tabs button::after,
+  #products .category-tabs button.active::before,
+  #products .category-tabs button.active::after{
+    content:none !important;
+    display:none !important;
+    background:none !important;
+  }
+
+  /* preserve the shared mobile content edge */
+  #products > .wrap{
+    width:calc(100% - 40px) !important;
+    margin-inline:auto !important;
+    padding-inline:0 !important;
+  }
+}
+
+/* Very narrow phones: readability wins; still no boxes. */
+@media (max-width:359px){
+  #products .category-tabs{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+  #products .category-tabs button:nth-child(n){
+    grid-column:auto !important;
+  }
+  #products .category-tabs button,
+  #products .category-tabs button.active{
+    font-size:10.2px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
