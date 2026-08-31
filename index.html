@@ -6816,6 +6816,480 @@ html[lang="lv"] .category-tabs{
 }
 
 </style>
+<style id="final-consolidated-2026">
+
+/* =====================================================================
+   FINAL CONSOLIDATED UI SCALE + ABOUT LAYOUT — 2026-08-31
+   This block intentionally comes last and supersedes older experimental
+   overrides. It keeps the editorial look while restoring normal UI sizes.
+   ===================================================================== */
+
+:root{
+  --ui-xs: 11px;
+  --ui-sm: 12px;
+  --ui-md: 13px;
+  --ui-lg: 14px;
+  --body-size: 16px;
+  --warm-ink:#332c29;
+  --warm-muted:#70635d;
+  --warm-accent:#a17369;
+  --warm-line:rgba(78,64,58,.20);
+  --warm-pale:#f2e7e2;
+}
+
+/* ---------- Global readable body scale ---------- */
+body{ font-size:var(--body-size) !important; }
+p, li{ line-height:1.58; }
+
+/* ---------- Header / navigation ---------- */
+.desktop-nav a,
+.lang-toggle button,
+.topbar-cta{
+  font-family:inherit !important;
+  text-transform:uppercase !important;
+  font-size:var(--ui-md) !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:.055em !important;
+}
+.desktop-nav{ gap:18px !important; }
+.lang-toggle{
+  gap:13px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.lang-toggle button{
+  min-width:0 !important;
+  min-height:0 !important;
+  padding:5px 0 6px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:#514642 !important;
+  position:relative !important;
+}
+.lang-toggle button.active,
+.lang-toggle button.active:hover{
+  background:transparent !important;
+  color:#211d1b !important;
+}
+.lang-toggle button.active::after{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important; right:0 !important; bottom:0 !important;
+  height:1px !important;
+  background:var(--warm-accent) !important;
+}
+.topbar-cta{
+  min-height:34px !important;
+  padding:0 13px !important;
+  border:1px solid rgba(51,44,41,.42) !important;
+  border-radius:3px !important;
+  background:transparent !important;
+  color:var(--warm-ink) !important;
+}
+
+/* ---------- Section headings ---------- */
+.section-head .eyebrow,
+#about .eyebrow,
+.info-card .eyebrow,
+.contact .eyebrow{
+  font-size:12px !important;
+  line-height:1.2 !important;
+  letter-spacing:.13em !important;
+  font-weight:600 !important;
+}
+.section-head h2{ font-weight:500 !important; }
+.section-head p{
+  font-size:16px !important;
+  line-height:1.56 !important;
+  max-width:720px !important;
+}
+
+/* ---------- Categories: desktop = compact editorial tabs ---------- */
+.category-tabs{
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+@media (min-width:700px){
+  .category-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    gap:clamp(15px,1.6vw,27px) !important;
+    padding:0 0 11px !important;
+    margin:0 0 28px !important;
+    border-bottom:1px solid var(--warm-line) !important;
+    overflow:visible !important;
+  }
+  .category-tabs button,
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    position:relative !important;
+    min-height:34px !important;
+    padding:6px 0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#514642 !important;
+    font-size:12.5px !important;
+    line-height:1.1 !important;
+    font-weight:600 !important;
+    letter-spacing:.045em !important;
+    white-space:nowrap !important;
+  }
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    background:transparent !important;
+    color:#211d1b !important;
+    font-weight:700 !important;
+  }
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:0 !important; bottom:-12px !important;
+    width:0 !important; height:1.5px !important;
+    background:var(--warm-accent) !important;
+  }
+  .category-tabs button.active::after{ width:100% !important; }
+}
+
+/* ---------- Product cards ---------- */
+.product-cat{
+  font-size:11px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+  letter-spacing:.12em !important;
+}
+.product-name{
+  font-size:18px !important;
+  line-height:1.18 !important;
+  font-weight:500 !important;
+}
+.product-price{
+  font-size:14px !important;
+  line-height:1.35 !important;
+}
+.product-more,
+.product-more:hover,
+.product-more:focus-visible{
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+  letter-spacing:.055em !important;
+  padding:7px 0 5px !important;
+}
+
+/* ---------- Product modal/detail: one coherent hierarchy ---------- */
+#productModal .modal-body{ font-size:15px !important; line-height:1.55 !important; }
+#productModal .modal-body h3{
+  font-size:clamp(26px,2.2vw,34px) !important;
+  line-height:1.05 !important;
+  font-weight:500 !important;
+  margin-bottom:5px !important;
+}
+#productModal .modal-price{
+  font-size:15px !important;
+  line-height:1.4 !important;
+}
+#productModal .modal-block,
+#productModal .modal-block p,
+#productModal .modal-block div,
+#productModal .size-info,
+#productModal .size-adjust,
+#productModal .colour-copy,
+#productModal .detail-extra,
+#productModal .open-care{
+  font-size:15px !important;
+  line-height:1.55 !important;
+}
+#productModal .modal-block .label{
+  font-size:11px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  letter-spacing:.11em !important;
+  text-transform:uppercase !important;
+}
+#productModal .modal-order{
+  font-size:13px !important;
+  letter-spacing:.035em !important;
+}
+
+/* ---------- ABOUT: desktop text left, large portrait right/full edge ---------- */
+#about{
+  overflow:hidden !important;
+  padding-top:clamp(58px,6vw,92px) !important;
+  padding-bottom:clamp(56px,6vw,92px) !important;
+}
+#about .about-intro .eyebrow{ margin:0 0 12px !important; }
+#about .about-intro h2{
+  margin:0 0 8px !important;
+  font-weight:500 !important;
+  letter-spacing:-.018em !important;
+}
+#about .about-subtitle{
+  margin:0 !important;
+  color:#80645d !important;
+  font-weight:500 !important;
+}
+#about .about-copy p:last-child{ margin-bottom:0 !important; }
+
+@media (min-width:900px){
+  #about .wrap.about{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding-left:clamp(64px,7.5vw,144px) !important;
+    padding-right:0 !important;
+    display:grid !important;
+    grid-template-columns:minmax(380px,.84fr) minmax(560px,1.16fr) !important;
+    gap:clamp(44px,5vw,84px) !important;
+    align-items:center !important;
+  }
+  #about .about-text{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    max-width:600px !important;
+    padding:0 !important;
+  }
+  #about .about-intro h2{
+    font-size:clamp(40px,3.1vw,50px) !important;
+    line-height:1.02 !important;
+  }
+  #about .about-subtitle{ font-size:15px !important; line-height:1.45 !important; }
+  #about .about-copy{ margin-top:22px !important; }
+  #about .about-copy p{
+    font-size:16px !important;
+    line-height:1.62 !important;
+    margin:0 0 15px !important;
+  }
+  #about .about-photo{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    width:100% !important;
+    height:clamp(560px,67vh,800px) !important;
+    margin:0 !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border-radius:0 !important;
+    background:transparent !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
+    object-fit:cover !important;
+    object-position:center 31% !important;
+    border-radius:0 !important;
+  }
+  #about .about-photo::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg, rgba(249,246,242,.88) 0%, rgba(249,246,242,.48) 8%, rgba(249,246,242,.16) 19%, rgba(249,246,242,0) 37%),
+      linear-gradient(180deg, rgba(249,246,242,0) 72%, rgba(249,246,242,.06) 84%, rgba(249,246,242,.38) 100%) !important;
+  }
+}
+
+/* ---------- Mobile: compact UI + unmistakably tappable category buttons ---------- */
+@media (max-width:699px){
+  body{ font-size:16px !important; }
+
+  .brandmark-logo img{
+    width:108px !important;
+    max-height:37px !important;
+    object-fit:contain !important;
+  }
+  .lang-toggle{ gap:10px !important; }
+  .lang-toggle button{
+    font-size:12px !important;
+    letter-spacing:.025em !important;
+    padding:5px 0 6px !important;
+  }
+  .topbar-cta{
+    min-height:32px !important;
+    padding:0 10px !important;
+    font-size:12px !important;
+    letter-spacing:.045em !important;
+  }
+
+  .section-head h2{ font-size:clamp(34px,10vw,44px) !important; line-height:1.02 !important; }
+  .section-head p{ font-size:15px !important; line-height:1.55 !important; }
+
+  /* All categories visible: 4 x 2. Looks like controls, not plain text. */
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:8px !important;
+    width:100% !important;
+    margin:0 0 27px !important;
+    padding:0 !important;
+    overflow:visible !important;
+    border:0 !important;
+  }
+  .category-tabs button,
+  .category-tabs button:hover,
+  .category-tabs button:focus{
+    width:100% !important;
+    min-width:0 !important;
+    min-height:43px !important;
+    padding:7px 3px !important;
+    border:1px solid rgba(104,85,77,.25) !important;
+    border-radius:3px !important;
+    background:rgba(255,255,255,.34) !important;
+    color:#443a36 !important;
+    box-shadow:none !important;
+    font-size:11px !important;
+    line-height:1.12 !important;
+    font-weight:650 !important;
+    letter-spacing:.015em !important;
+    text-align:center !important;
+    white-space:normal !important;
+  }
+  .category-tabs button.active,
+  .category-tabs button.active:hover,
+  .category-tabs button.active:focus{
+    background:var(--warm-pale) !important;
+    border-color:#cdaaa1 !important;
+    color:#2c2522 !important;
+    font-weight:700 !important;
+  }
+  .category-tabs button::after{ display:none !important; }
+
+  .product-name{ font-size:17px !important; }
+  .product-price{ font-size:14px !important; }
+  .product-more,
+  .product-more:hover,
+  .product-more:focus-visible{ font-size:11.5px !important; }
+
+  #productModal .modal-body{ font-size:15px !important; }
+  #productModal .modal-body h3{ font-size:27px !important; }
+  #productModal .modal-block,
+  #productModal .modal-block p,
+  #productModal .modal-block div,
+  #productModal .size-info,
+  #productModal .size-adjust,
+  #productModal .colour-copy,
+  #productModal .detail-extra,
+  #productModal .open-care{ font-size:15px !important; }
+  #productModal .modal-block .label{ font-size:11px !important; }
+
+  /* Mobile About sequence: intro -> portrait -> copy */
+  #about{
+    padding-top:46px !important;
+    padding-bottom:46px !important;
+  }
+  #about .wrap.about{
+    width:calc(100% - 36px) !important;
+    max-width:none !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:0 !important;
+  }
+  #about .about-text{ display:contents !important; }
+  #about .about-intro{
+    grid-row:1 !important;
+    text-align:left !important;
+  }
+  #about .about-intro .eyebrow{ margin-bottom:10px !important; }
+  #about .about-intro h2{
+    font-size:clamp(32px,9vw,39px) !important;
+    line-height:1.03 !important;
+    margin-bottom:6px !important;
+  }
+  #about .about-subtitle{
+    font-size:14px !important;
+    line-height:1.45 !important;
+    margin-bottom:17px !important;
+  }
+  #about .about-photo{
+    grid-row:2 !important;
+    width:100% !important;
+    aspect-ratio:4/5 !important;
+    height:auto !important;
+    margin:0 0 20px !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border-radius:2px !important;
+    background:transparent !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
+    object-fit:cover !important;
+    object-position:center 28% !important;
+    border-radius:0 !important;
+  }
+  #about .about-photo::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:linear-gradient(180deg, rgba(249,246,242,0) 74%, rgba(249,246,242,.10) 86%, rgba(249,246,242,.46) 100%) !important;
+  }
+  #about .about-copy{
+    grid-row:3 !important;
+    margin:0 !important;
+  }
+  #about .about-copy p{
+    font-size:15px !important;
+    line-height:1.62 !important;
+    margin:0 0 14px !important;
+  }
+
+  /* Footer should read as utility navigation, never as a headline */
+  footer{
+    font-size:12px !important;
+    line-height:1.55 !important;
+  }
+  footer .policy-links a,
+  footer > .wrap > a{
+    font-size:12px !important;
+    line-height:1.35 !important;
+    letter-spacing:.025em !important;
+  }
+}
+
+@media (max-width:359px){
+  .category-tabs{ grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .category-tabs button{ font-size:12px !important; min-height:42px !important; }
+  .brandmark-logo img{ width:101px !important; }
+  .lang-toggle{ gap:8px !important; }
+  .lang-toggle button,.topbar-cta{ font-size:11px !important; }
+}
+
+/* ---------- Footer on all sizes ---------- */
+footer{
+  font-size:12px !important;
+  color:#6b5e58 !important;
+}
+footer .policy-links{ gap:16px !important; margin:8px 0 10px !important; }
+footer .policy-links a,
+footer > .wrap > a{
+  font-size:12px !important;
+  font-weight:500 !important;
+  letter-spacing:.025em !important;
+  color:#594c47 !important;
+  text-transform:none !important;
+}
+
+/* Latvian remains on dedicated Noto fonts for clean diacritics. */
+html[lang="lv"] #about .about-intro h2,
+html[lang="lv"] .section-head h2,
+html[lang="lv"] #productModal .modal-body h3{
+  font-family:"Noto Serif","Georgia","Times New Roman",serif !important;
+}
+
+</style>
 </head>
 <body>
 
@@ -6882,17 +7356,21 @@ html[lang="lv"] .category-tabs{
 <!-- ============ ABOUT ============ -->
   <section id="about">
     <div class="wrap about reveal">
+      <div class="about-text">
+        <div class="about-intro">
+          <div class="eyebrow" data-key="aboutEyebrow">About the maker</div>
+          <h2 data-key="aboutTitle">Inna Andrejeva</h2>
+          <p class="about-subtitle" data-key="aboutSubtitle">Founder of with_love_by_inna</p>
+        </div>
+        <div class="about-copy">
+          <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort — pieces that bring a sense of calm confidence and gentle strength.</p>
+          <p data-key="aboutP2">At the heart of it are natural Italian yarns — <strong>cashmere, merino, mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
+          <p data-key="aboutP3">It is timeless — not tied to trends or seasons, with a value that lasts for years.</p>
+          <p data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
+        </div>
+      </div>
       <div class="about-photo">
         <img src="photos/about-mama.jpeg" alt="">
-      </div>
-      <div class="about-text">
-        <div class="eyebrow" style="margin-bottom:14px;" data-key="aboutEyebrow">About the maker</div>
-        <h2 style="font-size:32px; margin-bottom:4px;" data-key="aboutTitle">Inna Andrejeva</h2>
-        <p style="margin-bottom:16px; font-weight:600; color:var(--accent);" data-key="aboutSubtitle">Founder of with_love_by_inna</p>
-        <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort — pieces that bring a sense of calm confidence and gentle strength.</p>
-        <p data-key="aboutP2">At the heart of it are natural Italian yarns — <strong>cashmere, merino, mohair with silk, linen</strong> — and their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
-        <p data-key="aboutP3">It is timeless — not tied to trends or seasons, with a value that lasts for years.</p>
-        <p data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
       </div>
     </div>
   </section>
