@@ -10402,6 +10402,237 @@ p, li{ color:#514844 !important; }
 }
 </style>
 
+
+<style id="about-categories-pro-final-2026">
+/* ============================================================
+   FINAL POLISH — ABOUT PHOTO + MOBILE CATEGORY NAV
+   ============================================================ */
+
+/* DESKTOP ABOUT:
+   keep the portrait clearly inside the section, aligned with the
+   same page rhythm as Selected Work, with only a subtle edge haze. */
+@media (min-width:900px){
+  #about{
+    padding-top:52px !important;
+    padding-bottom:46px !important;
+  }
+
+  #about .about-layout{
+    width:min(92vw,1500px) !important;
+    margin-inline:auto !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr) !important;
+    grid-template-areas:
+      "photo intro"
+      "photo copy" !important;
+    column-gap:clamp(58px,5vw,88px) !important;
+    row-gap:16px !important;
+    align-items:center !important;
+  }
+
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    aspect-ratio:4/5 !important;
+    max-height:620px !important;
+    margin:0 !important;
+    overflow:hidden !important;
+    border-radius:0 !important;
+    background:#f7f2ee !important;
+    position:relative !important;
+  }
+
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 40% !important;
+    display:block !important;
+
+    /* remove the heavy mask from the previous version */
+    -webkit-mask-image:none !important;
+    mask-image:none !important;
+  }
+
+  /* Professional treatment: very subtle haze, not a heavy blur.
+     The photo remains a real portrait and the perimeter simply softens. */
+  #about .about-photo::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    background:
+      linear-gradient(90deg,
+        rgba(248,244,240,.20) 0%,
+        rgba(248,244,240,.04) 6%,
+        rgba(248,244,240,0) 12%,
+        rgba(248,244,240,0) 88%,
+        rgba(248,244,240,.04) 94%,
+        rgba(248,244,240,.20) 100%),
+      linear-gradient(180deg,
+        rgba(248,244,240,.14) 0%,
+        rgba(248,244,240,.03) 6%,
+        rgba(248,244,240,0) 12%,
+        rgba(248,244,240,0) 88%,
+        rgba(248,244,240,.05) 94%,
+        rgba(248,244,240,.24) 100%) !important;
+  }
+
+  /* Text block remains left-aligned, vertically balanced with portrait. */
+  #about .about-intro{
+    grid-area:intro !important;
+    align-self:end !important;
+    max-width:620px !important;
+    margin:0 !important;
+  }
+
+  #about .about-copy{
+    grid-area:copy !important;
+    align-self:start !important;
+    max-width:620px !important;
+    margin:0 !important;
+  }
+}
+
+/* MOBILE ABOUT:
+   use the original full-width portrait look with almost no blur.
+   Keep intro close to image and copy close below it. */
+@media (max-width:699px){
+  #about{
+    padding-top:38px !important;
+    padding-bottom:24px !important;
+  }
+
+  #about .about-intro{
+    margin-bottom:8px !important;
+  }
+
+  #about .about-subtitle{
+    margin-bottom:8px !important;
+  }
+
+  #about .about-photo{
+    width:100vw !important;
+    max-width:none !important;
+    margin-left:calc(50% - 50vw) !important;
+    margin-right:calc(50% - 50vw) !important;
+    margin-top:0 !important;
+    margin-bottom:14px !important;
+    overflow:hidden !important;
+    border-radius:0 !important;
+  }
+
+  #about .about-photo img{
+    width:100% !important;
+    height:auto !important;
+    object-fit:contain !important;
+    object-position:center top !important;
+    -webkit-mask-image:none !important;
+    mask-image:none !important;
+  }
+
+  #about .about-photo::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    /* barely-there haze only at the bottom and outermost sides */
+    background:
+      linear-gradient(90deg,
+        rgba(248,244,240,.10) 0%,
+        rgba(248,244,240,0) 5%,
+        rgba(248,244,240,0) 95%,
+        rgba(248,244,240,.10) 100%),
+      linear-gradient(180deg,
+        rgba(248,244,240,0) 0%,
+        rgba(248,244,240,0) 88%,
+        rgba(248,244,240,.30) 100%) !important;
+  }
+
+  #about .about-copy{
+    margin-top:0 !important;
+  }
+
+  #products{
+    padding-top:24px !important;
+  }
+
+  /* CATEGORY NAV:
+     two rows, equal spacing, no boxes, no pink fill.
+     Active tab = bold + fine underline only. */
+  .browse-by-category-label{
+    margin:0 0 10px !important;
+    font-size:10.5px !important;
+    font-weight:600 !important;
+    letter-spacing:.10em !important;
+    color:#95675e !important;
+  }
+
+  .category-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    gap:6px 6px !important;
+    width:100% !important;
+    margin:0 0 24px !important;
+    padding:0 !important;
+    border:0 !important;
+    overflow:visible !important;
+  }
+
+  .category-tabs button{
+    position:relative !important;
+    min-height:36px !important;
+    min-width:0 !important;
+    padding:6px 1px 8px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#4b423e !important;
+    font-size:10.8px !important;
+    line-height:1.1 !important;
+    font-weight:500 !important;
+    letter-spacing:0 !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+  }
+
+  .category-tabs button.active{
+    background:transparent !important;
+    color:#2b2623 !important;
+    font-size:10.8px !important;
+    font-weight:700 !important;
+  }
+
+  .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    bottom:2px !important;
+    width:0 !important;
+    height:1px !important;
+    background:#8f6e66 !important;
+    transform:translateX(-50%) !important;
+    transition:width .15s ease !important;
+  }
+
+  .category-tabs button.active::after{
+    width:58% !important;
+  }
+}
+
+@media (max-width:389px){
+  .category-tabs{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:6px 5px !important;
+  }
+  .category-tabs button,
+  .category-tabs button.active{
+    font-size:10.4px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
