@@ -14799,3 +14799,70 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="FINAL-mobile-hero-categories-correction-2026">
+@media (max-width:699px){
+  /* Slightly shorter than the previous large-viewport hero.
+     Uses the stable small viewport so Safari chrome does not make the first screen jump. */
+  .hero-fullbleed{
+    height:calc(100svh - var(--final-header-h) + 18px) !important;
+    min-height:calc(100svh - var(--final-header-h) + 18px) !important;
+    max-height:calc(100svh - var(--final-header-h) + 18px) !important;
+  }
+  @supports not (height:100svh){
+    .hero-fullbleed{
+      height:calc(100vh - var(--final-header-h)) !important;
+      min-height:calc(100vh - var(--final-header-h)) !important;
+      max-height:calc(100vh - var(--final-header-h)) !important;
+    }
+  }
+
+  /* Mobile category rows: start on the same left guide as the heading,
+     with one consistent gap between every label. */
+  #products .category-tabs{
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #products .category-row{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    align-items:flex-start !important;
+    column-gap:clamp(14px, 4.2vw, 20px) !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #products .category-row + .category-row{
+    margin-top:18px !important;
+  }
+  #products .category-row > button:nth-child(n){
+    justify-self:auto !important;
+    flex:0 0 auto !important;
+  }
+  #products .category-tabs button,
+  #products .category-tabs button.active{
+    width:auto !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:3px 0 5px !important;
+    border:0 !important;
+    border-bottom:1px solid transparent !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    line-height:1.15 !important;
+  }
+  #products .category-tabs button::before,
+  #products .category-tabs button::after{
+    content:none !important;
+    display:none !important;
+  }
+  #products .category-tabs button.active{
+    color:#211d1a !important;
+    font-weight:650 !important;
+    border-bottom-color:#9B6B62 !important;
+  }
+}
+</style>
