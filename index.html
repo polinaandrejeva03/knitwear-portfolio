@@ -13249,6 +13249,70 @@ header.topbar.header-hidden{
 }
 </style>
 
+
+<style id="FINAL-mobile-rhythm-readability-2026">
+@media (max-width:699px){
+  /* Category labels: readable, compact and evenly spaced. */
+  #products .category-tabs button,
+  #products .category-tabs button.active{
+    font-family:'Work Sans',sans-serif !important;
+    font-size:12.5px !important;
+    line-height:1.12 !important;
+    letter-spacing:.025em !important;
+    font-weight:500 !important;
+    padding:4px 0 3px !important;
+    min-height:24px !important;
+  }
+  #products .category-tabs button.active{
+    font-weight:650 !important;
+  }
+  #products .category-row{
+    column-gap:12px !important;
+  }
+  #products .category-row + .category-row{
+    margin-top:10px !important;
+  }
+  #products .category-tabs button{
+    border-bottom-width:1px !important;
+  }
+
+  /* One consistent mobile vertical rhythm between the main page chapters.
+     Only one side owns the inter-section gap, so spaces do not accidentally double. */
+  #products{
+    padding-top:28px !important;
+    padding-bottom:44px !important;
+  }
+  #about{
+    padding-top:0 !important;
+    padding-bottom:44px !important;
+  }
+  #info{
+    padding-top:28px !important;
+    padding-bottom:28px !important;
+  }
+  #faq{
+    padding-top:44px !important;
+    padding-bottom:0 !important;
+  }
+  #more-info{
+    padding-top:44px !important;
+    padding-bottom:44px !important;
+  }
+
+  /* Keep headings and supporting copy consistently legible on phones. */
+  #products .section-head p,
+  #more-info .section-head p,
+  #about .about-copy p{
+    font-size:15px !important;
+    line-height:1.55 !important;
+  }
+  #faq .faq-item summary{
+    font-size:15px !important;
+    line-height:1.4 !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -13993,7 +14057,10 @@ header.topbar.header-hidden{
   function renderCategoryTabs(){
     const present = CATEGORY_ORDER.filter(c => products.some(p => p.category === c));
     const cats = ['all', ...present];
-    const rows = [cats.slice(0,4), cats.slice(4,8)];
+    /* English labels fit cleanly as 5 + 3 on mobile. Russian/Latvian stay 4 + 4
+       so longer translations never collide or wrap awkwardly. */
+    const mobileSplit = currentLang === 'en' ? 5 : 4;
+    const rows = [cats.slice(0,mobileSplit), cats.slice(mobileSplit)];
     document.getElementById('categoryTabs').innerHTML = rows.map((row, rowIndex) => `
       <div class="category-row category-row-${rowIndex + 1}">
         ${row.map(c => `
@@ -14530,6 +14597,68 @@ header.topbar.header-hidden{
   });
 })();
 </script>
+
+
+<style id="FINAL-mobile-category-spacing-refinement-2026-09-12">
+@media (max-width:699px){
+  /* Compact editorial category selector: equal horizontal and vertical rhythm. */
+  #products .category-tabs{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:12px !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #products .category-row{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    align-items:center !important;
+    gap:12px !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #products .category-row + .category-row{
+    margin-top:0 !important;
+  }
+  #products .category-tabs button,
+  #products .category-tabs button.active{
+    flex:0 0 auto !important;
+    width:auto !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:1px 0 3px !important;
+    border:0 !important;
+    border-bottom:1px solid transparent !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    font-size:11.5px !important;
+    line-height:1.1 !important;
+    letter-spacing:.02em !important;
+    white-space:nowrap !important;
+  }
+  #products .category-tabs button::before,
+  #products .category-tabs button::after{
+    content:none !important;
+    display:none !important;
+  }
+  #products .category-tabs button.active{
+    color:#211d1a !important;
+    font-weight:650 !important;
+    border-bottom-color:#9B6B62 !important;
+  }
+}
+@media (max-width:390px){
+  #products .category-tabs,
+  #products .category-row{ gap:10px !important; }
+  #products .category-tabs button,
+  #products .category-tabs button.active{ font-size:11px !important; }
+}
+</style>
 
 </body>
 </html>
