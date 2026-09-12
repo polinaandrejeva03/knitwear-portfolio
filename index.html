@@ -2864,7 +2864,7 @@
     --ink:#2a2522;
     --ink-soft:#514843;
     --accent:#a86f66;
-    --accent-deep:#8f5f57;
+    --accent-deep:#9B6B62;
     --line:rgba(42,37,34,.18);
   }
 
@@ -12519,6 +12519,736 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
   .brandmark-logo img{width:112px !important;height:auto !important;max-width:none !important;max-height:none !important;}
 }
 </style>
+
+<style id="FINAL-mobile-collection-smart-header-hero-2026">
+/* Final mobile polish: balanced category grid, smart header, stable Safari hero. */
+
+/* Smart header: stays available, leaves the screen while scrolling down,
+   returns as soon as the user scrolls upward. */
+header.topbar{
+  transition:transform .24s ease !important;
+  will-change:transform;
+}
+header.topbar.header-hidden{
+  transform:translateY(-102%) !important;
+}
+@media (prefers-reduced-motion:reduce){
+  header.topbar{ transition:none !important; }
+}
+
+@media (max-width:699px){
+  /* Mobile hero uses the small/stable viewport so Safari chrome appearing or
+     disappearing does not resize the first screen while the user scrolls. */
+  .hero-fullbleed{
+    height:calc(100svh - var(--final-header-h)) !important;
+    min-height:calc(100svh - var(--final-header-h)) !important;
+    max-height:calc(100svh - var(--final-header-h)) !important;
+  }
+  .hero-content-shell,
+  .hero-media,
+  .hero-media-mobile{
+    height:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+  }
+
+  /* Keep the full explanatory Collection copy unchanged. */
+  #products .section-head p{
+    margin-bottom:0 !important;
+  }
+
+  /* No long divider around Browse by category. The categories themselves
+     provide the navigation hierarchy. */
+  #products .browse-by-category-label{
+    margin:0 0 14px !important;
+    padding:0 !important;
+    border:0 !important;
+  }
+
+  #products .category-tabs{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:10px !important;
+    width:100% !important;
+    margin:0 0 24px !important;
+    padding:0 !important;
+    border:0 !important;
+    overflow:visible !important;
+  }
+
+  /* True 4-column rows: every word has the same mathematical centre. */
+  #products .category-row{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    align-items:center !important;
+    width:100% !important;
+    gap:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  #products .category-tabs button,
+  #products .category-tabs button.active{
+    justify-self:center !important;
+    position:relative !important;
+    width:max-content !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    min-height:28px !important;
+    margin:0 !important;
+    padding:4px 0 7px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#4b423e !important;
+    font-size:10px !important;
+    line-height:1.15 !important;
+    font-weight:500 !important;
+    letter-spacing:.015em !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+  }
+
+  #products .category-tabs button.active{
+    color:#211d1a !important;
+    font-weight:650 !important;
+  }
+
+  /* Active marker sits close to the selected word, not to the row. */
+  #products .category-tabs button::after{
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    right:auto !important;
+    bottom:2px !important;
+    width:0 !important;
+    height:1px !important;
+    background:#432a19 !important;
+    transform:translateX(-50%) !important;
+    transition:width .18s ease !important;
+  }
+  #products .category-tabs button.active::after{
+    width:calc(100% - 2px) !important;
+  }
+}
+
+@media (max-width:390px){
+  #products .category-tabs button,
+  #products .category-tabs button.active{
+    font-size:9.2px !important;
+    letter-spacing:0 !important;
+  }
+}
+</style>
+
+
+<style id="about-editorial-after-collection-final-2026">
+/* About after Collection: clear section start, shared page grid, controlled portrait scale. */
+#products{
+  padding-bottom:88px !important;
+}
+#about{
+  padding-top:0 !important;
+  padding-bottom:64px !important;
+  overflow:hidden !important;
+}
+#about .about-wrap{
+  max-width:var(--maxw) !important;
+  margin:0 auto !important;
+}
+#about .about-section-label{
+  margin:0 0 38px !important;
+  color:var(--brand-chocolate-soft, #6e5141) !important;
+  letter-spacing:.16em !important;
+}
+
+@media (min-width:900px){
+  #about .about-layout.about-layout-editorial{
+    display:grid !important;
+    grid-template-columns:minmax(0, 44%) minmax(0, 1fr) !important;
+    grid-template-areas:
+      "photo intro"
+      "photo copy" !important;
+    grid-template-rows:auto 1fr !important;
+    column-gap:56px !important;
+    row-gap:18px !important;
+    align-items:start !important;
+    max-width:none !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    width:88% !important;
+    max-width:470px !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:4 / 5 !important;
+    margin:0 !important;
+    align-self:start !important;
+    transform:none !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 42% !important;
+  }
+  #about .about-intro{
+    grid-area:intro !important;
+    margin:0 !important;
+    padding:10px 0 0 !important;
+    transform:none !important;
+    align-self:start !important;
+  }
+  #about .about-intro h2{
+    margin:0 0 5px !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+    align-self:start !important;
+    max-width:610px !important;
+  }
+  #about .about-copy p{
+    margin-top:0 !important;
+    margin-bottom:13px !important;
+  }
+}
+
+@media (min-width:700px) and (max-width:899px){
+  #products{ padding-bottom:72px !important; }
+  #about .about-section-label{ margin-bottom:30px !important; }
+  #about .about-layout.about-layout-editorial{
+    display:grid !important;
+    grid-template-columns:minmax(0, 46%) minmax(0, 1fr) !important;
+    grid-template-areas:"photo intro" "photo copy" !important;
+    column-gap:34px !important;
+    row-gap:16px !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #about .about-photo{ grid-area:photo !important; width:100% !important; margin:0 !important; aspect-ratio:4/5 !important; }
+  #about .about-intro{ grid-area:intro !important; transform:none !important; margin:0 !important; padding-top:4px !important; }
+  #about .about-copy{ grid-area:copy !important; transform:none !important; margin:0 !important; }
+}
+
+@media (max-width:699px){
+  #products{ padding-bottom:58px !important; }
+  #about{ padding-top:0 !important; padding-bottom:48px !important; }
+  #about .about-section-label{
+    margin:0 0 24px !important;
+  }
+  #about .about-layout.about-layout-editorial{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #about .about-intro{
+    order:1 !important;
+    margin:0 0 22px !important;
+    padding:0 !important;
+    transform:none !important;
+  }
+  #about .about-intro h2{ margin:0 0 5px !important; }
+  #about .about-photo{
+    order:2 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 0 24px !important;
+    aspect-ratio:4 / 5 !important;
+    transform:none !important;
+  }
+  #about .about-copy{
+    order:3 !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+  }
+}
+</style>
+
+
+<style id="final-desktop-about-wide-grid-2026">
+/* Desktop only: align About and practical info with the same full page grid as Collection. */
+@media (min-width:900px){
+  #products{ padding-bottom:96px !important; }
+
+  #about{
+    padding-top:0 !important;
+    padding-bottom:78px !important;
+    overflow:visible !important;
+  }
+  #about .about-wrap{
+    max-width:var(--maxw) !important;
+    width:100% !important;
+    margin:0 auto !important;
+  }
+  #about .about-section-label{
+    margin:0 0 34px !important;
+    color:var(--brand-chocolate-soft, #6e5141) !important;
+    letter-spacing:.16em !important;
+    text-align:left !important;
+  }
+  #about .about-layout.about-layout-editorial{
+    display:grid !important;
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-template-areas:
+      "photo intro"
+      "photo copy" !important;
+    grid-template-rows:auto 1fr !important;
+    column-gap:64px !important;
+    row-gap:16px !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    align-items:start !important;
+  }
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    max-width:none !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:4 / 5 !important;
+    margin:0 !important;
+    transform:none !important;
+    align-self:start !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 42% !important;
+  }
+  #about .about-intro{
+    grid-area:intro !important;
+    margin:0 !important;
+    padding:10px 0 0 !important;
+    transform:none !important;
+    align-self:start !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    width:100% !important;
+    max-width:620px !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+    align-self:start !important;
+  }
+
+  #info{ padding-top:0 !important; }
+  #info .info-section-label{
+    display:block !important;
+    margin:0 0 30px !important;
+    color:var(--brand-chocolate-soft, #6e5141) !important;
+    letter-spacing:.16em !important;
+    text-align:left !important;
+  }
+
+  #contact h2[data-key="contactTitle"]{
+    white-space:nowrap !important;
+    max-width:none !important;
+  }
+}
+
+/* Keep the existing mobile About composition exactly as before. */
+@media (max-width:899px){
+  #info .info-section-label{ display:none !important; }
+}
+</style>
+
+
+<style id="final-about-desktop-edge-aligned-2026">
+/* ============================================================
+   FINAL DESKTOP ABOUT FIX
+   - same left/right page edges as Collection
+   - About label matches Portfolio eyebrow exactly
+   - portrait fills the left half and reaches close to page centre
+   - all About body paragraphs use one identical type treatment
+   - mobile/tablet-under-900px is intentionally untouched
+   ============================================================ */
+@media (min-width:900px){
+  /* Keep the Collection-to-About transition intentional, not oversized. */
+  #products{ padding-bottom:82px !important; }
+  #about{
+    padding-top:0 !important;
+    padding-bottom:76px !important;
+    overflow:visible !important;
+    background:var(--bg) !important;
+  }
+
+  /* EXACTLY the same desktop content edge currently used by Collection. */
+  #about > .wrap.about-wrap,
+  #about .about-wrap{
+    width:min(92vw,1500px) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  /* Section label = same visual language as PORTFOLIO. */
+  #about .about-section-label,
+  #products .section-head .eyebrow{
+    display:block !important;
+    margin-top:0 !important;
+    font-family:'Work Sans',sans-serif !important;
+    font-size:12px !important;
+    line-height:1.2 !important;
+    font-weight:600 !important;
+    letter-spacing:.14em !important;
+    text-transform:uppercase !important;
+    color:var(--accent) !important;
+    text-align:left !important;
+  }
+  #about .about-section-label{
+    margin-bottom:30px !important;
+  }
+
+  /* Full-width editorial split. Left image runs from the page edge to near centre. */
+  #about .about-layout.about-layout-editorial{
+    display:grid !important;
+    grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr) !important;
+    grid-template-areas:
+      "photo intro"
+      "photo copy" !important;
+    grid-template-rows:auto 1fr !important;
+    column-gap:clamp(46px,4.2vw,72px) !important;
+    row-gap:16px !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    align-items:start !important;
+  }
+
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    max-width:none !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:4 / 5 !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    overflow:hidden !important;
+    transform:none !important;
+    align-self:start !important;
+    background:#f5f1ed !important;
+  }
+  #about .about-photo::before,
+  #about .about-photo::after{
+    content:none !important;
+    display:none !important;
+  }
+  #about .about-photo img{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 42% !important;
+    border-radius:0 !important;
+    filter:none !important;
+  }
+
+  /* Copy begins in the right half, aligned cleanly with the portrait. */
+  #about .about-intro{
+    grid-area:intro !important;
+    align-self:start !important;
+    margin:0 !important;
+    padding:10px 0 0 !important;
+    max-width:640px !important;
+    transform:none !important;
+  }
+  #about .about-intro h2{
+    margin:0 0 5px !important;
+  }
+  #about .about-subtitle{
+    margin:0 !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    align-self:start !important;
+    width:100% !important;
+    max-width:640px !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+    border:0 !important;
+  }
+
+  /* One font / one colour / one rhythm for every paragraph, including the closing line. */
+  #about .about-copy p,
+  #about .about-copy p.about-closing,
+  #about .about-closing{
+    font-family:'Work Sans',sans-serif !important;
+    font-size:15px !important;
+    line-height:1.62 !important;
+    font-weight:400 !important;
+    font-style:normal !important;
+    letter-spacing:normal !important;
+    color:var(--ink-soft) !important;
+    margin:0 0 13px !important;
+    text-transform:none !important;
+  }
+  #about .about-copy p:last-child,
+  #about .about-copy p.about-closing:last-child{
+    margin-bottom:0 !important;
+  }
+}
+</style>
+
+
+<style id="final-about-balanced-info-restored-2026">
+/* Final desktop refinement requested after visual review. */
+:root{ --section-chocolate:#432a19; }
+
+/* One deliberate chocolate colour for editorial section labels. */
+#products .section-head .eyebrow[data-key="productsEyebrow"],
+#about .about-section-label,
+#info .info-section-label,
+#faq .section-head .eyebrow[data-key="faqEyebrow"],
+#more-info .section-head .eyebrow[data-key="moreInfoEyebrow"],
+#info .info-card .eyebrow{
+  color:var(--section-chocolate) !important;
+}
+
+/* Restore the warm information strip with Yarn / Turnaround / Sizes & Colours. */
+#info{
+  display:block !important;
+  background:#f1e4de !important;
+}
+#info .info-section-label{
+  display:block !important;
+  font-family:'Work Sans',sans-serif !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+}
+
+@media (min-width:900px){
+  /* Same outer grid as Collection. */
+  #about > .wrap.about-wrap,
+  #about .about-wrap{
+    width:min(92vw,1500px) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  #about .about-section-label{
+    margin:0 0 28px !important;
+    font-family:'Work Sans',sans-serif !important;
+    font-size:12px !important;
+    line-height:1.2 !important;
+    font-weight:600 !important;
+    letter-spacing:.14em !important;
+    text-transform:uppercase !important;
+  }
+
+  /* Shorter landscape editorial portrait; large, but no longer running far down the page. */
+  #about .about-layout.about-layout-editorial{
+    display:grid !important;
+    grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr) !important;
+    grid-template-areas:
+      "photo ."
+      "photo intro"
+      "photo copy"
+      "photo ." !important;
+    grid-template-rows:1fr auto auto 1fr !important;
+    column-gap:clamp(46px,4.2vw,74px) !important;
+    row-gap:14px !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    align-items:stretch !important;
+  }
+
+  #about .about-photo{
+    grid-area:photo !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:6 / 5 !important;
+    margin:0 !important;
+    overflow:hidden !important;
+    align-self:center !important;
+    background:#f5f1ed !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center 43% !important;
+    display:block !important;
+  }
+
+  /* Intro + copy are vertically centred as one visual block against the photo. */
+  #about .about-intro{
+    grid-area:intro !important;
+    align-self:end !important;
+    margin:0 !important;
+    padding:0 !important;
+    max-width:640px !important;
+  }
+  #about .about-copy{
+    grid-area:copy !important;
+    align-self:start !important;
+    margin:0 !important;
+    padding:0 !important;
+    max-width:640px !important;
+  }
+
+  /* Every About body paragraph, including the final line, is identical typography. */
+  #about .about-copy p,
+  #about .about-copy p.about-closing,
+  #about .about-copy p:last-child,
+  #about .about-copy p:last-of-type{
+    font-family:'Work Sans',sans-serif !important;
+    font-size:15px !important;
+    line-height:1.62 !important;
+    font-weight:400 !important;
+    font-style:normal !important;
+    letter-spacing:normal !important;
+    color:#625a56 !important;
+    text-transform:none !important;
+  }
+  #about .about-copy p strong{
+    font-family:'Work Sans',sans-serif !important;
+    font-weight:600 !important;
+    color:#3f3935 !important;
+  }
+
+  /* The warm strip follows About without an oversized blank gap. */
+  #about{ padding-bottom:72px !important; }
+  #info{ padding-top:30px !important; padding-bottom:34px !important; }
+  #info > .wrap{ width:min(92vw,1500px) !important; max-width:none !important; }
+  #info .info-section-label{ margin:0 0 26px !important; }
+}
+
+/* On phones keep the established About layout, but keep colour language consistent. */
+@media (max-width:899px){
+  #about .about-section-label,
+  #products .section-head .eyebrow[data-key="productsEyebrow"],
+  #faq .section-head .eyebrow[data-key="faqEyebrow"],
+  #more-info .section-head .eyebrow[data-key="moreInfoEyebrow"],
+  #info .info-card .eyebrow{ color:var(--section-chocolate) !important; }
+  /* Keep the previous compact mobile strip: no extra label above the three items. */
+  #info .info-section-label{ display:none !important; }
+}
+</style>
+
+
+<style id="final-editorial-colour-system-correction-2026">
+/* FINAL colour correction requested from visual comparison with the earlier site.
+   Small editorial/kicker labels use one warm brown, never black. */
+:root{
+  --editorial-brown:#9B6B62;
+}
+
+/* Main small section labels: Portfolio / About the maker / Before you order / Useful information. */
+#products .section-head .eyebrow[data-key="productsEyebrow"],
+#about .about-section-label,
+#faq .section-head .eyebrow[data-key="faqEyebrow"],
+#more-info .section-head .eyebrow[data-key="moreInfoEyebrow"],
+/* the three headings inside the warm information strip */
+#info .info-card .eyebrow,
+/* product category labels keep the same restrained brand language */
+.product-card .product-cat,
+.product-cat{
+  color:var(--editorial-brown) !important;
+  -webkit-text-fill-color:var(--editorial-brown) !important;
+  opacity:1 !important;
+}
+
+/* Match the exact compact editorial styling across those labels. */
+#products .section-head .eyebrow[data-key="productsEyebrow"],
+#about .about-section-label,
+#faq .section-head .eyebrow[data-key="faqEyebrow"],
+#more-info .section-head .eyebrow[data-key="moreInfoEyebrow"],
+#info .info-card .eyebrow{
+  font-family:'Work Sans',sans-serif !important;
+  font-weight:600 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.14em !important;
+  font-style:normal !important;
+}
+
+/* Restore the earlier warm rose information strip. No extra title inside this strip. */
+#info{
+  background:#f3e2dd !important;
+}
+#info .info-section-label{
+  display:none !important;
+}
+
+/* About copy: every paragraph is one and the same body style.
+   This explicitly fixes the final sentence being darker/different. */
+#about .about-copy p,
+#about .about-copy p:first-child,
+#about .about-copy p:last-child,
+#about .about-copy p:last-of-type,
+#about .about-copy .about-closing,
+#about p[data-key="aboutP1"],
+#about p[data-key="aboutP2"],
+#about p[data-key="aboutP3"],
+#about p[data-key="aboutP4"]{
+  font-family:'Work Sans',sans-serif !important;
+  font-size:15px !important;
+  line-height:1.62 !important;
+  font-weight:400 !important;
+  font-style:normal !important;
+  letter-spacing:normal !important;
+  color:#625a56 !important;
+  -webkit-text-fill-color:#625a56 !important;
+  text-transform:none !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+}
+
+/* Keep emphasis inside the yarn sentence, without changing the paragraph colour system. */
+#about .about-copy p strong{
+  font-family:'Work Sans',sans-serif !important;
+  font-weight:600 !important;
+  color:#3f3935 !important;
+  -webkit-text-fill-color:#3f3935 !important;
+}
+
+@media (max-width:899px){
+  /* Preserve mobile layout; only apply the same colour/typography language. */
+  #about .about-copy p,
+  #about .about-copy .about-closing,
+  #about p[data-key="aboutP4"]{
+    color:#625a56 !important;
+    -webkit-text-fill-color:#625a56 !important;
+    font-family:'Work Sans',sans-serif !important;
+    font-weight:400 !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -12583,28 +13313,6 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
   </section>
 
 <!-- ============ ABOUT ============ -->
-  <section id="about">
-    <div class="about-layout reveal">
-      <div class="about-intro">
-        <div class="eyebrow" data-key="aboutEyebrow">About the maker</div>
-        <h2 data-key="aboutTitle">Inna Andrejeva</h2>
-        <p class="about-subtitle" data-key="aboutSubtitle">Founder of Inna with love</p>
-      </div>
-      <div class="about-photo">
-        <img src="photos/about-mama.jpeg" alt="">
-      </div>
-      <div class="about-copy">
-        <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort. Pieces that bring a sense of calm confidence and gentle strength.</p>
-        <p data-key="aboutP2">At the heart of it are natural Italian yarns: <strong>cashmere, merino, mohair with silk and linen</strong>, together with their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
-        <p data-key="aboutP3">It is timeless, not tied to trends or seasons, with a value that lasts for years.</p>
-        <p class="about-closing" data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
-      </div>
-    </div>
-  </section>
-
-  
-
-  <!-- ============ PRODUCTS ============ -->
   <section id="products">
     <div class="wrap">
       <div class="section-head reveal">
@@ -12626,7 +13334,29 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
 
   
 
-  <!-- ============ MATERIALS / INFO ============ -->
+  <!-- ============ ABOUT THE MAKER ============ -->
+  <section id="about">
+    <div class="wrap about-wrap">
+      <div class="about-section-label eyebrow reveal" data-key="aboutEyebrow">About the maker</div>
+      <div class="about-layout about-layout-editorial reveal">
+        <div class="about-photo">
+          <img src="photos/about-mama.jpeg" alt="">
+        </div>
+        <div class="about-intro">
+          <h2 data-key="aboutTitle">Inna Andrejeva</h2>
+          <p class="about-subtitle" data-key="aboutSubtitle">Founder of Inna with love</p>
+        </div>
+        <div class="about-copy">
+          <p data-key="aboutP1">I create knitwear where aesthetics meet quiet and inner comfort. Pieces that bring a sense of calm confidence and gentle strength.</p>
+          <p data-key="aboutP2">At the heart of it are natural Italian yarns: <strong>cashmere, merino, mohair with silk and linen</strong>, together with their subtle combinations. Every piece is hand-finished in every detail, from silhouette to how it feels against the skin.</p>
+          <p data-key="aboutP3">It is timeless, not tied to trends or seasons, with a value that lasts for years.</p>
+          <p class="about-closing" data-key="aboutP4">For women who choose quality, awareness, and quiet luxury.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ORDER INFO STRIP ============ -->
   <section id="info">
     <div class="wrap">
       <div class="info-grid reveal">
@@ -12645,8 +13375,6 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
       </div>
     </div>
   </section>
-
-  
 
   <!-- ============ FAQ ============ -->
   <section id="faq">
@@ -12929,7 +13657,11 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
     lv:"Izmēra korekcijas var pārrunāt. Uzrakstiet man, lai pārrunātu piegulšanu."
   };
 
-  const UNKNOWN_SIZE = { en:"[Size]", ru:"[Размер]", lv:"[Izmērs]" };
+  const CUSTOM_SIZE = {
+    en:"Made to your measurements, with the fit adjusted individually. Message me to discuss the details.",
+    ru:"Изделие вяжется по вашим меркам, с индивидуально подобранной посадкой. Напишите мне, чтобы обсудить детали.",
+    lv:"Izstrādājums tiek adīts pēc jūsu mēriem, individuāli pielāgojot piegulšanu. Uzrakstiet man, lai pārrunātu detaļas."
+  };
 
   const COLOUR_COPY_SINGLE = {
     en:"The colour shown in the photos is an example. Other shades may be available. Message me to confirm the available colours.",
@@ -12997,8 +13729,12 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
       category: "beachwear",
       name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
       price: { en:"€200", ru:"200 €", lv:"€200" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      composition: { en:"100% cotton", ru:"100% хлопок", lv:"100% kokvilna" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> machine wash at 30°C on a gentle cycle.</li><li><strong>Dry:</strong> reshape while damp and dry flat.</li><li><strong>Iron / steam:</strong> use low to medium heat if needed.</li><li><strong>Note:</strong> avoid tumble drying to help preserve the shape.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> машинная стирка при 30°C на деликатном режиме.</li><li><strong>Сушка:</strong> расправить изделие во влажном состоянии и сушить горизонтально.</li><li><strong>Утюг / отпаривание:</strong> при необходимости на низкой или средней температуре.</li><li><strong>Важно:</strong> не использовать машинную сушку, чтобы лучше сохранить форму.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> veļas mašīnā 30°C saudzīgā režīmā.</li><li><strong>Žāvēšana:</strong> mitru izstrādājumu iztaisnot un žāvēt horizontāli.</li><li><strong>Gludināšana / tvaicēšana:</strong> ja nepieciešams, zemā vai vidējā temperatūrā.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju, lai labāk saglabātu formu.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#2b2a28"],
       images: ["photos/dress-1-1.jpeg", "photos/dress-1-2.jpeg", "photos/dress-1-3.jpeg"],
@@ -13022,48 +13758,64 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
       typeLabel: { en:"Wrap", ru:"Палантин", lv:"Lakats" },
       name: { en:"Cocoon", ru:"Cocoon", lv:"Cocoon" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
-      composition: { en:"Composition to be confirmed", ru:"Состав уточняется", lv:"Sastāvs tiks precizēts" },
-      care: { en:"Care recommendations will be confirmed according to the final yarn composition.", ru:"Рекомендации по уходу уточняются в зависимости от состава выбранной пряжи.", lv:"Kopšanas ieteikumi tiks precizēti atbilstoši izvēlētās dzijas sastāvam." },
+      composition: { en:"50% mohair, 50% polyamide", ru:"50% мохер, 50% полиамид", lv:"50% mohēras, 50% poliamīda" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance on low heat.</li><li><strong>Note:</strong> do not tumble dry.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния и на низкой температуре.</li><li><strong>Важно:</strong> не использовать машинную сушку.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma un zemā temperatūrā.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#c88f9b"],
       images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg", "photos/wrap-1-4.jpeg"],
-      orderText: { en:"Hi! I\'d like to order Cocoon", ru:"Здравствуйте! Хочу заказать Cocoon", lv:"Sveiki! Vēlos pasūtīt Cocoon" }
+      orderText: { en:"Hi! I'd like to order Cocoon", ru:"Здравствуйте! Хочу заказать Cocoon", lv:"Sveiki! Vēlos pasūtīt Cocoon" }
     },
     {
       id: "top-blue",
       category: "tops",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      name: { en:"Lily", ru:"Lily", lv:"Lily" },
+      price: { en:"€100", ru:"100 €", lv:"€100" },
+      composition: { en:"100% linen", ru:"100% лён", lv:"100% lins" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> machine wash at 30°C on a gentle cycle.</li><li><strong>Dry:</strong> reshape while damp and dry flat.</li><li><strong>Iron / steam:</strong> medium heat while slightly damp if needed.</li><li><strong>Note:</strong> avoid tumble drying to help preserve the shape.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> машинная стирка при 30°C на деликатном режиме.</li><li><strong>Сушка:</strong> расправить изделие во влажном состоянии и сушить горизонтально.</li><li><strong>Утюг / отпаривание:</strong> при необходимости на средней температуре, лучше по слегка влажному изделию.</li><li><strong>Важно:</strong> не использовать машинную сушку, чтобы лучше сохранить форму.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> veļas mašīnā 30°C saudzīgā režīmā.</li><li><strong>Žāvēšana:</strong> mitru izstrādājumu iztaisnot un žāvēt horizontāli.</li><li><strong>Gludināšana / tvaicēšana:</strong> ja nepieciešams, vidējā temperatūrā, vēlams nedaudz mitram izstrādājumam.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju, lai labāk saglabātu formu.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#c9d9e6"],
       images: ["photos/top-blue-1.jpeg", "photos/top-blue-2.jpeg"],
-      orderText: { en:"Hi! I'd like to order this top", ru:"Здравствуйте! Хочу заказать этот топ", lv:"Sveiki! Vēlos pasūtīt šo topu" }
+      orderText: { en:"Hi! I'd like to order the Lily top", ru:"Здравствуйте! Хочу заказать топ Lily", lv:"Sveiki! Vēlos pasūtīt topu Lily" }
     },
     {
       id: "cardigan-white",
       category: "cardigans",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      name: { en:"Ivy", ru:"Ivy", lv:"Ivy" },
+      price: { en:"€250", ru:"250 €", lv:"€250" },
+      composition: { en:"100% cashmere", ru:"100% кашемир", lv:"100% kašmirs" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water, reshape and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance on low heat.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду, расправить изделие и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния и на низкой температуре.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni, iztaisnot un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma un zemā temperatūrā.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#f4f2ed"],
       images: ["photos/cardigan-white-1.jpeg", "photos/cardigan-white-2.jpeg", "photos/cardigan-white-3.jpeg"],
-      orderText: { en:"Hi! I'd like to order this cardigan", ru:"Здравствуйте! Хочу заказать этот кардиган", lv:"Sveiki! Vēlos pasūtīt šo kardiganu" }
+      orderText: { en:"Hi! I'd like to order the Ivy cardigan", ru:"Здравствуйте! Хочу заказать кардиган Ivy", lv:"Sveiki! Vēlos pasūtīt Ivy kardiganu" }
     },
     {
       id: "tunic-red",
       category: "beachwear",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      name: { en:"Coral", ru:"Coral", lv:"Coral" },
+      price: { en:"€200", ru:"200 €", lv:"€200" },
+      composition: { en:"25% linen, 75% silk", ru:"25% лён, 75% шёлк", lv:"25% lins, 75% zīds" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> do not wring; gently press out excess water and dry flat in the shade.</li><li><strong>Iron / steam:</strong> low heat from the reverse side or gentle steaming.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> не выкручивать; аккуратно удалить лишнюю воду и сушить горизонтально в тени.</li><li><strong>Утюг / отпаривание:</strong> низкая температура с изнаночной стороны или бережное отпаривание.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> neizgriezt; saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli ēnā.</li><li><strong>Gludināšana / tvaicēšana:</strong> zemā temperatūrā no kreisās puses vai saudzīga tvaicēšana.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#d7192d"],
       images: ["photos/tunic-red-1.jpeg", "photos/tunic-red-2.jpeg", "photos/tunic-red-3.jpeg", "photos/tunic-red-4.jpeg"],
-      orderText: { en:"Hi! I'd like to order this beachwear piece", ru:"Здравствуйте! Хочу заказать эту пляжную модель", lv:"Sveiki! Vēlos pasūtīt šo pludmales modeli" }
+      orderText: { en:"Hi! I'd like to order Coral", ru:"Здравствуйте! Хочу заказать Coral", lv:"Sveiki! Vēlos pasūtīt Coral" }
     },
     {
       id: "cardigan-1",
@@ -13085,10 +13837,14 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
     {
       id: "top-beige",
       category: "tops",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      name: { en:"Sand", ru:"Sand", lv:"Sand" },
+      price: { en:"€100", ru:"100 €", lv:"€100" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#c8b8a7"],
       images: [
@@ -13097,19 +13853,22 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
         "photos/top-beige-3.jpeg"
       ],
       orderText: {
-        en:"Hi! I'd like to order this top",
-        ru:"Здравствуйте! Хочу заказать этот топ",
-        lv:"Sveiki! Vēlos pasūtīt šo topu"
+        en:"Hi! I'd like to order the Sand top",
+        ru:"Здравствуйте! Хочу заказать топ Sand",
+        lv:"Sveiki! Vēlos pasūtīt topu Sand"
       }
     },
-
     {
       id: "vest-brown",
       category: "vests",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      name: { en:"Choco", ru:"Choco", lv:"Choco" },
+      price: { en:"€180", ru:"180 €", lv:"€180" },
+      composition: { en:"70% merino wool, 30% mohair", ru:"70% мериносовая шерсть, 30% мохер", lv:"70% merino vilna, 30% mohēras" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water, reshape and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду, расправить изделие и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni, iztaisnot un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#3a241e"],
       images: [
@@ -13117,17 +13876,16 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
         "photos/vest-brown-2.jpeg"
       ],
       orderText: {
-        en:"Hi! I'd like to order this vest",
-        ru:"Здравствуйте! Хочу заказать этот жилет",
-        lv:"Sveiki! Vēlos pasūtīt šo vesti"
+        en:"Hi! I'd like to order the Choco vest",
+        ru:"Здравствуйте! Хочу заказать жилет Choco",
+        lv:"Sveiki! Vēlos pasūtīt Choco vesti"
       }
     },
-
     {
       id: "cardigan-cream-wrap",
       category: "cardigans",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
+      name: { en:"Soft", ru:"Soft", lv:"Soft" },
+      price: { en:"€180", ru:"180 €", lv:"€180" },
       composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
       care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
       note: singleColourNote,
@@ -13139,19 +13897,23 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
         "photos/cardigan-cream-wrap-4.jpeg"
       ],
       orderText: {
-        en:"Hi! I'd like to order this cardigan",
-        ru:"Здравствуйте! Хочу заказать этот кардиган",
-        lv:"Sveiki! Vēlos pasūtīt šo kardiganu"
+        en:"Hi! I'd like to order the Soft cardigan",
+        ru:"Здравствуйте! Хочу заказать кардиган Soft",
+        lv:"Sveiki! Vēlos pasūtīt Soft kardiganu"
       }
     },
 
     {
       id: "top-white-knit",
       category: "tops",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
-      price: { en:"[Price]", ru:"[Цена]", lv:"[Cena]" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      name: { en:"Air", ru:"Air", lv:"Air" },
+      price: { en:"€100", ru:"100 €", lv:"€100" },
+      composition: { en:"100% linen", ru:"100% лён", lv:"100% lins" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> machine wash at 30°C on a gentle cycle.</li><li><strong>Dry:</strong> reshape while damp and dry flat.</li><li><strong>Iron / steam:</strong> medium heat while slightly damp if needed.</li><li><strong>Note:</strong> avoid tumble drying to help preserve the shape.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> машинная стирка при 30°C на деликатном режиме.</li><li><strong>Сушка:</strong> расправить изделие во влажном состоянии и сушить горизонтально.</li><li><strong>Утюг / отпаривание:</strong> при необходимости на средней температуре, лучше по слегка влажному изделию.</li><li><strong>Важно:</strong> не использовать машинную сушку, чтобы лучше сохранить форму.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> veļas mašīnā 30°C saudzīgā režīmā.</li><li><strong>Žāvēšana:</strong> mitru izstrādājumu iztaisnot un žāvēt horizontāli.</li><li><strong>Gludināšana / tvaicēšana:</strong> ja nepieciešams, vidējā temperatūrā, vēlams nedaudz mitram izstrādājumam.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju, lai labāk saglabātu formu.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#f3f0e8"],
       images: [
@@ -13159,9 +13921,9 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
         "photos/top-white-knit-2.jpeg"
       ],
       orderText: {
-        en:"Hi! I'd like to order this top",
-        ru:"Здравствуйте! Хочу заказать этот топ",
-        lv:"Sveiki! Vēlos pasūtīt šo topu"
+        en:"Hi! I'd like to order the Air top",
+        ru:"Здравствуйте! Хочу заказать топ Air",
+        lv:"Sveiki! Vēlos pasūtīt topu Air"
       }
     }
 
@@ -13261,13 +14023,26 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
     const p = modalState.product;
     if(!p) return;
     const img = p.images[modalState.index];
-    document.getElementById('modalImgWrap').innerHTML = `
-      ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
-      ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}">` : `<div class="ph">${img}</div>` }
-      ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
-    `;
+    const modalImgWrap = document.getElementById('modalImgWrap');
+    const isMobileGallery = window.matchMedia('(max-width:699px)').matches;
+    if(isMobileGallery){
+      modalImgWrap.classList.add('native-swipe-gallery');
+      modalImgWrap.innerHTML = p.images.map((item, i)=>
+        isImagePath(item)
+          ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}">`
+          : `<div class="ph" data-index="${i}">${item}</div>`
+      ).join('');
+      requestAnimationFrame(()=>{ modalImgWrap.scrollLeft = modalState.index * modalImgWrap.clientWidth; });
+    } else {
+      modalImgWrap.classList.remove('native-swipe-gallery');
+      modalImgWrap.innerHTML = `
+        ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
+        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}">` : `<div class="ph">${img}</div>` }
+        ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
+      `;
+    }
     document.getElementById('modalDots').innerHTML = p.images.map((_, i)=>
-      `<span class="${i===modalState.index?'active':''}"></span>`).join('');
+      `<span class="${i===modalState.index?'active':''}" data-index="${i}"></span>`).join('');
     document.getElementById('modalCat').textContent = p.typeLabel ? p.typeLabel[currentLang] : (categoryLabelsSingular[p.category] ? categoryLabelsSingular[p.category][currentLang] : '');
     document.getElementById('modalName').textContent = p.name[currentLang];
     document.getElementById('modalPrice').textContent = p.price[currentLang];
@@ -13278,7 +14053,7 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
       sizeAdjustEl.textContent = SIZE_ADJUSTMENT[currentLang];
       sizeAdjustEl.style.display = '';
     } else {
-      sizeInfoEl.textContent = UNKNOWN_SIZE[currentLang];
+      sizeInfoEl.textContent = CUSTOM_SIZE[currentLang];
       sizeAdjustEl.textContent = '';
       sizeAdjustEl.style.display = 'none';
     }
@@ -13341,6 +14116,7 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
       startY = e.touches[0].clientY;
     }, {passive:true});
     wrap.addEventListener('touchend', (e)=>{
+      if(wrap.classList.contains('native-swipe-gallery')) return;
       if(!modalState.product || modalState.product.images.length < 2 || !e.changedTouches || !e.changedTouches.length) return;
       const dx = e.changedTouches[0].clientX - startX;
       const dy = e.changedTouches[0].clientY - startY;
@@ -13462,6 +14238,7 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
     productsDesc: { en:"Choose a category or browse all pieces. Open any item to see photos, composition, care, size and colour information, and ordering options.",
                     ru:"Выберите категорию или смотрите все работы. Откройте любую модель, чтобы увидеть фото, состав, уход, информацию о размере и цветах, а также варианты заказа.",
                     lv:"Izvēlieties kategoriju vai apskatiet visus darbus. Atveriet jebkuru modeli, lai redzētu fotoattēlus, sastāvu, kopšanu, informāciju par izmēru un krāsām, kā arī pasūtīšanas iespējas." },
+    infoSectionLabel: { en:"Useful information before you order", ru:"Полезная информация перед заказом", lv:"Noderīga informācija pirms pasūtījuma" },
     infoEyebrow1: { en:"Yarn", ru:"Пряжа", lv:"Dzija" },
     infoP1: { en:"Natural fibres - cashmere, mohair, merino wool, silk. Yarn is chosen individually for each project.",
               ru:"Натуральные волокна - кашемир, мохер, мериносовая шерсть, шёлк. Пряжа выбирается под каждый проект отдельно.",
@@ -13592,7 +14369,7 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
     contactBtn2: { en:"Message on Instagram", ru:"Написать в Direct", lv:"Rakstīt Instagram" },
     alsoFindMe: { en:"Also find me on:", ru:"Также меня можно найти:", lv:"Mani var atrast arī šeit:" },
     pinterestLink: { en:"Pinterest", ru:"Pinterest", lv:"Pinterest" },
-    footerText: { en:"Inna with love · Made-to-order knitwear · Latvia ·",
+    footerText: { en:"Inna with love · Knitwear · Latvia ·",
                   ru:"Inna with love · Вязаные изделия на заказ · Латвия ·",
                   lv:"Inna with love · Adījumi pēc pasūtījuma · Latvija ·" },
     learnMore: { en:"View details", ru:"Подробнее", lv:"Skatīt detaļas" },
@@ -13628,6 +14405,211 @@ header.topbar, .topbar-inner{ overflow:visible !important; }
   initReveal();
 </script>
 
+
+<script id="FINAL-smart-header-scroll-2026">
+(() => {
+  const header = document.querySelector('header.topbar');
+  if (!header) return;
+
+  let lastY = Math.max(0, window.scrollY || 0);
+  let ticking = false;
+  const topRevealPoint = 12;
+  const minDelta = 5;
+
+  const updateHeader = () => {
+    const y = Math.max(0, window.scrollY || 0);
+    const delta = y - lastY;
+
+    if (y <= topRevealPoint) {
+      header.classList.remove('header-hidden');
+    } else if (delta > minDelta) {
+      header.classList.add('header-hidden');
+    } else if (delta < -minDelta) {
+      header.classList.remove('header-hidden');
+    }
+
+    lastY = y;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive:true });
+
+  window.addEventListener('pageshow', () => {
+    lastY = Math.max(0, window.scrollY || 0);
+    if (lastY <= topRevealPoint) header.classList.remove('header-hidden');
+  });
+})();
+</script>
+
+
+<style id="native-mobile-product-gallery-2026">
+@media (max-width:699px){
+  #productModal .modal-imgwrap.native-swipe-gallery{
+    display:flex !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:x mandatory !important;
+    scroll-behavior:smooth !important;
+    -webkit-overflow-scrolling:touch !important;
+    touch-action:pan-x pan-y !important;
+    scrollbar-width:none !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery::-webkit-scrollbar{ display:none !important; }
+  #productModal .modal-imgwrap.native-swipe-gallery > img,
+  #productModal .modal-imgwrap.native-swipe-gallery > .ph{
+    flex:0 0 100% !important;
+    width:100% !important;
+    min-width:100% !important;
+    height:100% !important;
+    scroll-snap-align:start !important;
+    scroll-snap-stop:always !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery > img{ object-fit:cover !important; }
+}
+</style>
+<script id="native-mobile-product-gallery-2026-js">
+(function(){
+  const wrap=document.getElementById('modalImgWrap');
+  const dots=document.getElementById('modalDots');
+  if(!wrap || !dots) return;
+  let raf=0;
+  function syncNativeGallery(){
+    if(!wrap.classList.contains('native-swipe-gallery') || !modalState.product) return;
+    const width=Math.max(1,wrap.clientWidth);
+    const index=Math.max(0,Math.min(modalState.product.images.length-1,Math.round(wrap.scrollLeft/width)));
+    modalState.index=index;
+    dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active',i===index));
+  }
+  wrap.addEventListener('scroll',()=>{
+    if(!wrap.classList.contains('native-swipe-gallery')) return;
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(syncNativeGallery);
+  },{passive:true});
+  dots.addEventListener('click',(e)=>{
+    const dot=e.target.closest('span[data-index]');
+    if(!dot || !wrap.classList.contains('native-swipe-gallery')) return;
+    const index=Number(dot.dataset.index)||0;
+    modalState.index=index;
+    wrap.scrollTo({left:index*wrap.clientWidth,behavior:'smooth'});
+  });
+})();
+</script>
+
 </body>
 </html>
 
+<style id="about-final-paragraph-typography-fix">
+/* Keep the final About paragraph visually identical to the other About body paragraphs. */
+#about .about-copy p:last-child,
+#about .about-copy p:last-of-type {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  color: inherit !important;
+  text-transform: none !important;
+}
+</style>
+
+
+<style id="final-section-colour-and-about-copy-lock-2026">
+/* ============================================================
+   FINAL VISUAL LOCK
+   1) No extra title inside the warm Yarn / Turnaround / Sizes strip.
+   2) Portfolio / About the maker / Before you order / Useful information
+      share the same brand-chocolate section-label system.
+   3) Every About body paragraph, including the closing sentence,
+      uses exactly the same body typography and colour.
+   ============================================================ */
+:root{ --final-section-chocolate:#432a19; --final-about-body:#625a56; }
+
+/* One consistent editorial eyebrow system across the page. */
+#products .section-head .eyebrow[data-key="productsEyebrow"],
+#about .about-section-label,
+#faq .section-head .eyebrow[data-key="faqEyebrow"],
+#more-info .section-head .eyebrow[data-key="moreInfoEyebrow"]{
+  font-family:'Work Sans',sans-serif !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+  color:var(--final-section-chocolate) !important;
+}
+
+/* Keep the warm practical-information strip exactly as a three-column strip. */
+#info{
+  display:block !important;
+  background:#f1e4de !important;
+}
+#info .info-section-label{
+  display:none !important;
+}
+#info .info-card .eyebrow{
+  font-family:'Work Sans',sans-serif !important;
+  font-size:11px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+  color:var(--final-section-chocolate) !important;
+}
+
+/* Lock all About body copy to one identical treatment. */
+#about .about-copy,
+#about .about-copy p,
+#about .about-copy p.about-closing,
+#about .about-copy p:last-child,
+#about .about-copy p:last-of-type{
+  font-family:'Work Sans',sans-serif !important;
+  font-size:15px !important;
+  line-height:1.62 !important;
+  font-weight:400 !important;
+  font-style:normal !important;
+  letter-spacing:normal !important;
+  text-transform:none !important;
+  color:var(--final-about-body) !important;
+}
+#about .about-copy p.about-closing,
+#about .about-copy p:last-child,
+#about .about-copy p:last-of-type{
+  color:var(--final-about-body) !important;
+  font-weight:400 !important;
+}
+#about .about-copy strong{
+  font-family:'Work Sans',sans-serif !important;
+  font-weight:600 !important;
+  color:#3f3935 !important;
+}
+
+@media (min-width:900px){
+  /* Keep the refined compact desktop portrait and vertically centred text block. */
+  #about .about-photo{
+    aspect-ratio:6 / 5 !important;
+    width:100% !important;
+    max-width:none !important;
+    height:auto !important;
+  }
+  #about .about-layout.about-layout-editorial{
+    grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr) !important;
+    grid-template-areas:"photo ." "photo intro" "photo copy" "photo ." !important;
+    grid-template-rows:1fr auto auto 1fr !important;
+    align-items:stretch !important;
+  }
+  #about .about-intro{ align-self:end !important; }
+  #about .about-copy{ align-self:start !important; }
+
+  /* No phantom spacing where the removed info-strip title used to be. */
+  #info{ padding-top:34px !important; padding-bottom:34px !important; }
+  #info .info-grid{ margin-top:0 !important; }
+}
+</style>
