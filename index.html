@@ -15083,3 +15083,16 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="FINAL-mobile-category-rows-extra-tight-2026-09-12">
+@media (max-width:699px){
+  /* Final override: remove the inherited flex gap that was stacking with row margin. */
+  #products .category-tabs{
+    gap:0 !important;
+    row-gap:0 !important;
+  }
+  #products .category-row + .category-row{
+    margin-top:5px !important;
+  }
+}
+</style>
