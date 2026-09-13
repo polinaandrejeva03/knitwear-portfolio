@@ -13529,6 +13529,32 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="final-about-left-edge-real-fix-2026">
+/* FINAL desktop alignment fix: About the Maker must sit on the exact same
+   left guide as Collection cards, View Details, Yarn, FAQ and Useful Information. */
+@media (min-width:1000px){
+  #about > .wrap.about-wrap,
+  #about .about-wrap{
+    width:min(var(--max), calc(100% - 96px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  #about .about-section-label,
+  #about .about-layout.about-layout-editorial{
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  #about .about-photo{
+    margin-left:0 !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -15103,40 +15129,6 @@ header.topbar.header-hidden{
   }
 }
 </style>
-
-<style id="FINAL-about-absolute-left-guide-2026-09-13">
-@media (min-width:900px){
-  /* Hard desktop alignment: About uses the exact same 48px page guide as the product area. */
-  #about > .wrap.about-wrap,
-  #about .about-wrap{
-    box-sizing:border-box !important;
-    width:calc(100% - 96px) !important;
-    max-width:none !important;
-    margin-left:48px !important;
-    margin-right:48px !important;
-    padding-left:0 !important;
-    padding-right:0 !important;
-  }
-
-  #about .about-section-label,
-  #about .about-layout.about-layout-editorial,
-  #about .about-layout,
-  #about .about-photo,
-  #about .about-intro,
-  #about .about-copy{
-    margin-left:0 !important;
-    margin-right:0 !important;
-    padding-left:0 !important;
-  }
-
-  #about .about-layout.about-layout-editorial,
-  #about .about-layout{
-    width:100% !important;
-    max-width:none !important;
-    padding-right:0 !important;
-  }
-}
-</style>
 </body>
 </html>
 
@@ -15585,6 +15577,166 @@ header.topbar.header-hidden{
   #about .about-copy{
     margin-left:0 !important;
     margin-right:0 !important;
+  }
+}
+</style>
+
+<style id="FINAL-about-left-guide-actual-fix-2026-09-13">
+/* FINAL desktop fix: About uses EXACTLY the same outer guide as Collection.
+   This override is intentionally last because legacy styles appear after </html>. */
+@media (min-width:900px){
+  #about > .wrap.about-wrap,
+  #about .wrap.about-wrap,
+  #about .about-wrap{
+    box-sizing:border-box !important;
+    width:min(calc(100% - 48px), 1080px) !important;
+    max-width:1080px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    transform:none !important;
+  }
+  #about .about-section-label,
+  #about .about-layout.about-layout-editorial{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    transform:none !important;
+  }
+  #about .about-photo,
+  #about .about-intro,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+}
+</style>
+
+<style id="FINAL-about-left-edge-grid-match-2026-09-13">
+/* Desktop correction: About must share the exact same outer guide as the
+   Collection product grid. Keep the portrait approximately the same visual
+   size while moving the whole section left onto that guide. */
+@media (min-width:900px){
+  #about > .wrap.about-wrap,
+  #about .wrap.about-wrap,
+  #about .about-wrap{
+    box-sizing:border-box !important;
+    width:min(92vw,1500px) !important;
+    max-width:1500px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    transform:none !important;
+  }
+
+  #about .about-section-label{
+    width:100% !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    transform:none !important;
+  }
+
+  #about .about-layout.about-layout-editorial{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    grid-template-columns:560px minmax(0,1fr) !important;
+    column-gap:72px !important;
+    transform:none !important;
+  }
+
+  #about .about-photo{
+    width:560px !important;
+    max-width:560px !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  #about .about-intro,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+}
+
+@media (min-width:900px) and (max-width:1199px){
+  #about .about-layout.about-layout-editorial{
+    grid-template-columns:minmax(0,48%) minmax(0,52%) !important;
+    column-gap:40px !important;
+  }
+  #about .about-photo{
+    width:100% !important;
+    max-width:none !important;
+  }
+}
+</style>
+
+<style id="FINAL-about-exact-guide-large-photo-2026-09-13">
+/* Desktop: About follows exactly the same left/right guide as Collection/Yarn.
+   Keep a true 50/50 editorial split so the portrait reaches the page midpoint. */
+@media (min-width:900px){
+  #about > .wrap.about-wrap,
+  #about .wrap.about-wrap,
+  #about .about-wrap{
+    box-sizing:border-box !important;
+    width:min(var(--max), calc(100% - 96px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    transform:none !important;
+  }
+
+  #about .about-section-label{
+    width:100% !important;
+    margin:0 0 28px 0 !important;
+    padding:0 !important;
+    transform:none !important;
+  }
+
+  #about .about-layout.about-layout-editorial{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    column-gap:56px !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    align-items:center !important;
+    transform:none !important;
+  }
+
+  #about .about-photo{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    justify-self:stretch !important;
+  }
+
+  #about .about-photo img{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:none !important;
+    object-fit:cover !important;
+  }
+
+  #about .about-intro,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
   }
 }
 </style>
