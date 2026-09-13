@@ -13455,6 +13455,29 @@ header.topbar.header-hidden{
   transform:none !important;
 }
 </style>
+
+<style id="FINAL-pearl-main-card-full-top-2026-09-13">
+/* Pearl main collection card only: show the complete head and the full knit top.
+   The portrait is narrower/taller than the 4:5 card, so we render it at 90% card width
+   and align it to the top instead of forcing a destructive cover crop. */
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child{
+  background:#f3f0eb !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child img{
+  width:90% !important;
+  height:auto !important;
+  max-width:none !important;
+  max-height:none !important;
+  object-fit:initial !important;
+  object-position:initial !important;
+  align-self:flex-start !important;
+  margin:0 auto !important;
+  transform:none !important;
+}
+</style>
 </head>
 <body>
 
@@ -14262,7 +14285,7 @@ header.topbar.header-hidden{
           ${ p.images.map((img, imgIndex) => {
             const cardImageStyle =
               (p.id === "top-pearl" && imgIndex === 0)
-                ? "object-fit:cover !important;object-position:center top !important;"
+                ? "width:90% !important;height:auto !important;max-width:none !important;max-height:none !important;object-fit:initial !important;object-position:initial !important;align-self:flex-start !important;margin:0 auto !important;transform:none !important;"
                 : (p.id === "wrap-2" && imgIndex === 0)
                   ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
                   : "";
