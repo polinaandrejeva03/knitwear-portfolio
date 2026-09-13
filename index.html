@@ -13409,6 +13409,22 @@ header.topbar.header-hidden{
 }
 .product-price:empty, #productModal .modal-price:empty{display:none !important;}
 </style>
+
+<style id="FINAL-product-focal-crop-fix-2026-09-13">
+/* Pearl: show substantially more of the head while keeping the top visible. */
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child img{
+  object-fit:cover !important;
+  object-position:center 10% !important;
+}
+/* Cocoon II: show the whole wrap instead of cropping the lower part. */
+.product-card[data-product-id="wrap-2"] .product-thumb .slide:first-child{
+  background:#f3f0eb !important;
+}
+.product-card[data-product-id="wrap-2"] .product-thumb .slide:first-child img{
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+</style>
 </head>
 <body>
 
@@ -13963,7 +13979,7 @@ header.topbar.header-hidden{
       },
       note: singleColourNote,
       colors: ["#8d8a86"],
-      images: ["photos/cocoon-2-1.jpeg", "photos/cocoon-2-2.jpeg"],
+      images: ["photos/cocoon-2-1.png", "photos/cocoon-2-2.jpeg"],
       orderText: { en:"Hi! I'd like to order Cocoon II", ru:"Здравствуйте! Хочу заказать Cocoon II", lv:"Sveiki! Vēlos pasūtīt Cocoon II" }
     },
     {
