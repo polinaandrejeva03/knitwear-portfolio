@@ -15740,3 +15740,22 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="FINAL-about-photo-crop-centered-2026-09-13">
+/* Desktop only: keep the existing About photo box exactly as it is,
+   but shift the portrait crop upward inside that box so less empty wall
+   is visible above and more of the lower body/clothing remains visible. */
+@media (min-width:900px){
+  #about .about-photo{
+    overflow:hidden !important;
+  }
+  #about .about-photo img{
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    object-fit:cover !important;
+    object-position:center 68% !important;
+    transform:none !important;
+  }
+}
+</style>
