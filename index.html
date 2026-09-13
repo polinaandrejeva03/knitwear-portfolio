@@ -13478,6 +13478,17 @@ header.topbar.header-hidden{
   transform:none !important;
 }
 </style>
+
+<style id="FINAL-cocoon-II-second-photo-framing-2026-09-13">
+/* Cocoon II, second photo: keep the lower part of the wrap in frame.
+   The original portrait has generous space above the head, so bottom alignment
+   removes that excess instead of cutting the garment. */
+.product-card[data-product-id="wrap-2"] .product-thumb .slide:nth-child(3) img{
+  object-fit:cover !important;
+  object-position:center bottom !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -14288,7 +14299,9 @@ header.topbar.header-hidden{
                 ? "width:90% !important;height:auto !important;max-width:none !important;max-height:none !important;object-fit:initial !important;object-position:initial !important;align-self:flex-start !important;margin:0 auto !important;transform:none !important;"
                 : (p.id === "wrap-2" && imgIndex === 0)
                   ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
-                  : "";
+                  : (p.id === "wrap-2" && imgIndex === 1)
+                    ? "object-fit:cover !important;object-position:center bottom !important;"
+                    : "";
             return `<div class="slide"${p.id === "wrap-2" && imgIndex === 0 ? ' style="background:#f3f0eb;"' : ''}>${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${cardImageStyle}">` : `<div class="ph">${img}</div>` }</div>`;
           }).join('') }
         </div>
@@ -14331,17 +14344,22 @@ header.topbar.header-hidden{
     const isMobileGallery = window.matchMedia('(max-width:699px)').matches;
     if(isMobileGallery){
       modalImgWrap.classList.add('native-swipe-gallery');
-      modalImgWrap.innerHTML = p.images.map((item, i)=>
-        isImagePath(item)
-          ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}">`
-          : `<div class="ph" data-index="${i}">${item}</div>`
-      ).join('');
+      modalImgWrap.innerHTML = p.images.map((item, i)=>{
+        const galleryStyle = (p.id === "wrap-2" && i === 0)
+          ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
+          : (p.id === "wrap-2" && i === 1)
+            ? "object-fit:cover !important;object-position:center bottom !important;"
+            : "";
+        return isImagePath(item)
+          ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}" style="${galleryStyle}">`
+          : `<div class="ph" data-index="${i}">${item}</div>`;
+      }).join('');
       requestAnimationFrame(()=>{ modalImgWrap.scrollLeft = modalState.index * modalImgWrap.clientWidth; });
     } else {
       modalImgWrap.classList.remove('native-swipe-gallery');
       modalImgWrap.innerHTML = `
         ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
-        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}">` : `<div class="ph">${img}</div>` }
+        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${p.id === 'wrap-2' && modalState.index === 0 ? 'object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;' : p.id === 'wrap-2' && modalState.index === 1 ? 'object-fit:cover !important;object-position:center bottom !important;' : ''}">` : `<div class="ph">${img}</div>` }
         ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
       `;
     }
@@ -14868,6 +14886,80 @@ header.topbar.header-hidden{
 }
 </style>
 
+
+
+<style id="FINAL-desktop-section-rhythm-alignment-2026-09-13">
+/* Desktop-only polish: one shared page edge and one consistent chapter gap.
+   Mobile remains untouched. */
+@media (min-width:900px){
+  :root{ --desktop-chapter-gap:60px; }
+
+  /* Every main chapter uses the same horizontal guide as Collection. */
+  #products > .wrap,
+  #about > .wrap.about-wrap,
+  #about .about-wrap,
+  #info > .wrap,
+  #faq > .wrap,
+  #more-info > .wrap,
+  #contact > .wrap{
+    width:min(var(--max), calc(100% - 96px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  /* One consistent vertical distance before every major chapter label. */
+  #products{
+    padding-top:var(--desktop-chapter-gap) !important;
+    padding-bottom:var(--desktop-chapter-gap) !important;
+  }
+  #about{
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+  #info{
+    margin-top:var(--desktop-chapter-gap) !important;
+    padding-top:34px !important;
+    padding-bottom:34px !important;
+  }
+  #faq{
+    padding-top:var(--desktop-chapter-gap) !important;
+    padding-bottom:0 !important;
+  }
+  #more-info{
+    padding-top:var(--desktop-chapter-gap) !important;
+    padding-bottom:0 !important;
+  }
+  #contact{
+    padding-top:var(--desktop-chapter-gap) !important;
+  }
+
+  /* About label and photo start on exactly the same left guide. */
+  #about .about-section-label{
+    margin:0 0 28px !important;
+    padding:0 !important;
+  }
+  #about .about-layout.about-layout-editorial{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  #about .about-photo{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  /* Prevent inherited margins from adding accidental extra space before headings. */
+  #products .section-head,
+  #faq .section-head,
+  #more-info .section-head{
+    margin-top:0 !important;
+  }
+}
+</style>
 </body>
 </html>
 
@@ -15213,6 +15305,109 @@ header.topbar.header-hidden{
   }
   #products .category-row + .category-row{
     margin-top:5px !important;
+  }
+}
+</style>
+
+
+<style id="FINAL-desktop-rhythm-about-grid-hard-lock-2026-09-13">
+/* Desktop hard lock: one chapter rhythm and one About alignment.
+   Mobile/tablet remain unchanged. */
+@media (min-width:900px){
+  :root{
+    --desktop-chapter-space:48px;
+    --desktop-about-inset:48px;
+  }
+
+  /* Remove accumulated legacy spacing so gaps cannot double. */
+  #products,
+  #about,
+  #faq,
+  #more-info,
+  #contact{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+  }
+
+  /* HERO -> PORTFOLIO */
+  #products{
+    padding-top:var(--desktop-chapter-space) !important;
+    padding-bottom:0 !important;
+  }
+
+  /* COLLECTION -> ABOUT */
+  #about{
+    margin-top:var(--desktop-chapter-space) !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+
+  /* The warm Yarn / Turnaround / Sizes strip keeps its own compact inner padding. */
+  #info{
+    margin-top:var(--desktop-chapter-space) !important;
+    margin-bottom:0 !important;
+    padding-top:34px !important;
+    padding-bottom:34px !important;
+  }
+
+  /* INFO STRIP -> BEFORE YOU ORDER */
+  #faq{
+    margin-top:var(--desktop-chapter-space) !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+
+  /* BEFORE YOU ORDER -> USEFUL INFORMATION */
+  #more-info{
+    margin-top:var(--desktop-chapter-space) !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+
+  /* USEFUL INFORMATION -> CONTACT */
+  #contact{
+    margin-top:var(--desktop-chapter-space) !important;
+    padding-top:0 !important;
+  }
+
+  /* No hidden heading margins may add another chapter-sized gap. */
+  #products .section-head,
+  #faq .section-head,
+  #more-info .section-head,
+  #contact .contact{
+    margin-top:0 !important;
+  }
+
+  /* About was visually too far left. Move label, portrait and copy onto
+     the same inner guide as the visible product-card content. */
+  #about > .wrap.about-wrap,
+  #about .about-wrap{
+    box-sizing:border-box !important;
+    width:min(var(--max), calc(100% - 96px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:var(--desktop-about-inset) !important;
+    padding-right:var(--desktop-about-inset) !important;
+  }
+
+  #about .about-section-label{
+    margin:0 0 28px !important;
+    padding:0 !important;
+  }
+
+  #about .about-layout.about-layout-editorial{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  #about .about-photo,
+  #about .about-intro,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
   }
 }
 </style>
