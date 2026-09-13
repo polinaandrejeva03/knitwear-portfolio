@@ -13529,6 +13529,41 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="FINAL-about-true-left-guide-2026-09-13">
+/* Desktop only: About the Maker must sit on the exact same left page guide
+   as Collection product content, View Details, and the Yarn information strip. */
+@media (min-width:900px){
+  #about > .wrap.about-wrap,
+  #about .about-wrap{
+    width:min(var(--max), calc(100% - 96px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  #about .about-section-label,
+  #about .about-layout.about-layout-editorial,
+  #about .about-photo,
+  #about .about-intro,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  #about .about-section-label{
+    padding-left:0 !important;
+    transform:none !important;
+  }
+  #about .about-layout.about-layout-editorial{
+    width:100% !important;
+    max-width:none !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    transform:none !important;
+  }
+}
+</style>
 </head>
 <body>
 
