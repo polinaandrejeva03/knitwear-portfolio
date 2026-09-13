@@ -13515,6 +13515,20 @@ header.topbar.header-hidden{
 }
 </style>
 
+
+<style id="FINAL-divider-equal-spacing-2026-09-13">
+/* Desktop: keep the yarn-ball + heart exactly midway between
+   Useful Information and How to Order. The contact section already
+   contributes the lower chapter gap, so we mirror that gap above. */
+@media (min-width:900px){
+  .real-photo-divider{
+    margin-top:48px !important;
+    margin-bottom:0 !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -14050,9 +14064,9 @@ header.topbar.header-hidden{
         ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния и на низкой температуре.</li><li><strong>Важно:</strong> не использовать машинную сушку.</li></ul>`,
         lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma un zemā temperatūrā.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju.</li></ul>`
       },
-      note: singleColourNote,
-      colors: ["#c88f9b"],
-      images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg", "photos/wrap-1-4.jpeg"],
+      note: multipleColoursNote,
+      colors: ["#c88f9b", "#c89b63", "#b99ab8", "#4a2d42"],
+      images: ["photos/wrap-1-1.jpeg", "photos/wrap-1-2.jpeg", "photos/wrap-1-3.jpeg", "photos/wrap-1-4.jpeg", "photos/wrap-1-5.jpeg", "photos/wrap-1-6.jpeg", "photos/wrap-1-7.jpeg", "photos/wrap-1-8.jpeg", "photos/wrap-1-9.jpeg", "photos/wrap-1-10.jpeg"],
       orderText: { en:"Hi! I'd like to order Cocoon I", ru:"Здравствуйте! Хочу заказать Cocoon I", lv:"Sveiki! Vēlos pasūtīt Cocoon I" }
     },
     {
@@ -15051,6 +15065,44 @@ header.topbar.header-hidden{
 }
 </style>
 
+
+<style id="FINAL-about-left-edge-corrected-2026-09-13">
+/* Desktop: About starts on the exact same page guide as Collection cards.
+   This intentionally removes the extra inner inset added by an older override. */
+@media (min-width:900px){
+  #about > .wrap.about-wrap,
+  #about .about-wrap{
+    width:min(var(--max), calc(100% - 96px)) !important;
+    max-width:var(--max) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  #about .about-section-label,
+  #about .about-layout.about-layout-editorial,
+  #about .about-layout,
+  #about .about-photo,
+  #about .about-intro,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  #about .about-layout.about-layout-editorial,
+  #about .about-layout{
+    width:100% !important;
+    max-width:none !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  #about .about-section-label{
+    padding-left:0 !important;
+  }
+}
+</style>
 </body>
 </html>
 
