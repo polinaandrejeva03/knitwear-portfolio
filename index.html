@@ -13401,6 +13401,14 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="pearl-card-focal-fix-2026">
+/* Pearl: keep the model's head visible in the first collection thumbnail without losing the top. */
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child img{
+  object-position:center 32% !important;
+}
+.product-price:empty, #productModal .modal-price:empty{display:none !important;}
+</style>
 </head>
 <body>
 
@@ -13861,6 +13869,22 @@ header.topbar.header-hidden{
       orderText: { en:"Hi! I\'d like to order the Flow sweater", ru:"Здравствуйте! Хочу заказать свитер Flow", lv:"Sveiki! Vēlos pasūtīt džemperi Flow" }
     },
     {
+      id: "marta",
+      category: "sweaters",
+      name: { en:"Marta", ru:"Marta", lv:"Marta" },
+      price: { en:"", ru:"", lv:"" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
+      care: { 
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
+      note: multipleColoursNote,
+      colors: ["#f2efe9", "#b8ced4"],
+      images: ["photos/marta-1.jpeg", "photos/marta-2.jpeg", "photos/marta-3.jpeg"],
+      orderText: { en:"Hi! I'd like to order the Marta sweater", ru:"Здравствуйте! Хочу заказать свитер Marta", lv:"Sveiki! Vēlos pasūtīt džemperi Marta" }
+    },
+    {
       id: "top-pearl",
       category: "tops",
       name: { en:"Pearl", ru:"Pearl", lv:"Pearl" },
@@ -13872,7 +13896,7 @@ header.topbar.header-hidden{
         lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
       },
       note: oneSizeSingleColourNote,
-      colors: ["#c4c2bd"],
+      colors: ["#b8d4cf", "#6f274b", "#c8c1b5"],
       images: ["photos/pearl-3.jpeg", "photos/pearl-4.jpeg", "photos/pearl-5.jpeg", "photos/pearl-6.jpeg", "photos/pearl-1.jpeg"],
       orderText: { en:"Hi! I\'d like to order the Pearl top", ru:"Здравствуйте! Хочу заказать топ Pearl", lv:"Sveiki! Vēlos pasūtīt topu Pearl" }
     },
@@ -13897,8 +13921,12 @@ header.topbar.header-hidden{
       category: "dresses",
       name: { en:"Wild", ru:"Wild", lv:"Wild" },
       price: { en:"€150", ru:"150 €", lv:"€150" },
-      composition: { en:"Composition to be confirmed", ru:"Состав уточняется", lv:"Sastāvs tiks precizēts" },
-      care: { en:"Care recommendations will be confirmed according to the final yarn composition.", ru:"Рекомендации по уходу уточняются в зависимости от состава выбранной пряжи.", lv:"Kopšanas ieteikumi tiks precizēti atbilstoši izvēlētās dzijas sastāvam." },
+      composition: { en:"100% linen", ru:"100% лён", lv:"100% lins" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> machine wash at 30°C on a gentle cycle.</li><li><strong>Dry:</strong> reshape while damp and dry flat.</li><li><strong>Iron / steam:</strong> use low to medium heat if needed.</li><li><strong>Note:</strong> avoid tumble drying to help preserve the shape.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> машинная стирка при 30°C на деликатном режиме.</li><li><strong>Сушка:</strong> расправить изделие во влажном состоянии и сушить горизонтально.</li><li><strong>Утюг / отпаривание:</strong> при необходимости на низкой или средней температуре.</li><li><strong>Важно:</strong> не использовать машинную сушку, чтобы лучше сохранить форму.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> veļas mašīnā 30°C saudzīgā režīmā.</li><li><strong>Žāvēšana:</strong> mitru izstrādājumu iztaisnot un žāvēt horizontāli.</li><li><strong>Gludināšana / tvaicēšana:</strong> ja nepieciešams, zemā vai vidējā temperatūrā.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju, lai labāk saglabātu formu.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#8a8570"],
       images: ["photos/dress-2-1.jpeg", "photos/dress-2-2.jpeg", "photos/dress-2-3.jpeg"],
@@ -14165,7 +14193,7 @@ header.topbar.header-hidden{
     const grid = document.getElementById('productGrid');
     const list = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
     grid.innerHTML = list.map(p => `
-      <div class="product-card">
+      <div class="product-card" data-product-id="${p.id}">
         <div class="product-thumb">
           ${ p.images.length > 1 ? `<span class="swipe-badge">⇆ ${p.images.length}</span>` : '' }
           ${ p.images.map(img => `
