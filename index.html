@@ -15743,8 +15743,8 @@ header.topbar.header-hidden{
 
 <style id="FINAL-about-photo-crop-centered-2026-09-13">
 /* Desktop only: keep the existing About photo box exactly as it is,
-   but shift the portrait crop upward inside that box so less empty wall
-   is visible above and more of the lower body/clothing remains visible. */
+   but keep the portrait centred slightly lower than the previous crop so the top of the head is fully visible
+   while still showing more of the lower body/clothing. */
 @media (min-width:900px){
   #about .about-photo{
     overflow:hidden !important;
@@ -15754,8 +15754,18 @@ header.topbar.header-hidden{
     height:100% !important;
     max-width:none !important;
     object-fit:cover !important;
-    object-position:center 68% !important;
+    object-position:center 62% !important;
     transform:none !important;
+  }
+}
+</style>
+
+<style id="FINAL-about-photo-head-visible-2026-09-13">
+/* Desktop only: keep the exact same About photo box and section layout.
+   Shift only the image crop slightly downward so the full top of the head is visible. */
+@media (min-width:900px){
+  #about .about-photo img{
+    object-position:center 56% !important;
   }
 }
 </style>
