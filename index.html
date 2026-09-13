@@ -13425,6 +13425,21 @@ header.topbar.header-hidden{
   object-position:center center !important;
 }
 </style>
+
+<style id="FINAL-inline-focal-safety-2026-09-13">
+/* Final safety override for the two collection thumbnails that need custom framing. */
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child img{
+  object-fit:cover !important;
+  object-position:center top !important;
+}
+.product-card[data-product-id="wrap-2"] .product-thumb .slide:first-child{
+  background:#f3f0eb !important;
+}
+.product-card[data-product-id="wrap-2"] .product-thumb .slide:first-child img{
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+</style>
 </head>
 <body>
 
@@ -14229,9 +14244,15 @@ header.topbar.header-hidden{
       <div class="product-card" data-product-id="${p.id}">
         <div class="product-thumb">
           ${ p.images.length > 1 ? `<span class="swipe-badge">⇆ ${p.images.length}</span>` : '' }
-          ${ p.images.map(img => `
-            <div class="slide">${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}">` : `<div class="ph">${img}</div>` }</div>
-          `).join('') }
+          ${ p.images.map((img, imgIndex) => {
+            const cardImageStyle =
+              (p.id === "top-pearl" && imgIndex === 0)
+                ? "object-fit:cover !important;object-position:center top !important;"
+                : (p.id === "wrap-2" && imgIndex === 0)
+                  ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
+                  : "";
+            return `<div class="slide"${p.id === "wrap-2" && imgIndex === 0 ? ' style="background:#f3f0eb;"' : ''}>${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${cardImageStyle}">` : `<div class="ph">${img}</div>` }</div>`;
+          }).join('') }
         </div>
         <div class="product-body">
           <div class="product-cat">${p.typeLabel ? p.typeLabel[currentLang] : (categoryLabelsSingular[p.category] ? categoryLabelsSingular[p.category][currentLang] : '')}</div>
