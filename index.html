@@ -13489,6 +13489,32 @@ header.topbar.header-hidden{
 }
 </style>
 
+
+<style id="FINAL-pearl-cocoon-framing-lock-2026-09-13">
+/* Pearl: fill the full 4:5 thumbnail, while moving the crop just enough to keep
+   both the head and the lower edge of the knit visible. */
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child{
+  background:transparent !important;
+  align-items:stretch !important;
+  justify-content:stretch !important;
+}
+.product-card[data-product-id="top-pearl"] .product-thumb .slide:first-child img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center 25% !important;
+  margin:0 !important;
+  transform:none !important;
+}
+/* Cocoon II second photo: a balanced crop. It sits slightly lower than the
+   previous bottom-locked version so the head is no longer clipped, while the
+   lower part of the wrap remains visible. */
+.product-card[data-product-id="wrap-2"] .product-thumb .slide:nth-child(2) img{
+  object-fit:cover !important;
+  object-position:center 76% !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -13983,7 +14009,7 @@ header.topbar.header-hidden{
     {
       id: "dress-1",
       category: "beachwear",
-      name: { en:"[Name]", ru:"[Название]", lv:"[Nosaukums]" },
+      name: { en:"Orda", ru:"Орда", lv:"Orda" },
       price: { en:"€200", ru:"200 €", lv:"€200" },
       composition: { en:"100% cotton", ru:"100% хлопок", lv:"100% kokvilna" },
       care: {
@@ -13994,7 +14020,7 @@ header.topbar.header-hidden{
       note: singleColourNote,
       colors: ["#2b2a28"],
       images: ["photos/dress-1-1.jpeg", "photos/dress-1-2.jpeg", "photos/dress-1-3.jpeg"],
-      orderText: { en:"Hi! I'd like to order this beachwear piece", ru:"Здравствуйте! Хочу заказать эту пляжную модель", lv:"Sveiki! Vēlos pasūtīt šo pludmales modeli" }
+      orderText: { en:"Hi! I'd like to order Orda", ru:"Здравствуйте! Хочу заказать Orda", lv:"Sveiki! Vēlos pasūtīt Orda" }
     },
     {
       id: "dress-2",
@@ -14163,8 +14189,12 @@ header.topbar.header-hidden{
       category: "cardigans",
       name: { en:"Soft", ru:"Soft", lv:"Soft" },
       price: { en:"€180", ru:"180 €", lv:"€180" },
-      composition: { en:"[Composition]", ru:"[Состав]", lv:"[Sastāvs]" },
-      care: { en:"[Care]", ru:"[Уход]", lv:"[Kopšana]" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
       note: singleColourNote,
       colors: ["#eadfce"],
       images: [
@@ -14180,6 +14210,31 @@ header.topbar.header-hidden{
       }
     },
 
+    {
+      id: "top-kimo",
+      category: "tops",
+      name: { en:"Kimo", ru:"Kimo", lv:"Kimo" },
+      price: { en:"€100", ru:"100 €", lv:"€100" },
+      composition: { en:"100% linen", ru:"100% лён", lv:"100% lins" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> machine wash at 30°C on a gentle cycle.</li><li><strong>Dry:</strong> reshape while damp and dry flat.</li><li><strong>Iron / steam:</strong> medium heat while slightly damp if needed.</li><li><strong>Note:</strong> avoid tumble drying to help preserve the shape.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> машинная стирка при 30°C на деликатном режиме.</li><li><strong>Сушка:</strong> расправить изделие во влажном состоянии и сушить горизонтально.</li><li><strong>Утюг / отпаривание:</strong> при необходимости на средней температуре, лучше по слегка влажному изделию.</li><li><strong>Важно:</strong> не использовать машинную сушку, чтобы лучше сохранить форму.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> veļas mašīnā 30°C saudzīgā režīmā.</li><li><strong>Žāvēšana:</strong> mitru izstrādājumu iztaisnot un žāvēt horizontāli.</li><li><strong>Gludināšana / tvaicēšana:</strong> ja nepieciešams, vidējā temperatūrā, vēlams nedaudz mitram izstrādājumam.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju, lai labāk saglabātu formu.</li></ul>`
+      },
+      note: multipleColoursNote,
+      colors: ["#607f98", "#a89282"],
+      images: [
+        "photos/kimo-1.jpeg",
+        "photos/kimo-2.jpeg",
+        "photos/kimo-3.jpeg",
+        "photos/kimo-4.jpeg"
+      ],
+      orderText: {
+        en:"Hi! I'd like to order the Kimo top",
+        ru:"Здравствуйте! Хочу заказать топ Kimo",
+        lv:"Sveiki! Vēlos pasūtīt topu Kimo"
+      }
+    },
     {
       id: "top-white-knit",
       category: "tops",
@@ -14210,14 +14265,14 @@ header.topbar.header-hidden{
       name: { en:"Pino", ru:"Pino", lv:"Pino" },
       price: { en:"€250", ru:"250 €", lv:"€250" },
       composition: {
-        en:"Alpaca and angora - percentages to be confirmed",
-        ru:"Альпака и ангора - процентное соотношение уточняется",
-        lv:"Alpaka un angora - procentuālais sastāvs tiks precizēts"
+        en:"80% angora, 20% alpaca",
+        ru:"80% ангора, 20% альпака",
+        lv:"80% angora, 20% alpaka"
       },
       care: {
-        en:"Care recommendations will be confirmed once the exact fibre percentages are known.",
-        ru:"Рекомендации по уходу будут уточнены, когда будет известно точное процентное соотношение волокон.",
-        lv:"Kopšanas ieteikumi tiks precizēti, kad būs zināms precīzs šķiedru procentuālais sastāvs."
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water, reshape and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance on low heat.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду, расправить и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния и на низкой температуре.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni, iztaisnot un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma un zemā temperatūrā.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
       },
       note: singleColourNote,
       colors: ["#243b31"],
@@ -14296,11 +14351,11 @@ header.topbar.header-hidden{
           ${ p.images.map((img, imgIndex) => {
             const cardImageStyle =
               (p.id === "top-pearl" && imgIndex === 0)
-                ? "width:90% !important;height:auto !important;max-width:none !important;max-height:none !important;object-fit:initial !important;object-position:initial !important;align-self:flex-start !important;margin:0 auto !important;transform:none !important;"
+                ? "width:100% !important;height:100% !important;max-width:none !important;max-height:none !important;object-fit:cover !important;object-position:center 25% !important;margin:0 !important;transform:none !important;"
                 : (p.id === "wrap-2" && imgIndex === 0)
                   ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
                   : (p.id === "wrap-2" && imgIndex === 1)
-                    ? "object-fit:cover !important;object-position:center bottom !important;"
+                    ? "object-fit:cover !important;object-position:center 76% !important;"
                     : "";
             return `<div class="slide"${p.id === "wrap-2" && imgIndex === 0 ? ' style="background:#f3f0eb;"' : ''}>${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${cardImageStyle}">` : `<div class="ph">${img}</div>` }</div>`;
           }).join('') }
@@ -14348,7 +14403,7 @@ header.topbar.header-hidden{
         const galleryStyle = (p.id === "wrap-2" && i === 0)
           ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
           : (p.id === "wrap-2" && i === 1)
-            ? "object-fit:cover !important;object-position:center bottom !important;"
+            ? "object-fit:cover !important;object-position:center 76% !important;"
             : "";
         return isImagePath(item)
           ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}" style="${galleryStyle}">`
@@ -14359,7 +14414,7 @@ header.topbar.header-hidden{
       modalImgWrap.classList.remove('native-swipe-gallery');
       modalImgWrap.innerHTML = `
         ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
-        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${p.id === 'wrap-2' && modalState.index === 0 ? 'object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;' : p.id === 'wrap-2' && modalState.index === 1 ? 'object-fit:cover !important;object-position:center bottom !important;' : ''}">` : `<div class="ph">${img}</div>` }
+        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${p.id === 'wrap-2' && modalState.index === 0 ? 'object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;' : p.id === 'wrap-2' && modalState.index === 1 ? 'object-fit:cover !important;object-position:center 76% !important;' : ''}">` : `<div class="ph">${img}</div>` }
         ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
       `;
     }
@@ -14960,6 +15015,42 @@ header.topbar.header-hidden{
   }
 }
 </style>
+
+<style id="desktop-about-divider-alignment-fix-2026">
+@media (min-width:1000px){
+  /* Align About with the same left guide as product card content / View Details. */
+  #about .about-layout,
+  #about .about-section-label,
+  #about .about-intro,
+  #about .about-photo,
+  #about .about-copy{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  #about .about-layout{
+    width:100% !important;
+    max-width:none !important;
+    padding-left:var(--page-x, 6vw) !important;
+    padding-right:var(--page-x, 6vw) !important;
+  }
+  #about .about-section-label,
+  #about .eyebrow{
+    padding-left:0 !important;
+  }
+  #about .about-photo{
+    justify-self:stretch !important;
+  }
+
+  /* Center the yarn-ball divider vertically between Useful Information and How to Order. */
+  .thread-divider,
+  .yarn-divider,
+  .signature-divider{
+    margin-top:64px !important;
+    margin-bottom:64px !important;
+  }
+}
+</style>
+
 </body>
 </html>
 
