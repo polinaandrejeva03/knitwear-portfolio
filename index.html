@@ -15498,11 +15498,37 @@ header.topbar.header-hidden{
     return wrap.querySelector('img');
   }
 
+  function imageIndex(el){
+    if(!el) return (typeof modalState !== 'undefined' && modalState) ? Number(modalState.index)||0 : 0;
+    const n=Number(el.dataset && el.dataset.index);
+    return Number.isFinite(n) ? n : ((typeof modalState !== 'undefined' && modalState) ? Number(modalState.index)||0 : 0);
+  }
+
+  /* On mobile the gallery itself is horizontally scrollable. During an inline
+     zoom Safari can retain a fractional scrollLeft. If we simply return to 1x,
+     that fractional position can reveal two neighbouring photos at once.
+     Always pin the gallery back to the exact active slide before/after zoom. */
+  function snapGalleryToIndex(index, repeat=false){
+    if(!wrap.classList.contains('native-swipe-gallery')) return;
+    const safeIndex=Math.max(0, Number(index)||0);
+    const left=safeIndex * Math.max(1, wrap.clientWidth);
+    wrap.scrollTo({left, top:0, behavior:'auto'});
+    if(typeof modalState !== 'undefined' && modalState) modalState.index=safeIndex;
+    if(repeat){
+      requestAnimationFrame(()=>{
+        const again=safeIndex * Math.max(1, wrap.clientWidth);
+        wrap.scrollTo({left:again, top:0, behavior:'auto'});
+      });
+    }
+  }
+
   function setTarget(next){
     const found = activeImage(next);
     if(!found) return null;
     if(img && img !== found) resetZoom(false);
     img = found;
+    const idx=imageIndex(img);
+    if(typeof modalState !== 'undefined' && modalState) modalState.index=idx;
     wrap.querySelectorAll('img').forEach(el=>el.classList.toggle('inline-zoom-target', el===img));
     return img;
   }
@@ -15543,15 +15569,25 @@ header.topbar.header-hidden{
       wrap.classList.remove('inline-zoomed');
       return;
     }
+    const idx=imageIndex(img);
+    /* Re-centre the exact slide while the gallery is still locked. */
+    snapGalleryToIndex(idx, false);
     scale=1; tx=0; ty=0;
     applyZoom(animate);
+    /* Re-apply after native scrolling/snap has been restored. The second pass
+       prevents iOS Safari from stopping between two slides after zoom-out. */
+    snapGalleryToIndex(idx, true);
+    window.setTimeout(()=>snapGalleryToIndex(idx, false), animate ? 230 : 0);
   }
 
   function toggleZoom(target){
     if(!setTarget(target)) return;
+    const idx=imageIndex(img);
     if(scale > 1.01){
       resetZoom(true);
     }else{
+      /* Start zoom only from a perfectly aligned active slide. */
+      snapGalleryToIndex(idx, true);
       scale=2;
       tx=0; ty=0;
       applyZoom(true);
