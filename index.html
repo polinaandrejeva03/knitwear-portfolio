@@ -14657,7 +14657,7 @@ header.topbar.header-hidden{
       modalImgWrap.classList.add('native-swipe-gallery');
       modalImgWrap.innerHTML = p.images.map((item, i)=>{
         const galleryStyle = (p.id === "wrap-2" && i === 0)
-          ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
+          ? "object-fit:cover !important;object-position:center center !important;background:#f3f0eb !important;"
           : (p.id === "wrap-2" && i === 1)
             ? "object-fit:cover !important;object-position:center 76% !important;"
             : "";
@@ -16019,6 +16019,207 @@ header.topbar.header-hidden{
   #photoViewer .pv-prev{ left:max(12px, calc(env(safe-area-inset-left) + 6px)) !important; }
   #photoViewer .pv-next{ right:max(12px, calc(env(safe-area-inset-right) + 6px)) !important; }
   #photoViewer .pv-counter{ bottom:max(16px, calc(env(safe-area-inset-bottom) + 8px)) !important; }
+}
+</style>
+
+
+<style id="FINAL-mobile-old-details-and-heart-consistency-2026-09-22">
+/* ============================================================
+   MOBILE PRODUCT VIEW: restore the original bottom-sheet layout.
+   New interactions (wishlist, click-to-open, fullscreen zoom) stay intact.
+   ============================================================ */
+
+/* One optical heart system everywhere: same outer size before/after save. */
+.favorite-icon,
+.favorites-filter-heart{
+  display:inline-block !important;
+  width:18px !important;
+  height:18px !important;
+  min-width:18px !important;
+  min-height:18px !important;
+  font-size:0 !important;
+  line-height:0 !important;
+  color:inherit !important;
+  background:currentColor !important;
+  -webkit-mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIwLjMgNC41NSAxMy4wNUMyLjA1IDEwLjYyIDIgNi44MiA0LjM0IDQuNzJjMi4xNS0xLjk0IDUuNDUtMS42MiA3LjE2LjYzTDEyIDZsLjUtLjY1YzEuNzEtMi4yNSA1LjAxLTIuNTcgNy4xNi0uNjMgMi4zNCAyLjEgMi4yOSA1LjktLjIxIDguMzNMMTIgMjAuM1oiIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=") !important;
+  mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIwLjMgNC41NSAxMy4wNUMyLjA1IDEwLjYyIDIgNi44MiA0LjM0IDQuNzJjMi4xNS0xLjk0IDUuNDUtMS42MiA3LjE2LjYzTDEyIDZsLjUtLjY1YzEuNzEtMi4yNSA1LjAxLTIuNTcgNy4xNi0uNjMgMi4zNCAyLjEgMi4yOSA1LjktLjIxIDguMzNMMTIgMjAuM1oiIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=") !important;
+  -webkit-mask-repeat:no-repeat !important;
+  mask-repeat:no-repeat !important;
+  -webkit-mask-position:center !important;
+  mask-position:center !important;
+  -webkit-mask-size:contain !important;
+  mask-size:contain !important;
+}
+.favorite-btn.active .favorite-icon,
+.modal-favorite-btn.active .favorite-icon,
+.collection-wishlist.active .favorites-filter-heart{
+  -webkit-mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIwLjMgNC41NSAxMy4wNUMyLjA1IDEwLjYyIDIgNi44MiA0LjM0IDQuNzJjMi4xNS0xLjk0IDUuNDUtMS42MiA3LjE2LjYzTDEyIDZsLjUtLjY1YzEuNzEtMi4yNSA1LjAxLTIuNTcgNy4xNi0uNjMgMi4zNCAyLjEgMi4yOSA1LjktLjIxIDguMzNMMTIgMjAuM1oiIGZpbGw9ImJsYWNrIi8+PC9zdmc+") !important;
+  mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIwLjMgNC41NSAxMy4wNUMyLjA1IDEwLjYyIDIgNi44MiA0LjM0IDQuNzJjMi4xNS0xLjk0IDUuNDUtMS42MiA3LjE2LjYzTDEyIDZsLjUtLjY1YzEuNzEtMi4yNSA1LjAxLTIuNTcgNy4xNi0uNjMgMi4zNCAyLjEgMi4yOSA1LjktLjIxIDguMzNMMTIgMjAuM1oiIGZpbGw9ImJsYWNrIi8+PC9zdmc+") !important;
+}
+
+/* Catalogue hearts: small and stable on phones. */
+.product-name-row .favorite-btn{
+  width:30px !important;
+  height:30px !important;
+  flex-basis:30px !important;
+}
+.product-name-row .favorite-btn .favorite-icon{
+  width:18px !important;
+  height:18px !important;
+  min-width:18px !important;
+  min-height:18px !important;
+}
+
+/* Wishlist control: same restrained heart, not a large glyph. */
+#products .collection-wishlist .favorites-filter-heart{
+  width:16px !important;
+  height:16px !important;
+  min-width:16px !important;
+  min-height:16px !important;
+}
+
+@media (max-width:699px){
+  /* Original mobile product-details pattern: bottom sheet, not a full-screen page. */
+  dialog#productModal[open]{
+    display:block !important;
+    position:fixed !important;
+    inset:auto 0 0 0 !important;
+    margin:0 !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    max-height:min(88dvh,88vh) !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    border:0 !important;
+    border-radius:18px 18px 0 0 !important;
+    background:var(--card) !important;
+    animation:sheetUp .28s ease-out !important;
+    scrollbar-width:none !important;
+  }
+  dialog#productModal::-webkit-scrollbar{ display:none !important; }
+  dialog#productModal::backdrop{ background:rgba(46,42,40,.45) !important; }
+
+  /* Old gallery proportions, but every photo fills the image frame. */
+  #productModal .modal-imgwrap{
+    position:relative !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    aspect-ratio:4 / 5 !important;
+    overflow:hidden !important;
+    background:var(--accent-tint) !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery{
+    display:flex !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:x mandatory !important;
+    -webkit-overflow-scrolling:touch !important;
+    touch-action:pan-x pan-y !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery > img,
+  #productModal .modal-imgwrap.native-swipe-gallery > .ph{
+    flex:0 0 100% !important;
+    width:100% !important;
+    min-width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    max-height:none !important;
+    scroll-snap-align:start !important;
+    scroll-snap-stop:always !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery > img{
+    object-fit:cover !important;
+  }
+
+  /* Restore the old compact close control inside the sheet. */
+  #productModal .modal-close{
+    position:absolute !important;
+    top:12px !important;
+    right:12px !important;
+    z-index:30 !important;
+    width:34px !important;
+    height:34px !important;
+    border-radius:50% !important;
+    background:rgba(251,247,245,.92) !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    font-size:19px !important;
+  }
+
+  /* Native finger swipe on mobile; no overlay arrows. */
+  #productModal .modal-nav{ display:none !important; }
+  #productModal .modal-dots{
+    gap:7px !important;
+    padding:9px 0 0 !important;
+    min-height:0 !important;
+    background:var(--card) !important;
+  }
+  #productModal .modal-dots span{
+    width:5px !important;
+    height:5px !important;
+  }
+
+  /* Restore old compact information rhythm. */
+  #productModal .modal-body{
+    padding:18px 18px calc(24px + env(safe-area-inset-bottom)) !important;
+    border-left:0 !important;
+    background:var(--card) !important;
+    overflow:visible !important;
+    max-height:none !important;
+  }
+  #productModal .modal-body h3{
+    font-size:21px !important;
+    line-height:1.15 !important;
+  }
+  #productModal .modal-price-row{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+    margin-top:3px !important;
+  }
+  #productModal .modal-price{
+    margin-top:0 !important;
+    font-size:14px !important;
+  }
+  #productModal .luxury-info-block{ margin-top:18px !important; }
+  #productModal .luxury-info-block .label{ margin-bottom:7px !important; }
+  #productModal .size-info{ font-size:14px !important; line-height:1.5 !important; }
+  #productModal .size-adjust{ font-size:12.5px !important; line-height:1.5 !important; }
+  #productModal .modal-block p,
+  #productModal .care-list{ font-size:14px !important; }
+
+  /* The heart beside the price is deliberately smaller and never changes geometry. */
+  #productModal .modal-favorite-btn{
+    width:30px !important;
+    height:30px !important;
+    min-width:30px !important;
+    min-height:30px !important;
+    margin:0 -3px 0 0 !important;
+    padding:0 !important;
+  }
+  #productModal .modal-favorite-btn .favorite-icon{
+    width:18px !important;
+    height:18px !important;
+    min-width:18px !important;
+    min-height:18px !important;
+  }
+
+  /* Keep the original little scroll cue behavior inside the sheet. */
+  #productModal .modal-scroll-hint{
+    display:flex !important;
+    position:sticky !important;
+    bottom:0 !important;
+    height:52px !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  @media (max-width:699px){ dialog#productModal[open]{ animation:none !important; } }
 }
 </style>
 
