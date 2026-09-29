@@ -15137,28 +15137,52 @@ header.topbar.header-hidden{
 </style>
 <script id="native-mobile-product-gallery-2026-js">
 (function(){
-  const wrap=document.getElementById('modalImgWrap');
-  const dots=document.getElementById('modalDots');
+  const wrap = document.getElementById('modalImgWrap');
+  const dots = document.getElementById('modalDots');
   if(!wrap || !dots) return;
-  let raf=0;
+
+  let raf = 0;
+
+  function galleryWidth(){
+    return Math.max(1, wrap.clientWidth);
+  }
+
+  function currentIndex(){
+    if(!modalState || !modalState.product) return 0;
+    const max = Math.max(0, modalState.product.images.length - 1);
+    return Math.max(0, Math.min(max, Math.round(wrap.scrollLeft / galleryWidth())));
+  }
+
   function syncNativeGallery(){
     if(!wrap.classList.contains('native-swipe-gallery') || !modalState.product) return;
-    const width=Math.max(1,wrap.clientWidth);
-    const index=Math.max(0,Math.min(modalState.product.images.length-1,Math.round(wrap.scrollLeft/width)));
-    modalState.index=index;
-    dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active',i===index));
+    /* While an image is zoomed the gallery is intentionally locked. Never let
+       scroll bookkeeping fight with inline pan/zoom. */
+    if(wrap.classList.contains('inline-zoomed')) return;
+    const index = currentIndex();
+    modalState.index = index;
+    dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active', i === index));
   }
-  wrap.addEventListener('scroll',()=>{
-    if(!wrap.classList.contains('native-swipe-gallery')) return;
+
+  wrap.addEventListener('scroll', ()=>{
+    if(!wrap.classList.contains('native-swipe-gallery') || wrap.classList.contains('inline-zoomed')) return;
     cancelAnimationFrame(raf);
-    raf=requestAnimationFrame(syncNativeGallery);
-  },{passive:true});
-  dots.addEventListener('click',(e)=>{
-    const dot=e.target.closest('span[data-index]');
-    if(!dot || !wrap.classList.contains('native-swipe-gallery')) return;
-    const index=Number(dot.dataset.index)||0;
-    modalState.index=index;
-    wrap.scrollTo({left:index*wrap.clientWidth,behavior:'smooth'});
+    raf = requestAnimationFrame(syncNativeGallery);
+  }, {passive:true});
+
+  /* Safari supports scrollend on current iOS versions; keep the normal scroll
+     listener as the fallback and use scrollend only as a final state sync. */
+  wrap.addEventListener('scrollend', syncNativeGallery, {passive:true});
+
+  dots.addEventListener('click', (e)=>{
+    const dot = e.target.closest('span[data-index]');
+    if(!dot || !wrap.classList.contains('native-swipe-gallery') || wrap.classList.contains('inline-zoomed')) return;
+    const max = modalState.product ? modalState.product.images.length - 1 : 0;
+    const index = Math.max(0, Math.min(max, Number(dot.dataset.index) || 0));
+    modalState.index = index;
+    /* Instant positioning is deliberate here. CSS smooth scrolling plus iOS
+       scroll-snap was the source of occasional reverse/skip-looking motion. */
+    wrap.scrollLeft = index * galleryWidth();
+    dots.querySelectorAll('span').forEach((item,i)=>item.classList.toggle('active', i === index));
   });
 })();
 </script>
@@ -15476,12 +15500,16 @@ header.topbar.header-hidden{
 
   const MAX_SCALE = 2.5;
   const TAP_MOVE = 11;
+  const TAP_SCROLL = 4;
+  const RESET_MS = 190;
+
   let img = null;
   let scale = 1;
   let tx = 0;
   let ty = 0;
   let mouseGesture = null;
   let touchGesture = null;
+  let resetTimer = 0;
 
   const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
 
@@ -15489,47 +15517,72 @@ header.topbar.header-hidden{
     return (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'en';
   }
 
-  function activeImage(preferred){
-    if(preferred && preferred.tagName === 'IMG' && wrap.contains(preferred)) return preferred;
-    if(typeof modalState !== 'undefined' && modalState.product){
-      const indexed = wrap.querySelector(`img[data-index="${modalState.index}"]`);
-      if(indexed) return indexed;
+  function isMobileGallery(){
+    return wrap.classList.contains('native-swipe-gallery');
+  }
+
+  function maxIndex(){
+    return (typeof modalState !== 'undefined' && modalState.product)
+      ? Math.max(0, modalState.product.images.length - 1)
+      : 0;
+  }
+
+  function visibleIndex(){
+    if(isMobileGallery()){
+      const width = Math.max(1, wrap.clientWidth);
+      return clamp(Math.round(wrap.scrollLeft / width), 0, maxIndex());
+    }
+    return clamp(Number((typeof modalState !== 'undefined' && modalState) ? modalState.index : 0) || 0, 0, maxIndex());
+  }
+
+  function imageForIndex(index){
+    if(isMobileGallery()){
+      return wrap.querySelector(`img[data-index="${index}"]`) || null;
     }
     return wrap.querySelector('img');
   }
 
   function imageIndex(el){
-    if(!el) return (typeof modalState !== 'undefined' && modalState) ? Number(modalState.index)||0 : 0;
-    const n=Number(el.dataset && el.dataset.index);
-    return Number.isFinite(n) ? n : ((typeof modalState !== 'undefined' && modalState) ? Number(modalState.index)||0 : 0);
+    if(!el) return visibleIndex();
+    const n = Number(el.dataset && el.dataset.index);
+    return Number.isFinite(n) ? clamp(n,0,maxIndex()) : visibleIndex();
   }
 
-  /* On mobile the gallery itself is horizontally scrollable. During an inline
-     zoom Safari can retain a fractional scrollLeft. If we simply return to 1x,
-     that fractional position can reveal two neighbouring photos at once.
-     Always pin the gallery back to the exact active slide before/after zoom. */
-  function snapGalleryToIndex(index, repeat=false){
-    if(!wrap.classList.contains('native-swipe-gallery')) return;
-    const safeIndex=Math.max(0, Number(index)||0);
-    const left=safeIndex * Math.max(1, wrap.clientWidth);
-    wrap.scrollTo({left, top:0, behavior:'auto'});
-    if(typeof modalState !== 'undefined' && modalState) modalState.index=safeIndex;
-    if(repeat){
-      requestAnimationFrame(()=>{
-        const again=safeIndex * Math.max(1, wrap.clientWidth);
-        wrap.scrollTo({left:again, top:0, behavior:'auto'});
-      });
+  function updateDots(index){
+    const dots = document.getElementById('modalDots');
+    if(!dots) return;
+    dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active', i === index));
+  }
+
+  /* Hard alignment is used only when entering/leaving zoom. Native one-finger
+     browsing at 1x is never repositioned by this zoom controller. */
+  function hardAlign(index){
+    if(!isMobileGallery()) return;
+    const safe = clamp(Number(index)||0, 0, maxIndex());
+    const left = safe * Math.max(1, wrap.clientWidth);
+    wrap.scrollLeft = left;
+    if(typeof modalState !== 'undefined' && modalState) modalState.index = safe;
+    updateDots(safe);
+  }
+
+  function clearImageVisual(el){
+    if(!el) return;
+    el.style.transition = 'none';
+    el.style.transform = '';
+    el.classList.remove('inline-zoom-target');
+    el.setAttribute('aria-pressed','false');
+  }
+
+  function selectTarget(el){
+    if(!el || !wrap.contains(el)) return null;
+    if(img && img !== el){
+      /* Critical: changing the touched photo at 1x must NOT call resetZoom().
+         The old code did that and snapped back to the previous slide during a
+         normal swipe, which caused the random-looking reverse jumps. */
+      clearImageVisual(img);
     }
-  }
-
-  function setTarget(next){
-    const found = activeImage(next);
-    if(!found) return null;
-    if(img && img !== found) resetZoom(false);
-    img = found;
-    const idx=imageIndex(img);
-    if(typeof modalState !== 'undefined' && modalState) modalState.index=idx;
-    wrap.querySelectorAll('img').forEach(el=>el.classList.toggle('inline-zoom-target', el===img));
+    img = el;
+    wrap.querySelectorAll('img').forEach(node=>node.classList.toggle('inline-zoom-target', node === img));
     return img;
   }
 
@@ -15548,50 +15601,69 @@ header.topbar.header-hidden{
     ty = clamp(ty, -lim.y, lim.y);
   }
 
-  function applyZoom(animate=false){
+  function applyTransform(animate=false){
     if(!img) return;
     clampPan();
-    img.style.transition = animate ? 'transform .2s ease' : 'none';
+    img.style.transition = animate ? `transform ${RESET_MS}ms ease` : 'none';
     img.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${scale})`;
     const zoomed = scale > 1.01;
     wrap.classList.toggle('inline-zoomed', zoomed);
     img.setAttribute('aria-pressed', zoomed ? 'true' : 'false');
-    if(animate){
-      window.setTimeout(()=>{
-        if(img && scale > 1.01) img.style.transition='none';
-      },210);
-    }
   }
 
-  function resetZoom(animate=true){
+  function zoomIn(preferred){
+    clearTimeout(resetTimer);
+    const idx = isMobileGallery() ? visibleIndex() : imageIndex(preferred);
+    if(isMobileGallery()) hardAlign(idx);
+    const target = isMobileGallery() ? imageForIndex(idx) : preferred;
+    if(!selectTarget(target)) return;
+    if(typeof modalState !== 'undefined' && modalState) modalState.index = idx;
+    scale = 2;
+    tx = 0;
+    ty = 0;
+    applyTransform(true);
+    resetTimer = window.setTimeout(()=>{
+      if(img && scale > 1.01) img.style.transition = 'none';
+    }, RESET_MS + 20);
+  }
+
+  function zoomOut(animate=true){
+    clearTimeout(resetTimer);
     if(!img){
       scale=1; tx=0; ty=0;
-      wrap.classList.remove('inline-zoomed');
+      wrap.classList.remove('inline-zoomed','inline-panning');
       return;
     }
-    const idx=imageIndex(img);
-    /* Re-centre the exact slide while the gallery is still locked. */
-    snapGalleryToIndex(idx, false);
-    scale=1; tx=0; ty=0;
-    applyZoom(animate);
-    /* Re-apply after native scrolling/snap has been restored. The second pass
-       prevents iOS Safari from stopping between two slides after zoom-out. */
-    snapGalleryToIndex(idx, true);
-    window.setTimeout(()=>snapGalleryToIndex(idx, false), animate ? 230 : 0);
+
+    const target = img;
+    const idx = imageIndex(target);
+    /* Keep all neighbouring slides hidden while the active image returns to 1x.
+       This prevents the thin sliver of another photo seen on iPhone. */
+    if(isMobileGallery()) hardAlign(idx);
+    scale = 1;
+    tx = 0;
+    ty = 0;
+    target.style.transition = animate ? `transform ${RESET_MS}ms ease` : 'none';
+    target.style.transform = 'translate3d(0,0,0) scale(1)';
+    target.setAttribute('aria-pressed','false');
+
+    const finish = ()=>{
+      if(isMobileGallery()) hardAlign(idx);
+      wrap.classList.remove('inline-zoomed','inline-panning');
+      clearImageVisual(target);
+      if(img === target) img = null;
+      /* One layout-frame alignment after native scroll-snap is restored keeps
+         Safari exactly on the same photo without any animated correction. */
+      if(isMobileGallery()) requestAnimationFrame(()=>hardAlign(idx));
+    };
+
+    if(animate) resetTimer = window.setTimeout(finish, RESET_MS + 10);
+    else finish();
   }
 
-  function toggleZoom(target){
-    if(!setTarget(target)) return;
-    const idx=imageIndex(img);
-    if(scale > 1.01){
-      resetZoom(true);
-    }else{
-      /* Start zoom only from a perfectly aligned active slide. */
-      snapGalleryToIndex(idx, true);
-      scale=2;
-      tx=0; ty=0;
-      applyZoom(true);
-    }
+  function toggleZoom(preferred){
+    if(scale > 1.01) zoomOut(true);
+    else zoomIn(preferred);
   }
 
   function decorate(){
@@ -15609,12 +15681,11 @@ header.topbar.header-hidden{
     });
   }
 
-  /* Desktop / mouse: click = 2x / reset; drag while zoomed = pan. */
+  /* Desktop / mouse: click = zoom; drag while zoomed = pan. */
   wrap.addEventListener('pointerdown',(e)=>{
     if(e.pointerType === 'touch' || e.button !== 0) return;
     const target=e.target.closest('img');
     if(!target || !wrap.contains(target)) return;
-    setTarget(target);
     mouseGesture={
       id:e.pointerId,
       startX:e.clientX,
@@ -15643,7 +15714,7 @@ header.topbar.header-hidden{
       ty += e.clientY-g.lastY;
       g.lastX=e.clientX;
       g.lastY=e.clientY;
-      applyZoom(false);
+      applyTransform(false);
     }
   });
 
@@ -15660,9 +15731,6 @@ header.topbar.header-hidden{
     wrap.classList.remove('inline-panning');
   });
 
-  /* Mobile: at 1x native horizontal swipe still changes photos.
-     A short tap zooms in the SAME white product box.
-     At zoom, one finger pans; two fingers pinch from 1x to 2.5x. */
   function touchDistance(touches){
     if(touches.length<2) return 0;
     return Math.hypot(
@@ -15671,19 +15739,25 @@ header.topbar.header-hidden{
     );
   }
 
+  /* Mobile rule: at 1x one finger belongs 100% to the native gallery.
+     We only observe the gesture; we do not set modalState, snap, or prevent it.
+     That isolation is what makes left/right swiping stable. */
   wrap.addEventListener('touchstart',(e)=>{
-    const target=e.target.closest('img');
-    if(!target || !wrap.contains(target)) return;
-    setTarget(target);
+    if(!e.touches || !e.touches.length) return;
 
     if(e.touches.length>=2){
       e.preventDefault();
+      const idx = visibleIndex();
+      hardAlign(idx);
+      const target = imageForIndex(idx);
+      if(!selectTarget(target)) return;
       touchGesture={
         type:'pinch',
         startDistance:Math.max(1,touchDistance(e.touches)),
         startScale:scale,
         moved:true,
-        target
+        target,
+        index:idx
       };
       return;
     }
@@ -15695,10 +15769,13 @@ header.topbar.header-hidden{
       startY:t.clientY,
       lastX:t.clientX,
       lastY:t.clientY,
+      startScrollLeft:wrap.scrollLeft,
       moved:false,
       startedZoomed:scale>1.01,
-      target
+      target:scale>1.01 ? img : null,
+      index:visibleIndex()
     };
+
     if(scale>1.01) e.preventDefault();
   },{passive:false});
 
@@ -15709,14 +15786,20 @@ header.topbar.header-hidden{
     if(e.touches.length>=2){
       e.preventDefault();
       if(g.type!=='pinch'){
+        const idx = scale>1.01 && img ? imageIndex(img) : visibleIndex();
+        hardAlign(idx);
+        const target = img || imageForIndex(idx);
+        if(!selectTarget(target)) return;
         g.type='pinch';
         g.startDistance=Math.max(1,touchDistance(e.touches));
         g.startScale=scale;
         g.moved=true;
+        g.target=target;
+        g.index=idx;
       }
       scale=clamp(g.startScale*(touchDistance(e.touches)/g.startDistance),1,MAX_SCALE);
       if(scale<=1.01){ scale=1; tx=0; ty=0; }
-      applyZoom(false);
+      applyTransform(false);
       return;
     }
 
@@ -15732,8 +15815,9 @@ header.topbar.header-hidden{
       ty += t.clientY-g.lastY;
       g.lastX=t.clientX;
       g.lastY=t.clientY;
-      applyZoom(false);
+      applyTransform(false);
     }
+    /* At 1x do nothing here: Safari owns the horizontal swipe. */
   },{passive:false});
 
   wrap.addEventListener('touchend',(e)=>{
@@ -15744,19 +15828,36 @@ header.topbar.header-hidden{
       if(g.type==='pinch' && e.touches.length===1){
         const t=e.touches[0];
         touchGesture={
-          type:'single', startX:t.clientX, startY:t.clientY,
-          lastX:t.clientX, lastY:t.clientY,
-          moved:true, startedZoomed:scale>1.01, target:g.target
+          type:'single',
+          startX:t.clientX,
+          startY:t.clientY,
+          lastX:t.clientX,
+          lastY:t.clientY,
+          startScrollLeft:wrap.scrollLeft,
+          moved:true,
+          startedZoomed:scale>1.01,
+          target:img,
+          index:img ? imageIndex(img) : visibleIndex()
         };
       }
       return;
     }
 
     touchGesture=null;
-    if(scale<=1.01){ scale=1; tx=0; ty=0; applyZoom(true); }
 
-    if(g.type==='pinch') return;
-    if(!g.moved) toggleZoom(g.target);
+    if(g.type==='pinch'){
+      if(scale<=1.01) zoomOut(false);
+      else applyTransform(false);
+      return;
+    }
+
+    const galleryMoved = Math.abs(wrap.scrollLeft - g.startScrollLeft) > TAP_SCROLL;
+    if(g.moved || galleryMoved) return;
+
+    /* A true tap only. The current centred slide is resolved NOW, after the
+       native gallery has had the chance to finish any prior swipe. */
+    if(scale>1.01) zoomOut(true);
+    else zoomIn(imageForIndex(visibleIndex()));
   },{passive:false});
 
   wrap.addEventListener('touchcancel',()=>{ touchGesture=null; },{passive:true});
@@ -15769,37 +15870,29 @@ header.topbar.header-hidden{
     toggleZoom(target);
   });
 
-  /* Any product/photo rerender returns the gallery to a clean 1x state. */
   const observer=new MutationObserver(()=>{
-    if(img){
-      img.style.transition='none';
-      img.style.transform='';
-      img.classList.remove('inline-zoom-target');
-    }
+    clearTimeout(resetTimer);
+    if(img) clearImageVisual(img);
     img=null; scale=1; tx=0; ty=0;
+    mouseGesture=null; touchGesture=null;
     wrap.classList.remove('inline-zoomed','inline-panning');
     decorate();
   });
   observer.observe(wrap,{childList:true,subtree:true});
   decorate();
 
-  /* Native mobile gallery changes index by scrolling. At 1x there is no transform
-     to carry over to the next photo; this keeps accessibility state in sync. */
-  wrap.addEventListener('scroll',()=>{
-    if(scale>1.01) return;
-    wrap.querySelectorAll('img').forEach(el=>el.setAttribute('aria-pressed','false'));
-  },{passive:true});
-
   productModal.addEventListener('close',()=>{
-    if(img){ img.style.transition='none'; img.style.transform=''; }
+    clearTimeout(resetTimer);
+    if(img) clearImageVisual(img);
     img=null; scale=1; tx=0; ty=0;
+    mouseGesture=null; touchGesture=null;
     wrap.classList.remove('inline-zoomed','inline-panning');
   });
 
   window.addEventListener('resize',()=>{
     if(scale<=1.01 || !img) return;
     clampPan();
-    applyZoom(false);
+    applyTransform(false);
   });
 })();
 </script>
@@ -17564,5 +17657,39 @@ header.topbar.header-hidden{
 #products .collection-wishlist .favorites-filter-heart{
   color:inherit !important;
   background:currentColor !important;
+}
+</style>
+
+<style id="FINAL-mobile-gallery-stability-2026-09-29">
+/* Mobile gallery stability: native swipe at 1x, isolated inline zoom above 1x. */
+@media (max-width:699px){
+  #productModal .modal-imgwrap.native-swipe-gallery:not(.inline-zoomed){
+    scroll-behavior:auto !important;
+    scroll-snap-type:x mandatory !important;
+    overscroll-behavior-x:contain !important;
+    touch-action:pan-x pan-y !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery:not(.inline-zoomed) > img,
+  #productModal .modal-imgwrap.native-swipe-gallery:not(.inline-zoomed) > .ph{
+    scroll-snap-align:start !important;
+    scroll-snap-stop:always !important;
+    transform:none;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery.inline-zoomed{
+    overflow:hidden !important;
+    scroll-snap-type:none !important;
+    scroll-behavior:auto !important;
+    touch-action:none !important;
+    contain:paint;
+  }
+  /* Never allow a neighbouring slide to peek into the frame while zoomed. */
+  #productModal .modal-imgwrap.native-swipe-gallery.inline-zoomed > img:not(.inline-zoom-target),
+  #productModal .modal-imgwrap.native-swipe-gallery.inline-zoomed > .ph{
+    visibility:hidden !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery > img{
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+  }
 }
 </style>
