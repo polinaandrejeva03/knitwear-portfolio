@@ -13989,6 +13989,11 @@ header.topbar.header-hidden{
       en:`<span><strong>Hat</strong> · Made to your measurements, with the fit adjusted individually</span><span><strong>Scarf</strong> · Width 40–50 cm · Length 200–220 cm</span>`,
       ru:`<span><strong>Шапка</strong> · Вяжется по вашим меркам, с индивидуально подобранной посадкой</span><span><strong>Шарф</strong> · Ширина 40–50 см · Длина 200–220 см</span>`,
       lv:`<span><strong>Cepure</strong> · Tiek adīta pēc jūsu mēriem, individuāli pielāgojot piegulumu</span><span><strong>Šalle</strong> · Platums 40–50 cm · Garums 200–220 cm</span>`
+    },
+    "hug-3": {
+      en:`<span><strong>Scarf</strong> · Width 50 cm · Length 200–220 cm</span>`,
+      ru:`<span><strong>Шарф</strong> · Ширина 50 см · Длина 200–220 см</span>`,
+      lv:`<span><strong>Šalle</strong> · Platums 50 cm · Garums 200–220 cm</span>`
     }
   };
 
@@ -14198,11 +14203,35 @@ header.topbar.header-hidden{
       },
       note: singleColourNote,
       colors: ["#8ea6f3"],
-      images: ["photos/hug-2-1.jpeg", "photos/hug-2-2.jpeg", "photos/hug-2-3.jpeg", "photos/hug-2-4.jpeg", "photos/hug-2-5.jpeg", "photos/hug-2-6.jpeg"],
+      images: ["photos/hug-2-6.jpeg", "photos/hug-2-1.jpeg", "photos/hug-2-2.jpeg", "photos/hug-2-3.jpeg", "photos/hug-2-4.jpeg", "photos/hug-2-5.jpeg"],
       orderText: {
         en:"Hi! I'd like to order the HUG II hat & scarf set",
         ru:"Здравствуйте! Хочу заказать комплект шапка и шарф HUG II",
         lv:"Sveiki! Vēlos pasūtīt HUG II cepures un šalles komplektu"
+      }
+    },
+    {
+      id: "hug-3",
+      category: "accessories",
+      typeLabel: { en:"Scarf", ru:"Шарф", lv:"Šalle" },
+      name: { en:"HUG III", ru:"HUG III", lv:"HUG III" },
+      price: { en:"€80", ru:"80 €", lv:"€80" },
+      composition: { en:"50% kid mohair, 50% polyamide", ru:"50% кид-мохер, 50% полиамид", lv:"50% kid mohēra, 50% poliamīds" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance on low heat.</li><li><strong>Note:</strong> do not tumble dry.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния и на низкой температуре.</li><li><strong>Важно:</strong> не использовать машинную сушку.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma un zemā temperatūrā.</li><li><strong>Svarīgi:</strong> neizmantot veļas žāvētāju.</li></ul>`
+      },
+      note: multipleColoursNote,
+      colors: [
+        "linear-gradient(135deg, #b8aa95 0%, #ead2d1 50%, #d2ad86 100%)",
+        "linear-gradient(135deg, #555a62 0%, #9db2c9 25%, #aaa2cf 50%, #d2a2b6 75%, #6f747c 100%)"
+      ],
+      images: ["photos/hug-3-1.jpeg", "photos/hug-3-2.jpeg"],
+      orderText: {
+        en:"Hi! I'd like to order the HUG III scarf",
+        ru:"Здравствуйте! Хочу заказать шарф HUG III",
+        lv:"Sveiki! Vēlos pasūtīt HUG III šalli"
       }
     },
     {
@@ -14673,7 +14702,7 @@ header.topbar.header-hidden{
                   ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
                   : (p.id === "wrap-2" && imgIndex === 1)
                     ? "object-fit:cover !important;object-position:center 76% !important;"
-                    : "";
+                    : modalPhotoStyle(p, imgIndex);
             return `<div class="slide" data-image-index="${imgIndex}"${p.id === "wrap-2" && imgIndex === 0 ? ' style="background:#f3f0eb;"' : ''}>${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" draggable="false" style="${cardImageStyle}">` : `<div class="ph">${img}</div>` }</div>`;
           }).join('') }
         </div>
@@ -14783,17 +14812,28 @@ header.topbar.header-hidden{
   // This prevents the white flash that could appear between some large images.
   const productImageCache = new Map();
   let desktopGalleryRequest = 0;
-  let desktopPendingIndex = null;
+  let desktopGalleryBusy = false;
+  const desktopGalleryQueue = [];
 
   function modalPhotoStyle(product, index){
+    const src = product && Array.isArray(product.images) ? (product.images[index] || "") : "";
     if(product.id === "wrap-2" && index === 0){
       return "object-fit:cover !important;object-position:center center !important;background:#f3f0eb !important;";
     }
     if(product.id === "wrap-2" && index === 1){
       return "object-fit:cover !important;object-position:center 76% !important;";
     }
-    if(product.id === "hug-1" && index === 6){
+    if(product.id === "hug-1" && src.endsWith("hug-1-7.jpeg")){
       return "object-fit:cover !important;object-position:center 18% !important;";
+    }
+    if(product.id === "hug-2" && src.endsWith("hug-2-2.jpeg")){
+      return "object-fit:cover !important;object-position:center 22% !important;";
+    }
+    if(product.id === "hug-2" && src.endsWith("hug-2-3.jpeg")){
+      return "object-fit:cover !important;object-position:center 20% !important;";
+    }
+    if(product.id === "hug-2" && src.endsWith("hug-2-5.jpeg")){
+      return "object-fit:cover !important;object-position:center 22% !important;";
     }
     return "";
   }
@@ -14844,7 +14884,8 @@ header.topbar.header-hidden{
     if(!p) return;
     const safeIndex = Math.max(0, Math.min(p.images.length - 1, Number(initialIndex) || 0));
     modalState = { product: p, index: safeIndex };
-    desktopPendingIndex = null;
+    desktopGalleryQueue.length = 0;
+    desktopGalleryBusy = false;
     desktopGalleryRequest += 1;
     warmProductImages(p, safeIndex);
     renderModal();
@@ -14901,6 +14942,9 @@ header.topbar.header-hidden{
         };
         sizeAdjustEl.textContent = HUG_SIZE_ADJUSTMENT[currentLang];
         sizeAdjustEl.style.display = '';
+      } else if(p.id === "hug-3"){
+        sizeAdjustEl.textContent = '';
+        sizeAdjustEl.style.display = 'none';
       } else {
         sizeAdjustEl.textContent = SIZE_ADJUSTMENT[currentLang];
         sizeAdjustEl.style.display = '';
@@ -14951,6 +14995,98 @@ header.topbar.header-hidden{
     if(nextBtn) nextBtn.addEventListener('click', ()=> shiftImage(1));
   }
 
+  function finishDesktopGalleryStep(){
+    desktopGalleryBusy = false;
+    // Paint the image we just selected before processing another rapid click.
+    // This makes repeated clicks advance visibly one photo at a time instead of
+    // looking as if the gallery skipped an image.
+    requestAnimationFrame(processDesktopGalleryQueue);
+  }
+
+  function processDesktopGalleryQueue(){
+    if(desktopGalleryBusy || !desktopGalleryQueue.length) return;
+
+    const p = modalState.product;
+    if(!p || !p.images || !p.images.length){
+      desktopGalleryQueue.length = 0;
+      return;
+    }
+
+    const dir = desktopGalleryQueue.shift();
+    const nextIndex = (modalState.index + dir + p.images.length) % p.images.length;
+    const nextSrc = p.images[nextIndex];
+    const wrap = document.getElementById('modalImgWrap');
+    const currentImg = wrap ? wrap.querySelector('img') : null;
+    const requestId = desktopGalleryRequest;
+
+    // Placeholders are rare, but keep the old fallback behaviour for them.
+    if(!isImagePath(nextSrc) || !currentImg){
+      modalState.index = nextIndex;
+      renderModal();
+      finishDesktopGalleryStep();
+      return;
+    }
+
+    desktopGalleryBusy = true;
+
+    preloadProductImage(nextSrc).then(async loaded=>{
+      // A new product was opened while this image was loading.
+      if(requestId !== desktopGalleryRequest || !modalState.product || modalState.product.id !== p.id){
+        desktopGalleryBusy = false;
+        return;
+      }
+
+      if(!loaded){
+        // Never clear the old image on an error: keep it visible and continue.
+        finishDesktopGalleryStep();
+        return;
+      }
+
+      // Build and decode the replacement OFF-screen. Only after it is fully ready
+      // do we atomically replace the old <img>. This removes the white frame that
+      // can otherwise appear when a large JPEG is assigned directly to img.src.
+      const replacement = new Image();
+      replacement.alt = p.name[currentLang];
+      replacement.loading = 'eager';
+      replacement.decoding = 'async';
+      replacement.src = nextSrc;
+      replacement.style.cssText = modalPhotoStyle(p, nextIndex);
+      replacement.setAttribute('aria-pressed','false');
+
+      try{
+        if(replacement.decode) await replacement.decode();
+      }catch(_){
+        // preloadProductImage already confirmed the resource loaded; decode()
+        // can still reject in some browsers, so keep the cached replacement.
+      }
+
+      if(requestId !== desktopGalleryRequest || !modalState.product || modalState.product.id !== p.id){
+        desktopGalleryBusy = false;
+        return;
+      }
+
+      // If another render replaced the element while we were decoding, do not
+      // replace a stale node. Re-run the queued navigation from the live state.
+      if(!currentImg.isConnected || !wrap.contains(currentImg)){
+        finishDesktopGalleryStep();
+        return;
+      }
+
+      wrap.dispatchEvent(new CustomEvent('product-gallery-before-change'));
+      modalState.index = nextIndex;
+      currentImg.replaceWith(replacement);
+
+      const dots = document.getElementById('modalDots');
+      if(dots){
+        dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active', i === nextIndex));
+      }
+
+      // Continue warming neighbours so the next click is usually immediate.
+      warmProductImages(p, nextIndex);
+      finishDesktopGalleryStep();
+    });
+  }
+
   function shiftImage(dir){
     const p = modalState.product;
     if(!p || !p.images.length) return;
@@ -14962,49 +15098,14 @@ header.topbar.header-hidden{
       return;
     }
 
-    const baseIndex = desktopPendingIndex === null ? modalState.index : desktopPendingIndex;
-    const nextIndex = (baseIndex + dir + p.images.length) % p.images.length;
-    const nextSrc = p.images[nextIndex];
-    desktopPendingIndex = nextIndex;
-    const requestId = ++desktopGalleryRequest;
-
-    const wrap = document.getElementById('modalImgWrap');
-    const currentImg = wrap ? wrap.querySelector('img') : null;
-
-    // If this is a non-image placeholder or the current image element is missing,
-    // use the normal renderer. Real photos use the stable decoded swap below.
-    if(!isImagePath(nextSrc) || !currentImg){
-      modalState.index = nextIndex;
-      desktopPendingIndex = null;
-      renderModal();
-      return;
+    // Queue every desktop click instead of calculating from an image that is still
+    // loading. That removes race conditions which could make the gallery appear to
+    // jump over a photo during fast or repeated navigation.
+    desktopGalleryQueue.push(dir < 0 ? -1 : 1);
+    if(desktopGalleryQueue.length > 12){
+      desktopGalleryQueue.splice(0, desktopGalleryQueue.length - 12);
     }
-
-    preloadProductImage(nextSrc).then(loaded=>{
-      if(requestId !== desktopGalleryRequest) return;
-      if(!modalState.product || modalState.product.id !== p.id) return;
-
-      desktopPendingIndex = null;
-      if(!loaded) return; // keep the current photo instead of flashing an empty frame
-
-      // Reset any inline zoom before changing the source, while keeping the same
-      // DOM image element on screen. This avoids a blank paint between photos.
-      wrap.dispatchEvent(new CustomEvent('product-gallery-before-change'));
-
-      modalState.index = nextIndex;
-      currentImg.src = nextSrc;
-      currentImg.alt = p.name[currentLang];
-      currentImg.style.cssText = modalPhotoStyle(p, nextIndex);
-      currentImg.setAttribute('aria-pressed','false');
-
-      const dots = document.getElementById('modalDots');
-      if(dots){
-        dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active', i === nextIndex));
-      }
-
-      // Start warming the neighbouring images too, so rapid browsing stays instant.
-      warmProductImages(p, nextIndex);
-    });
+    processDesktopGalleryQueue();
   }
 
   // Product detail gallery: swipe left/right on touch devices.
@@ -16163,7 +16264,8 @@ header.topbar.header-hidden{
 
   productModal.addEventListener('close',()=>{
     desktopGalleryRequest += 1;
-    desktopPendingIndex = null;
+    desktopGalleryQueue.length = 0;
+    desktopGalleryBusy = false;
     clearTimeout(resetTimer);
     if(img) clearImageVisual(img);
     img=null; scale=1; tx=0; ty=0;
