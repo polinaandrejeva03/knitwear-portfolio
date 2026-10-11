@@ -13981,9 +13981,9 @@ header.topbar.header-hidden{
       lv:`<strong>One size · S-L</strong><span>Platums 50 cm · Garums 50 cm</span>`
     },
     "hug-1": {
-      en:`<strong>Hat · made to your measurements</strong><span>Scarf · width 40–50 cm · length 2.0–2.2 m</span>`,
-      ru:`<strong>Шапка · по индивидуальным меркам</strong><span>Шарф · ширина 40–50 см · длина 2,0–2,2 м</span>`,
-      lv:`<strong>Cepure · pēc individuāliem mēriem</strong><span>Šalle · platums 40–50 cm · garums 2,0–2,2 m</span>`
+      en:`<strong>Hat · made to your measurements, with the fit adjusted individually.</strong><span>Message me to discuss the hat fit and details.</span><span>Scarf · standard dimensions: width 40–50 cm · length 2.0–2.2 m.</span>`,
+      ru:`<strong>Шапка · вяжется по вашим меркам, с индивидуально подобранной посадкой.</strong><span>Напишите мне, чтобы обсудить посадку и детали шапки.</span><span>Шарф · стандартные размеры: ширина 40–50 см · длина 2,0–2,2 м.</span>`,
+      lv:`<strong>Cepure · tiek adīta pēc jūsu mēriem, individuāli pielāgojot piegulšanu.</strong><span>Uzrakstiet man, lai pārrunātu cepures piegulšanu un detaļas.</span><span>Šalle · standarta izmēri: platums 40–50 cm · garums 2,0–2,2 m.</span>`
     }
   };
 
@@ -14783,7 +14783,9 @@ header.topbar.header-hidden{
           ? "object-fit:cover !important;object-position:center center !important;background:#f3f0eb !important;"
           : (p.id === "wrap-2" && i === 1)
             ? "object-fit:cover !important;object-position:center 76% !important;"
-            : "";
+            : (p.id === "hug-1" && i === 6)
+              ? "object-fit:cover !important;object-position:center 18% !important;"
+              : "";
         return isImagePath(item)
           ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}" style="${galleryStyle}">`
           : `<div class="ph" data-index="${i}">${item}</div>`;
@@ -14793,7 +14795,7 @@ header.topbar.header-hidden{
       modalImgWrap.classList.remove('native-swipe-gallery');
       modalImgWrap.innerHTML = `
         ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
-        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${p.id === 'wrap-2' && modalState.index === 0 ? 'object-fit:cover !important;object-position:center center !important;' : p.id === 'wrap-2' && modalState.index === 1 ? 'object-fit:cover !important;object-position:center 76% !important;' : ''}">` : `<div class="ph">${img}</div>` }
+        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${p.id === 'wrap-2' && modalState.index === 0 ? 'object-fit:cover !important;object-position:center center !important;' : p.id === 'wrap-2' && modalState.index === 1 ? 'object-fit:cover !important;object-position:center 76% !important;' : p.id === 'hug-1' && modalState.index === 6 ? 'object-fit:cover !important;object-position:center 18% !important;' : ''}">` : `<div class="ph">${img}</div>` }
         ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
       `;
     }
@@ -14807,8 +14809,13 @@ header.topbar.header-hidden{
     const sizeAdjustEl = document.getElementById('modalSizeAdjust');
     if(PRODUCT_SIZES[p.id]){
       sizeInfoEl.innerHTML = PRODUCT_SIZES[p.id][currentLang];
-      sizeAdjustEl.textContent = SIZE_ADJUSTMENT[currentLang];
-      sizeAdjustEl.style.display = '';
+      if(p.id === "hug-1"){
+        sizeAdjustEl.textContent = '';
+        sizeAdjustEl.style.display = 'none';
+      } else {
+        sizeAdjustEl.textContent = SIZE_ADJUSTMENT[currentLang];
+        sizeAdjustEl.style.display = '';
+      }
     } else {
       sizeInfoEl.textContent = CUSTOM_SIZE[currentLang];
       sizeAdjustEl.textContent = '';
