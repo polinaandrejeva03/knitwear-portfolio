@@ -17831,8 +17831,8 @@ dialog.info-dialog{
     width:100% !important;
     max-width:100% !important;
     height:auto !important;
-    max-height:88vh !important;       /* fallback */
-    max-height:88dvh !important;      /* actual visible iPhone viewport */
+    max-height:calc(100vh - 64px) !important; /* fallback: keep a slim page gap above */
+    max-height:calc(100dvh - clamp(52px, 7dvh, 78px)) !important; /* adaptive mobile viewport */
     overflow-x:hidden !important;
     overflow-y:auto !important;
     overscroll-behavior-y:contain !important;
@@ -17850,13 +17850,13 @@ dialog.info-dialog{
      visually over the photo instead of adding a new row. */
   #productModal .modal-close{
     position:sticky !important;
-    top:12px !important;
+    top:10px !important;
     right:auto !important;
     float:none !important;
     display:flex !important;
     align-items:center !important;
     justify-content:center !important;
-    margin:12px 12px -46px auto !important;
+    margin:10px 12px -44px auto !important;
     z-index:80 !important;
     width:34px !important;
     height:34px !important;
@@ -17866,13 +17866,13 @@ dialog.info-dialog{
      stranded above the visible part of the sheet. */
   dialog.info-dialog .info-close{
     position:sticky !important;
-    top:12px !important;
+    top:10px !important;
     right:auto !important;
     float:none !important;
     display:flex !important;
     align-items:center !important;
     justify-content:center !important;
-    margin:12px 12px -46px auto !important;
+    margin:10px 12px -44px auto !important;
     z-index:80 !important;
   }
 
