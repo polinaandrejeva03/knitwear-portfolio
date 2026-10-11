@@ -13980,6 +13980,11 @@ header.topbar.header-hidden{
       ru:`<strong>One size · S-L</strong><span>Ширина 50 см · Длина 50 см</span>`,
       lv:`<strong>One size · S-L</strong><span>Platums 50 cm · Garums 50 cm</span>`
     },
+    "top-pearl-2": {
+      en:`<strong>One size · S-L</strong><span>Width 50 cm · Length 50 cm</span>`,
+      ru:`<strong>One size · S-L</strong><span>Ширина 50 см · Длина 50 см</span>`,
+      lv:`<strong>One size · S-L</strong><span>Platums 50 cm · Garums 50 cm</span>`
+    },
     "hug-1": {
       en:`<span><strong>Hat</strong> · Made to your measurements, with the fit adjusted individually</span><span><strong>Scarf</strong> · Width 40–50 cm · Length 200–220 cm</span>`,
       ru:`<span><strong>Шапка</strong> · Вяжется по вашим меркам, с индивидуально подобранной посадкой</span><span><strong>Шарф</strong> · Ширина 40–50 см · Длина 200–220 см</span>`,
@@ -14081,7 +14086,7 @@ header.topbar.header-hidden{
     {
       id: "top-pearl",
       category: "tops",
-      name: { en:"Pearl", ru:"Pearl", lv:"Pearl" },
+      name: { en:"Pearl I", ru:"Pearl I", lv:"Pearl I" },
       price: { en:"€100", ru:"100 €", lv:"€100" },
       composition: { en:"70% mohair, 30% silk (Sessia, Italy)", ru:"70% мохер, 30% шёлк (Sessia, Италия)", lv:"70% mohēras, 30% zīda (Sessia, Itālija)" },
       care: { 
@@ -14092,7 +14097,23 @@ header.topbar.header-hidden{
       note: oneSizeSingleColourNote,
       colors: ["#b8d4cf", "#6f274b", "#c8c1b5"],
       images: ["photos/pearl-3.jpeg", "photos/pearl-4.jpeg", "photos/pearl-5.jpeg", "photos/pearl-6.jpeg", "photos/pearl-1.jpeg"],
-      orderText: { en:"Hi! I\'d like to order the Pearl top", ru:"Здравствуйте! Хочу заказать топ Pearl", lv:"Sveiki! Vēlos pasūtīt topu Pearl" }
+      orderText: { en:"Hi! I\'d like to order the Pearl I top", ru:"Здравствуйте! Хочу заказать топ Pearl I", lv:"Sveiki! Vēlos pasūtīt Pearl I topu" }
+    },
+    {
+      id: "top-pearl-2",
+      category: "tops",
+      name: { en:"Pearl II", ru:"Pearl II", lv:"Pearl II" },
+      price: { en:"€110", ru:"110 €", lv:"€110" },
+      composition: { en:"70% mohair, 30% silk (Sessia, Italy)", ru:"70% мохер, 30% шёлк (Sessia, Италия)", lv:"70% mohēras, 30% zīda (Sessia, Itālija)" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
+      note: oneSizeSingleColourNote,
+      colors: ["#ffffff"],
+      images: ["photos/pearl-2-1.jpeg", "photos/pearl-2-2.jpeg", "photos/pearl-2-3.jpeg"],
+      orderText: { en:"Hi! I'd like to order the Pearl II top", ru:"Здравствуйте! Хочу заказать топ Pearl II", lv:"Sveiki! Vēlos pasūtīt Pearl II topu" }
     },
     {
       id: "dress-1",
@@ -14864,7 +14885,7 @@ header.topbar.header-hidden{
       return "object-fit:cover !important;object-position:center 14% !important;";
     }
     if(product.id === "hug-mini"){
-      return "object-fit:cover !important;object-position:center 52% !important;background:#f3f0eb !important;";
+      return "object-fit:cover !important;object-position:center 32% !important;background:#f3f0eb !important;";
     }
     return "object-fit:cover !important;object-position:center center !important;";
   }
