@@ -14247,7 +14247,7 @@ header.topbar.header-hidden{
       },
       note: singleColourNote,
       colors: ["#c9d9e6"],
-      images: ["photos/top-blue-1.jpeg", "photos/top-blue-2.jpeg"],
+      images: ["photos/top-blue-1.jpeg", "photos/top-blue-2.jpeg", "photos/top-blue-3.jpeg"],
       orderText: { en:"Hi! I'd like to order the Lily top", ru:"Здравствуйте! Хочу заказать топ Lily", lv:"Sveiki! Vēlos pasūtīt topu Lily" }
     },
     {
@@ -14695,14 +14695,7 @@ header.topbar.header-hidden{
         <div class="product-thumb">
           ${ p.images.length > 1 ? `<span class="swipe-badge">⇆ ${p.images.length}</span>` : '' }
           ${ p.images.map((img, imgIndex) => {
-            const cardImageStyle =
-              (p.id === "top-pearl" && imgIndex === 0)
-                ? "width:100% !important;height:100% !important;max-width:none !important;max-height:none !important;object-fit:cover !important;object-position:center 25% !important;margin:0 !important;transform:none !important;"
-                : (p.id === "wrap-2" && imgIndex === 0)
-                  ? "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;"
-                  : (p.id === "wrap-2" && imgIndex === 1)
-                    ? "object-fit:cover !important;object-position:center 76% !important;"
-                    : modalPhotoStyle(p, imgIndex);
+            const cardImageStyle = productPhotoStyle(p, imgIndex);
             return `<div class="slide" data-image-index="${imgIndex}"${p.id === "wrap-2" && imgIndex === 0 ? ' style="background:#f3f0eb;"' : ''}>${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" draggable="false" style="${cardImageStyle}">` : `<div class="ph">${img}</div>` }</div>`;
           }).join('') }
         </div>
@@ -14815,10 +14808,15 @@ header.topbar.header-hidden{
   let desktopGalleryBusy = false;
   const desktopGalleryQueue = [];
 
-  function modalPhotoStyle(product, index){
+  // One framing source for BOTH Collection cards and the opened product view.
+  // Any future crop adjustment made here automatically stays identical everywhere.
+  function productPhotoStyle(product, index){
     const src = product && Array.isArray(product.images) ? (product.images[index] || "") : "";
+    if(product.id === "top-pearl" && index === 0){
+      return "object-fit:cover !important;object-position:center 25% !important;";
+    }
     if(product.id === "wrap-2" && index === 0){
-      return "object-fit:cover !important;object-position:center center !important;background:#f3f0eb !important;";
+      return "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;";
     }
     if(product.id === "wrap-2" && index === 1){
       return "object-fit:cover !important;object-position:center 76% !important;";
@@ -14833,9 +14831,12 @@ header.topbar.header-hidden{
       return "object-fit:cover !important;object-position:center 20% !important;";
     }
     if(product.id === "hug-2" && src.endsWith("hug-2-5.jpeg")){
-      return "object-fit:cover !important;object-position:center 22% !important;";
+      return "object-fit:cover !important;object-position:center 34% !important;";
     }
-    return "";
+    if(product.id === "hug-3" && src.endsWith("hug-3-1.jpeg")){
+      return "object-fit:cover !important;object-position:center 14% !important;";
+    }
+    return "object-fit:cover !important;object-position:center center !important;";
   }
 
   function preloadProductImage(src){
@@ -14910,7 +14911,7 @@ header.topbar.header-hidden{
     if(isMobileGallery){
       modalImgWrap.classList.add('native-swipe-gallery');
       modalImgWrap.innerHTML = p.images.map((item, i)=>{
-        const galleryStyle = modalPhotoStyle(p, i);
+        const galleryStyle = productPhotoStyle(p, i);
         return isImagePath(item)
           ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}" style="${galleryStyle}">`
           : `<div class="ph" data-index="${i}">${item}</div>`;
@@ -14920,7 +14921,7 @@ header.topbar.header-hidden{
       modalImgWrap.classList.remove('native-swipe-gallery');
       modalImgWrap.innerHTML = `
         ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
-        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" decoding="async" style="${modalPhotoStyle(p, modalState.index)}">` : `<div class="ph">${img}</div>` }
+        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" decoding="async" style="${productPhotoStyle(p, modalState.index)}">` : `<div class="ph">${img}</div>` }
         ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
       `;
     }
@@ -15050,7 +15051,7 @@ header.topbar.header-hidden{
       replacement.loading = 'eager';
       replacement.decoding = 'async';
       replacement.src = nextSrc;
-      replacement.style.cssText = modalPhotoStyle(p, nextIndex);
+      replacement.style.cssText = productPhotoStyle(p, nextIndex);
       replacement.setAttribute('aria-pressed','false');
 
       try{
