@@ -14035,7 +14035,7 @@ header.topbar.header-hidden{
       id: "sweater-crewneck",
       category: "sweaters",
       name: { en:"Flow", ru:"Flow", lv:"Flow" },
-      price: { en:"€150", ru:"150 €", lv:"€150" },
+      price: { en:"€120", ru:"120 €", lv:"€120" },
       composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
       care: { 
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
@@ -14081,7 +14081,7 @@ header.topbar.header-hidden{
     },
     {
       id: "dress-1",
-      category: "beachwear",
+      category: "dresses",
       name: { en:"Orda", ru:"Орда", lv:"Orda" },
       price: { en:"€200", ru:"200 €", lv:"€200" },
       composition: { en:"100% cotton", ru:"100% хлопок", lv:"100% kokvilna" },
@@ -14133,7 +14133,7 @@ header.topbar.header-hidden{
       category: "accessories",
       typeLabel: { en:"Wrap", ru:"Палантин", lv:"Lakats" },
       name: { en:"Cocoon II", ru:"Cocoon II", lv:"Cocoon II" },
-      price: { en:"€250", ru:"250 €", lv:"€250" },
+      price: { en:"€200", ru:"200 €", lv:"€200" },
       composition: { en:"100% cashmere", ru:"100% кашемир", lv:"100% kašmirs" },
       care: {
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance on low heat.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
@@ -14255,6 +14255,30 @@ header.topbar.header-hidden{
         en:"Hi! I'd like to order the Choco vest",
         ru:"Здравствуйте! Хочу заказать жилет Choco",
         lv:"Sveiki! Vēlos pasūtīt Choco vesti"
+      }
+    },
+    {
+      id: "vest-milo",
+      category: "vests",
+      name: { en:"Milo", ru:"Milo", lv:"Milo" },
+      price: { en:"€150", ru:"150 €", lv:"€150" },
+      composition: { en:"100% cashmere", ru:"100% кашемир", lv:"100% kašmirs" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash in cool water, up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water, reshape and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance on low heat.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную в прохладной воде, до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду, расправить изделие и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния и на низкой температуре.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām vēsā ūdenī, līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni, iztaisnot un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma un zemā temperatūrā.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
+      note: singleColourNote,
+      colors: ["#66749a"],
+      images: [
+        "photos/milo-1.jpeg",
+        "photos/milo-2.jpeg",
+        "photos/milo-3.jpeg"
+      ],
+      orderText: {
+        en:"Hi! I'd like to order the Milo vest",
+        ru:"Здравствуйте! Хочу заказать жилет Milo",
+        lv:"Sveiki! Vēlos pasūtīt Milo vesti"
       }
     },
     {
@@ -14633,17 +14657,85 @@ header.topbar.header-hidden{
     return { en:"View details", ru:"Подробнее", lv:"Skatīt detaļas" }[currentLang];
   }
 
+  // ---------- Dialog page scroll lock ----------
+  // Keep the dimmed page completely still while a product/info dialog is open.
+  // The dialog itself remains independently scrollable. This fixed-body approach
+  // is intentionally used for iPhone/iPad Safari, where overflow:hidden alone
+  // can still let the page behind a modal move.
+  const pageScrollLock = {
+    count: 0,
+    y: 0,
+    htmlOverflow: '',
+    body: null
+  };
+
+  function lockPageScroll(){
+    pageScrollLock.count += 1;
+    if(pageScrollLock.count > 1) return;
+
+    const body = document.body;
+    const html = document.documentElement;
+    pageScrollLock.y = Math.max(0, window.scrollY || window.pageYOffset || 0);
+    pageScrollLock.htmlOverflow = html.style.overflow;
+    pageScrollLock.body = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+      paddingRight: body.style.paddingRight
+    };
+
+    const scrollbarGap = Math.max(0, window.innerWidth - html.clientWidth);
+    html.classList.add('dialog-page-locked');
+    body.classList.add('dialog-page-locked');
+    html.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.top = `-${pageScrollLock.y}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+    body.style.overflow = 'hidden';
+    if(scrollbarGap > 0) body.style.paddingRight = `${scrollbarGap}px`;
+  }
+
+  function unlockPageScroll(){
+    if(pageScrollLock.count <= 0) return;
+    pageScrollLock.count -= 1;
+    if(pageScrollLock.count > 0) return;
+
+    const body = document.body;
+    const html = document.documentElement;
+    const saved = pageScrollLock.body || {};
+    const y = pageScrollLock.y;
+
+    html.classList.remove('dialog-page-locked');
+    body.classList.remove('dialog-page-locked');
+    html.style.overflow = pageScrollLock.htmlOverflow || '';
+    body.style.position = saved.position || '';
+    body.style.top = saved.top || '';
+    body.style.left = saved.left || '';
+    body.style.right = saved.right || '';
+    body.style.width = saved.width || '';
+    body.style.overflow = saved.overflow || '';
+    body.style.paddingRight = saved.paddingRight || '';
+
+    pageScrollLock.body = null;
+    requestAnimationFrame(()=>window.scrollTo(0, y));
+  }
+
   function openModal(id, initialIndex = 0){
     const p = products.find(x=>x.id===id);
     if(!p) return;
     const safeIndex = Math.max(0, Math.min(p.images.length - 1, Number(initialIndex) || 0));
     modalState = { product: p, index: safeIndex };
     renderModal();
-    const scrollY = window.scrollY;
-    document.getElementById('productModal').showModal();
-    requestAnimationFrame(()=>{
-      requestAnimationFrame(()=>{ window.scrollTo(0, scrollY); });
-    });
+    const productDialog = document.getElementById('productModal');
+    if(!productDialog.open){
+      lockPageScroll();
+      productDialog.showModal();
+    }
     updateScrollHint();
   }
 
@@ -14781,13 +14873,15 @@ header.topbar.header-hidden{
     });
   }
 
+  const productDialog = document.getElementById('productModal');
   document.getElementById('modalCloseBtn').addEventListener('click', ()=>{
-    const scrollY = window.scrollY;
-    document.getElementById('productModal').close();
-    window.scrollTo(0, scrollY);
+    productDialog.close();
   });
-  document.getElementById('productModal').addEventListener('click', (e)=>{
+  productDialog.addEventListener('click', (e)=>{
     if(e.target.id === 'productModal') e.target.close();
+  });
+  productDialog.addEventListener('close', ()=>{
+    unlockPageScroll();
   });
   document.addEventListener('keydown', (e)=>{
     const dlg = document.getElementById('productModal');
@@ -14816,14 +14910,12 @@ header.topbar.header-hidden{
   const policiesDialog = document.getElementById('policiesDialog');
 
   function openInfoDialog(dialog){
-    const scrollY = window.scrollY;
+    if(dialog.open) return;
+    lockPageScroll();
     dialog.showModal();
-    dialog.dataset.scrollY = scrollY;
   }
   function closeInfoDialog(dialog){
-    const scrollY = Number(dialog.dataset.scrollY || window.scrollY);
-    dialog.close();
-    requestAnimationFrame(()=>window.scrollTo(0, scrollY));
+    if(dialog.open) dialog.close();
   }
 
   document.getElementById('openCareGuide').addEventListener('click', ()=> openInfoDialog(careGuideDialog));
@@ -14838,6 +14930,9 @@ header.topbar.header-hidden{
   [careGuideDialog, policiesDialog].forEach(dialog=>{
     dialog.addEventListener('click', (e)=>{
       if(e.target === dialog) closeInfoDialog(dialog);
+    });
+    dialog.addEventListener('close', ()=>{
+      unlockPageScroll();
     });
   });
 
@@ -16256,6 +16351,29 @@ header.topbar.header-hidden{
 }
 </style>
 
+
+
+<style id="final-dialog-scroll-lock-2026">
+/* Keep the page behind every modal perfectly still. Dialog content itself scrolls. */
+html.dialog-page-locked,
+body.dialog-page-locked{
+  overscroll-behavior:none !important;
+}
+#productModal,
+dialog.info-dialog{
+  overscroll-behavior:contain !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+@media (max-width:699px){
+  #productModal,
+  dialog.info-dialog{
+    touch-action:pan-y !important;
+  }
+  #productModal .modal-imgwrap.native-swipe-gallery{
+    touch-action:pan-x pan-y !important;
+  }
+}
+</style>
 </body>
 </html>
 
