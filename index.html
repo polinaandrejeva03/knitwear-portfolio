@@ -13981,9 +13981,9 @@ header.topbar.header-hidden{
       lv:`<strong>One size · S-L</strong><span>Platums 50 cm · Garums 50 cm</span>`
     },
     "hug-1": {
-      en:`<strong>Hat · made to your measurements, with the fit adjusted individually.</strong><span>Message me to discuss the hat fit and details.</span><span>Scarf · standard dimensions: width 40–50 cm · length 2.0–2.2 m.</span>`,
-      ru:`<strong>Шапка · вяжется по вашим меркам, с индивидуально подобранной посадкой.</strong><span>Напишите мне, чтобы обсудить посадку и детали шапки.</span><span>Шарф · стандартные размеры: ширина 40–50 см · длина 2,0–2,2 м.</span>`,
-      lv:`<strong>Cepure · tiek adīta pēc jūsu mēriem, individuāli pielāgojot piegulšanu.</strong><span>Uzrakstiet man, lai pārrunātu cepures piegulšanu un detaļas.</span><span>Šalle · standarta izmēri: platums 40–50 cm · garums 2,0–2,2 m.</span>`
+      en:`<span><strong>Hat</strong> · Made to your measurements, with the fit adjusted individually</span><span><strong>Scarf</strong> · Width 40–50 cm · Length 200–220 cm</span>`,
+      ru:`<span><strong>Шапка</strong> · Вяжется по вашим меркам, с индивидуально подобранной посадкой</span><span><strong>Шарф</strong> · Ширина 40–50 см · Длина 200–220 см</span>`,
+      lv:`<span><strong>Cepure</strong> · Tiek adīta pēc jūsu mēriem, individuāli pielāgojot piegulumu</span><span><strong>Šalle</strong> · Platums 40–50 cm · Garums 200–220 cm</span>`
     }
   };
 
@@ -14752,11 +14752,75 @@ header.topbar.header-hidden{
     });
   }
 
+  // ---------- Stable desktop product gallery ----------
+  // Keep the current photo visible until the next one is fully loaded and decoded.
+  // This prevents the white flash that could appear between some large images.
+  const productImageCache = new Map();
+  let desktopGalleryRequest = 0;
+  let desktopPendingIndex = null;
+
+  function modalPhotoStyle(product, index){
+    if(product.id === "wrap-2" && index === 0){
+      return "object-fit:cover !important;object-position:center center !important;background:#f3f0eb !important;";
+    }
+    if(product.id === "wrap-2" && index === 1){
+      return "object-fit:cover !important;object-position:center 76% !important;";
+    }
+    if(product.id === "hug-1" && index === 6){
+      return "object-fit:cover !important;object-position:center 18% !important;";
+    }
+    return "";
+  }
+
+  function preloadProductImage(src){
+    if(!isImagePath(src)) return Promise.resolve(false);
+    if(productImageCache.has(src)) return productImageCache.get(src);
+
+    const promise = new Promise(resolve=>{
+      const image = new Image();
+      let finished = false;
+      const done = value=>{
+        if(finished) return;
+        finished = true;
+        resolve(value);
+      };
+      image.onload = async ()=>{
+        try{
+          if(image.decode) await image.decode();
+        }catch(_){ }
+        done(true);
+      };
+      image.onerror = ()=>done(false);
+      image.src = src;
+      if(image.complete && image.naturalWidth > 0){
+        Promise.resolve(image.decode ? image.decode().catch(()=>{}) : null).then(()=>done(true));
+      }
+    });
+    productImageCache.set(src, promise);
+    return promise;
+  }
+
+  function warmProductImages(product, startIndex = 0){
+    if(!product || !Array.isArray(product.images)) return;
+    const count = product.images.length;
+    const order = [];
+    for(let distance = 0; distance < count; distance++){
+      const right = (startIndex + distance) % count;
+      const left = (startIndex - distance + count) % count;
+      if(!order.includes(right)) order.push(right);
+      if(!order.includes(left)) order.push(left);
+    }
+    order.forEach(index=>preloadProductImage(product.images[index]));
+  }
+
   function openModal(id, initialIndex = 0){
     const p = products.find(x=>x.id===id);
     if(!p) return;
     const safeIndex = Math.max(0, Math.min(p.images.length - 1, Number(initialIndex) || 0));
     modalState = { product: p, index: safeIndex };
+    desktopPendingIndex = null;
+    desktopGalleryRequest += 1;
+    warmProductImages(p, safeIndex);
     renderModal();
     const productDialog = document.getElementById('productModal');
     if(!productDialog.open){
@@ -14779,13 +14843,7 @@ header.topbar.header-hidden{
     if(isMobileGallery){
       modalImgWrap.classList.add('native-swipe-gallery');
       modalImgWrap.innerHTML = p.images.map((item, i)=>{
-        const galleryStyle = (p.id === "wrap-2" && i === 0)
-          ? "object-fit:cover !important;object-position:center center !important;background:#f3f0eb !important;"
-          : (p.id === "wrap-2" && i === 1)
-            ? "object-fit:cover !important;object-position:center 76% !important;"
-            : (p.id === "hug-1" && i === 6)
-              ? "object-fit:cover !important;object-position:center 18% !important;"
-              : "";
+        const galleryStyle = modalPhotoStyle(p, i);
         return isImagePath(item)
           ? `<img src="${item}" alt="${p.name[currentLang]}" data-index="${i}" style="${galleryStyle}">`
           : `<div class="ph" data-index="${i}">${item}</div>`;
@@ -14795,7 +14853,7 @@ header.topbar.header-hidden{
       modalImgWrap.classList.remove('native-swipe-gallery');
       modalImgWrap.innerHTML = `
         ${ p.images.length > 1 ? `<button class="modal-nav prev" aria-label="Previous">‹</button>` : '' }
-        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" style="${p.id === 'wrap-2' && modalState.index === 0 ? 'object-fit:cover !important;object-position:center center !important;' : p.id === 'wrap-2' && modalState.index === 1 ? 'object-fit:cover !important;object-position:center 76% !important;' : p.id === 'hug-1' && modalState.index === 6 ? 'object-fit:cover !important;object-position:center 18% !important;' : ''}">` : `<div class="ph">${img}</div>` }
+        ${ isImagePath(img) ? `<img src="${img}" alt="${p.name[currentLang]}" decoding="async" style="${modalPhotoStyle(p, modalState.index)}">` : `<div class="ph">${img}</div>` }
         ${ p.images.length > 1 ? `<button class="modal-nav next" aria-label="Next">›</button>` : '' }
       `;
     }
@@ -14810,8 +14868,13 @@ header.topbar.header-hidden{
     if(PRODUCT_SIZES[p.id]){
       sizeInfoEl.innerHTML = PRODUCT_SIZES[p.id][currentLang];
       if(p.id === "hug-1"){
-        sizeAdjustEl.textContent = '';
-        sizeAdjustEl.style.display = 'none';
+        const HUG_SIZE_ADJUSTMENT = {
+          en:"Message me to discuss the hat fit and details.",
+          ru:"Напишите мне, чтобы обсудить посадку и детали шапки.",
+          lv:"Uzrakstiet man, lai pārrunātu cepures piegulumu un detaļas."
+        };
+        sizeAdjustEl.textContent = HUG_SIZE_ADJUSTMENT[currentLang];
+        sizeAdjustEl.style.display = '';
       } else {
         sizeAdjustEl.textContent = SIZE_ADJUSTMENT[currentLang];
         sizeAdjustEl.style.display = '';
@@ -14864,8 +14927,58 @@ header.topbar.header-hidden{
 
   function shiftImage(dir){
     const p = modalState.product;
-    modalState.index = (modalState.index + dir + p.images.length) % p.images.length;
-    renderModal();
+    if(!p || !p.images.length) return;
+
+    const isDesktop = window.matchMedia('(min-width:700px)').matches;
+    if(!isDesktop){
+      modalState.index = (modalState.index + dir + p.images.length) % p.images.length;
+      renderModal();
+      return;
+    }
+
+    const baseIndex = desktopPendingIndex === null ? modalState.index : desktopPendingIndex;
+    const nextIndex = (baseIndex + dir + p.images.length) % p.images.length;
+    const nextSrc = p.images[nextIndex];
+    desktopPendingIndex = nextIndex;
+    const requestId = ++desktopGalleryRequest;
+
+    const wrap = document.getElementById('modalImgWrap');
+    const currentImg = wrap ? wrap.querySelector('img') : null;
+
+    // If this is a non-image placeholder or the current image element is missing,
+    // use the normal renderer. Real photos use the stable decoded swap below.
+    if(!isImagePath(nextSrc) || !currentImg){
+      modalState.index = nextIndex;
+      desktopPendingIndex = null;
+      renderModal();
+      return;
+    }
+
+    preloadProductImage(nextSrc).then(loaded=>{
+      if(requestId !== desktopGalleryRequest) return;
+      if(!modalState.product || modalState.product.id !== p.id) return;
+
+      desktopPendingIndex = null;
+      if(!loaded) return; // keep the current photo instead of flashing an empty frame
+
+      // Reset any inline zoom before changing the source, while keeping the same
+      // DOM image element on screen. This avoids a blank paint between photos.
+      wrap.dispatchEvent(new CustomEvent('product-gallery-before-change'));
+
+      modalState.index = nextIndex;
+      currentImg.src = nextSrc;
+      currentImg.alt = p.name[currentLang];
+      currentImg.style.cssText = modalPhotoStyle(p, nextIndex);
+      currentImg.setAttribute('aria-pressed','false');
+
+      const dots = document.getElementById('modalDots');
+      if(dots){
+        dots.querySelectorAll('span').forEach((dot,i)=>dot.classList.toggle('active', i === nextIndex));
+      }
+
+      // Start warming the neighbouring images too, so rapid browsing stays instant.
+      warmProductImages(p, nextIndex);
+    });
   }
 
   // Product detail gallery: swipe left/right on touch devices.
@@ -15997,6 +16110,12 @@ header.topbar.header-hidden{
 
   wrap.addEventListener('touchcancel',()=>{ touchGesture=null; },{passive:true});
 
+  wrap.addEventListener('product-gallery-before-change',()=>{
+    if(scale > 1.01 || img){
+      zoomOut(false);
+    }
+  });
+
   wrap.addEventListener('keydown',(e)=>{
     if(e.key!=='Enter' && e.key!==' ') return;
     const target=e.target.closest('img');
@@ -16017,6 +16136,8 @@ header.topbar.header-hidden{
   decorate();
 
   productModal.addEventListener('close',()=>{
+    desktopGalleryRequest += 1;
+    desktopPendingIndex = null;
     clearTimeout(resetTimer);
     if(img) clearImageVisual(img);
     img=null; scale=1; tx=0; ty=0;
