@@ -14057,8 +14057,15 @@ header.topbar.header-hidden{
         lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
       },
       note: singleColourNote,
-      colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "linear-gradient(135deg, #f3c9d6, #b7d4e8, #f6e6a8, #f4f1ec)", "#2f4a3d"],
-      images: ["photos/tuman-2.jpeg", "photos/tuman-4.jpeg", "photos/tuman-5.jpeg", "photos/tuman-6.jpeg", "photos/tuman-7.jpeg"],
+      colors: [
+        "#f4f1ec",
+        "#b7d4e8",
+        "#f3c9d6",
+        "linear-gradient(135deg, #f3c9d6, #b7d4e8, #f6e6a8, #f4f1ec)",
+        "#2f4a3d",
+        "linear-gradient(135deg, #b89a7a 0%, #b89a7a 45%, #c8c6c1 45%, #c8c6c1 100%)"
+      ],
+      images: ["photos/tuman-2.jpeg", "photos/tuman-4.jpeg", "photos/tuman-5.jpeg", "photos/tuman-6.jpeg", "photos/tuman-7.jpeg", "photos/tuman-8.jpeg", "photos/tuman-9.jpeg"],
       orderText: { en:"Hi! I\'d like to order the Mist sweater", ru:"Здравствуйте! Хочу заказать свитер Mist", lv:"Sveiki! Vēlos pasūtīt džemperi Mist" }
     },
     {
@@ -14081,7 +14088,7 @@ header.topbar.header-hidden{
       id: "flow-2",
       category: "tops",
       name: { en:"Flow II", ru:"Flow II", lv:"Flow II" },
-      price: { en:"", ru:"", lv:"" },
+      price: { en:"€100", ru:"100 €", lv:"€100" },
       composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
       care: {
         en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
@@ -14890,10 +14897,16 @@ header.topbar.header-hidden{
       return "object-fit:cover !important;object-position:center 25% !important;";
     }
     if(product.id === "wrap-2" && index === 0){
-      return "object-fit:contain !important;object-position:center center !important;background:#f3f0eb !important;";
+      return "object-fit:cover !important;object-position:center center !important;";
     }
     if(product.id === "wrap-2" && index === 1){
       return "object-fit:cover !important;object-position:center 76% !important;";
+    }
+    if(product.id === "flow-2" && src.endsWith("flow-2-1.jpeg")){
+      return "object-fit:cover !important;object-position:center 56% !important;";
+    }
+    if(product.id === "flow-2" && src.endsWith("flow-2-3.jpeg")){
+      return "object-fit:cover !important;object-position:center 42% !important;";
     }
     if(product.id === "hug-1" && src.endsWith("hug-1-7.jpeg")){
       return "object-fit:cover !important;object-position:center 18% !important;";
@@ -14911,7 +14924,7 @@ header.topbar.header-hidden{
       return "object-fit:cover !important;object-position:center 14% !important;";
     }
     if(product.id === "hug-mini"){
-      return "object-fit:cover !important;object-position:center top !important;";
+      return "object-fit:cover !important;object-position:center 8% !important;";
     }
     return "object-fit:cover !important;object-position:center center !important;";
   }
