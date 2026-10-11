@@ -13975,6 +13975,11 @@ header.topbar.header-hidden{
       ru:`<strong>One size · S-L</strong><span>Ширина 60 см · Длина 70 см</span>`,
       lv:`<strong>One size · S-L</strong><span>Platums 60 cm · Garums 70 cm</span>`
     },
+    "flow-2": {
+      en:`<strong>One size · S-L</strong><span>Width 60 cm · Length 70 cm</span>`,
+      ru:`<strong>One size · S-L</strong><span>Ширина 60 см · Длина 70 см</span>`,
+      lv:`<strong>One size · S-L</strong><span>Platums 60 cm · Garums 70 cm</span>`
+    },
     "top-pearl": {
       en:`<strong>One size · S-L</strong><span>Width 50 cm · Length 50 cm</span>`,
       ru:`<strong>One size · S-L</strong><span>Ширина 50 см · Длина 50 см</span>`,
@@ -13999,6 +14004,11 @@ header.topbar.header-hidden{
       en:`<span><strong>Scarf</strong> · Width 50 cm · Length 200–220 cm</span>`,
       ru:`<span><strong>Шарф</strong> · Ширина 50 см · Длина 200–220 см</span>`,
       lv:`<span><strong>Šalle</strong> · Platums 50 cm · Garums 200–220 cm</span>`
+    },
+    "hug-mini": {
+      en:`<span><strong>Mini scarf</strong> · Width 10–15 cm · Length 1.5–2 m</span>`,
+      ru:`<span><strong>Мини-шарф</strong> · Ширина 10–15 см · Длина 1,5–2 м</span>`,
+      lv:`<span><strong>Mini šalle</strong> · Platums 10–15 cm · Garums 1,5–2 m</span>`
     }
   };
 
@@ -14054,7 +14064,7 @@ header.topbar.header-hidden{
     {
       id: "sweater-crewneck",
       category: "sweaters",
-      name: { en:"Flow", ru:"Flow", lv:"Flow" },
+      name: { en:"Flow I", ru:"Flow I", lv:"Flow I" },
       price: { en:"€120", ru:"120 €", lv:"€120" },
       composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
       care: { 
@@ -14065,7 +14075,23 @@ header.topbar.header-hidden{
       note: multipleColoursNote,
       colors: ["#f4f1ec", "#b7d4e8", "#f3c9d6", "#b887a9", "#f6e6a8", "#c7b4d6"],
       images: ["photos/crewneck-1.jpeg", "photos/crewneck-2.jpeg", "photos/crewneck-3.jpeg", "photos/crewneck-4.jpeg", "photos/crewneck-5.jpeg", "photos/crewneck-6.jpeg", "photos/crewneck-7.jpeg", "photos/crewneck-8.jpeg", "photos/crewneck-9.jpeg", "photos/crewneck-10.jpeg"],
-      orderText: { en:"Hi! I\'d like to order the Flow sweater", ru:"Здравствуйте! Хочу заказать свитер Flow", lv:"Sveiki! Vēlos pasūtīt džemperi Flow" }
+      orderText: { en:"Hi! I\'d like to order the Flow I sweater", ru:"Здравствуйте! Хочу заказать свитер Flow I", lv:"Sveiki! Vēlos pasūtīt džemperi Flow I" }
+    },
+    {
+      id: "flow-2",
+      category: "tops",
+      name: { en:"Flow II", ru:"Flow II", lv:"Flow II" },
+      price: { en:"", ru:"", lv:"" },
+      composition: { en:"70% mohair, 30% silk", ru:"70% мохер, 30% шёлк", lv:"70% mohēras, 30% zīda" },
+      care: {
+        en:`<ul class="care-list"><li><strong>Wash:</strong> hand wash up to 30°C.</li><li><strong>Dry:</strong> gently press out excess water and dry flat.</li><li><strong>Steam:</strong> light steaming from a short distance.</li><li><strong>Dry clean:</strong> professional delicate dry cleaning if needed.</li></ul>`,
+        ru:`<ul class="care-list"><li><strong>Стирка:</strong> вручную при температуре до 30°C.</li><li><strong>Сушка:</strong> аккуратно удалить лишнюю воду и сушить горизонтально.</li><li><strong>Отпаривание:</strong> бережно, с небольшого расстояния.</li><li><strong>Химчистка:</strong> при необходимости - профессиональная деликатная.</li></ul>`,
+        lv:`<ul class="care-list"><li><strong>Mazgāšana:</strong> ar rokām temperatūrā līdz 30°C.</li><li><strong>Žāvēšana:</strong> saudzīgi nosusināt lieko ūdeni un žāvēt horizontāli.</li><li><strong>Tvaicēšana:</strong> saudzīgi, no neliela attāluma.</li><li><strong>Ķīmiskā tīrīšana:</strong> ja nepieciešams - profesionāla un saudzīga.</li></ul>`
+      },
+      note: singleColourNote,
+      colors: ["#857d3e"],
+      images: ["photos/flow-2-1.jpeg", "photos/flow-2-2.jpeg", "photos/flow-2-3.jpeg"],
+      orderText: { en:"Hi! I'd like to order the Flow II top", ru:"Здравствуйте! Хочу заказать топ Flow II", lv:"Sveiki! Vēlos pasūtīt Flow II topu" }
     },
     {
       id: "marta",
@@ -14885,7 +14911,7 @@ header.topbar.header-hidden{
       return "object-fit:cover !important;object-position:center 14% !important;";
     }
     if(product.id === "hug-mini"){
-      return "object-fit:cover !important;object-position:center 32% !important;background:#f3f0eb !important;";
+      return "object-fit:cover !important;object-position:center top !important;";
     }
     return "object-fit:cover !important;object-position:center center !important;";
   }
@@ -14985,12 +15011,7 @@ header.topbar.header-hidden{
     const sizeInfoEl = document.getElementById('modalSizeInfo');
     const sizeAdjustEl = document.getElementById('modalSizeAdjust');
     const sizeBlockEl = sizeInfoEl.closest('.modal-block');
-    if(p.id === "hug-mini"){
-      if(sizeBlockEl) sizeBlockEl.style.display = 'none';
-      sizeInfoEl.textContent = '';
-      sizeAdjustEl.textContent = '';
-      sizeAdjustEl.style.display = 'none';
-    } else if(PRODUCT_SIZES[p.id]){
+    if(PRODUCT_SIZES[p.id]){
       if(sizeBlockEl) sizeBlockEl.style.display = '';
       sizeInfoEl.innerHTML = PRODUCT_SIZES[p.id][currentLang];
       if(p.id === "hug-1" || p.id === "hug-2"){
@@ -15001,7 +15022,7 @@ header.topbar.header-hidden{
         };
         sizeAdjustEl.textContent = HUG_SIZE_ADJUSTMENT[currentLang];
         sizeAdjustEl.style.display = '';
-      } else if(p.id === "hug-3"){
+      } else if(p.id === "hug-3" || p.id === "hug-mini"){
         sizeAdjustEl.textContent = '';
         sizeAdjustEl.style.display = 'none';
       } else {
