@@ -14657,15 +14657,15 @@ header.topbar.header-hidden{
   }
 
   // ---------- Dialog page scroll lock ----------
-  // Keep the dimmed page completely still while a product/info dialog is open.
-  // The dialog itself remains independently scrollable. This fixed-body approach
-  // is intentionally used for iPhone/iPad Safari, where overflow:hidden alone
-  // can still let the page behind a modal move.
+  // Freeze only the page behind the dialog. Do NOT move the body with position:fixed:
+  // on iPhone Safari that can change the visual viewport while the browser bars expand/
+  // collapse and can make a bottom sheet reopen with its top clipped off-screen.
   const pageScrollLock = {
     count: 0,
     y: 0,
     htmlOverflow: '',
-    body: null
+    bodyOverflow: '',
+    bodyPaddingRight: ''
   };
 
   function lockPageScroll(){
@@ -14676,25 +14676,13 @@ header.topbar.header-hidden{
     const html = document.documentElement;
     pageScrollLock.y = Math.max(0, window.scrollY || window.pageYOffset || 0);
     pageScrollLock.htmlOverflow = html.style.overflow;
-    pageScrollLock.body = {
-      position: body.style.position,
-      top: body.style.top,
-      left: body.style.left,
-      right: body.style.right,
-      width: body.style.width,
-      overflow: body.style.overflow,
-      paddingRight: body.style.paddingRight
-    };
+    pageScrollLock.bodyOverflow = body.style.overflow;
+    pageScrollLock.bodyPaddingRight = body.style.paddingRight;
 
     const scrollbarGap = Math.max(0, window.innerWidth - html.clientWidth);
     html.classList.add('dialog-page-locked');
     body.classList.add('dialog-page-locked');
     html.style.overflow = 'hidden';
-    body.style.position = 'fixed';
-    body.style.top = `-${pageScrollLock.y}px`;
-    body.style.left = '0';
-    body.style.right = '0';
-    body.style.width = '100%';
     body.style.overflow = 'hidden';
     if(scrollbarGap > 0) body.style.paddingRight = `${scrollbarGap}px`;
   }
@@ -14706,22 +14694,28 @@ header.topbar.header-hidden{
 
     const body = document.body;
     const html = document.documentElement;
-    const saved = pageScrollLock.body || {};
     const y = pageScrollLock.y;
 
     html.classList.remove('dialog-page-locked');
     body.classList.remove('dialog-page-locked');
     html.style.overflow = pageScrollLock.htmlOverflow || '';
-    body.style.position = saved.position || '';
-    body.style.top = saved.top || '';
-    body.style.left = saved.left || '';
-    body.style.right = saved.right || '';
-    body.style.width = saved.width || '';
-    body.style.overflow = saved.overflow || '';
-    body.style.paddingRight = saved.paddingRight || '';
+    body.style.overflow = pageScrollLock.bodyOverflow || '';
+    body.style.paddingRight = pageScrollLock.bodyPaddingRight || '';
 
-    pageScrollLock.body = null;
+    // The page never changed position while locked, but explicitly restoring the
+    // saved Y keeps desktop/mobile behaviour deterministic after Safari UI changes.
     requestAnimationFrame(()=>window.scrollTo(0, y));
+  }
+
+  function resetDialogToTop(dialog){
+    if(!dialog) return;
+    // Safari preserves a dialog element's own scrollTop between openings. Reset it
+    // before and after it enters the top layer so every popup starts at its real top.
+    dialog.scrollTop = 0;
+    requestAnimationFrame(()=>{
+      dialog.scrollTop = 0;
+      requestAnimationFrame(()=>{ dialog.scrollTop = 0; });
+    });
   }
 
   function openModal(id, initialIndex = 0){
@@ -14732,8 +14726,12 @@ header.topbar.header-hidden{
     renderModal();
     const productDialog = document.getElementById('productModal');
     if(!productDialog.open){
+      resetDialogToTop(productDialog);
       lockPageScroll();
       productDialog.showModal();
+      resetDialogToTop(productDialog);
+    } else {
+      resetDialogToTop(productDialog);
     }
     updateScrollHint();
   }
@@ -14910,8 +14908,10 @@ header.topbar.header-hidden{
 
   function openInfoDialog(dialog){
     if(dialog.open) return;
+    resetDialogToTop(dialog);
     lockPageScroll();
     dialog.showModal();
+    resetDialogToTop(dialog);
   }
   function closeInfoDialog(dialog){
     if(dialog.open) dialog.close();
@@ -17808,5 +17808,90 @@ dialog.info-dialog{
     backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
   }
+}
+</style>
+
+
+<style id="FINAL-iphone-dialog-viewport-fix-2026-10-11">
+/* ============================================================
+   iPHONE / MOBILE POPUP RESTORE
+   - keep the old bottom-sheet look with visible dimmed space above
+   - use the dynamic viewport so Safari browser bars cannot push the top away
+   - always reopen every dialog at scrollTop = 0
+   - keep close buttons reachable while the dialog itself scrolls
+   ============================================================ */
+@media (max-width:699px){
+  dialog#productModal[open],
+  dialog.info-dialog[open]{
+    position:fixed !important;
+    inset:auto 0 0 0 !important;
+    top:auto !important;
+    bottom:0 !important;
+    margin:0 !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    max-height:88vh !important;       /* fallback */
+    max-height:88dvh !important;      /* actual visible iPhone viewport */
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    overscroll-behavior-y:contain !important;
+    -webkit-overflow-scrolling:touch !important;
+    border-radius:18px 18px 0 0 !important;
+    background:var(--card,#fff) !important;
+    scrollbar-width:none !important;
+  }
+
+  dialog#productModal[open]::-webkit-scrollbar,
+  dialog.info-dialog[open]::-webkit-scrollbar{ display:none !important; }
+
+  /* Product: same old photo-first sheet, but the X remains reachable even after
+     the user scrolls into Size / Colour / Care. Negative bottom margin keeps it
+     visually over the photo instead of adding a new row. */
+  #productModal .modal-close{
+    position:sticky !important;
+    top:12px !important;
+    right:auto !important;
+    float:none !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    margin:12px 12px -46px auto !important;
+    z-index:80 !important;
+    width:34px !important;
+    height:34px !important;
+  }
+
+  /* Care guide / policies: same treatment, so the close button can never be
+     stranded above the visible part of the sheet. */
+  dialog.info-dialog .info-close{
+    position:sticky !important;
+    top:12px !important;
+    right:auto !important;
+    float:none !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    margin:12px 12px -46px auto !important;
+    z-index:80 !important;
+  }
+
+  dialog.info-dialog .info-dialog-inner{
+    padding-top:26px !important;
+    padding-bottom:calc(32px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* Keep a real rounded top edge visible around the photo/content. */
+  #productModal .modal-imgwrap,
+  #productModal .modal-imgwrap.native-swipe-gallery{
+    border-radius:0 !important;
+  }
+}
+
+/* The background stays frozen; only the top-layer dialog is scrollable. */
+html.dialog-page-locked,
+body.dialog-page-locked{
+  overflow:hidden !important;
+  overscroll-behavior:none !important;
 }
 </style>
